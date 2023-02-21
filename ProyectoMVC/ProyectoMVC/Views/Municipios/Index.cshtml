@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbMunicipios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card">
+                
+    <div class="card-header">
+                <div class="row">
+                    <div class="col" style="color: black;">
+                     <h4 style="color: black;">Index</h4>
+                    </div>
+                    <div class="col d-flex flex-row-reverse">
+                     @Html.ActionLink("Crear nuevo", "Create", new { @class="btn btn-block btn-success" })
+                    </div>
+                </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe" id="example">
+                <thead>
+                    <tr>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Nombre)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.mun_FechaCreacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.mun_FechaModificacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Estado)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
+                        </th>
+                                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
+                        </th>
+                                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_Nombre)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_FechaCreacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_FechaModificacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_Estado)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbDepartamentos.dep_Nombre)
+                        </td>
+                                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuarios.usu_Usuario)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuarios1.usu_Usuario)
+                        </td>
+                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.mun_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+       
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Edit", new { id=item.mun_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+        
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Delete", new { id=item.mun_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        </td>
+                                        </tr>
+                }
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

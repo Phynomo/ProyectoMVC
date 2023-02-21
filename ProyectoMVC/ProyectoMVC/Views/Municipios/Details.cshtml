@@ -1,0 +1,74 @@
+﻿@model ProyectoMVC.Models.tbMunicipios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbMunicipios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mun_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mun_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mun_FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mun_FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mun_FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mun_FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mun_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mun_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbDepartamentos.dep_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mun_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

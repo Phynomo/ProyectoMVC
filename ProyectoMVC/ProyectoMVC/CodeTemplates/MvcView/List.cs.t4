@@ -51,7 +51,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                      <h4 style="color: black;"><#= ViewName #></h4>
                     </div>
                     <div class="col d-flex flex-row-reverse">
-                     @Html.ActionLink("Crear nuevo", "Create", new { @class="btn btn-block btn-success" })
+                     <a href="Create" class="btn btn-block btn-success">Crear Nuevo</a>
                     </div>
                 </div>
     </div>
