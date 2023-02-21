@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoMVC.Models.tbMunicipios>
+﻿@model IEnumerable<ProyectoMVC.Models.tbCargos>
 
 @{
     ViewBag.Title = "Index";
@@ -24,27 +24,24 @@
                 <thead>
                     <tr>
                                                         <th>
-                            @Html.DisplayNameFor(model => model.mun_Nombre)
+                            @Html.DisplayNameFor(model => model.car_Nombre)
                         </th>
                                                         <th>
-                            @Html.DisplayNameFor(model => model.mun_FechaCreacion)
+                            @Html.DisplayNameFor(model => model.car_FechaCreacion)
                         </th>
                                                         <th>
-                            @Html.DisplayNameFor(model => model.mun_FechaModificacion)
+                            @Html.DisplayNameFor(model => model.car_FechaModificacion)
                         </th>
                                                         <th>
-                            @Html.DisplayNameFor(model => model.mun_Estado)
+                            @Html.DisplayNameFor(model => model.car_Estado)
                         </th>
                                                         <th>
-                            @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
-                        </th>
-                                                                        <th>
                             @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
                         </th>
                                                         <th>
                             @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
                         </th>
-                                        <th>Detalles</th>
+                                                        <th>Detalles</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
@@ -53,36 +50,33 @@
                 @foreach (var item in Model) {
                     <tr>
                                                         <td>
-                            @Html.DisplayFor(modelItem => item.mun_Nombre)
+                            @Html.DisplayFor(modelItem => item.car_Nombre)
                         </td>
                                                         <td>
-                            @Html.DisplayFor(modelItem => item.mun_FechaCreacion)
+                            @Html.DisplayFor(modelItem => item.car_FechaCreacion)
                         </td>
                                                         <td>
-                            @Html.DisplayFor(modelItem => item.mun_FechaModificacion)
+                            @Html.DisplayFor(modelItem => item.car_FechaModificacion)
                         </td>
                                                         <td>
-                            @Html.DisplayFor(modelItem => item.mun_Estado)
+                            @Html.DisplayFor(modelItem => item.car_Estado)
                         </td>
                                                         <td>
-                            @Html.DisplayFor(modelItem => item.tbDepartamentos.dep_Nombre)
-                        </td>
-                                                                        <td>
                             @Html.DisplayFor(modelItem => item.tbUsuarios.usu_Usuario)
                         </td>
                                                         <td>
                             @Html.DisplayFor(modelItem => item.tbUsuarios1.usu_Usuario)
                         </td>
-                                        <td>
-                        @Html.ActionLink(" ", "Details", new { id=item.mun_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+                                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.car_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
        
                         </td>
                         <td>
-                        @Html.ActionLink(" ", "Edit", new { id=item.mun_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+                        @Html.ActionLink(" ", "Edit", new { id=item.car_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
         
                         </td>
                         <td>
-                        @Html.ActionLink(" ", "Delete", new { id=item.mun_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        @Html.ActionLink(" ", "Delete", new { id=item.car_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
                         </td>
                                         </tr>
                 }

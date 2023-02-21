@@ -128,11 +128,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,6 +150,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Municipio.cs" />
     <Compile Include="Models\tbCargos.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -213,7 +216,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
@@ -229,6 +231,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <Content Include="Content\lib\owlcarousel\LICENSE" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -259,6 +262,11 @@
     <Content Include="Views\Municipios\Details.cshtml" />
     <Content Include="Views\Municipios\Edit.cshtml" />
     <Content Include="Views\Municipios\Index.cshtml" />
+    <Content Include="Views\Cargos\Create.cshtml" />
+    <Content Include="Views\Cargos\Delete.cshtml" />
+    <Content Include="Views\Cargos\Details.cshtml" />
+    <Content Include="Views\Cargos\Edit.cshtml" />
+    <Content Include="Views\Cargos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

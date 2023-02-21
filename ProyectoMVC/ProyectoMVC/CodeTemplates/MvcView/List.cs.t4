@@ -47,11 +47,11 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                 
     <div class="card-header">
                 <div class="row">
-                    <div class="col" style="color: black;">
-                     <h4 style="color: black;"><#= ViewName #></h4>
+                    <div class="col">
+                     <h4><#= ViewName #></h4>
                     </div>
                     <div class="col d-flex flex-row-reverse">
-                     <a href="Create" class="btn btn-block btn-success">Crear Nuevo</a>
+                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
                     </div>
                 </div>
     </div>
@@ -59,7 +59,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <div class="card-body">
         <div class="row">
             <div class="col">
-                <table class="dataTable display compact stripe" id="example">
+                <table class="dataTable display compact stripe table-dark" id="example">
                 <thead>
                     <tr>
                 <#
