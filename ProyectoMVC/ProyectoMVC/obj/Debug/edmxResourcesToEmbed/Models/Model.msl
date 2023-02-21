@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbPedidosEncargosModelStoreContainer" CdmEntityContainer="dbPedidosEncargosEntities">
+    <EntitySetMapping Name="tbCargos">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbCargos">
+        <MappingFragment StoreEntitySet="tbCargos">
+          <ScalarProperty Name="car_Id" ColumnName="car_Id" />
+          <ScalarProperty Name="car_Nombre" ColumnName="car_Nombre" />
+          <ScalarProperty Name="car_FechaCreacion" ColumnName="car_FechaCreacion" />
+          <ScalarProperty Name="car_UsuarioCreacion" ColumnName="car_UsuarioCreacion" />
+          <ScalarProperty Name="car_FechaModificacion" ColumnName="car_FechaModificacion" />
+          <ScalarProperty Name="car_UsuarioModificacion" ColumnName="car_UsuarioModificacion" />
+          <ScalarProperty Name="car_Estado" ColumnName="car_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbDepartamentos">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbDepartamentos">
+        <MappingFragment StoreEntitySet="tbDepartamentos">
+          <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
+          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+          <ScalarProperty Name="dep_FechaCreacion" ColumnName="dep_FechaCreacion" />
+          <ScalarProperty Name="dep_UsuarioCreacion" ColumnName="dep_UsuarioCreacion" />
+          <ScalarProperty Name="dep_FechaModificacion" ColumnName="dep_FechaModificacion" />
+          <ScalarProperty Name="dep_UsuarioModificacion" ColumnName="dep_UsuarioModificacion" />
+          <ScalarProperty Name="dep_Estado" ColumnName="dep_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEmpleados">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbEmpleados">
+        <MappingFragment StoreEntitySet="tbEmpleados">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombre" ColumnName="emp_Nombre" />
+          <ScalarProperty Name="emp_Apellido" ColumnName="emp_Apellido" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
+          <ScalarProperty Name="emp_DireccionExacta" ColumnName="emp_DireccionExacta" />
+          <ScalarProperty Name="estciv_Id" ColumnName="estciv_Id" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_CorreoElectronico" ColumnName="emp_CorreoElectronico" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="emp_FechaContratacion" ColumnName="emp_FechaContratacion" />
+          <ScalarProperty Name="car_Id" ColumnName="car_Id" />
+          <ScalarProperty Name="emp_FechaCreacion" ColumnName="emp_FechaCreacion" />
+          <ScalarProperty Name="emp_UsuarioCreacion" ColumnName="emp_UsuarioCreacion" />
+          <ScalarProperty Name="emp_FechaModificacion" ColumnName="emp_FechaModificacion" />
+          <ScalarProperty Name="emp_UsuarioModificacion" ColumnName="emp_UsuarioModificacion" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEstadosCiviles">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbEstadosCiviles">
+        <MappingFragment StoreEntitySet="tbEstadosCiviles">
+          <ScalarProperty Name="estciv_Id" ColumnName="estciv_Id" />
+          <ScalarProperty Name="estciv_Nombre" ColumnName="estciv_Nombre" />
+          <ScalarProperty Name="estciv_FechaCreacion" ColumnName="estciv_FechaCreacion" />
+          <ScalarProperty Name="estciv_UsuarioCreacion" ColumnName="estciv_UsuarioCreacion" />
+          <ScalarProperty Name="estciv_FechaModificacion" ColumnName="estciv_FechaModificacion" />
+          <ScalarProperty Name="estciv_UsuarioModificacion" ColumnName="estciv_UsuarioModificacion" />
+          <ScalarProperty Name="estciv_Estado" ColumnName="estciv_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbMunicipios">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbMunicipios">
+        <MappingFragment StoreEntitySet="tbMunicipios">
+          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
+          <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+          <ScalarProperty Name="mun_FechaCreacion" ColumnName="mun_FechaCreacion" />
+          <ScalarProperty Name="mun_UsuarioCreacion" ColumnName="mun_UsuarioCreacion" />
+          <ScalarProperty Name="mun_FechaModificacion" ColumnName="mun_FechaModificacion" />
+          <ScalarProperty Name="mun_UsuarioModificacion" ColumnName="mun_UsuarioModificacion" />
+          <ScalarProperty Name="mun_Estado" ColumnName="mun_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUsuarios">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbUsuarios">
+        <MappingFragment StoreEntitySet="tbUsuarios">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_Usuario" ColumnName="usu_Usuario" />
+          <ScalarProperty Name="usu_Contrasenia" ColumnName="usu_Contrasenia" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="usu_UsuarioCreacion" ColumnName="usu_UsuarioCreacion" />
+          <ScalarProperty Name="usu_FechaCreacion" ColumnName="usu_FechaCreacion" />
+          <ScalarProperty Name="usu_UsuarioModificacion" ColumnName="usu_UsuarioModificacion" />
+          <ScalarProperty Name="usu_FechaModificacion" ColumnName="usu_FechaModificacion" />
+          <ScalarProperty Name="usu_Estado" ColumnName="usu_Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

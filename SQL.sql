@@ -125,6 +125,187 @@ CONSTRAINT FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id FORE
 
 );
 
+--Categorias
+CREATE TABLE tbCategoria(
+cat_Id                              INT IDENTITY(1,1),
+cat_Descripcion                     NVARCHAR (150) NOT NULL,
+cat_FechaCreacion		            DATETIME not null,
+cat_UsuarioCreacion		            INT not null,
+cat_FechaModificacion	            DATETIME,
+cat_UsuarioModificacion             INT,
+cat_Estado				            BIT not null,
+CONSTRAINT PK_dbo_tbCategoria_cat_Id PRIMARY KEY(cat_Id),
+CONSTRAINT FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id FOREIGN KEY(cat_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+CONSTRAINT FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id FOREIGN KEY(cat_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+);
+
+
+CREATE TABLE tbFrabicas(
+
+    fra_id                              INT IDENTITY(1,1),
+    fra_Nombre                          NVARCHAR (150) NOT NULL,
+    mun_Id                              Char(4) NOT NULL,
+    fra_ArticulosProvistos              INT,
+    fra_Telefono                        NVARCHAR (20) NOT NULL,
+    fra_FechaCreacion		            DATETIME NOT null,
+    fra_UsuarioCreacion		            INT NOT null,
+    fra_FechaModificacion	            DATETIME,
+    fra_UsuarioModificacion             INT,
+    fra_Estado                          BIT NOT null,
+    CONSTRAINT PK_dbo_tbFrabicas_fra_Id PRIMARY KEY(fra_Id),
+    CONSTRAINT FK_dbo_tbFabrica_tbMunicipio_mun_id FOREIGN key(mun_id) REFERENCES tbMunicipios(mun_id)
+
+);
+
+
+
+--Articulos
+CREATE TABLE tbArticulos(
+art_Id			                    INT IDENTITY(1,1),
+art_Nombre		                    NVARCHAR (200) NOT NULL,
+art_Precio		                    DECIMAL (18,2) NOT NULL,
+cat_Id			                    INT not null,
+art_Stock		                    INT not null,
+art_FechaCreacion					DATETIME not null,
+art_UsuarioCreacion					INT not null,
+art_FechaModificacion				DATETIME,
+art_UsuarioModificacion				INT,
+art_Estado							BIT not null,
+
+CONSTRAINT PK_dbo_tbArticulos_art_Id PRIMARY KEY(art_Id),
+CONSTRAINT FK_dbo_tbArticulos_tbCategoria_cat_Id FOREIGN KEY (cat_Id) REFERENCES tbCategoria (cat_Id),
+CONSTRAINT FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id FOREIGN KEY(art_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+CONSTRAINT FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id FOREIGN KEY(art_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+
+);
+
+
+
+
+CREATE TABLE tbArticulosFabricas(
+arfa_Id                             INT IDENTITY(1,1) NOT NULL,
+art_Id			                    INT NOT NULL,
+fra_Id                              INT NOT NULL,
+arfa_FechaCreacion					DATETIME not null,
+arfa_UsuarioCreacion				INT not null,
+arfa_FechaModificacion				DATETIME,
+arfa_UsuarioModificacion		    INT,
+arfa_Estado							BIT not null,
+
+CONSTRAINT PK_dbo_tbArticulosFabricas_arfa_Id PRIMARY Key (arfa_Id),
+CONSTRAINT FK_dbo_tbArticulosFabricas_tbFabrica_fra_id FOREIGN KEY(fra_id) REFERENCES tbFrabicas(fra_id),
+CONSTRAINT FK_dbo_tbArticulosFabricas_tbArticulos_art_id FOREIGN KEY(art_id) REFERENCES tbArticulos(art_id)
+);
+
+
+
+--Clientes
+CREATE TABLE tbClientes(
+cli_Id                              INT IDENTITY (1,1),
+cli_Nombre							NVARCHAR(100) NOT NULL,
+cli_Apellido						NVARCHAR(100) NOT NULL,
+--mun_Id								CHAR(04) NOT NULL,
+--cli_DireccionExacta					NVARCHAR(500) NOT NULL,
+cli_Telefono						NVARCHAR(20) NOT NULL,
+cli_CorreoElectronico				NVARCHAR(100) NOT NULL,
+cli_saldo                           DECIMAL(16,2) NOT NULL,
+cli_LimiteCredito                   DECIMAL(16,2) NOT NULL,
+cli_Descuento                       DECIMAL(16,2) NOT NULL, 
+cli_FechaCreacion					DATETIME not null,
+cli_UsuarioCreacion					INT not null,
+cli_FechaModificacion				DATETIME,
+cli_UsuarioModificacion				INT,
+cli_Estado							BIT not null,
+
+CONSTRAINT PK_dbo_tbClientes_cli_Id PRIMARY KEY(cli_id),
+CONSTRAINT FK_dbo_tbClientes_dbo_tbMunicipios_mun_Id FOREIGN KEY(mun_Id) REFERENCES tbMunicipios(mun_Id),
+CONSTRAINT FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id FOREIGN KEY(cli_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+CONSTRAINT FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id FOREIGN KEY(cli_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+
+);
+
+
+CREATE TABLE tbDirecciones(
+dire_ID                                 INT IDENTITY(1,1),
+dire_Calle                              NVARCHAR(500) NOT NULL,
+dire_Comuna                             NVARCHAR(500) NOT NULL,
+mun_Id                                  CHAR(4) NOT NULL,
+cli_Id                                  INT,
+dire_FechaCreacion					    DATETIME NOT null,
+dire_UsuarioCreacion					INT NOT null,
+dire_FechaModificacion				    DATETIME,
+dire_UsuarioModificacion				INT,
+dire_Estado                             BIT NOT null
+
+CONSTRAINT Pk_dbo_tbDirecciones_dire_ID PRIMARY  KEY(dire_ID)
+CONSTRAINT PK_dbo_tbDirecciones_tbClientes_cli_Id FOREIGN KEY(cli_Id) REFERENCES tbDirecciones (cli_Id)
+CONSTRAINT PK_dbo_tbDirecciones_tbMunicipio_mun_id FOREIGN key (mun_id) REFERENCES tbMunicipios (mun_id)
+CONSTRAINT PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion FOREIGN key (dire_UsuarioCreacion) REFERENCES tbUsuarios (usu_Id)
+CONSTRAINT PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion FOREIGN key (UsuarioModificacion) REFERENCES tbUsuarios (usu_Id)
+);
+
+
+CREATE TABLE tbMetodoPago(
+    metpago_Id                      Char(1) not null,
+    metpago_Descripcion             NVARCHAR (100) NOT NULL,
+	metpago_FechaCreacion		    DATETIME not null,
+	metpago_UsuarioCreacion		    INT not null,
+	metpago_FechaModificacion	    DATETIME,
+	metpago_UsuarioModificacion     INT,
+	metpago_Estado				    BIT not null,
+	
+	CONSTRAINT PK_dbo_tbMetodoPagos_metpago_Id PRIMARY KEY(metpago_Id),
+	CONSTRAINT FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id FOREIGN KEY(metpago_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+	CONSTRAINT FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id FOREIGN KEY(metpago_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+
+);
+
+
+CREATE TABLE tbPedidios(
+    ped_Id                              INT IDENTITY(1,1),
+    cli_Id                              INT not null,
+    ped_Fecha							Datetime NOT NULL,
+    dire_id                             INT,
+    emp_id								INT not null,
+    metpago_Id							CHAR(1) not null,
+    ped_FechaCreacion					DATETIME not null,
+    ped_UsuarioCreacion					INT not null,
+    ped_FechaModificacion				DATETIME,
+    ped_UsuarioModificacion				INT,
+    ped_Estado							BIT not null,
+
+    CONSTRAINT PK_dbo_tbPedidios_ped_Id PRIMARY KEY(ped_Id),
+    CONSTRAINT FK_dbo_tbPedidios_tbClientes_clidire_id_id FOREIGN KEY(cli_Id) REFERENCES tbClientes(cli_Id),  
+    CONSTRAINT FK_dbo_Pedidios_tbDirecciones_dire_id FOREIGN key (dire_id) REFERENCES tbDirecciones (dire_id),
+    CONSTRAINT FK_dbo_tbPedidios_tbMetodoPago_metpago_id FOREIGN KEY(metpago_Id) REFERENCES tbMetodoPago(metpago_Id),
+    CONSTRAINT FK_dbo_tbPedidios_dbo_tbEmpleados_emp_Id FOREIGN KEY(emp_Id) REFERENCES tbEmpleados(emp_Id),
+    CONSTRAINT FK_dbo_tbPedidios_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id FOREIGN KEY(ped_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+    CONSTRAINT FK_dbo_tbPedidios_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id FOREIGN KEY(ped_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+
+);
+
+
+CREATE TABLE tbPedidiosDetalles (
+pede_Id                             INT IDENTITY(1,1),
+ped_Id                              INT not null,
+art_Id                              INT not null,
+pede_catidad						INT NOT NULL,
+pede_Precio							DECIMAL (18,2) NOT NULL,
+pede_FechaCreacion					DATETIME not null,
+pede_UsuarioCreacion				INT not null,
+pede_FechaModificacion				DATETIME,
+pede_UsuarioModificacion			INT,
+pede_Estado							BIT not null,
+CONSTRAINT PK_dbo_tbPedidiosDetalles_pede_Id PRIMARY KEY(pede_Id),
+CONSTRAINT FK_dbo_tbPedidiosDetalles_tbPedidios_ped_id FOREIGN KEY(ped_Id) REFERENCES tbpedtura(ped_Id),
+CONSTRAINT FK_dbo_tbPedidiosDetalles_tbArticulos_art_id FOREIGN KEY(art_Id) REFERENCES tbArticulos(art_Id),
+CONSTRAINT FK_dbo_tbPedidiosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id FOREIGN KEY(pede_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+CONSTRAINT FK_dbo_tbPedidiosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id FOREIGN KEY(pede_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+
+);
+
+
+
 
 
 -------------------------------------------------------------------------------------
@@ -255,7 +436,7 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
 	  ('1801','Yoro','12', 1, GETDATE(), 1),
       ('1802','Arenal','12', 1, GETDATE(), 1),
       ('1803','El Negrito','12', 1, GETDATE(), 1),
-	  ('1804','El Progreso','12', 1, GETDATE(), 1),
+	  ('1804','El artgreso','12', 1, GETDATE(), 1),
       ('1805','Jocón','12', 1, GETDATE(), 1)
 
 

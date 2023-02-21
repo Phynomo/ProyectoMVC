@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d3fcf4e0a39d42beac8bee1cd1427894" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCargos" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDepartamentos" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEmpleados" Width="1.5" PointX="5.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEstadosCiviles" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMunicipios" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbUsuarios" Width="1.5" PointX="7.25" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbCargos_car_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_tbMunicipios_tbDepartamentos_dep_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
