@@ -1,0 +1,82 @@
+﻿@model ProyectoMVC.Models.tbUsuarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbUsuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_Contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_Contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbEmpleados2.emp_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbEmpleados2.emp_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuarios2.usu_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuarios2.usu_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuarios3.usu_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuarios3.usu_Usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.usu_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

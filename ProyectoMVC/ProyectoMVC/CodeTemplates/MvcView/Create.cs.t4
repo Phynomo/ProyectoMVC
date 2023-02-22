@@ -27,7 +27,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 
 
- 
 <#
 } else {
 #>
@@ -44,6 +43,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <title><#= ViewName #></title>
 </head>
 <body>
+
 <#
     PushIndent("    ");
 }
@@ -70,25 +70,23 @@ if (ReferenceScriptLibraries) {
 <#
     }
 #>
-  @using (Html.BeginForm())
+
 <#
 }
 #>
-
-
+@using (Html.BeginForm()) 
+{
     @Html.AntiForgeryToken()
     
-    <div class="card px-4 text-center">
-        <div class="tools">
+    <div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
 
             <h4>Crear Registro</h4>
 
         </div>
-        <div class="card__content">
-            
+    </div>
 
-       
-    
 <# 
     if (isControlHtmlAttributesSupported) {
 #>
@@ -109,22 +107,20 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             continue;
         }
 
-#>      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
+#>
+        <div class="row form-group pt-2">
+            <div class="col">
 <#
         if (property.IsForeignKey) {
 #>
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", htmlAttributes: new { @class = "control-label col" })
 <#
         } else {
 #>
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, htmlAttributes: new { @class = "control-label col" })
 <#
         }
 #>
-            
 <#
         bool isCheckbox = property.TypeName.Equals(boolType);
         if (property.IsForeignKey) {
@@ -191,17 +187,14 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
     }
 }
 #>
-                <div class="row d-flex justify-content-end py-3">
-                    <div class="col d-flex justify-content-end">
-                        <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
-                         @Html.ActionLink("Regresar al index", "Index" , " ", new {@class ="btn btn-danger mx-2"})
-                    </div>
-                 
-                </div>
+        <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-secondary mx-2" })
             </div>
         </div>
-   </div>
-
+        </div>
+}
 
 <#
 if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {
@@ -230,10 +223,10 @@ else if(IsLayoutPageSelected && ReferenceScriptLibraries) {
 if(!IsPartialView && !IsLayoutPageSelected) {
     ClearIndent();
 #>
+
 </body>
 </html>
 <#
 }
 #>
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>
-
