@@ -1,5 +1,4 @@
--- SQLBook: Code
-CREATE DATABASE dbPedidosEncargos
+﻿CREATE DATABASE dbPedidosEncargos
 GO
 Use dbPedidosEncargos
 GO
