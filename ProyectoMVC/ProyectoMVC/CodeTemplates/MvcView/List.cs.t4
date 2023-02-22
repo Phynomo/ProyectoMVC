@@ -48,7 +48,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <div class="card-header">
                 <div class="row">
                     <div class="col">
-                     <h4><#= ViewName #></h4>
+                     <h4><#= ViewDataTypeShortName #></h4>
                     </div>
                     <div class="col d-flex flex-row-reverse">
                         @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })

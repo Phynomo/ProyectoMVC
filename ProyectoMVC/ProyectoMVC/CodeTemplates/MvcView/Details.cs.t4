@@ -22,7 +22,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 }
 
-<h2><#= ViewName#></h2>
 
 <#
 } else {
@@ -45,8 +44,45 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 <div>
-    <h4><#= ViewDataTypeShortName #></h4>
+
+    <div class="row">
+    <div class="col">
+     <h4><#= ViewDataTypeShortName #></h4>
+</div>
+<div class="col d-flex justify-content-end">
+
+<p>
+<#
+string pkName = GetPrimaryKeyName();
+if (pkName != null) {
+#>
+    @Html.ActionLink("Editar", "Edit", "", new { id = Model.<#= pkName #> }, new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+<#
+} else {
+#>
+    @Html.ActionLink("Editar", "Edit", "", new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+<#
+}
+#>
+</p>
+
+
+</div>
+</div>
+
+
+   
+
+
+    
+
+
+
     <hr />
+    
+    <div class="container">
     <dl class="dl-horizontal">
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
@@ -59,6 +95,9 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             continue;
         }
 #>
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
         </dt>
@@ -66,6 +105,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         <dd>
             @Html.DisplayFor(model => model.<#= GetValueExpression(property) #>)
         </dd>
+</div>
+</div>
 
 <#
     }
@@ -73,22 +114,48 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 #>
     </dl>
 </div>
-<p>
-<#
-string pkName = GetPrimaryKeyName();
-if (pkName != null) {
-#>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.<#= pkName #> }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-} else {
-#>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-}
-#>
-</p>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+            auditoria
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                        <table class="table">
+                <thead>
+                    <tr>
+                    <th>Accion</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Creado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    
+                    <tr>
+                    <td>Modificado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>

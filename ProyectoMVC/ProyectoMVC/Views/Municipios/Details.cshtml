@@ -4,12 +4,39 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>tbMunicipios</h4>
+
+    <div class="row">
+    <div class="col">
+     <h4>tbMunicipios</h4>
+</div>
+<div class="col d-flex justify-content-end">
+
+<p>
+    @Html.ActionLink("Editar", "Edit", "", new { id = Model.mun_Id }, new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+</p>
+
+
+</div>
+</div>
+
+
+   
+
+
+    
+
+
+
     <hr />
+    
+    <div class="container">
     <dl class="dl-horizontal">
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.mun_Nombre)
         </dt>
@@ -17,7 +44,12 @@
         <dd>
             @Html.DisplayFor(model => model.mun_Nombre)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.mun_FechaCreacion)
         </dt>
@@ -25,7 +57,12 @@
         <dd>
             @Html.DisplayFor(model => model.mun_FechaCreacion)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.mun_FechaModificacion)
         </dt>
@@ -33,7 +70,12 @@
         <dd>
             @Html.DisplayFor(model => model.mun_FechaModificacion)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.mun_Estado)
         </dt>
@@ -41,7 +83,12 @@
         <dd>
             @Html.DisplayFor(model => model.mun_Estado)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
         </dt>
@@ -49,7 +96,12 @@
         <dd>
             @Html.DisplayFor(model => model.tbDepartamentos.dep_Nombre)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
         </dt>
@@ -57,7 +109,12 @@
         <dd>
             @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
         </dd>
+</div>
+</div>
 
+
+    <div class="row">
+    <div class="col">
         <dt>
             @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
         </dt>
@@ -65,10 +122,50 @@
         <dd>
             @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
         </dd>
+</div>
+</div>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.mun_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+            auditoria
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                        <table class="table">
+                <thead>
+                    <tr>
+                    <th>Accion</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Creado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    
+                    <tr>
+                    <td>Modificado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
