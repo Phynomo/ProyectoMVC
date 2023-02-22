@@ -131,6 +131,7 @@
     <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,16 +258,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Municipios\Create.cshtml" />
-    <Content Include="Views\Municipios\Delete.cshtml" />
-    <Content Include="Views\Municipios\Details.cshtml" />
-    <Content Include="Views\Municipios\Edit.cshtml" />
-    <Content Include="Views\Municipios\Index.cshtml" />
     <Content Include="Views\Cargos\Create.cshtml" />
     <Content Include="Views\Cargos\Delete.cshtml" />
     <Content Include="Views\Cargos\Details.cshtml" />
     <Content Include="Views\Cargos\Edit.cshtml" />
     <Content Include="Views\Cargos\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Municipios\Create.cshtml" />
+    <Content Include="Views\Municipios\Delete.cshtml" />
+    <Content Include="Views\Municipios\Details.cshtml" />
+    <Content Include="Views\Municipios\Edit.cshtml" />
+    <Content Include="Views\Municipios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
