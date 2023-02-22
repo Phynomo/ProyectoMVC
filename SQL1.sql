@@ -1076,7 +1076,7 @@ BEGIN
     WHERE pede_Id = @pede_Id;
 END;
 
-CREATE PROCEDURE UDP_tbpedidos_Delete (
+CREATE PROCEDURE UDP_PedidoDetalle_Delete (
     @pede_Id INT, @pedeUsuarioModificacion INT
 )
 AS
