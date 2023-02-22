@@ -184,20 +184,20 @@ CONSTRAINT FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id FORE
 );
 
 
-CREATE TABLE tbFrabicas(
+CREATE TABLE tbFabricas(
 
-    fra_id                              INT IDENTITY(1,1),
-    fra_Nombre                          NVARCHAR (150) NOT NULL,
+    fab_id                              INT IDENTITY(1,1),
+    fab_Nombre                          NVARCHAR (150) NOT NULL,
     mun_Id                              Char(4) NOT NULL,
-    fra_ArticulosProvistos              INT,
-    fra_Telefono                        NVARCHAR (20) NOT NULL,
-    fra_FechaCreacion		            DATETIME NOT null,
-    fra_UsuarioCreacion		            INT NOT null,
-    fra_FechaModificacion	            DATETIME,
-    fra_UsuarioModificacion             INT,
-    fra_Estado                          BIT NOT null,
-    CONSTRAINT PK_dbo_tbFrabicas_fra_Id PRIMARY KEY(fra_Id),
-    CONSTRAINT FK_dbo_tbFabrica_tbMunicipio_mun_id FOREIGN key(mun_id) REFERENCES tbMunicipios(mun_id)
+    fab_ArticulosProvistos              INT,
+    fab_Telefono                        NVARCHAR (20) NOT NULL,
+    fab_FechaCreacion		            DATETIME NOT null,
+    fab_UsuarioCreacion		            INT NOT null,
+    fab_FechaModificacion	            DATETIME,
+    fab_UsuarioModificacion             INT,
+    fab_Estado                          BIT NOT null,
+    CONSTRAINT PK_dbo_tbFabricas_fab_Id PRIMARY KEY(fab_Id),
+    CONSTRAINT FK_dbo_tbFabricas_tbMunicipio_mun_id FOREIGN key(mun_id) REFERENCES tbMunicipios(mun_id)
 
 );
 
@@ -209,8 +209,8 @@ art_Id			                    INT IDENTITY(1,1),
 art_Nombre		                    NVARCHAR (200) NOT NULL,
 art_Precio		                    DECIMAL (18,2) NOT NULL,
 cat_Id			                    INT not null,
-cli_id                                   INT,
 art_Stock		                    INT not null,
+fab_id								INT,
 art_FechaCreacion					DATETIME not null,
 art_UsuarioCreacion					INT not null,
 art_FechaModificacion				DATETIME,
@@ -286,7 +286,7 @@ CREATE TABLE tbMetodoPago(
 );
 
 
-CREATE TABLE tbPedidios(
+CREATE TABLE tbPedidos(
     ped_Id                              INT IDENTITY(1,1),
     cli_Id                              INT not null,
     ped_Fecha							Datetime NOT NULL,
@@ -299,33 +299,33 @@ CREATE TABLE tbPedidios(
     ped_UsuarioModificacion				INT,
     ped_Estado							BIT not null,
 
-    CONSTRAINT PK_dbo_tbPedidios_ped_Id PRIMARY KEY(ped_Id),
-    CONSTRAINT FK_dbo_tbPedidios_tbClientes_clidire_id_id FOREIGN KEY(cli_Id) REFERENCES tbClientes(cli_Id),  
-    CONSTRAINT FK_dbo_Pedidios_tbDirecciones_dire_id FOREIGN key (dire_id) REFERENCES tbDirecciones (dire_id),
-    CONSTRAINT FK_dbo_tbPedidios_tbMetodoPago_metpago_id FOREIGN KEY(metpago_Id) REFERENCES tbMetodoPago(metpago_Id),
-    CONSTRAINT FK_dbo_tbPedidios_dbo_tbEmpleados_emp_Id FOREIGN KEY(emp_Id) REFERENCES tbEmpleados(emp_Id),
-    CONSTRAINT FK_dbo_tbPedidios_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id FOREIGN KEY(ped_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
-    CONSTRAINT FK_dbo_tbPedidios_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id FOREIGN KEY(ped_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+    CONSTRAINT PK_dbo_tbPedidos_ped_Id PRIMARY KEY(ped_Id),
+    CONSTRAINT FK_dbo_tbPedidos_tbClientes_clidire_id_id FOREIGN KEY(cli_Id) REFERENCES tbClientes(cli_Id),  
+    CONSTRAINT FK_dbo_tbPedidos_tbDirecciones_dire_id FOREIGN key (dire_id) REFERENCES tbDirecciones (dire_id),
+    CONSTRAINT FK_dbo_tbPedidos_tbMetodoPago_metpago_id FOREIGN KEY(metpago_Id) REFERENCES tbMetodoPago(metpago_Id),
+    CONSTRAINT FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id FOREIGN KEY(emp_Id) REFERENCES tbEmpleados(emp_Id),
+    CONSTRAINT FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id FOREIGN KEY(ped_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+    CONSTRAINT FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id FOREIGN KEY(ped_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
 
 );
 
 
-CREATE TABLE tbPedidiosDetalles (
+CREATE TABLE tbPedidosDetalles (
 pede_Id                             INT IDENTITY(1,1),
 ped_Id                              INT not null,
 art_Id                              INT not null,
-pede_catidad						INT NOT NULL,
+pede_Cantidad						INT NOT NULL,
 pede_Precio							DECIMAL (18,2) NOT NULL,
 pede_FechaCreacion					DATETIME not null,
 pede_UsuarioCreacion				INT not null,
 pede_FechaModificacion				DATETIME,
 pede_UsuarioModificacion			INT,
 pede_Estado							BIT not null,
-CONSTRAINT PK_dbo_tbPedidiosDetalles_pede_Id PRIMARY KEY(pede_Id),
-CONSTRAINT FK_dbo_tbPedidiosDetalles_tbPedidios_ped_id FOREIGN KEY(ped_Id) REFERENCES tbPedidios(ped_Id),
-CONSTRAINT FK_dbo_tbPedidiosDetalles_tbArticulos_art_id FOREIGN KEY(art_Id) REFERENCES tbArticulos(art_Id),
-CONSTRAINT FK_dbo_tbPedidiosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id FOREIGN KEY(pede_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
-CONSTRAINT FK_dbo_tbPedidiosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id FOREIGN KEY(pede_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
+CONSTRAINT PK_dbo_tbPedidosDetalles_pede_Id PRIMARY KEY(pede_Id),
+CONSTRAINT FK_dbo_tbPedidosDetalles_tbPedidos_ped_id FOREIGN KEY(ped_Id) REFERENCES tbPedidos(ped_Id),
+CONSTRAINT FK_dbo_tbPedidosDetalles_tbArticulos_art_id FOREIGN KEY(art_Id) REFERENCES tbArticulos(art_Id),
+CONSTRAINT FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id FOREIGN KEY(pede_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
+CONSTRAINT FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id FOREIGN KEY(pede_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
 
 );
 
@@ -763,12 +763,12 @@ GO
 -------------------------------------------------------------------------------------------------------
 -- Procedimiento de Select / Index Fabrica
 GO
-CREATE PROCEDURE UDP_tbfrabrica_Select
+CREATE PROCEDURE UDP_tbfabbrica_Select
 AS
 BEGIN
-    SELECT fra_id, fra_Nombre, mun_Id, fra_ArticulosProvistos, fra_Telefono, fra_FechaCreacion, fra_UsuarioCreacion, fra_FechaModificacion, fra_UsuarioModificacion, fra_Estado
-    FROM tbFrabicas
-    WHERE fra_Estado = 1;
+    SELECT fab_id, fab_Nombre, mun_Id, fab_ArticulosProvistos, fab_Telefono, fab_FechaCreacion, fab_UsuarioCreacion, fab_FechaModificacion, fab_UsuarioModificacion, fab_Estado
+    FROM tbFabricas
+    WHERE fab_Estado = 1;
 END
 
 
@@ -776,50 +776,50 @@ END
 
 GO
 CREATE PROCEDURE UDP_tbFabrica_Insert
-    @fra_Nombre NVARCHAR(150),
+    @fab_Nombre NVARCHAR(150),
     @mun_Id CHAR(4),
-    @fra_ArticulosProvistos INT,
-    @fra_Telefono NVARCHAR(20),
+    @fab_ArticulosProvistos INT,
+    @fab_Telefono NVARCHAR(20),
     @usuario INT
 AS
 BEGIN
-    INSERT INTO tbFrabicas ([fra_Nombre], [mun_Id], [fra_ArticulosProvistos], [fra_Telefono], [fra_FechaCreacion], [fra_UsuarioCreacion], [fra_FechaModificacion], [fra_UsuarioModificacion], [fra_Estado])
-    VALUES (@fra_Nombre, @mun_Id, @fra_ArticulosProvistos, @fra_Telefono, GETDATE(), NULL, NULL,  @usuario, 1);
+    INSERT INTO tbFabricas ([fab_Nombre], [mun_Id], [fab_ArticulosProvistos], [fab_Telefono], [fab_FechaCreacion], [fab_UsuarioCreacion], [fab_FechaModificacion], [fab_UsuarioModificacion], [fab_Estado])
+    VALUES (@fab_Nombre, @mun_Id, @fab_ArticulosProvistos, @fab_Telefono, GETDATE(), NULL, NULL,  @usuario, 1);
 END
 GO
 
 -- Procedimiento de Update Fabrica
 GO
-CREATE PROCEDURE UDP_tbFrabrica_Update
-    @fra_id INT,
-    @fra_Nombre NVARCHAR(150),
+CREATE PROCEDURE UDP_tbfabbrica_Update
+    @fab_id INT,
+    @fab_Nombre NVARCHAR(150),
     @mun_Id CHAR(4),
-    @fra_ArticulosProvistos INT,
-    @fra_Telefono NVARCHAR(20),
+    @fab_ArticulosProvistos INT,
+    @fab_Telefono NVARCHAR(20),
     @usuario INT
 AS
 BEGIN
-    UPDATE tbFrabicas
-    SET fra_Nombre = @fra_Nombre,
+    UPDATE tbFabricas
+    SET fab_Nombre = @fab_Nombre,
         mun_Id = @mun_Id,
-        fra_ArticulosProvistos = @fra_ArticulosProvistos,
-        fra_Telefono = @fra_Telefono,
-        fra_FechaModificacion = GETDATE(),
-        fra_UsuarioModificacion = @usuario
-    WHERE fra_Id = @fra_id;
+        fab_ArticulosProvistos = @fab_ArticulosProvistos,
+        fab_Telefono = @fab_Telefono,
+        fab_FechaModificacion = GETDATE(),
+        fab_UsuarioModificacion = @usuario
+    WHERE fab_Id = @fab_id;
 END
 
 GO
-CREATE PROCEDURE UDP_tbFrabica_Delete (
-    @fra_Id INT, @fra_UsuarioModificacion INT
+CREATE PROCEDURE UDP_tbfabbica_Delete (
+    @fab_Id INT, @fab_UsuarioModificacion INT
 )
 AS
 BEGIN
-    UPDATE tbFrabicas
-    SET fra_Estado = 0,
-        fra_FechaModificacion = GETDATE(),
-        fra_UsuarioModificacion = @fra_UsuarioModificacion 
-    WHERE fra_Id = @fra_Id
+    UPDATE tbFabricas
+    SET fab_Estado = 0,
+        fab_FechaModificacion = GETDATE(),
+        fab_UsuarioModificacion = @fab_UsuarioModificacion 
+    WHERE fab_Id = @fab_Id
 END
 
 
@@ -830,33 +830,33 @@ GO
 CREATE PROCEDURE UDP_tbArticulos_Select
 AS
 BEGIN
-    SELECT art_Id, art_Nombre, art_Precio, cat_Id, cli_id,  art_Stock, art_FechaCreacion, art_UsuarioCreacion, art_FechaModificacion, art_UsuarioModificacion, art_Estado
+    SELECT art_Id, art_Nombre, art_Precio, cat_Id,  art_Stock, art_FechaCreacion, art_UsuarioCreacion, art_FechaModificacion, art_UsuarioModificacion, art_Estado
     FROM tbArticulos
     WHERE art_Estado = 1;
 END
 
 --Procedimiento almacenado Insert tbArticulos
+GO
 CREATE PROCEDURE UDP_tbArticulos_Insert
     @art_Nombre NVARCHAR(200),
     @art_Precio DECIMAL(18, 2),
     @cat_Id INT,
-    @cli_id INT,
     @art_Stock INT,
     @art_UsuarioCreacion INT
 
 AS
 BEGIN
-    INSERT INTO tbArticulos ([art_Nombre], [art_Precio], [cat_Id],  clic_id, [art_Stock], [art_FechaCreacion], [art_UsuarioCreacion], [art_FechaModificacion], [art_UsuarioModificacion], [art_Estado] )
-    VALUES (@art_Nombre, @art_Precio, @cat_Id, @cli_id,  @art_Stock, GETDATE(), @art_UsuarioCreacion, NULL, NULL, @art_Estado);
+    INSERT INTO tbArticulos ([art_Nombre], [art_Precio], [cat_Id],  [art_Stock], [art_FechaCreacion], [art_UsuarioCreacion], [art_FechaModificacion], [art_UsuarioModificacion], [art_Estado] )
+    VALUES (@art_Nombre, @art_Precio, @cat_Id, @art_Stock, GETDATE(), @art_UsuarioCreacion, NULL, NULL, 1);
 END
 
 --Procedimiento almacenado Update tbArticulos
+GO
 CREATE PROCEDURE UDP_tbArticulo_Update
     @art_Id INT,
     @art_Nombre NVARCHAR(150),
     @art_Precio DECIMAL(18,2),
     @cat_Id       INT,
-    @cli_id      INT,
     @art_Stock    INT,
     @art_UsuarioCreacion INT
 AS
@@ -865,7 +865,6 @@ BEGIN
     SET art_Nombre = @art_Nombre,
         art_Precio = @art_Precio,
         cat_Id    = @cat_id,
-        cli_id   = @cli_id,
         art_Stock = @art_Stock,
         art_FechaModificacion = GETDATE(),
         art_UsuarioModificacion =  @art_UsuarioCreacion 
@@ -873,6 +872,7 @@ BEGIN
 END
 
 --Procedimiento almacenado Delete tbArticulos
+GO
 CREATE PROCEDURE UDP_tbArticulos_Delete (
     @art_Id INT, @art_UsuarioModificacion INT
 )
@@ -890,26 +890,27 @@ END
 ------------------------------------------------------------------------------------
 
 --Procedimiento almacenado Insert tbClientes
+GO
 CREATE PROCEDURE UDP_tbClientes_Insert
-    @Nombre NVARCHAR(100),
-    @Apellido NVARCHAR(100),
-    @Municipio CHAR(4),
-    @Telefono NVARCHAR(20),
-    @CorreoElectronico NVARCHAR(100),
-    @Saldo DECIMAL(16,2),
-    @LimiteCredito DECIMAL(16,2),
-    @Descuento DECIMAL(16,2),
-    @UsuarioCreacion INT
+    @cli_Nombre NVARCHAR(100),
+    @cli_Apellido NVARCHAR(100),
+    @mun_Id CHAR(4),
+    @cli_Telefono NVARCHAR(20),
+    @cli_CorreoElectronico NVARCHAR(100),
+    @cli_saldo DECIMAL(16,2),
+    @cli_LimiteCredito DECIMAL(16,2),
+    @cli_Descuento DECIMAL(16,2),
+    @cli_UsuarioCreacion INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     INSERT INTO tbClientes([cli_Nombre], [cli_Apellido], [mun_Id], [cli_Telefono], [cli_CorreoElectronico], [cli_saldo], [cli_LimiteCredito], [cli_Descuento], [cli_FechaCreacion], [cli_UsuarioCreacion], [cli_FechaModificacion], [cli_UsuarioModificacion], [cli_Estado])
-    VALUES (@Nombre, @Apellido, @Municipio, @Telefono, @CorreoElectronico, @Saldo, @LimiteCredito, @Descuento, GETDATE(), NULL, NULL,  @UsuarioCreacion, 1)
+    VALUES (@cli_Nombre, @cli_Apellido, @mun_Id, @cli_Telefono, @cli_CorreoElectronico, @cli_saldo, @cli_LimiteCredito, @cli_Descuento, GETDATE(), @cli_UsuarioCreacion, NULL,  NULL	, 1)
 END
-
+GO
 --Procedimiento almacenado Update tbClientes
-
+GO
 CREATE PROCEDURE UDP_tbClientes_Update
     @cli_Id INT,
     @cli_Nombre NVARCHAR(100),
@@ -938,7 +939,7 @@ BEGIN
 END
 
 --Procedimiento almacenado Delete tbClientes
-
+GO
 CREATE PROCEDURE UDP_tbClientes_Delete (
     @cli_Id INT, @cli_UsuarioModificacion INT
 )
@@ -948,11 +949,11 @@ BEGIN
     SET cli_Estado = 0,
         cli_FechaModificacion = GETDATE(),
         cli_UsuarioModificacion = @cli_UsuarioModificacion 
-    WHERE art_Id = @art_Id
+    WHERE cli_Id = @cli_Id
 END
 
-
-
+--Procedimiento Almacenado Insert MetodoPago
+GO
 CREATE PROCEDURE UDP_tbMetodoPago_Insert
 (
     @metpago_Id                      Char(1),
@@ -967,7 +968,8 @@ BEGIN
     VALUES (@metpago_Id, @metpago_Descripcion, GETDATE(), @metpago_UsuarioCreacion, NULL, NULL, 1);
 END
 
-
+--Procedimiento Almacenado Update MetodoPago
+GO
 CREATE PROCEDURE UDP_tbMetodoPago_Update
 	@metpago_Id                      Char(1),
 	@metpago_Descripcion             NVARCHAR (100),
@@ -981,6 +983,8 @@ BEGIN
 	WHERE metpago_Id = @metpago_Id;
 END
 
+--Procedimiento Almacenado Delete MetodoPago
+GO
 CREATE PROCEDURE UDP_tbMetodoPago_Delete (
     @metpago_Id INT, @metpago_UsuarioModificacion INT
 )
@@ -990,11 +994,12 @@ BEGIN
     SET metpago_Estado = 0,
         metpago_FechaModificacion = GETDATE(),
         metpago_UsuarioModificacion = @metpago_UsuarioModificacion 
-    WHERE art_Id = @art_Id
+    WHERE  metpago_Id = @metpago_Id
 END
 
 
-
+--Procedimiento Almacenado Insert Pedidos
+GO
 CREATE PROCEDURE UDP_tbPedidos_Insert
     @cli_Id INT,
     @ped_Fecha DATETIME,
@@ -1006,10 +1011,12 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO tbPedidios([cli_Id], [ped_Fecha], [dire_id], [emp_id], [metpago_Id], [ped_FechaCreacion], [ped_UsuarioCreacion], [ped_FechaModificacion], [ped_UsuarioModificacion], [ped_Estado])
+    INSERT INTO tbPedidos([cli_Id], [ped_Fecha], [dire_id], [emp_id], [metpago_Id], [ped_FechaCreacion], [ped_UsuarioCreacion], [ped_FechaModificacion], [ped_UsuarioModificacion], [ped_Estado])
     VALUES(@cli_Id, @ped_Fecha, @dire_Id, @emp_Id, @metpago_Id, GETDATE(), @ped_UsuarioCreacion, NULL, NULL, 1)
 END
-
+GO
+--Procedimiento Almacenado U[date Pedidos
+GO
 CREATE PROCEDURE UDP_tbpedidos_Update
     @ped_Id int,
     @cli_Id int,
@@ -1022,7 +1029,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    UPDATE tbPedidios
+    UPDATE tbPedidos
     SET cli_Id = @cli_Id,
         ped_Fecha = @ped_Fecha,
         dire_id = @dire_id,
@@ -1033,22 +1040,24 @@ BEGIN
         ped_Estado = 1
     WHERE ped_Id = @ped_Id;
 END
-
-
+GO
+--Procedimiento Almacenado Delete Pedidos
+GO
 CREATE PROCEDURE UDP_tbpedidos_Delete (
     @ped_Id INT, @ped_UsuarioModificacion INT
 )
 AS
 BEGIN
-    UPDATE tbMetodoPago
+    UPDATE tbPedidos
     SET ped_Estado = 0,
         ped_FechaModificacion = GETDATE(),
         ped_UsuarioModificacion = @ped_UsuarioModificacion 
-    WHERE art_Id = @art_Id
+    WHERE ped_Id = @ped_Id
 END
+GO
 
-
-
+--Procedimiento Almacenado Insert PedidosDetalle
+GO
 CREATE PROCEDURE UDP_PedidoDetalle_Insert
     @ped_Id INT,
     @art_Id INT,
@@ -1060,10 +1069,12 @@ BEGIN
     SET NOCOUNT ON;
 
     -- Insertar el nuevo registro
-    INSERT INTO tbPedidiosDetalles ([ped_Id], [art_Id], [pede_catidad], [pede_Precio], [pede_FechaCreacion], [pede_UsuarioCreacion], [pede_FechaModificacion], [pede_UsuarioModificacion], [pede_Estado])
+    INSERT INTO tbPedidosDetalles ([ped_Id], [art_Id], [pede_Cantidad], [pede_Precio], [pede_FechaCreacion], [pede_UsuarioCreacion], [pede_FechaModificacion], [pede_UsuarioModificacion], [pede_Estado])
     VALUES (@ped_Id, @art_Id, @pede_cantidad, @pede_Precio, GETDATE(), @pede_UsuarioCreacion, NULL, NULL,  1);
 END
-
+GO
+--Procedimiento Almacenado Update PedidosDetalle
+GO
 CREATE PROCEDURE UDP_PedidoDetalle_Update
     @pede_Id INT,
     @ped_Id INT,
@@ -1075,7 +1086,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     
-    UPDATE tbPedidiosDetalles
+    UPDATE tbPedidosDetalles
     SET ped_Id = @ped_Id,
         art_Id = @art_Id,
         pede_Cantidad = @pede_Cantidad,
@@ -1083,25 +1094,26 @@ BEGIN
         pede_FechaModificacion = GETDATE(),
         pede_UsuarioModificacion = @pede_UsuarioModificacion
     WHERE pede_Id = @pede_Id;
-END;
+END
 
+--Procedimiento Almacenado Delete PedidosDetalle
+GO
 CREATE PROCEDURE UDP_PedidoDetalle_Delete (
-    @pede_Id INT, @pedeUsuarioModificacion INT
+    @pede_Id INT, @pede_UsuarioModificacion INT
 )
 AS
 BEGIN
-    UPDATE tbPedidiosDetalles
+    UPDATE tbPedidosDetalles
     SET pede_Estado = 0,
         pede_FechaModificacion = GETDATE(),
         pede_UsuarioModificacion = @pede_UsuarioModificacion 
     WHERE pede_Id = @pede_Id
 END
-
+GO
 
 -------------------------------------------------------------------------------------
 ---------------------------------------Insert----------------------------------------
 -------------------------------------------------------------------------------------
-
 
 INSERT INTO [dbo].[tbUsuarios]
            ([usu_Usuario]
@@ -1111,9 +1123,10 @@ INSERT INTO [dbo].[tbUsuarios]
            ,[usu_FechaCreacion]
            ,[usu_UsuarioModificacion]
            ,[usu_FechaModificacion]
-           ,[usu_Estado])
+           ,[usu_Estado]
+		   ,rol_id)
      VALUES
-           ('admin',HASHBYTES('SHA2_512','admin'),1,1,GETDATE(),null,null,1)
+           ('admin',HASHBYTES('SHA2_512','admin'),1,1,GETDATE(),null,null,1,1)
 GO
 
 
@@ -1125,7 +1138,7 @@ VALUES ('01', 'Atl�ntida', GETDATE(), 1,null,null,1),
 	   ('05', 'Cort�s', GETDATE(), 1,null,null,1),
 	   ('06', 'Choluteca', GETDATE(), 1,null,null,1),
 	   ('07', 'El Para�so', GETDATE(), 1,null,null,1),
-	   ('08', 'Francisco Moraz�n', GETDATE(), 1,null,null,1),
+	   ('08', 'fabncisco Moraz�n', GETDATE(), 1,null,null,1),
 	   ('09', 'Gracias a Dios', GETDATE(), 1,null,null,1),
 	   ('10', 'Intibuc�', GETDATE(), 1,null,null,1),
 	   ('11', 'Islas de la Bah�a', GETDATE(), 1,null,null,1),
@@ -1181,7 +1194,7 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
 	  ('0901','Puerto Lempira','09', 1, GETDATE(), 1),
       ('0902','Brus Laguna','09', 1, GETDATE(), 1),
       ('0903','Ahuas','09', 1, GETDATE(), 1),
-	  ('0904','Juan Francisco Bulnes','09', 1, GETDATE(), 1),
+	  ('0904','Juan fabncisco Bulnes','09', 1, GETDATE(), 1),
       ('0905','Villeda Morales','09', 1, GETDATE(), 1),
 	  ('1001','La Esperanza','10', 1, GETDATE(), 1),
       ('1002','Camasca','10', 1, GETDATE(), 1),
@@ -1206,7 +1219,7 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
       ('1402','Belén Gualcho','14', 1, GETDATE(), 1),
       ('1403','Concepción','14', 1, GETDATE(), 1),
 	  ('1404','Dolores Merendón','14', 1, GETDATE(), 1),
-      ('1405','Fraternidad','14', 1, GETDATE(), 1),
+      ('1405','fabternidad','14', 1, GETDATE(), 1),
 	  ('1501','Juticalpa','15', 1, GETDATE(), 1),
       ('1502','Campamento','15', 1, GETDATE(), 1),
       ('1503','Catacamas','15', 1, GETDATE(), 1),
@@ -1279,6 +1292,11 @@ GO
 
 ALTER TABLE [dbo].[tbUsuarios] 
 ADD CONSTRAINT FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id FOREIGN KEY([emp_Id]) REFERENCES tbEmpleados([emp_Id]);
+
+GO
+
+ALTER TABLE [dbo].[tbUsuarios] 
+ADD CONSTRAINT FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id FOREIGN KEY([rol_Id]) REFERENCES tbRoles([rol_Id]);
 
 
 -------------------------------------------------------------------------------------

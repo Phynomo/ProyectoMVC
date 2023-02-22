@@ -26,24 +26,7 @@
                                                         <th>
                             @Html.DisplayNameFor(model => model.mun_Nombre)
                         </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.mun_FechaCreacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.mun_FechaModificacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.mun_Estado)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
-                        </th>
-                                                                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
-                        </th>
+                                      
                                         <th>Detalles</th>
                         <th>Editar</th>
                         <th>Borrar</th>
@@ -55,24 +38,7 @@
                                                         <td>
                             @Html.DisplayFor(modelItem => item.mun_Nombre)
                         </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.mun_FechaCreacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.mun_FechaModificacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.mun_Estado)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.tbDepartamentos.dep_Nombre)
-                        </td>
-                                                                        <td>
-                            @Html.DisplayFor(modelItem => item.tbUsuarios.usu_Usuario)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.tbUsuarios1.usu_Usuario)
-                        </td>
+                                                        
                                         <td>
                         @Html.ActionLink(" ", "Details", new { id=item.mun_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
        
