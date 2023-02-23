@@ -1,4 +1,4 @@
-﻿@model ProyectoMVC.Models.tbRoles
+﻿@model ProyectoMVC.Models.tbCategoria
 
 @{
     ViewBag.Title = "Details";
@@ -10,12 +10,12 @@
 
     <div class="row">
     <div class="col">
-     <h4>tbRoles</h4>
+     <h4>tbCategoria</h4>
 </div>
 <div class="col d-flex justify-content-end">
 
 <p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.rol_id }, new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Editar", "Edit", "", new { id = Model.cat_Id }, new { @class = "btn btn-warning mx-2" }) |
     @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
 </p>
 
@@ -39,11 +39,11 @@
     <div class="row">
     <div class="col">
         <dt>
-            @Html.DisplayNameFor(model => model.rol_Nombre)
+            @Html.DisplayNameFor(model => model.cat_Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.rol_Nombre)
+            @Html.DisplayFor(model => model.cat_Descripcion)
         </dd>
 </div>
 </div>
@@ -52,11 +52,11 @@
     <div class="row">
     <div class="col">
         <dt>
-            @Html.DisplayNameFor(model => model.rol_FechaCreacion)
+            @Html.DisplayNameFor(model => model.cat_FechaCreacion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.rol_FechaCreacion)
+            @Html.DisplayFor(model => model.cat_FechaCreacion)
         </dd>
 </div>
 </div>
@@ -65,11 +65,11 @@
     <div class="row">
     <div class="col">
         <dt>
-            @Html.DisplayNameFor(model => model.rol_FechaModificacion)
+            @Html.DisplayNameFor(model => model.cat_FechaModificacion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.rol_FechaModificacion)
+            @Html.DisplayFor(model => model.cat_FechaModificacion)
         </dd>
 </div>
 </div>
@@ -78,11 +78,11 @@
     <div class="row">
     <div class="col">
         <dt>
-            @Html.DisplayNameFor(model => model.rol_Estado)
+            @Html.DisplayNameFor(model => model.cat_Estado)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.rol_Estado)
+            @Html.DisplayFor(model => model.cat_Estado)
         </dd>
 </div>
 </div>

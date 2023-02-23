@@ -165,11 +165,26 @@
                         "previous": "Anterior"
                     }
                 },
-                });
+            });
         });
     </script>
 
+    <script>
 
+
+        function llamarmodal() {
+
+            $('#myModal').modal('show');
+        }
+
+        function modalDelete(id) {
+
+            localStorage['IdDelete'] = id;
+            $('#myModal').modal('show');
+        }
+
+
+    </script>
 
 
 </body>
