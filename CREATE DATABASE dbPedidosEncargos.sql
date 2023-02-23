@@ -1273,7 +1273,8 @@ GO
 
 
 --Login
-CREATE PROCEDURE UDP_Login
+GO
+CREATE OR ALTER PROCEDURE UDP_Login
 	@usu_Usuario Nvarchar(100),
 	@usu_Contrasenia Nvarchar(Max)
 AS
@@ -1293,7 +1294,7 @@ SELECT [usu_Id]
       ,[usu_Estado]
   FROM [tbUsuarios] T1 INNER JOIN [dbo].[tbEmpleados] T2
   ON T1.emp_Id = T2.emp_Id
-  WHERE t1.usu_Contrasenia = @usu_Contrasenia 
+  WHERE t1.usu_Contrasenia = @Password 
   AND t1.usu_Usuario = @usu_Usuario
 
 END

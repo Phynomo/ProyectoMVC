@@ -13,21 +13,9 @@ namespace ProyectoMVC.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class tbEmpleados
+public partial class UDP_tbEmpleados_Select_Result
 {
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbEmpleados()
-    {
-
-        this.tbUsuarios2 = new HashSet<tbUsuarios>();
-
-        this.tbPedidos = new HashSet<tbPedidos>();
-
-    }
-
 
     public int emp_Id { get; set; }
 
@@ -35,13 +23,21 @@ public partial class tbEmpleados
 
     public string emp_Apellido { get; set; }
 
+    public string Nombre { get; set; }
+
     public string emp_Sexo { get; set; }
 
+    public string Sexo { get; set; }
+
     public string mun_Id { get; set; }
+
+    public string Ciudad { get; set; }
 
     public string emp_DireccionExacta { get; set; }
 
     public string estciv_Id { get; set; }
+
+    public string estciv_Nombre { get; set; }
 
     public string emp_Telefono { get; set; }
 
@@ -49,9 +45,13 @@ public partial class tbEmpleados
 
     public System.DateTime emp_FechaNacimiento { get; set; }
 
+    public Nullable<int> Edad { get; set; }
+
     public System.DateTime emp_FechaContratacion { get; set; }
 
     public int car_Id { get; set; }
+
+    public string car_Nombre { get; set; }
 
     public System.DateTime emp_FechaCreacion { get; set; }
 
@@ -62,26 +62,6 @@ public partial class tbEmpleados
     public Nullable<int> emp_UsuarioModificacion { get; set; }
 
     public bool emp_Estado { get; set; }
-
-
-
-    public virtual tbCargos tbCargos { get; set; }
-
-    public virtual tbEstadosCiviles tbEstadosCiviles { get; set; }
-
-    public virtual tbMunicipios tbMunicipios { get; set; }
-
-    public virtual tbUsuarios tbUsuarios { get; set; }
-
-    public virtual tbUsuarios tbUsuarios1 { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<tbUsuarios> tbUsuarios2 { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<tbPedidos> tbPedidos { get; set; }
 
 }
 

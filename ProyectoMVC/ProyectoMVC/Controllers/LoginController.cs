@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace ProyectoMVC.Controllers
 {
     public class LoginController : Controller
     {
+    dbPedidosEncargosEntities db = new dbPedidosEncargosEntities();
         // GET: Login
         public ActionResult Index()
         {
@@ -32,10 +34,10 @@ namespace ProyectoMVC.Controllers
             }
             else
             {
+                var login = db.UDP_Login(txtUsuario.ToString(), txtClave.ToString()).ToList();
+                
 
-                var login = dbo.UDP_Login(txtUsuario, txtClave).toList();
-
-                if (login > 0)
+                if (login.Count() > 0)
                 {
                     return RedirectToAction("pagina");
                 }

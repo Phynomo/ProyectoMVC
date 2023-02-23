@@ -32,7 +32,7 @@
 
 </head>
 <body>
-        <div class="container-fluid position-relative d-flex p-0">
+    <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -50,6 +50,8 @@
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>NimbusTech</h3>
                             </a>
                         </div>
+                        @Html.Partial("_loginModal")
+
                         <form action="@Url.Action("Index","Login")" method="POST">
                             <h7 style="color:red">@Html.ValidationMessage("Validacion") </h7>
                             <div class="form-floating mb-3">
@@ -63,8 +65,10 @@
                                 <h7 style="color:red">@Html.ValidationMessage("validarClave") </h7>
                             </div>
                             <div class="d-flex align-items-center justify-content-end mb-4">
-                                <a href="">Recuperar contraseña</a>
+                                <a href="#" id="btn" onclick="llamarmodal()">Recuperar contraseña</a>
+                                
                             </div>
+
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Iniciar sesion</button>
                             <p class="text-center mb-0">¿Aun no tienes cuenta? <a href="">Registrate</a></p>
                         </form>
@@ -74,6 +78,9 @@
         </div>
         <!-- Sign In End -->
     </div>
+
+
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -89,5 +96,25 @@
 
     <!-- Template Javascript -->
     <script src="~/Content/js/main.js"></script>
+
+
+
+    <script>
+
+        $("#ClaveModal").click(function () {
+            console.log("si le dio clic");
+
+            $('#myModal').modal('show');
+
+        });
+
+        function llamarmodal() {
+            console.log("si le dio clic");
+
+            $('#myModal').modal('show');
+        }
+
+    </script>
+
 </body>
 </html>

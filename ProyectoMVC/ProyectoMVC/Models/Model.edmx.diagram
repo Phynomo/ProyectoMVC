@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d3fcf4e0a39d42beac8bee1cd1427894" Name="Diagram1" ZoomLevel="111">
+      <Diagram DiagramId="d3fcf4e0a39d42beac8bee1cd1427894" Name="Diagram1" ZoomLevel="40">
         <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCargos" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDepartamentos" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEmpleados" Width="1.5" PointX="5.375" PointY="2.5" IsExpanded="true" />
@@ -28,6 +28,51 @@
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id" ManuallyRouted="false" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbArticulos" Width="1.5" PointX="11.75" PointY="11.625" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCategoria" Width="1.5" PointX="9.5" PointY="19" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbClientes" Width="1.5" PointX="12.5" PointY="0.75" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDirecciones" Width="1.5" PointX="15.75" PointY="1.875" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbFabricas" Width="1.5" PointX="5.25" PointY="14.125" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMetodoPago" Width="1.5" PointX="9.5" PointY="10.875" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPantallas" Width="1.5" PointX="9.5" PointY="15.25" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidos" Width="1.5" PointX="12.75" PointY="6.25" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidosDetalles" Width="1.5" PointX="15" PointY="7.5" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbRoles" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbRolesXPantalla" Width="1.5" PointX="14.75" PointY="12" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbArticulos_art_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbMunicipios_mun_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbClientes_cli_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbClientes_cli_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbDirecciones_dire_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbMunicipio_mun_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbFabricas_tbMunicipio_mun_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbMetodoPago_metpago_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioCreacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioModificacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbPantallas_pan_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbPedidos_ped_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_rol_UsuarioCreacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_UsuarioModificacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbRoles_rol_id" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

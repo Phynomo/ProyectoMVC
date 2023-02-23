@@ -15,31 +15,33 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbDepartamentos
+public partial class tbRoles
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbDepartamentos()
+    public tbRoles()
     {
 
-        this.tbMunicipios = new HashSet<tbMunicipios>();
+        this.tbUsuarios2 = new HashSet<tbUsuarios>();
+
+        this.tbRolesXPantalla = new HashSet<tbRolesXPantalla>();
 
     }
 
 
-    public string dep_Id { get; set; }
+    public int rol_id { get; set; }
 
-    public string dep_Nombre { get; set; }
+    public string rol_Nombre { get; set; }
 
-    public System.DateTime dep_FechaCreacion { get; set; }
+    public int rol_UsuarioCreacion { get; set; }
 
-    public int dep_UsuarioCreacion { get; set; }
+    public System.DateTime rol_FechaCreacion { get; set; }
 
-    public Nullable<System.DateTime> dep_FechaModificacion { get; set; }
+    public Nullable<int> rol_UsuarioModificacion { get; set; }
 
-    public Nullable<int> dep_UsuarioModificacion { get; set; }
+    public Nullable<System.DateTime> rol_FechaModificacion { get; set; }
 
-    public bool dep_Estado { get; set; }
+    public bool rol_Estado { get; set; }
 
 
 
@@ -49,7 +51,11 @@ public partial class tbDepartamentos
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbMunicipios> tbMunicipios { get; set; }
+    public virtual ICollection<tbUsuarios> tbUsuarios2 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<tbRolesXPantalla> tbRolesXPantalla { get; set; }
 
 }
 

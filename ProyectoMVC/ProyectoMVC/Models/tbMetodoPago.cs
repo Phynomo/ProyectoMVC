@@ -15,31 +15,31 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbDepartamentos
+public partial class tbMetodoPago
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbDepartamentos()
+    public tbMetodoPago()
     {
 
-        this.tbMunicipios = new HashSet<tbMunicipios>();
+        this.tbPedidos = new HashSet<tbPedidos>();
 
     }
 
 
-    public string dep_Id { get; set; }
+    public string metpago_Id { get; set; }
 
-    public string dep_Nombre { get; set; }
+    public string metpago_Descripcion { get; set; }
 
-    public System.DateTime dep_FechaCreacion { get; set; }
+    public System.DateTime metpago_FechaCreacion { get; set; }
 
-    public int dep_UsuarioCreacion { get; set; }
+    public int metpago_UsuarioCreacion { get; set; }
 
-    public Nullable<System.DateTime> dep_FechaModificacion { get; set; }
+    public Nullable<System.DateTime> metpago_FechaModificacion { get; set; }
 
-    public Nullable<int> dep_UsuarioModificacion { get; set; }
+    public Nullable<int> metpago_UsuarioModificacion { get; set; }
 
-    public bool dep_Estado { get; set; }
+    public bool metpago_Estado { get; set; }
 
 
 
@@ -49,7 +49,7 @@ public partial class tbDepartamentos
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbMunicipios> tbMunicipios { get; set; }
+    public virtual ICollection<tbPedidos> tbPedidos { get; set; }
 
 }
 

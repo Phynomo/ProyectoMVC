@@ -15,37 +15,47 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbEstadosCiviles
+public partial class tbDirecciones
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbEstadosCiviles()
+    public tbDirecciones()
     {
 
-        this.tbEmpleados = new HashSet<tbEmpleados>();
+        this.tbPedidos = new HashSet<tbPedidos>();
 
     }
 
 
-    public string estciv_Id { get; set; }
+    public int dire_ID { get; set; }
 
-    public string estciv_Nombre { get; set; }
+    public string dire_Calle { get; set; }
 
-    public System.DateTime estciv_FechaCreacion { get; set; }
+    public string dire_Comuna { get; set; }
 
-    public int estciv_UsuarioCreacion { get; set; }
+    public string mun_Id { get; set; }
 
-    public Nullable<System.DateTime> estciv_FechaModificacion { get; set; }
+    public Nullable<int> cli_Id { get; set; }
 
-    public Nullable<int> estciv_UsuarioModificacion { get; set; }
+    public System.DateTime dire_FechaCreacion { get; set; }
 
-    public bool estciv_Estado { get; set; }
+    public int dire_UsuarioCreacion { get; set; }
+
+    public Nullable<System.DateTime> dire_FechaModificacion { get; set; }
+
+    public Nullable<int> dire_UsuarioModificacion { get; set; }
+
+    public bool dire_Estado { get; set; }
 
 
+
+    public virtual tbClientes tbClientes { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
+    public virtual ICollection<tbPedidos> tbPedidos { get; set; }
+
+    public virtual tbMunicipios tbMunicipios { get; set; }
 
     public virtual tbUsuarios tbUsuarios { get; set; }
 

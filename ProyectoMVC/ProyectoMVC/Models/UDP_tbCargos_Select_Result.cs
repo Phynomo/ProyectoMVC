@@ -13,19 +13,9 @@ namespace ProyectoMVC.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class tbCargos
+public partial class UDP_tbCargos_Select_Result
 {
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbCargos()
-    {
-
-        this.tbEmpleados = new HashSet<tbEmpleados>();
-
-    }
-
 
     public int car_Id { get; set; }
 
@@ -40,16 +30,6 @@ public partial class tbCargos
     public Nullable<int> car_UsuarioModificacion { get; set; }
 
     public bool car_Estado { get; set; }
-
-
-
-    public virtual tbUsuarios tbUsuarios { get; set; }
-
-    public virtual tbUsuarios tbUsuarios1 { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
 
 }
 

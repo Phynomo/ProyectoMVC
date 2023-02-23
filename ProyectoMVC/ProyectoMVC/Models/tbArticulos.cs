@@ -15,31 +15,39 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbDepartamentos
+public partial class tbArticulos
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbDepartamentos()
+    public tbArticulos()
     {
 
-        this.tbMunicipios = new HashSet<tbMunicipios>();
+        this.tbPedidosDetalles = new HashSet<tbPedidosDetalles>();
 
     }
 
 
-    public string dep_Id { get; set; }
+    public int art_Id { get; set; }
 
-    public string dep_Nombre { get; set; }
+    public string art_Nombre { get; set; }
 
-    public System.DateTime dep_FechaCreacion { get; set; }
+    public decimal art_Precio { get; set; }
 
-    public int dep_UsuarioCreacion { get; set; }
+    public int cat_Id { get; set; }
 
-    public Nullable<System.DateTime> dep_FechaModificacion { get; set; }
+    public int art_Stock { get; set; }
 
-    public Nullable<int> dep_UsuarioModificacion { get; set; }
+    public Nullable<int> fab_id { get; set; }
 
-    public bool dep_Estado { get; set; }
+    public System.DateTime art_FechaCreacion { get; set; }
+
+    public int art_UsuarioCreacion { get; set; }
+
+    public Nullable<System.DateTime> art_FechaModificacion { get; set; }
+
+    public Nullable<int> art_UsuarioModificacion { get; set; }
+
+    public bool art_Estado { get; set; }
 
 
 
@@ -47,9 +55,11 @@ public partial class tbDepartamentos
 
     public virtual tbUsuarios tbUsuarios1 { get; set; }
 
+    public virtual tbCategoria tbCategoria { get; set; }
+
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbMunicipios> tbMunicipios { get; set; }
+    public virtual ICollection<tbPedidosDetalles> tbPedidosDetalles { get; set; }
 
 }
 

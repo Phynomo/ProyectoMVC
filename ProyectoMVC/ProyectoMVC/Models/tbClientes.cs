@@ -15,47 +15,51 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbMunicipios
+public partial class tbClientes
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbMunicipios()
+    public tbClientes()
     {
 
-        this.tbEmpleados = new HashSet<tbEmpleados>();
-
-        this.tbClientes = new HashSet<tbClientes>();
+        this.tbPedidos = new HashSet<tbPedidos>();
 
         this.tbDirecciones = new HashSet<tbDirecciones>();
-
-        this.tbFabricas = new HashSet<tbFabricas>();
 
     }
 
 
+    public int cli_Id { get; set; }
+
+    public string cli_Nombre { get; set; }
+
+    public string cli_Apellido { get; set; }
+
     public string mun_Id { get; set; }
 
-    public string dep_Id { get; set; }
+    public string cli_Telefono { get; set; }
 
-    public string mun_Nombre { get; set; }
+    public string cli_CorreoElectronico { get; set; }
 
-    public System.DateTime mun_FechaCreacion { get; set; }
+    public decimal cli_saldo { get; set; }
 
-    public int mun_UsuarioCreacion { get; set; }
+    public decimal cli_LimiteCredito { get; set; }
 
-    public Nullable<System.DateTime> mun_FechaModificacion { get; set; }
+    public decimal cli_Descuento { get; set; }
 
-    public Nullable<int> mun_UsuarioModificacion { get; set; }
+    public System.DateTime cli_FechaCreacion { get; set; }
 
-    public bool mun_Estado { get; set; }
+    public int cli_UsuarioCreacion { get; set; }
+
+    public Nullable<System.DateTime> cli_FechaModificacion { get; set; }
+
+    public Nullable<int> cli_UsuarioModificacion { get; set; }
+
+    public bool cli_Estado { get; set; }
 
 
 
-    public virtual tbDepartamentos tbDepartamentos { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
+    public virtual tbMunicipios tbMunicipios { get; set; }
 
     public virtual tbUsuarios tbUsuarios { get; set; }
 
@@ -63,15 +67,11 @@ public partial class tbMunicipios
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbClientes> tbClientes { get; set; }
+    public virtual ICollection<tbPedidos> tbPedidos { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<tbDirecciones> tbDirecciones { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<tbFabricas> tbFabricas { get; set; }
 
 }
 

@@ -15,37 +15,37 @@ namespace ProyectoMVC.Models
 using System;
     using System.Collections.Generic;
     
-public partial class tbEstadosCiviles
+public partial class tbCategoria
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tbEstadosCiviles()
+    public tbCategoria()
     {
 
-        this.tbEmpleados = new HashSet<tbEmpleados>();
+        this.tbArticulos = new HashSet<tbArticulos>();
 
     }
 
 
-    public string estciv_Id { get; set; }
+    public int cat_Id { get; set; }
 
-    public string estciv_Nombre { get; set; }
+    public string cat_Descripcion { get; set; }
 
-    public System.DateTime estciv_FechaCreacion { get; set; }
+    public System.DateTime cat_FechaCreacion { get; set; }
 
-    public int estciv_UsuarioCreacion { get; set; }
+    public int cat_UsuarioCreacion { get; set; }
 
-    public Nullable<System.DateTime> estciv_FechaModificacion { get; set; }
+    public Nullable<System.DateTime> cat_FechaModificacion { get; set; }
 
-    public Nullable<int> estciv_UsuarioModificacion { get; set; }
+    public Nullable<int> cat_UsuarioModificacion { get; set; }
 
-    public bool estciv_Estado { get; set; }
+    public bool cat_Estado { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
+    public virtual ICollection<tbArticulos> tbArticulos { get; set; }
 
     public virtual tbUsuarios tbUsuarios { get; set; }
 
