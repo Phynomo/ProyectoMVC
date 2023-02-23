@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE DATABASE dbPedidosEncargos
 GO
 Use dbPedidosEncargos
@@ -1174,6 +1175,36 @@ BEGIN
 END
 GO
 
+
+
+--Login
+CREATE PROCEDURE UDP_Login
+	@usu_Usuario Nvarchar(100),
+	@usu_Contrasenia Nvarchar(Max)
+AS
+BEGIN
+
+Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@Contrasenia))
+
+SELECT [usu_Id]
+      ,[usu_Usuario]
+      ,[usu_Contrasenia]
+      ,T1.[emp_Id]
+	  ,t2.emp_Nombre + ' ' + t2.emp_Apellido as emp_Nombre 
+      ,[usu_UsuarioCreacion]
+      ,[usu_FechaCreacion]
+      ,[usu_UsuarioModificacion]
+      ,[usu_FechaModificacion]
+      ,[usu_Estado]
+  FROM [tbUsuarios] T1 INNER JOIN [dbo].[tbEmpleados] T2
+  ON T1.emp_Id = T2.emp_Id
+  WHERE t1.usu_Contrasenia = @usu_Contrasenia 
+  AND t1.usu_Usuario = @usu_Usuario
+
+END
+GO
+
+
 -------------------------------------------------------------------------------------
 ---------------------------------------Insert----------------------------------------
 -------------------------------------------------------------------------------------
@@ -1386,11 +1417,11 @@ INSERT INTO [dbo].[tbEmpleados]
            ('Axel','Gomez' ,'M','0501' ,'Bosques de Jucutuma','C' ,'50220345' ,'Gomez03@gmail.com','10-02-2003' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
            ('Angie','Rolitas' ,'F','0501' ,'Col. Felipe','S' ,'88541230' ,'rolitaAngie@gmail.com','12-07-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
            ('Dua','Lipa' ,'F','0501' ,'Rio de piedras','S' ,'00000000' ,'lipa1995@gmail.com','22-08-1995' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
-           ('Daniel','Espinoza' ,'M','0501' ,'Col. Municipal','S' ,'87756952' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
-           ('Daniel','Espinoza' ,'M','0501' ,'Col. Municipal','S' ,'87756952' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
-           ('Daniel','Espinoza' ,'M','0501' ,'Col. Municipal','S' ,'87756952' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
-           ('Daniel','Espinoza' ,'M','0501' ,'Col. Municipal','S' ,'87756952' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
-           ('Daniel','Espinoza' ,'M','0501' ,'Col. Municipal','S' ,'87756952' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1)
+           ('Pitbull','Perez' ,'M','0501' ,'Rio de piedras','S' ,'00000000' ,'daniele09099@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
+           ('Michael','Jackson' ,'M','0501' ,'Rio de piedras','S' ,'00000000' ,'Jackson@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
+           ('Lady','Gaga' ,'F','0501' ,'Rio de piedras','S' ,'00000000' ,'gaga@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
+           ('Lionel','Messi' ,'M','0501' ,'Rio de piedras','S' ,'00000000' ,'Messi@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1),
+           ('Cristiano','Ronaldo' ,'M','0501' ,'Rio de piedras','S' ,'00000000' ,'ElBicho@gmail.com','02-04-2005' ,GetDate() ,1 ,GetDate() ,1 ,null ,null,1)
 GO
 
 
