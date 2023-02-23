@@ -39,7 +39,7 @@ namespace ProyectoMVC.Controllers
 
                 if (login.Count() > 0)
                 {
-                    return RedirectToAction("pagina");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbRoles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+                
+    <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                     <h4>tbRoles</h4>
+                    </div>
+                    <div class="col d-flex flex-row-reverse">
+                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                    </div>
+                </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe table-dark" id="example">
+                <thead>
+                    <tr>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.rol_Nombre)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.rol_FechaCreacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.rol_FechaModificacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.rol_Estado)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
+                        </th>
+                                                                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.rol_Nombre)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.rol_FechaCreacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.rol_FechaModificacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.rol_Estado)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuarios.usu_Usuario)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuarios1.usu_Usuario)
+                        </td>
+                                                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.rol_id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+       
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Edit", new { id=item.rol_id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+        
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Delete", new { id=item.rol_id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        </td>
+                                        </tr>
+                }
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

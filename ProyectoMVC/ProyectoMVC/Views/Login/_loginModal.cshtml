@@ -1,5 +1,4 @@
-﻿
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+﻿<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +6,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form action="@Url.Action("Index","Login")" method="POST">
+                    <h7 style="color:red">@Html.ValidationMessage("Validacion") </h7>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="txtUsuario" placeholder="Usuario">
+                        <label for="floatingInput">Usuario</label>
+                        <h7 style="color:red">@Html.ValidationMessage("validarUsuario") </h7>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingPassword" name="txtClave" placeholder="Contraseña">
+                        <label for="floatingPassword">Nueva Contraseña</label>
+                        <h7 style="color:red">@Html.ValidationMessage("validarClave") </h7>
+                    </div>
+
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -16,4 +28,3 @@
         </div>
     </div>
 </div>
-
