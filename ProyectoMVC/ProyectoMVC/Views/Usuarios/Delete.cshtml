@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Delete</h2>
@@ -73,6 +74,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.tbUsuarios3.usu_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbRoles2.rol_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbRoles2.rol_Nombre)
         </dd>
 
     </dl>

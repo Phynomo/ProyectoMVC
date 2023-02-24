@@ -2,127 +2,58 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
- 
-
-
+@using (Html.BeginForm()) 
+{
     @Html.AntiForgeryToken()
     
-    <div class="card px-4 text-center">
-        <div class="tools">
+    <div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
 
-            <h4>Crear Registro</h4>
+            <h4>Crear tbUsuarios</h4>
 
         </div>
-        <div class="card__content">
-            
+    </div>
 
-       
-    
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_Usuario, htmlAttributes: new { @class = "control-label" })
-            
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.usu_Usuario, htmlAttributes: new { @class = "control-label col" })
                 @Html.EditorFor(model => model.usu_Usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.usu_Usuario, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_Contrasenia, htmlAttributes: new { @class = "control-label" })
-            
+            <div class="col">
+            @Html.LabelFor(model => model.usu_Contrasenia, htmlAttributes: new { @class = "control-label col" })
                 @Html.EditorFor(model => model.usu_Contrasenia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.usu_Contrasenia, "", new { @class = "text-danger" })
             </div>
         </div>
 
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.emp_Id, "emp_Id", htmlAttributes: new { @class = "control-label " })
-            
+        <div class="row form-group pt-2">
+            <div class="col">
+            @*@Html.LabelFor(model => model.emp_Id, "emp_Id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Empleado</label>
                 @Html.DropDownList("emp_Id", null, htmlAttributes: new { @class = "form-select" })
                 @Html.ValidationMessageFor(model => model.emp_Id, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_UsuarioCreacion, "usu_UsuarioCreacion", htmlAttributes: new { @class = "control-label " })
-            
-                @Html.DropDownList("usu_UsuarioCreacion", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.usu_UsuarioCreacion, "", new { @class = "text-danger" })
+            <div class="col">
+                @*@Html.LabelFor(model => model.rol_id, "rol_id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Rol</label>
+                @Html.DropDownList("rol_id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.rol_id, "", new { @class = "text-danger" })
             </div>
         </div>
 
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_FechaCreacion, htmlAttributes: new { @class = "control-label" })
-            
-                @Html.EditorFor(model => model.usu_FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.usu_FechaCreacion, "", new { @class = "text-danger" })
+        <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
             </div>
         </div>
-
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_UsuarioModificacion, "usu_UsuarioModificacion", htmlAttributes: new { @class = "control-label " })
-            
-                @Html.DropDownList("usu_UsuarioModificacion", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.usu_UsuarioModificacion, "", new { @class = "text-danger" })
-            </div>
         </div>
-
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_FechaModificacion, htmlAttributes: new { @class = "control-label" })
-            
-                @Html.EditorFor(model => model.usu_FechaModificacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.usu_FechaModificacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-      
-        
-        <div class="form-group row pt-2">
-        <div class="col-md-6">
-            @Html.LabelFor(model => model.usu_Estado, htmlAttributes: new { @class = "control-label" })
-            
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.usu_Estado)
-                    @Html.ValidationMessageFor(model => model.usu_Estado, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-                <div class="row d-flex justify-content-end py-3">
-                    <div class="col d-flex justify-content-end">
-                        <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
-                         @Html.ActionLink("Regresar al index", "Index" , " ", new {@class ="btn btn-danger mx-2"})
-                    </div>
-                 
-                </div>
-            </div>
-        </div>
-   </div>
-
-
-
+}
 

@@ -37,5 +37,6 @@ namespace ProyectoMVC.Models
         public virtual tbCategoria tbCategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidosDetalles> tbPedidosDetalles { get; set; }
+        public virtual tbFabricas tbFabricas { get; set; }
     }
 }

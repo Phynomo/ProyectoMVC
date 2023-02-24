@@ -243,6 +243,36 @@
     <Property Name="usu_FechaModificacion" Type="datetime" />
     <Property Name="usu_Estado" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VW_UsuariosIndex">
+    <Key>
+      <PropertyRef Name="usu_Id" />
+      <PropertyRef Name="usu_Usuario" />
+      <PropertyRef Name="usu_Contrasenia" />
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="emp_Nombre" />
+      <PropertyRef Name="emp_Apellido" />
+      <PropertyRef Name="rol_id" />
+      <PropertyRef Name="rol_Nombre" />
+      <PropertyRef Name="usu_UsuarioCreacion" />
+      <PropertyRef Name="usu_FechaCreacion" />
+      <PropertyRef Name="usu_Estado" />
+    </Key>
+    <Property Name="usu_Id" Type="int" Nullable="false" />
+    <Property Name="usu_Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="usu_Contrasenia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="emp_Id" Type="int" Nullable="false" />
+    <Property Name="emp_Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="emp_Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rol_id" Type="int" Nullable="false" />
+    <Property Name="rol_Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="usu_UsuarioCreacion" Type="int" Nullable="false" />
+    <Property Name="usu_FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="usu_UsuarioModificacion" Type="int" />
+    <Property Name="usu_FechaModificacion" Type="datetime" />
+    <Property Name="usu_Estado" Type="bit" Nullable="false" />
+  </EntityType>
   <Association Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
     <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
     <End Role="tbArticulos" Type="Self.tbArticulos" Multiplicity="*" />
@@ -276,6 +306,18 @@
       </Principal>
       <Dependent Role="tbArticulos">
         <PropertyRef Name="cat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbArticulos_tbFabricas_fab_Id">
+    <End Role="tbFabricas" Type="Self.tbFabricas" Multiplicity="0..1" />
+    <End Role="tbArticulos" Type="Self.tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbFabricas">
+        <PropertyRef Name="fab_id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="fab_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -859,9 +901,9 @@
     <Parameter Name="IdEdicion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_EdicionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="IdEdicion" Type="int" Mode="In" />
-    <Parameter Name="Contrasenia" Type="nvarchar(max)" Mode="In" />
-    <Parameter Name="Empleado" Type="int" Mode="In" />
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="emp_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_id" Type="int" Mode="In" />
     <Parameter Name="usuarioModificacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -899,6 +941,7 @@
     <Parameter Name="art_Precio" Type="decimal" Mode="In" />
     <Parameter Name="cat_Id" Type="int" Mode="In" />
     <Parameter Name="art_Stock" Type="int" Mode="In" />
+    <Parameter Name="art_Fabrica" Type="int" Mode="In" />
     <Parameter Name="art_UsuarioCreacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbArticulos_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -910,6 +953,7 @@
     <Parameter Name="art_Precio" Type="decimal" Mode="In" />
     <Parameter Name="cat_Id" Type="int" Mode="In" />
     <Parameter Name="art_Stock" Type="int" Mode="In" />
+    <Parameter Name="art_Fabrica" Type="int" Mode="In" />
     <Parameter Name="art_UsuarioCreacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbArticulos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -1088,6 +1132,23 @@
     <EntitySet Name="tbRoles" EntityType="Self.tbRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbRolesXPantalla" EntityType="Self.tbRolesXPantalla" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VW_UsuariosIndex" EntityType="Self.VW_UsuariosIndex" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_UsuariosIndex].[usu_Id] AS [usu_Id], 
+    [VW_UsuariosIndex].[usu_Usuario] AS [usu_Usuario], 
+    [VW_UsuariosIndex].[usu_Contrasenia] AS [usu_Contrasenia], 
+    [VW_UsuariosIndex].[emp_Id] AS [emp_Id], 
+    [VW_UsuariosIndex].[emp_Nombre] AS [emp_Nombre], 
+    [VW_UsuariosIndex].[emp_Apellido] AS [emp_Apellido], 
+    [VW_UsuariosIndex].[rol_id] AS [rol_id], 
+    [VW_UsuariosIndex].[rol_Nombre] AS [rol_Nombre], 
+    [VW_UsuariosIndex].[usu_UsuarioCreacion] AS [usu_UsuarioCreacion], 
+    [VW_UsuariosIndex].[usu_FechaCreacion] AS [usu_FechaCreacion], 
+    [VW_UsuariosIndex].[usu_UsuarioModificacion] AS [usu_UsuarioModificacion], 
+    [VW_UsuariosIndex].[usu_FechaModificacion] AS [usu_FechaModificacion], 
+    [VW_UsuariosIndex].[usu_Estado] AS [usu_Estado]
+    FROM [dbo].[VW_UsuariosIndex] AS [VW_UsuariosIndex]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" Association="Self.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
       <End Role="tbUsuarios" EntitySet="tbUsuarios" />
       <End Role="tbArticulos" EntitySet="tbArticulos" />
@@ -1098,6 +1159,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_dbo_tbArticulos_tbCategoria_cat_Id" Association="Self.FK_dbo_tbArticulos_tbCategoria_cat_Id">
       <End Role="tbCategoria" EntitySet="tbCategoria" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbArticulos_tbFabricas_fab_Id" Association="Self.FK_dbo_tbArticulos_tbFabricas_fab_Id">
+      <End Role="tbFabricas" EntitySet="tbFabricas" />
       <End Role="tbArticulos" EntitySet="tbArticulos" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id" Association="Self.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id">

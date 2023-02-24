@@ -413,5 +413,24 @@
     <FunctionImportMapping FunctionImportName="UDP_tbpedidos_Delete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbpedidos_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_tbPedidos_Insert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbPedidos_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_tbpedidos_Update" FunctionName="dbPedidosEncargosModel.Store.UDP_tbpedidos_Update" />
+    <EntitySetMapping Name="VW_UsuariosIndex">
+      <EntityTypeMapping TypeName="dbPedidosEncargosModel.VW_UsuariosIndex">
+        <MappingFragment StoreEntitySet="VW_UsuariosIndex">
+          <ScalarProperty Name="usu_Estado" ColumnName="usu_Estado" />
+          <ScalarProperty Name="usu_FechaModificacion" ColumnName="usu_FechaModificacion" />
+          <ScalarProperty Name="usu_UsuarioModificacion" ColumnName="usu_UsuarioModificacion" />
+          <ScalarProperty Name="usu_FechaCreacion" ColumnName="usu_FechaCreacion" />
+          <ScalarProperty Name="usu_UsuarioCreacion" ColumnName="usu_UsuarioCreacion" />
+          <ScalarProperty Name="rol_Nombre" ColumnName="rol_Nombre" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="emp_Apellido" ColumnName="emp_Apellido" />
+          <ScalarProperty Name="emp_Nombre" ColumnName="emp_Nombre" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="usu_Contrasenia" ColumnName="usu_Contrasenia" />
+          <ScalarProperty Name="usu_Usuario" ColumnName="usu_Usuario" />
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

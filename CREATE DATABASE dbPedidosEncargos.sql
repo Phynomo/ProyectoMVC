@@ -238,6 +238,7 @@ art_Estado							BIT not null,
 
 CONSTRAINT PK_dbo_tbArticulos_art_Id PRIMARY KEY(art_Id),
 CONSTRAINT FK_dbo_tbArticulos_tbCategoria_cat_Id FOREIGN KEY (cat_Id) REFERENCES tbCategoria (cat_Id),
+CONSTRAINT FK_dbo_tbArticulos_tbFabricas_fab_Id FOREIGN KEY (fab_id) REFERENCES tbFabricas (fab_id),
 CONSTRAINT FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id FOREIGN KEY(art_UsuarioCreacion) REFERENCES tbUsuarios(usu_Id),
 CONSTRAINT FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id FOREIGN KEY(art_UsuarioModificacion) REFERENCES tbUsuarios(usu_Id)
 
@@ -394,23 +395,22 @@ EXEC UDP_InsertarUsuario 'Donal2','Donal2',7,4,1
 
 --Editar Usuario 
 GO
-CREATE PROCEDURE UDP_EdicionUsuario
-	@IdEdicion INT,
-	@Contrasenia Nvarchar(max),
-	@Empleado int,
+CREATE OR ALTER PROCEDURE UDP_EdicionUsuario
+	@usu_Id INT,
+	@emp_Id int,
+	@rol_id	INT,
 	@usuarioModificacion int
 AS
 BEGIN
 
-Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@Contrasenia))
 
 UPDATE [dbo].[tbUsuarios]
-   SET [usu_Contrasenia] = @Password
-      ,[emp_Id] = @Empleado
+   SET [emp_Id] = @emp_Id
       ,[usu_UsuarioModificacion] = @usuarioModificacion
+	  ,rol_id = @rol_id
       ,[usu_FechaModificacion] = GetDate()
       ,[usu_Estado] = 1
- WHERE usu_Id = @IdEdicion
+ WHERE usu_Id = @usu_Id
 
 
 END
@@ -429,6 +429,30 @@ UPDATE [dbo].[tbUsuarios]
 
 
 END
+GO
+GO
+--view usuarios
+CREATE VIEW VW_UsuariosIndex
+AS
+(
+SELECT [usu_Id]
+      ,[usu_Usuario]
+      ,[usu_Contrasenia]
+      ,T1.[emp_Id]
+	  ,t2.emp_Nombre
+	  ,t2.emp_Apellido
+      ,T1.[rol_id]
+	  ,T3.rol_Nombre
+      ,[usu_UsuarioCreacion]
+      ,[usu_FechaCreacion]
+      ,[usu_UsuarioModificacion]
+      ,[usu_FechaModificacion]
+      ,[usu_Estado]
+  FROM [dbPedidosEncargos].[dbo].[tbUsuarios] T1 INNER	JOIN	tbEmpleados T2
+  ON T1.emp_Id = t2.emp_Id INNER JOIN tbRoles T3
+  ON t3.rol_id = t1.rol_id
+  WHERE T1.usu_Estado = 1
+  )
 GO
 
 -- Procedimiento Almacenado de Direcciones
@@ -980,27 +1004,29 @@ END
 
 --Procedimiento almacenado Insert tbArticulos
 GO
-CREATE PROCEDURE UDP_tbArticulos_Insert
+CREATE OR ALTER PROCEDURE UDP_tbArticulos_Insert
     @art_Nombre NVARCHAR(200),
     @art_Precio DECIMAL(18, 2),
     @cat_Id INT,
     @art_Stock INT,
+    @art_Fabrica INT,
     @art_UsuarioCreacion INT
 
 AS
 BEGIN
-    INSERT INTO tbArticulos ([art_Nombre], [art_Precio], [cat_Id],  [art_Stock], [art_FechaCreacion], [art_UsuarioCreacion], [art_FechaModificacion], [art_UsuarioModificacion], [art_Estado] )
-    VALUES (@art_Nombre, @art_Precio, @cat_Id, @art_Stock, GETDATE(), @art_UsuarioCreacion, NULL, NULL, 1);
+    INSERT INTO tbArticulos ([art_Nombre], [art_Precio], [cat_Id],  [fab_id], [art_Stock], [art_FechaCreacion], [art_UsuarioCreacion], [art_FechaModificacion], [art_UsuarioModificacion], [art_Estado] )
+    VALUES (@art_Nombre, @art_Precio, @cat_Id, @art_Stock, @art_Fabrica,  GETDATE(), @art_UsuarioCreacion, NULL, NULL, 1);
 END
 
 --Procedimiento almacenado Update tbArticulos
 GO
-CREATE PROCEDURE UDP_tbArticulo_Update
+CREATE OR ALTER PROCEDURE UDP_tbArticulo_Update
     @art_Id INT,
-    @art_Nombre NVARCHAR(150),
-    @art_Precio DECIMAL(18,2),
-    @cat_Id       INT,
-    @art_Stock    INT,
+    @art_Nombre NVARCHAR(200),
+    @art_Precio DECIMAL(18, 2),
+    @cat_Id INT,
+    @art_Stock INT,
+    @art_Fabrica INT,
     @art_UsuarioCreacion INT
 AS
 BEGIN
@@ -1009,6 +1035,7 @@ BEGIN
         art_Precio = @art_Precio,
         cat_Id    = @cat_id,
         art_Stock = @art_Stock,
+        [fab_id] = @art_Fabrica,
         art_FechaModificacion = GETDATE(),
         art_UsuarioModificacion =  @art_UsuarioCreacion 
     WHERE art_Id = @art_Id

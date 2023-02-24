@@ -98,7 +98,7 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 
     <div class="row">
     <div class="col">
-        <dt>
+        <dt style="color:White;">
             @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
         </dt>
 

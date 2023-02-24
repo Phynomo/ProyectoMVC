@@ -14,6 +14,12 @@ namespace ProyectoMVC.Models
     
     public partial class tbFabricas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbFabricas()
+        {
+            this.tbArticulos = new HashSet<tbArticulos>();
+        }
+    
         public int fab_id { get; set; }
         public string fab_Nombre { get; set; }
         public string mun_Id { get; set; }
@@ -26,5 +32,7 @@ namespace ProyectoMVC.Models
         public bool fab_Estado { get; set; }
     
         public virtual tbMunicipios tbMunicipios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbArticulos> tbArticulos { get; set; }
     }
 }

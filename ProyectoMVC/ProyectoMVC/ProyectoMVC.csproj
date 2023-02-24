@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArticulosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -223,6 +225,10 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_tbfabrica_Select_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\VW_UsuariosIndex.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,11 +319,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Usuarios\Create.cshtml" />
-    <Content Include="Views\Usuarios\Delete.cshtml" />
-    <Content Include="Views\Usuarios\Details.cshtml" />
-    <Content Include="Views\Usuarios\Edit.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Municipios\Create.cshtml" />
     <Content Include="Views\Municipios\Delete.cshtml" />
     <Content Include="Views\Municipios\Details.cshtml" />
@@ -332,6 +333,16 @@
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Categorias\_ModalDelete.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Articulos\Create.cshtml" />
+    <Content Include="Views\Articulos\Delete.cshtml" />
+    <Content Include="Views\Articulos\Details.cshtml" />
+    <Content Include="Views\Articulos\Edit.cshtml" />
+    <Content Include="Views\Articulos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

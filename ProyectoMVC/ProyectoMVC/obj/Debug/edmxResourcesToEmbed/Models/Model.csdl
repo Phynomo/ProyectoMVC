@@ -575,9 +575,9 @@
       <Parameter Name="IdEdicion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_EdicionUsuario">
-      <Parameter Name="IdEdicion" Mode="In" Type="Int32" />
-      <Parameter Name="Contrasenia" Mode="In" Type="String" />
-      <Parameter Name="Empleado" Mode="In" Type="Int32" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_id" Mode="In" Type="Int32" />
       <Parameter Name="usuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_InsertarUsuario">
@@ -615,6 +615,7 @@
       <Parameter Name="art_Precio" Mode="In" Type="Decimal" />
       <Parameter Name="cat_Id" Mode="In" Type="Int32" />
       <Parameter Name="art_Stock" Mode="In" Type="Int32" />
+      <Parameter Name="art_Fabrica" Mode="In" Type="Int32" />
       <Parameter Name="art_UsuarioCreacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_tbArticulos_Delete">
@@ -626,6 +627,7 @@
       <Parameter Name="art_Precio" Mode="In" Type="Decimal" />
       <Parameter Name="cat_Id" Mode="In" Type="Int32" />
       <Parameter Name="art_Stock" Mode="In" Type="Int32" />
+      <Parameter Name="art_Fabrica" Mode="In" Type="Int32" />
       <Parameter Name="art_UsuarioCreacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_tbArticulos_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbArticulos_Select_Result)" />
@@ -786,6 +788,11 @@
       <Parameter Name="metpago_Id" Mode="In" Type="String" />
       <Parameter Name="ped_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="VW_UsuariosIndex" EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" />
+    <AssociationSet Name="FK_dbo_tbArticulos_tbFabricas_fab_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id">
+      <End Role="tbFabricas" EntitySet="tbFabricas" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbArticulos">
     <Key>
@@ -806,6 +813,7 @@
     <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" FromRole="tbArticulos" ToRole="tbUsuarios" />
     <NavigationProperty Name="tbCategoria" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id" FromRole="tbArticulos" ToRole="tbCategoria" />
     <NavigationProperty Name="tbPedidosDetalles" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbArticulos_art_id" FromRole="tbArticulos" ToRole="tbPedidosDetalles" />
+    <NavigationProperty Name="tbFabricas" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id" FromRole="tbArticulos" ToRole="tbFabricas" />
   </EntityType>
   <EntityType Name="tbCategoria">
     <Key>
@@ -881,6 +889,7 @@
     <Property Name="fab_UsuarioModificacion" Type="Int32" />
     <Property Name="fab_Estado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.FK_dbo_tbFabricas_tbMunicipio_mun_id" FromRole="tbFabricas" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbArticulos" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id" FromRole="tbFabricas" ToRole="tbArticulos" />
   </EntityType>
   <EntityType Name="tbMetodoPago">
     <Key>
@@ -1486,4 +1495,44 @@
     <Property Type="Int32" Name="fab_UsuarioModificacion" Nullable="true" />
     <Property Type="Boolean" Name="fab_Estado" Nullable="false" />
   </ComplexType>
+  <EntityType Name="VW_UsuariosIndex">
+    <Key>
+      <PropertyRef Name="usu_Id" />
+      <PropertyRef Name="usu_Usuario" />
+      <PropertyRef Name="usu_Contrasenia" />
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="emp_Nombre" />
+      <PropertyRef Name="emp_Apellido" />
+      <PropertyRef Name="rol_id" />
+      <PropertyRef Name="rol_Nombre" />
+      <PropertyRef Name="usu_UsuarioCreacion" />
+      <PropertyRef Name="usu_FechaCreacion" />
+      <PropertyRef Name="usu_Estado" />
+    </Key>
+    <Property Name="usu_Id" Type="Int32" Nullable="false" />
+    <Property Name="usu_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="usu_Contrasenia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="rol_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="usu_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="usu_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usu_UsuarioModificacion" Type="Int32" />
+    <Property Name="usu_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="usu_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_tbArticulos_tbFabricas_fab_Id">
+    <End Type="dbPedidosEncargosModel.tbFabricas" Role="tbFabricas" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbFabricas">
+        <PropertyRef Name="fab_id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="fab_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

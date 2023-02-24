@@ -73,6 +73,8 @@
         <AssociationConnector Association="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbRoles_rol_id" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" Width="1.5" PointX="0.75" PointY="14" />
+        <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

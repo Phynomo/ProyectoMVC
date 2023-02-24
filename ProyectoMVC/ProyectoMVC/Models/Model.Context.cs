@@ -44,6 +44,7 @@ namespace ProyectoMVC.Models
         public virtual DbSet<tbPedidosDetalles> tbPedidosDetalles { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
         public virtual DbSet<tbRolesXPantalla> tbRolesXPantalla { get; set; }
+        public virtual DbSet<VW_UsuariosIndex> VW_UsuariosIndex { get; set; }
     
         public virtual int UDP_BorrarUsuario(Nullable<int> idEdicion)
         {
@@ -54,25 +55,25 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_BorrarUsuario", idEdicionParameter);
         }
     
-        public virtual int UDP_EdicionUsuario(Nullable<int> idEdicion, string contrasenia, Nullable<int> empleado, Nullable<int> usuarioModificacion)
+        public virtual int UDP_EdicionUsuario(Nullable<int> usu_Id, Nullable<int> emp_Id, Nullable<int> rol_id, Nullable<int> usuarioModificacion)
         {
-            var idEdicionParameter = idEdicion.HasValue ?
-                new ObjectParameter("IdEdicion", idEdicion) :
-                new ObjectParameter("IdEdicion", typeof(int));
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
     
-            var contraseniaParameter = contrasenia != null ?
-                new ObjectParameter("Contrasenia", contrasenia) :
-                new ObjectParameter("Contrasenia", typeof(string));
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
     
-            var empleadoParameter = empleado.HasValue ?
-                new ObjectParameter("Empleado", empleado) :
-                new ObjectParameter("Empleado", typeof(int));
+            var rol_idParameter = rol_id.HasValue ?
+                new ObjectParameter("rol_id", rol_id) :
+                new ObjectParameter("rol_id", typeof(int));
     
             var usuarioModificacionParameter = usuarioModificacion.HasValue ?
                 new ObjectParameter("usuarioModificacion", usuarioModificacion) :
                 new ObjectParameter("usuarioModificacion", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_EdicionUsuario", idEdicionParameter, contraseniaParameter, empleadoParameter, usuarioModificacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_EdicionUsuario", usu_IdParameter, emp_IdParameter, rol_idParameter, usuarioModificacionParameter);
         }
     
         public virtual int UDP_InsertarUsuario(string usu_Usuario, string usu_Contrasenia, Nullable<int> emp_Id, Nullable<int> rol_id, Nullable<int> usu_UsuarioCreacion)
@@ -176,7 +177,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_PedidoDetalle_Update", pede_IdParameter, ped_IdParameter, art_IdParameter, pede_CantidadParameter, pede_PrecioParameter, pede_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbArticulo_Update(Nullable<int> art_Id, string art_Nombre, Nullable<decimal> art_Precio, Nullable<int> cat_Id, Nullable<int> art_Stock, Nullable<int> art_UsuarioCreacion)
+        public virtual int UDP_tbArticulo_Update(Nullable<int> art_Id, string art_Nombre, Nullable<decimal> art_Precio, Nullable<int> cat_Id, Nullable<int> art_Stock, Nullable<int> art_Fabrica, Nullable<int> art_UsuarioCreacion)
         {
             var art_IdParameter = art_Id.HasValue ?
                 new ObjectParameter("art_Id", art_Id) :
@@ -198,11 +199,15 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("art_Stock", art_Stock) :
                 new ObjectParameter("art_Stock", typeof(int));
     
+            var art_FabricaParameter = art_Fabrica.HasValue ?
+                new ObjectParameter("art_Fabrica", art_Fabrica) :
+                new ObjectParameter("art_Fabrica", typeof(int));
+    
             var art_UsuarioCreacionParameter = art_UsuarioCreacion.HasValue ?
                 new ObjectParameter("art_UsuarioCreacion", art_UsuarioCreacion) :
                 new ObjectParameter("art_UsuarioCreacion", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbArticulo_Update", art_IdParameter, art_NombreParameter, art_PrecioParameter, cat_IdParameter, art_StockParameter, art_UsuarioCreacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbArticulo_Update", art_IdParameter, art_NombreParameter, art_PrecioParameter, cat_IdParameter, art_StockParameter, art_FabricaParameter, art_UsuarioCreacionParameter);
         }
     
         public virtual int UDP_tbArticulos_Delete(Nullable<int> art_Id, Nullable<int> art_UsuarioModificacion)
@@ -218,7 +223,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbArticulos_Delete", art_IdParameter, art_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbArticulos_Insert(string art_Nombre, Nullable<decimal> art_Precio, Nullable<int> cat_Id, Nullable<int> art_Stock, Nullable<int> art_UsuarioCreacion)
+        public virtual int UDP_tbArticulos_Insert(string art_Nombre, Nullable<decimal> art_Precio, Nullable<int> cat_Id, Nullable<int> art_Stock, Nullable<int> art_Fabrica, Nullable<int> art_UsuarioCreacion)
         {
             var art_NombreParameter = art_Nombre != null ?
                 new ObjectParameter("art_Nombre", art_Nombre) :
@@ -236,11 +241,15 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("art_Stock", art_Stock) :
                 new ObjectParameter("art_Stock", typeof(int));
     
+            var art_FabricaParameter = art_Fabrica.HasValue ?
+                new ObjectParameter("art_Fabrica", art_Fabrica) :
+                new ObjectParameter("art_Fabrica", typeof(int));
+    
             var art_UsuarioCreacionParameter = art_UsuarioCreacion.HasValue ?
                 new ObjectParameter("art_UsuarioCreacion", art_UsuarioCreacion) :
                 new ObjectParameter("art_UsuarioCreacion", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbArticulos_Insert", art_NombreParameter, art_PrecioParameter, cat_IdParameter, art_StockParameter, art_UsuarioCreacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbArticulos_Insert", art_NombreParameter, art_PrecioParameter, cat_IdParameter, art_StockParameter, art_FabricaParameter, art_UsuarioCreacionParameter);
         }
     
         public virtual ObjectResult<UDP_tbArticulos_Select_Result> UDP_tbArticulos_Select()
