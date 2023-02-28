@@ -85,6 +85,7 @@ namespace ProyectoMVC.Controllers
             }
             ViewBag.car_Id = new SelectList(db.tbCargos, "car_Id", "car_Nombre", tbEmpleados.car_Id);
             ViewBag.estciv_Id = new SelectList(db.tbEstadosCiviles, "estciv_Id", "estciv_Nombre", tbEmpleados.estciv_Id);
+            ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
             //ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre", tbMunicipios.dep_Id);
             //ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbEmpleados.mun_Id);
             ViewBag.emp_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioCreacion);

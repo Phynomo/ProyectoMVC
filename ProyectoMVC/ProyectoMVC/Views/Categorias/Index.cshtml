@@ -35,6 +35,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                           @Html.Partial("_CreateCategoriasView", item);
 
                             <tr>
                                 <td>
@@ -72,6 +73,7 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
 
 @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
 

@@ -343,10 +343,8 @@ namespace ProyectoMVC.Models
             var cat_UsuarioModificacionParameter = cat_UsuarioModificacion.HasValue ?
                 new ObjectParameter("cat_UsuarioModificacion", cat_UsuarioModificacion) :
                 new ObjectParameter("cat_UsuarioModificacion", typeof(int));
-
-                 return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbCategorias_Update", cat_IdParameter, cat_DescripcionParameter, cat_UsuarioModificacionParameter);
-            
-            
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbCategorias_Update", cat_IdParameter, cat_DescripcionParameter, cat_UsuarioModificacionParameter);
         }
     
         public virtual int UDP_tbClientes_Delete(Nullable<int> cli_Id, Nullable<int> cli_UsuarioModificacion)
@@ -645,7 +643,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbfabrica_Delete", fab_IdParameter, fab_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbFabrica_Insert(string fab_Nombre, string mun_Id, Nullable<int> fab_ArticulosProvistos, string fab_Telefono, Nullable<int> usuario)
+        public virtual int UDP_tbFabrica_Insert(string fab_Nombre, string mun_Id, string fab_DireccionExacta, string fab_Telefono, Nullable<int> usuario)
         {
             var fab_NombreParameter = fab_Nombre != null ?
                 new ObjectParameter("fab_Nombre", fab_Nombre) :
@@ -655,9 +653,9 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("mun_Id", mun_Id) :
                 new ObjectParameter("mun_Id", typeof(string));
     
-            var fab_ArticulosProvistosParameter = fab_ArticulosProvistos.HasValue ?
-                new ObjectParameter("fab_ArticulosProvistos", fab_ArticulosProvistos) :
-                new ObjectParameter("fab_ArticulosProvistos", typeof(int));
+            var fab_DireccionExactaParameter = fab_DireccionExacta != null ?
+                new ObjectParameter("fab_DireccionExacta", fab_DireccionExacta) :
+                new ObjectParameter("fab_DireccionExacta", typeof(string));
     
             var fab_TelefonoParameter = fab_Telefono != null ?
                 new ObjectParameter("fab_Telefono", fab_Telefono) :
@@ -667,7 +665,7 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("usuario", usuario) :
                 new ObjectParameter("usuario", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbFabrica_Insert", fab_NombreParameter, mun_IdParameter, fab_ArticulosProvistosParameter, fab_TelefonoParameter, usuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbFabrica_Insert", fab_NombreParameter, mun_IdParameter, fab_DireccionExactaParameter, fab_TelefonoParameter, usuarioParameter);
         }
     
         public virtual ObjectResult<UDP_tbfabrica_Select_Result> UDP_tbfabrica_Select()
@@ -675,7 +673,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_tbfabrica_Select_Result>("UDP_tbfabrica_Select");
         }
     
-        public virtual int UDP_tbfabrica_Update(Nullable<int> fab_id, string fab_Nombre, string mun_Id, string fab_Telefono, Nullable<int> usuario)
+        public virtual int UDP_tbfabrica_Update(Nullable<int> fab_id, string fab_Nombre, string mun_Id, string fab_DireccionExacta, string fab_Telefono, Nullable<int> usuario)
         {
             var fab_idParameter = fab_id.HasValue ?
                 new ObjectParameter("fab_id", fab_id) :
@@ -689,6 +687,10 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("mun_Id", mun_Id) :
                 new ObjectParameter("mun_Id", typeof(string));
     
+            var fab_DireccionExactaParameter = fab_DireccionExacta != null ?
+                new ObjectParameter("fab_DireccionExacta", fab_DireccionExacta) :
+                new ObjectParameter("fab_DireccionExacta", typeof(string));
+    
             var fab_TelefonoParameter = fab_Telefono != null ?
                 new ObjectParameter("fab_Telefono", fab_Telefono) :
                 new ObjectParameter("fab_Telefono", typeof(string));
@@ -697,7 +699,7 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("usuario", usuario) :
                 new ObjectParameter("usuario", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbfabrica_Update", fab_idParameter, fab_NombreParameter, mun_IdParameter, fab_TelefonoParameter, usuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbfabrica_Update", fab_idParameter, fab_NombreParameter, mun_IdParameter, fab_DireccionExactaParameter, fab_TelefonoParameter, usuarioParameter);
         }
     
         public virtual int UDP_tbMetodoPago_Delete(Nullable<int> metpago_Id, Nullable<int> metpago_UsuarioModificacion)
@@ -713,12 +715,8 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMetodoPago_Delete", metpago_IdParameter, metpago_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbMetodoPago_Insert(string metpago_Id, string metpago_Descripcion, Nullable<int> metpago_UsuarioCreacion)
+        public virtual int UDP_tbMetodoPago_Insert(string metpago_Descripcion, Nullable<int> metpago_UsuarioCreacion)
         {
-            var metpago_IdParameter = metpago_Id != null ?
-                new ObjectParameter("metpago_Id", metpago_Id) :
-                new ObjectParameter("metpago_Id", typeof(string));
-    
             var metpago_DescripcionParameter = metpago_Descripcion != null ?
                 new ObjectParameter("metpago_Descripcion", metpago_Descripcion) :
                 new ObjectParameter("metpago_Descripcion", typeof(string));
@@ -727,14 +725,14 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("metpago_UsuarioCreacion", metpago_UsuarioCreacion) :
                 new ObjectParameter("metpago_UsuarioCreacion", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMetodoPago_Insert", metpago_IdParameter, metpago_DescripcionParameter, metpago_UsuarioCreacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMetodoPago_Insert", metpago_DescripcionParameter, metpago_UsuarioCreacionParameter);
         }
     
-        public virtual int UDP_tbMetodoPago_Update(string metpago_Id, string metpago_Descripcion, Nullable<int> metpago_UsuarioModificacion)
+        public virtual int UDP_tbMetodoPago_Update(Nullable<int> metpago_Id, string metpago_Descripcion, Nullable<int> metpago_UsuarioModificacion)
         {
-            var metpago_IdParameter = metpago_Id != null ?
+            var metpago_IdParameter = metpago_Id.HasValue ?
                 new ObjectParameter("metpago_Id", metpago_Id) :
-                new ObjectParameter("metpago_Id", typeof(string));
+                new ObjectParameter("metpago_Id", typeof(int));
     
             var metpago_DescripcionParameter = metpago_Descripcion != null ?
                 new ObjectParameter("metpago_Descripcion", metpago_Descripcion) :
@@ -760,7 +758,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbpedidos_Delete", ped_IdParameter, ped_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbPedidos_Insert(Nullable<int> cli_Id, Nullable<int> dire_Id, Nullable<int> emp_Id, string metpago_Id, Nullable<int> ped_UsuarioCreacion)
+        public virtual int UDP_tbPedidos_Insert(Nullable<int> cli_Id, Nullable<int> dire_Id, Nullable<int> emp_Id, Nullable<int> metpago_Id, Nullable<int> ped_UsuarioCreacion)
         {
             var cli_IdParameter = cli_Id.HasValue ?
                 new ObjectParameter("cli_Id", cli_Id) :
@@ -774,9 +772,9 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("emp_Id", emp_Id) :
                 new ObjectParameter("emp_Id", typeof(int));
     
-            var metpago_IdParameter = metpago_Id != null ?
+            var metpago_IdParameter = metpago_Id.HasValue ?
                 new ObjectParameter("metpago_Id", metpago_Id) :
-                new ObjectParameter("metpago_Id", typeof(string));
+                new ObjectParameter("metpago_Id", typeof(int));
     
             var ped_UsuarioCreacionParameter = ped_UsuarioCreacion.HasValue ?
                 new ObjectParameter("ped_UsuarioCreacion", ped_UsuarioCreacion) :
@@ -785,7 +783,7 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbPedidos_Insert", cli_IdParameter, dire_IdParameter, emp_IdParameter, metpago_IdParameter, ped_UsuarioCreacionParameter);
         }
     
-        public virtual int UDP_tbpedidos_Update(Nullable<int> ped_Id, Nullable<int> cli_Id, Nullable<int> dire_id, Nullable<int> emp_id, string metpago_Id, Nullable<int> ped_UsuarioModificacion)
+        public virtual int UDP_tbpedidos_Update(Nullable<int> ped_Id, Nullable<int> cli_Id, Nullable<int> dire_id, Nullable<int> emp_id, Nullable<int> metpago_Id, Nullable<int> ped_UsuarioModificacion)
         {
             var ped_IdParameter = ped_Id.HasValue ?
                 new ObjectParameter("ped_Id", ped_Id) :
@@ -803,9 +801,9 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("emp_id", emp_id) :
                 new ObjectParameter("emp_id", typeof(int));
     
-            var metpago_IdParameter = metpago_Id != null ?
+            var metpago_IdParameter = metpago_Id.HasValue ?
                 new ObjectParameter("metpago_Id", metpago_Id) :
-                new ObjectParameter("metpago_Id", typeof(string));
+                new ObjectParameter("metpago_Id", typeof(int));
     
             var ped_UsuarioModificacionParameter = ped_UsuarioModificacion.HasValue ?
                 new ObjectParameter("ped_UsuarioModificacion", ped_UsuarioModificacion) :
@@ -821,6 +819,100 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("dep_Id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarMunicipios_Result>("UDP_CargarMunicipios", dep_IdParameter);
+        }
+    
+        public virtual int UDP_tbDepartamentos_Delete(string dep_Id)
+        {
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbDepartamentos_Delete", dep_IdParameter);
+        }
+    
+        public virtual int UDP_tbDepartamentos_Insert(string dep_Id, string dep_Nombre, Nullable<int> dep_UsuarioCreacion)
+        {
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var dep_NombreParameter = dep_Nombre != null ?
+                new ObjectParameter("dep_Nombre", dep_Nombre) :
+                new ObjectParameter("dep_Nombre", typeof(string));
+    
+            var dep_UsuarioCreacionParameter = dep_UsuarioCreacion.HasValue ?
+                new ObjectParameter("dep_UsuarioCreacion", dep_UsuarioCreacion) :
+                new ObjectParameter("dep_UsuarioCreacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbDepartamentos_Insert", dep_IdParameter, dep_NombreParameter, dep_UsuarioCreacionParameter);
+        }
+    
+        public virtual int UDP_tbDepartamentos_Update(string dep_Id, string dep_Nombre, Nullable<int> dep_UsuarioModificacion)
+        {
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var dep_NombreParameter = dep_Nombre != null ?
+                new ObjectParameter("dep_Nombre", dep_Nombre) :
+                new ObjectParameter("dep_Nombre", typeof(string));
+    
+            var dep_UsuarioModificacionParameter = dep_UsuarioModificacion.HasValue ?
+                new ObjectParameter("dep_UsuarioModificacion", dep_UsuarioModificacion) :
+                new ObjectParameter("dep_UsuarioModificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbDepartamentos_Update", dep_IdParameter, dep_NombreParameter, dep_UsuarioModificacionParameter);
+        }
+    
+        public virtual int UDP_tbMunicipiosDelete(string mun_Id)
+        {
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMunicipiosDelete", mun_IdParameter);
+        }
+    
+        public virtual int UDP_tbMunicipiosInsert(string dep_Id, string mun_Id, string mun_Nombre, Nullable<int> mun_UsuarioCreacion)
+        {
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var mun_NombreParameter = mun_Nombre != null ?
+                new ObjectParameter("mun_Nombre", mun_Nombre) :
+                new ObjectParameter("mun_Nombre", typeof(string));
+    
+            var mun_UsuarioCreacionParameter = mun_UsuarioCreacion.HasValue ?
+                new ObjectParameter("mun_UsuarioCreacion", mun_UsuarioCreacion) :
+                new ObjectParameter("mun_UsuarioCreacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMunicipiosInsert", dep_IdParameter, mun_IdParameter, mun_NombreParameter, mun_UsuarioCreacionParameter);
+        }
+    
+        public virtual int UDP_tbMunicipiosUpdate(string mun_Id, string dep_Id, string mun_Nombre, Nullable<int> mun_UsuarioModificacion)
+        {
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var mun_NombreParameter = mun_Nombre != null ?
+                new ObjectParameter("mun_Nombre", mun_Nombre) :
+                new ObjectParameter("mun_Nombre", typeof(string));
+    
+            var mun_UsuarioModificacionParameter = mun_UsuarioModificacion.HasValue ?
+                new ObjectParameter("mun_UsuarioModificacion", mun_UsuarioModificacion) :
+                new ObjectParameter("mun_UsuarioModificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMunicipiosUpdate", mun_IdParameter, dep_IdParameter, mun_NombreParameter, mun_UsuarioModificacionParameter);
         }
     }
 }

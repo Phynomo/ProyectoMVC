@@ -138,7 +138,7 @@
     <Key>
       <PropertyRef Name="metpago_Id" />
     </Key>
-    <Property Name="metpago_Id" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="metpago_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="metpago_Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="metpago_FechaCreacion" Type="datetime" Nullable="false" />
     <Property Name="metpago_UsuarioCreacion" Type="int" Nullable="false" />
@@ -180,7 +180,7 @@
     <Property Name="ped_Fecha" Type="datetime" Nullable="false" />
     <Property Name="dire_id" Type="int" />
     <Property Name="emp_id" Type="int" Nullable="false" />
-    <Property Name="metpago_Id" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="metpago_Id" Type="int" Nullable="false" />
     <Property Name="ped_FechaCreacion" Type="datetime" Nullable="false" />
     <Property Name="ped_UsuarioCreacion" Type="int" Nullable="false" />
     <Property Name="ped_FechaModificacion" Type="datetime" />
@@ -1080,6 +1080,19 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="cli_Descuento" Type="decimal" Mode="In" />
     <Parameter Name="cli_UsuarioModificacion" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_tbDepartamentos_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dep_Id" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbDepartamentos_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dep_Id" Type="nvarchar" Mode="In" />
+    <Parameter Name="dep_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="dep_UsuarioCreacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbDepartamentos_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dep_Id" Type="char" Mode="In" />
+    <Parameter Name="dep_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="dep_UsuarioModificacion" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_tbDirecciones_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dire_id" Type="int" Mode="In" />
   </Function>
@@ -1139,6 +1152,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   <Function Name="UDP_tbFabrica_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fab_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="mun_Id" Type="char" Mode="In" />
+    <Parameter Name="fab_DireccionExacta" Type="nvarchar" Mode="In" />
     <Parameter Name="fab_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="usuario" Type="int" Mode="In" />
   </Function>
@@ -1147,6 +1161,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="fab_id" Type="int" Mode="In" />
     <Parameter Name="fab_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="mun_Id" Type="char" Mode="In" />
+    <Parameter Name="fab_DireccionExacta" Type="nvarchar" Mode="In" />
     <Parameter Name="fab_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="usuario" Type="int" Mode="In" />
   </Function>
@@ -1155,14 +1170,28 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="metpago_UsuarioModificacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbMetodoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="metpago_Id" Type="char" Mode="In" />
     <Parameter Name="metpago_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="metpago_UsuarioCreacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbMetodoPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="metpago_Id" Type="char" Mode="In" />
+    <Parameter Name="metpago_Id" Type="int" Mode="In" />
     <Parameter Name="metpago_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="metpago_UsuarioModificacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbMunicipiosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mun_Id" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbMunicipiosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dep_Id" Type="char" Mode="In" />
+    <Parameter Name="mun_Id" Type="char" Mode="In" />
+    <Parameter Name="mun_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="mun_UsuarioCreacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbMunicipiosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mun_Id" Type="char" Mode="In" />
+    <Parameter Name="dep_Id" Type="char" Mode="In" />
+    <Parameter Name="mun_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="mun_UsuarioModificacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbpedidos_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ped_Id" Type="int" Mode="In" />
@@ -1172,7 +1201,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="cli_Id" Type="int" Mode="In" />
     <Parameter Name="dire_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="int" Mode="In" />
-    <Parameter Name="metpago_Id" Type="char" Mode="In" />
+    <Parameter Name="metpago_Id" Type="int" Mode="In" />
     <Parameter Name="ped_UsuarioCreacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbpedidos_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1180,7 +1209,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="cli_Id" Type="int" Mode="In" />
     <Parameter Name="dire_id" Type="int" Mode="In" />
     <Parameter Name="emp_id" Type="int" Mode="In" />
-    <Parameter Name="metpago_Id" Type="char" Mode="In" />
+    <Parameter Name="metpago_Id" Type="int" Mode="In" />
     <Parameter Name="ped_UsuarioModificacion" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="dbPedidosEncargosModelStoreContainer">

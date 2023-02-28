@@ -161,6 +161,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_tbDepartamentos_Delete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbDepartamentos_Delete" />
+    <FunctionImportMapping FunctionImportName="UDP_tbDepartamentos_Insert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbDepartamentos_Insert" />
+    <FunctionImportMapping FunctionImportName="UDP_tbDepartamentos_Update" FunctionName="dbPedidosEncargosModel.Store.UDP_tbDepartamentos_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosDelete" />
+    <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosInsert" />
+    <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosUpdate" />
     <EntitySetMapping Name="tbArticulos">
       <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbArticulos">
         <MappingFragment StoreEntitySet="tbArticulos">

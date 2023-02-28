@@ -43,18 +43,18 @@ namespace ProyectoMVC.Controllers
         {
 
 
-            if (txtCargos != "")
+            if (!String.IsNullOrEmpty(txtCargos))
             {
                 db.UDP_tbCargos_Insert(txtCargos, 1);
                 return RedirectToAction("Index", "Cargos");
             }
             else
             {
+                ModelState.AddModelError("cargoCreate", "El campo es vacio mi Rey ♛");
                 return RedirectToAction("Index", "Cargos");
-
             }
 
-            return View();
+            return PartialView("_ModalesCargosView");
         }
 
 
@@ -68,12 +68,21 @@ namespace ProyectoMVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [HandleError]
         public ActionResult Editt([Bind(Include = "car_Id,car_Nombre,car_FechaCreacion,car_UsuarioCreacion,car_FechaModificacion,car_UsuarioModificacion,car_Estado")] tbCargos tbCargos)
         {
-            db.UDP_tbCargo_Update(tbCargos.car_Id, tbCargos.car_Nombre, 1);
-            db.SaveChanges();
+
+            if (String.IsNullOrEmpty(tbCargos.car_Nombre))
+            {
+                db.UDP_tbCargo_Update(tbCargos.car_Id, tbCargos.car_Nombre, 1);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Cargos");
+            }
+            else
+            {
+
+                ModelState.AddModelError("cargoEdit", "El campo es vacio mi Rey ♛");
+            }
+
             return RedirectToAction("Index", "Cargos");
         }
 

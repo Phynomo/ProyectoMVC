@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <div class="card">
                 
     <div class="card-header">
@@ -33,24 +33,8 @@
                                                         <th>
                             @Html.DisplayNameFor(model => model.fab_Telefono)
                         </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_FechaCreacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_UsuarioCreacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_FechaModificacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_UsuarioModificacion)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_Estado)
-                        </th>
-                                                                        <th>
-                            @Html.DisplayNameFor(model => model.tbMunicipios.dep_Id)
-                        </th>
+                                                        
+                        
                                         <th>Detalles</th>
                         <th>Editar</th>
                         <th>Borrar</th>
@@ -68,24 +52,8 @@
                                                         <td>
                             @Html.DisplayFor(modelItem => item.fab_Telefono)
                         </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_FechaCreacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_UsuarioCreacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_FechaModificacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_UsuarioModificacion)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_Estado)
-                        </td>
-                                                                        <td>
-                            @Html.DisplayFor(modelItem => item.tbMunicipios.dep_Id)
-                        </td>
+                                                        
+                              
                                         <td>
                         @Html.ActionLink(" ", "Details", new { id=item.fab_id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
        
@@ -95,7 +63,9 @@
         
                         </td>
                         <td>
-                        @Html.ActionLink(" ", "Delete", new { id=item.fab_id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                            <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.fab_id)"> </button>
+                            @Html.Partial("_DeleteFabricaView", item)
+
                         </td>
                                         </tr>
                 }
@@ -106,3 +76,13 @@
     </div>
 
 </div>
+
+
+
+<script>
+    $("#btnDelete").click(function () {
+
+        $('#exampleModalDelete').modal({ backdrop: 'static', keyboard: false })
+
+    });
+</script>

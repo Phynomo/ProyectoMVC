@@ -17,6 +17,7 @@ namespace ProyectoMVC.Controllers
         // GET: Municipios
         public ActionResult Index()
         {
+            ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
             var tbMunicipios = db.tbMunicipios.Include(t => t.tbDepartamentos).Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
             return View(tbMunicipios.ToList());
         }
@@ -126,6 +127,12 @@ namespace ProyectoMVC.Controllers
             db.tbMunicipios.Remove(tbMunicipios);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult CargarMunicipios(string dep_Id)
+        {
+            var ddlMuni = db.UDP_CargarMunicipios(dep_Id).ToList();
+            return Json(ddlMuni, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

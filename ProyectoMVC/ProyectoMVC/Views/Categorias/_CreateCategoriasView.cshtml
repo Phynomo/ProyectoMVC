@@ -1,5 +1,5 @@
 ﻿
-@model ProyectoMVC.Models.tbCategoria
+@*@model ProyectoMVC.Models.tbCatgoria*@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,7 +16,8 @@
 
                         <label for="floatingInput">Usuario</label>
                         <input type="text" class="form-control" id="floatingInput" name="txtCategoria" placeholder="Categoria" required>
-                        @Html.ValidationMessageFor(model => model.cat_Descripcion, "", new { @class = "text-danger" })
+                        @*@Html.ValidationMessageFor(model => model.cat_Descripcion, "", new { @class = "text-danger" })*@
+                        <h7 style = "color:red;" > @Html.ValidationMessage("CategoriaVacia") </h7>
 
 
 

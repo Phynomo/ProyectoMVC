@@ -20,7 +20,7 @@ namespace ProyectoMVC.Models
             this.tbPedidos = new HashSet<tbPedidos>();
         }
     
-        public string metpago_Id { get; set; }
+        public int metpago_Id { get; set; }
         public string metpago_Descripcion { get; set; }
         public System.DateTime metpago_FechaCreacion { get; set; }
         public int metpago_UsuarioCreacion { get; set; }

@@ -1,0 +1,217 @@
+﻿@model ProyectoMVC.Models.tbClientes
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .oculto {
+        display: none;
+    }
+</style>
+
+<div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
+
+            <h4>Crear tbClientes</h4>
+            |||
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_Nombre, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_Apellido, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_Apellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_Telefono, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_Telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_CorreoElectronico, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_CorreoElectronico, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_CorreoElectronico, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_saldo, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_saldo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_saldo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_LimiteCredito, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_LimiteCredito, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_LimiteCredito, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.cli_Descuento, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.cli_Descuento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cli_Descuento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class=" row form-group d-flex justify-content-end py-3">
+        <div class="col d-flex justify-content-end">
+            <input type="submit" value="Crear registro" id="btnCliente" class="btn btn-success mx-2" />
+        </div>
+
+    </div>
+</div>
+
+<div class="oculto container px-4 text-center">
+
+        <div class="row form-group pt-2">
+            <div class="col">
+                <label class="control-label col">Departamento</label>
+                @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+            </div>
+            <div class="col">
+                <label class="control-label col">Municipio</label>
+                <select id="mun_Id" name="mun_Id" class="form-select">
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+                <label class="control-label col">Calle</label>
+                <input type="text" id="dire_calle"  class="form-control"/>
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+                <label class="control-label col">Comuna</label>
+                <input type="text" id="dire_comuna"  class="form-control"/>
+            </div>
+        </div>
+
+
+        <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Agregar direccion" id="btnDireccion" class="btn btn-success mx-2" />
+            </div>
+
+        </div>
+
+</div>
+
+
+
+
+<script>
+    $("#dep_Id").change(function () {
+        var dep_Id = $("#dep_Id").val();
+        $.ajax({
+            url: "/Clientes/CargarMunicipios",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ dep_Id: dep_Id }),
+            success: function (data) {
+                console.log(data);
+                $("#mun_Id").empty();
+                $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
+                $.each(data, function (i, value) {
+                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre + "</option>")
+                })
+            }
+        })
+    });
+
+
+    $("#btnCliente").click(function () {
+        if ($("#cli_Nombre").val() != "" && $("#cli_Apellido").val() != "" && $("#cli_Telefono").val() != "" && $("#cli_CorreoElectronico").val() != "" &&
+            $("#cli_saldo").val() != "" && $("#cli_LimiteCredito").val() != "" && $("#cli_Descuento").val() != "") {
+            $(".oculto").show();
+            $("#btnCliente").prop("disabled", true);
+            $("#cli_Nombre").prop("disabled", true);
+            $("#cli_Apellido").prop("disabled", true);
+            $("#cli_Telefono").fadeOut();
+            $("#cli_CorreoElectronico").fadeOut();
+            $("#cli_saldo").fadeOut();
+            $("#cli_LimiteCredito").fadeOut();
+            $("#cli_Descuento").fadeOut();
+
+            var cli_Nombre = $("#cli_Nombre").val();
+            var cli_Apellido = $("#cli_Apellido").val();
+            var cli_Telefono = $("#cli_Telefono").val();
+            var cli_CorreoElectronico = $("#cli_CorreoElectronico").val();
+            var cli_saldo = $("#cli_saldo").val();
+            var cli_LimiteCredito = $("#cli_LimiteCredito").val();
+            var cli_Descuento = $("#cli_Descuento").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Clientes/Crea2",
+                data: { cli_Nombre: cli_Nombre, cli_Apellido: cli_Apellido, cli_Telefono: cli_Telefono, cli_CorreoElectronico: cli_CorreoElectronico, cli_saldo: cli_saldo, cli_LimiteCredito: cli_LimiteCredito, cli_Descuento: cli_Descuento },
+                success: function (response) {
+
+                },
+                error: function (error) {
+
+                }
+            });
+
+        }
+    });
+
+
+    $("#btnDireccion").click(function () {
+        if ($("#mun_Id").val() != "" && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "" ) {
+            
+            var mun_Id = $("#mun_Id").val();
+            var dire_comuna = $("#dire_comuna").val();
+            var dire_calle = $("#dire_calle").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Clientes/Crea2Dire",
+                data: { dire_calle: dire_calle, dire_comuna: dire_comuna, mun_Id: mun_Id},
+                success: function (response) {
+
+                },
+                error: function (error) {
+
+                }
+            });
+
+        }
+    });
+
+
+
+
+</script>
+
+
+

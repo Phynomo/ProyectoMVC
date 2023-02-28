@@ -171,6 +171,7 @@
     <FunctionImport Name="UDP_tbFabrica_Insert">
       <Parameter Name="fab_Nombre" Mode="In" Type="String" />
       <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="fab_DireccionExacta" Mode="In" Type="String" />
       <Parameter Name="fab_Telefono" Mode="In" Type="String" />
       <Parameter Name="usuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -179,6 +180,7 @@
       <Parameter Name="fab_id" Mode="In" Type="Int32" />
       <Parameter Name="fab_Nombre" Mode="In" Type="String" />
       <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="fab_DireccionExacta" Mode="In" Type="String" />
       <Parameter Name="fab_Telefono" Mode="In" Type="String" />
       <Parameter Name="usuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -187,12 +189,11 @@
       <Parameter Name="metpago_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_tbMetodoPago_Insert">
-      <Parameter Name="metpago_Id" Mode="In" Type="String" />
       <Parameter Name="metpago_Descripcion" Mode="In" Type="String" />
       <Parameter Name="metpago_UsuarioCreacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_tbMetodoPago_Update">
-      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="metpago_Id" Mode="In" Type="Int32" />
       <Parameter Name="metpago_Descripcion" Mode="In" Type="String" />
       <Parameter Name="metpago_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -204,7 +205,7 @@
       <Parameter Name="cli_Id" Mode="In" Type="Int32" />
       <Parameter Name="dire_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="metpago_Id" Mode="In" Type="Int32" />
       <Parameter Name="ped_UsuarioCreacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_tbpedidos_Update">
@@ -212,11 +213,39 @@
       <Parameter Name="cli_Id" Mode="In" Type="Int32" />
       <Parameter Name="dire_id" Mode="In" Type="Int32" />
       <Parameter Name="emp_id" Mode="In" Type="Int32" />
-      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="metpago_Id" Mode="In" Type="Int32" />
       <Parameter Name="ped_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_CargarMunicipios" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarMunicipios_Result)">
       <Parameter Name="dep_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDepartamentos_Delete">
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDepartamentos_Insert">
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+      <Parameter Name="dep_Nombre" Mode="In" Type="String" />
+      <Parameter Name="dep_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDepartamentos_Update">
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+      <Parameter Name="dep_Nombre" Mode="In" Type="String" />
+      <Parameter Name="dep_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMunicipiosDelete">
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMunicipiosInsert">
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mun_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMunicipiosUpdate">
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+      <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mun_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
     <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
@@ -711,7 +740,7 @@
     <Key>
       <PropertyRef Name="metpago_Id" />
     </Key>
-    <Property Name="metpago_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="metpago_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="metpago_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="metpago_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="metpago_UsuarioCreacion" Type="Int32" Nullable="false" />
@@ -765,7 +794,7 @@
     <Property Name="ped_Fecha" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="dire_id" Type="Int32" />
     <Property Name="emp_id" Type="Int32" Nullable="false" />
-    <Property Name="metpago_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="metpago_Id" Type="Int32" Nullable="false" />
     <Property Name="ped_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ped_UsuarioCreacion" Type="Int32" Nullable="false" />
     <Property Name="ped_FechaModificacion" Type="DateTime" Precision="3" />

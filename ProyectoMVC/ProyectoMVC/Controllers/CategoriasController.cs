@@ -26,23 +26,14 @@ namespace ProyectoMVC.Controllers
         {
 
 
-            if (txtCategoria != "")
+            if (!String.IsNullOrEmpty(txtCategoria))
             {
                 db.UDP_tbCategorias_Insert(txtCategoria, 1);
                 return RedirectToAction("Index", "Categorias");
             }
             else
             {
-                Response.Write("<script>");
-                Response.Write("console.log('Campos Vacios Mi Rey');");
-                Response.Write("alert('no T-T');");
-                Response.Write("</script>");
-                return RedirectToAction("Index", "Categorias");
-                Response.Write("<script>");
-                Response.Write("console.log('Campos Vacios Mi Rey');");
-                Response.Write("alert('no T-T');");
-                Response.Write("</script>");
-
+                ModelState.AddModelError("CategoriaVacia", "El campo es vacio mi Rey ♛");
             }
             
 
@@ -60,17 +51,31 @@ namespace ProyectoMVC.Controllers
         public ActionResult Edit([Bind(Include = "cat_Id,cat_Descripcion,cat_FechaCreacion,cat_UsuarioCreacion,cat_FechaModificacion,cat_UsuarioModificacion,cat_Estado")] tbCategoria tbCategoria)
         {
 
+            string cat = tbCategoria.cat_Descripcion;
+            if(!String.IsNullOrEmpty(cat))
+            {
 
+            
 
-            if (ModelState.IsValid) { 
-                db.UDP_tbCategorias_Update(tbCategoria.cat_Id, tbCategoria.cat_Descripcion, 1);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Categorias");
+                if (ModelState.IsValid) { 
+                    db.UDP_tbCategorias_Update(tbCategoria.cat_Id, tbCategoria.cat_Descripcion, 1);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Categorias");
+                }
             }
+            else
+            {
+                ModelState.AddModelError("Valifacion", "El campo esta vacio mi rey ♛");
+                Response.Write("<script>");
+                Response.Write("console.log('si dentro')");
+                Response.Write("iziToast.error({ title: 'Error',  message: 'Seleciona stu sexo', ");
+                Response.Write("</script>");
 
-                return PartialView("_EditCategoriasView", tbCategoria);
+            }
+            return RedirectToAction("Index", "Categorias");
+            //return PartialView("_EditCategoriasView", tbCategoria);
 
-          
+
         }
 
         public ActionResult Delete(int id)

@@ -995,14 +995,19 @@ GO
 CREATE OR ALTER PROCEDURE UDP_tbFabrica_Insert
     @fab_Nombre NVARCHAR(150),
     @mun_Id CHAR(4),
+	@fab_DireccionExacta NVARCHAR(250),
     @fab_Telefono NVARCHAR(20),
     @usuario INT
 AS
 BEGIN
-    INSERT INTO tbFabricas ([fab_Nombre], [mun_Id], [fab_Telefono], [fab_FechaCreacion], [fab_UsuarioCreacion], [fab_FechaModificacion], [fab_UsuarioModificacion], [fab_Estado])
-    VALUES (@fab_Nombre , @mun_Id, @fab_Telefono, GETDATE(), NULL, NULL,  @usuario, 1);
+    INSERT INTO tbFabricas (fab_Nombre, mun_Id, fab_DireccionExacta, fab_Telefono, fab_FechaCreacion, fab_UsuarioCreacion, fab_FechaModificacion, fab_UsuarioModificacion, fab_Estado)
+    VALUES (@fab_Nombre , @mun_Id, @fab_DireccionExacta, @fab_Telefono, GETDATE() , @usuario, NULL, NULL, 1);
 END
 GO
+
+exec UDP_tbFabrica_Insert 'aaaa','1602','adfdsfadsfa','234265425',1
+
+select * from tbDirecciones
 
 -- Procedimiento de Update Fabricaj
 GO
@@ -1010,6 +1015,7 @@ CREATE OR ALTER PROCEDURE UDP_tbfabrica_Update
     @fab_id INT,
     @fab_Nombre NVARCHAR(150),
     @mun_Id CHAR(4),
+	@fab_DireccionExacta NVARCHAR(250),
     @fab_Telefono NVARCHAR(20),
     @usuario INT
 AS
@@ -1017,6 +1023,7 @@ BEGIN
     UPDATE tbFabricas
     SET fab_Nombre = @fab_Nombre,
         mun_Id = @mun_Id,
+        [fab_DireccionExacta] = @fab_DireccionExacta,
         fab_Telefono = @fab_Telefono,
         fab_FechaModificacion = GETDATE(),
         fab_UsuarioModificacion = @usuario

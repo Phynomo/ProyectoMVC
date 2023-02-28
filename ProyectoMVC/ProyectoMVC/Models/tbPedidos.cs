@@ -25,7 +25,7 @@ namespace ProyectoMVC.Models
         public System.DateTime ped_Fecha { get; set; }
         public Nullable<int> dire_id { get; set; }
         public int emp_id { get; set; }
-        public string metpago_Id { get; set; }
+        public int metpago_Id { get; set; }
         public System.DateTime ped_FechaCreacion { get; set; }
         public int ped_UsuarioCreacion { get; set; }
         public Nullable<System.DateTime> ped_FechaModificacion { get; set; }
