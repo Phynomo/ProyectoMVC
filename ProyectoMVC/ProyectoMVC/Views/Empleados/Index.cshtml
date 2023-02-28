@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbEmpleados>
+
+    @{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>tbEmpleados</h4>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                    @Html.ActionLink("Crear nuevo", "Create", " ", new { @class = "btn btn-block btn-success" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <table class="dataTable display compact stripe table-dark" id="example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Apellido)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_DireccionExacta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Telefono)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCargos.car_Nombre)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.emp_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.emp_Apellido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.emp_DireccionExacta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.emp_Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbCargos.car_Nombre)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "Details", new { id = item.emp_Id }, new { @class = "btn btn-block btn-info bi bi-file-earmark-text-fill" })
+
+                                    @Html.ActionLink(" ", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-block btn-warning bi bi-pencil-fill" })
+
+                                    <button class="btn-delete btn btn-block btn-danger bi bi-trash-fill" data-id="@item.emp_Id"></button>
+
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.emp_Id)"> </button>
+                                    @Html.Partial("_DeleteEmpleadosView", item)
+
+
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+
+    <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea eliminar este elemento?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        function DeleteModal() {
+            $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
+        }
+    </script>
+
+    <script>
+        $(function () {
+            $('.btn-delete').click(function () {
+                var id = $(this).data('id');
+                $('#btn-confirm-delete').attr('href', '/Empleados/Delete/' + id);
+                $('#confirm-delete-modal').modal('show');
+            });
+        });
+    </script>
+
+
+    
+
+
+

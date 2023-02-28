@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbMunicipios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card">
+                
+    <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                     <h4>tbMunicipios</h4>
+                    </div>
+                    <div class="col d-flex flex-row-reverse">
+                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                    </div>
+                </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe table-dark" id="example">
+                <thead>
+                    <tr>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Nombre)
+                        </th>
+                                      
+                                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_Nombre)
+                        </td>
+                                                        
+                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.mun_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+       
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Edit", new { id=item.mun_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+        
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Delete", new { id=item.mun_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        </td>
+                                        </tr>
+                }
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

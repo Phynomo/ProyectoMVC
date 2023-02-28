@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbPedidosDetalles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+                
+    <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                     <h4>tbPedidosDetalles</h4>
+                    </div>
+                    <div class="col d-flex flex-row-reverse">
+                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                    </div>
+                </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe table-dark" id="example">
+                <thead>
+                    <tr>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.pede_Cantidad)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.pede_Precio)
+                        </th>             
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbArticulos.art_Nombre)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbPedidos.metpago_Id)
+                        </th>
+                   
+                                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.pede_Cantidad)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.pede_Precio)
+                        </td>
+
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbArticulos.art_Nombre)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbPedidos.metpago_Id)
+                        </td>
+
+                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.pede_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+       
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Edit", new { id=item.pede_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+        
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Delete", new { id=item.pede_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        </td>
+                                        </tr>
+                }
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

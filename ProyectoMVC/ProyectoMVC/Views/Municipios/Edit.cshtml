@@ -1,0 +1,97 @@
+﻿@model ProyectoMVC.Models.tbMunicipios
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
+
+            <h4>Editar tbMunicipios</h4>
+
+        </div>
+    </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.mun_Id)
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.dep_Id, "dep_Id", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.dep_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_Nombre, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.mun_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mun_Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_FechaCreacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.mun_FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mun_FechaCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_UsuarioCreacion, "mun_UsuarioCreacion", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("mun_UsuarioCreacion", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.mun_UsuarioCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_FechaModificacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.mun_FechaModificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mun_FechaModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_UsuarioModificacion, "mun_UsuarioModificacion", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("mun_UsuarioModificacion", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.mun_UsuarioModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_Estado, htmlAttributes: new { @class = "control-label col" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.mun_Estado)
+                    @Html.ValidationMessageFor(model => model.mun_Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+
+<div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            </div>
+        </div>
+}
+

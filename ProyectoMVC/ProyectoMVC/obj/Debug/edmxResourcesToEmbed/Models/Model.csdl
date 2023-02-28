@@ -1,0 +1,1603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPedidosEncargosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbPedidosEncargosEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="UDP_BorrarUsuario">
+      <Parameter Name="IdEdicion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_EdicionUsuario">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_id" Mode="In" Type="Int32" />
+      <Parameter Name="usuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_InsertarUsuario">
+      <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_id" Mode="In" Type="Int32" />
+      <Parameter Name="usu_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Login" ReturnType="Collection(dbPedidosEncargosModel.UDP_Login_Result)">
+      <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_PedidoDetalle_Delete">
+      <Parameter Name="pede_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pede_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_PedidoDetalle_Insert">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pede_cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="pede_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_PedidoDetalle_Update">
+      <Parameter Name="pede_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pede_Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="pede_Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="pede_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbArticulo_Update">
+      <Parameter Name="art_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_Nombre" Mode="In" Type="String" />
+      <Parameter Name="art_Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_Stock" Mode="In" Type="Int32" />
+      <Parameter Name="art_Fabrica" Mode="In" Type="Int32" />
+      <Parameter Name="art_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbArticulos_Delete">
+      <Parameter Name="art_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbArticulos_Insert">
+      <Parameter Name="art_Nombre" Mode="In" Type="String" />
+      <Parameter Name="art_Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="art_Stock" Mode="In" Type="Int32" />
+      <Parameter Name="art_Fabrica" Mode="In" Type="Int32" />
+      <Parameter Name="art_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbArticulos_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbArticulos_Select_Result)" />
+    <FunctionImport Name="UDP_tbCargo_Delete">
+      <Parameter Name="car_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbCargo_Update">
+      <Parameter Name="car_Id" Mode="In" Type="Int32" />
+      <Parameter Name="car_Nombre" Mode="In" Type="String" />
+      <Parameter Name="car_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbCargos_Insert">
+      <Parameter Name="car_Nombre" Mode="In" Type="String" />
+      <Parameter Name="car_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbCargos_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbCargos_Select_Result)" />
+    <FunctionImport Name="UDP_tbCategorias_Delete">
+      <Parameter Name="cat_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbCategorias_Insert">
+      <Parameter Name="cat_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="cat_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbCategorias_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbCategorias_Select_Result)" />
+    <FunctionImport Name="UDP_tbCategorias_Update">
+      <Parameter Name="cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="cat_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="cat_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbClientes_Delete">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="cli_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbClientes_Insert">
+      <Parameter Name="cli_Nombre" Mode="In" Type="String" />
+      <Parameter Name="cli_Apellido" Mode="In" Type="String" />
+      <Parameter Name="cli_Telefono" Mode="In" Type="String" />
+      <Parameter Name="cli_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="cli_saldo" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_LimiteCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_Descuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbClientes_Update">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="cli_Nombre" Mode="In" Type="String" />
+      <Parameter Name="cli_Apellido" Mode="In" Type="String" />
+      <Parameter Name="cli_Telefono" Mode="In" Type="String" />
+      <Parameter Name="cli_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="cli_saldo" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_LimiteCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_Descuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cli_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDirecciones_Delete">
+      <Parameter Name="dire_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDirecciones_Insert">
+      <Parameter Name="dire_Calle" Mode="In" Type="String" />
+      <Parameter Name="dire_Comuna" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dire_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbDirecciones_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbDirecciones_Select_Result)" />
+    <FunctionImport Name="UDP_tbDirecciones_Update">
+      <Parameter Name="dire_ID" Mode="In" Type="Int32" />
+      <Parameter Name="dire_Calle" Mode="In" Type="String" />
+      <Parameter Name="dire_Comuna" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dire_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEmpleados_Delete">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEmpleados_Insert">
+      <Parameter Name="emp_Nombre" Mode="In" Type="String" />
+      <Parameter Name="emp_Apellido" Mode="In" Type="String" />
+      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_DireccionExacta" Mode="In" Type="String" />
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+      <Parameter Name="emp_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaContratacion" Mode="In" Type="String" />
+      <Parameter Name="car_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEmpleados_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbEmpleados_Select_Result)" />
+    <FunctionImport Name="UDP_tbEmpleados_Update">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Nombre" Mode="In" Type="String" />
+      <Parameter Name="emp_Apellido" Mode="In" Type="String" />
+      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_DireccionExacta" Mode="In" Type="String" />
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+      <Parameter Name="emp_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaContratacion" Mode="In" Type="String" />
+      <Parameter Name="car_Id" Mode="In" Type="String" />
+      <Parameter Name="emp_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbfabrica_Delete">
+      <Parameter Name="fab_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fab_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbFabrica_Insert">
+      <Parameter Name="fab_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="fab_Telefono" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbfabrica_Select" ReturnType="Collection(dbPedidosEncargosModel.UDP_tbfabrica_Select_Result)" />
+    <FunctionImport Name="UDP_tbfabrica_Update">
+      <Parameter Name="fab_id" Mode="In" Type="Int32" />
+      <Parameter Name="fab_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mun_Id" Mode="In" Type="String" />
+      <Parameter Name="fab_Telefono" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMetodoPago_Delete">
+      <Parameter Name="metpago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="metpago_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMetodoPago_Insert">
+      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="metpago_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="metpago_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbMetodoPago_Update">
+      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="metpago_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="metpago_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbpedidos_Delete">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ped_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbPedidos_Insert">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dire_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="ped_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbpedidos_Update">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dire_id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_id" Mode="In" Type="Int32" />
+      <Parameter Name="metpago_Id" Mode="In" Type="String" />
+      <Parameter Name="ped_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_CargarMunicipios" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarMunicipios_Result)">
+      <Parameter Name="dep_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
+    <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
+    <EntitySet Name="tbCategoria" EntityType="dbPedidosEncargosModel.tbCategoria" />
+    <EntitySet Name="tbClientes" EntityType="dbPedidosEncargosModel.tbClientes" />
+    <EntitySet Name="tbDepartamentos" EntityType="dbPedidosEncargosModel.tbDepartamentos" />
+    <EntitySet Name="tbDirecciones" EntityType="dbPedidosEncargosModel.tbDirecciones" />
+    <EntitySet Name="tbEmpleados" EntityType="dbPedidosEncargosModel.tbEmpleados" />
+    <EntitySet Name="tbEstadosCiviles" EntityType="dbPedidosEncargosModel.tbEstadosCiviles" />
+    <EntitySet Name="tbFabricas" EntityType="dbPedidosEncargosModel.tbFabricas" />
+    <EntitySet Name="tbMetodoPago" EntityType="dbPedidosEncargosModel.tbMetodoPago" />
+    <EntitySet Name="tbMunicipios" EntityType="dbPedidosEncargosModel.tbMunicipios" />
+    <EntitySet Name="tbPantallas" EntityType="dbPedidosEncargosModel.tbPantallas" />
+    <EntitySet Name="tbPedidos" EntityType="dbPedidosEncargosModel.tbPedidos" />
+    <EntitySet Name="tbPedidosDetalles" EntityType="dbPedidosEncargosModel.tbPedidosDetalles" />
+    <EntitySet Name="tbRoles" EntityType="dbPedidosEncargosModel.tbRoles" />
+    <EntitySet Name="tbRolesXPantalla" EntityType="dbPedidosEncargosModel.tbRolesXPantalla" />
+    <EntitySet Name="tbUsuarios" EntityType="dbPedidosEncargosModel.tbUsuarios" />
+    <EntitySet Name="VW_ClientesIndex" EntityType="dbPedidosEncargosModel.VW_ClientesIndex" />
+    <EntitySet Name="VW_DireccionesIndex" EntityType="dbPedidosEncargosModel.VW_DireccionesIndex" />
+    <EntitySet Name="VW_UsuariosIndex" EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" />
+    <AssociationSet Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbArticulos_tbCategoria_cat_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id">
+      <End Role="tbCategoria" EntitySet="tbCategoria" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbArticulos_tbFabricas_fab_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id">
+      <End Role="tbFabricas" EntitySet="tbFabricas" />
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidosDetalles_tbArticulos_art_id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbArticulos_art_id">
+      <End Role="tbArticulos" EntitySet="tbArticulos" />
+      <End Role="tbPedidosDetalles" EntitySet="tbPedidosDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbCargos" EntitySet="tbCargos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbCargos" EntitySet="tbCargos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEmpleados_dbo_tbCargos_car_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbCargos_car_Id">
+      <End Role="tbCargos" EntitySet="tbCargos" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbCategoria" EntitySet="tbCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbCategoria" EntitySet="tbCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbClientes" EntitySet="tbClientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbClientes" EntitySet="tbClientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_tbClientes_cli_id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbClientes_cli_id">
+      <End Role="tbClientes" EntitySet="tbClientes" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbDirecciones_tbClientes_cli_Id" Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbClientes_cli_Id">
+      <End Role="tbClientes" EntitySet="tbClientes" />
+      <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMunicipios_tbDepartamentos_dep_Id" Association="dbPedidosEncargosModel.FK_tbMunicipios_tbDepartamentos_dep_Id">
+      <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_tbDirecciones_dire_id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbDirecciones_dire_id">
+      <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbDirecciones_tbMunicipio_mun_id" Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbMunicipio_mun_id">
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+      <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion" Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion" Association="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id">
+      <End Role="tbEstadosCiviles" EntitySet="tbEstadosCiviles" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id">
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id">
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id" Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id">
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbEstadosCiviles" EntitySet="tbEstadosCiviles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbEstadosCiviles" EntitySet="tbEstadosCiviles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbFabricas_tbMunicipio_mun_id" Association="dbPedidosEncargosModel.FK_dbo_tbFabricas_tbMunicipio_mun_id">
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+      <End Role="tbFabricas" EntitySet="tbFabricas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbMetodoPago" EntitySet="tbMetodoPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbMetodoPago" EntitySet="tbMetodoPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_tbMetodoPago_metpago_id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbMetodoPago_metpago_id">
+      <End Role="tbMetodoPago" EntitySet="tbMetodoPago" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPantallas__pan_UsuarioCreacion" Association="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioCreacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPantallas" EntitySet="tbPantallas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPantallas__pan_UsuarioModificacion" Association="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioModificacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPantallas" EntitySet="tbPantallas" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbRolesXPantalla_tbPantallas_pan_id" Association="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbPantallas_pan_id">
+      <End Role="tbPantallas" EntitySet="tbPantallas" />
+      <End Role="tbRolesXPantalla" EntitySet="tbRolesXPantalla" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidosDetalles_tbPedidos_ped_id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbPedidos_ped_id">
+      <End Role="tbPedidos" EntitySet="tbPedidos" />
+      <End Role="tbPedidosDetalles" EntitySet="tbPedidosDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPedidosDetalles" EntitySet="tbPedidosDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbPedidosDetalles" EntitySet="tbPedidosDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbRoles_rol_rol_UsuarioCreacion" Association="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_rol_UsuarioCreacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbRoles" EntitySet="tbRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbRoles_rol_UsuarioModificacion" Association="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_UsuarioModificacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbRoles" EntitySet="tbRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id" Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id">
+      <End Role="tbRoles" EntitySet="tbRoles" />
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="PK_dbo_tbRolesXPantalla_tbRoles_rol_id" Association="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbRoles_rol_id">
+      <End Role="tbRoles" EntitySet="tbRoles" />
+      <End Role="tbRolesXPantalla" EntitySet="tbRolesXPantalla" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion" Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbRolesXPantalla" EntitySet="tbRolesXPantalla" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion" Association="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbRolesXPantalla" EntitySet="tbRolesXPantalla" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="UDP_Login_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_Usuario" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="usu_Contrasenia" Nullable="false" />
+    <Property Type="Int32" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombre" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="usu_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="usu_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="usu_UsuarioModificacion" Nullable="true" />
+    <Property Type="DateTime" Name="usu_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="usu_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbArticulos_Select_Result">
+    <Property Type="Int32" Name="art_Id" Nullable="false" />
+    <Property Type="String" Name="art_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="Decimal" Name="art_Precio" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="cat_Id" Nullable="false" />
+    <Property Type="Int32" Name="art_Stock" Nullable="false" />
+    <Property Type="DateTime" Name="art_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="art_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="art_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="art_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="art_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbCargos_Select_Result">
+    <Property Type="Int32" Name="car_Id" Nullable="false" />
+    <Property Type="String" Name="car_Nombre" Nullable="false" MaxLength="90" />
+    <Property Type="DateTime" Name="car_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="car_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="car_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="car_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="car_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbCategorias_Select_Result">
+    <Property Type="Int32" Name="cat_Id" Nullable="false" />
+    <Property Type="String" Name="cat_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="cat_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="cat_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="cat_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="cat_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="cat_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbDirecciones_Select_Result">
+    <Property Type="Int32" Name="dire_ID" Nullable="false" />
+    <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="cli_Id" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbEmpleados_Select_Result">
+    <Property Type="Int32" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellido" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Sexo" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="Ciudad" Nullable="false" MaxLength="402" />
+    <Property Type="String" Name="emp_DireccionExacta" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="estciv_Id" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="estciv_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="emp_CorreoElectronico" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" />
+    <Property Type="Int32" Name="Edad" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaContratacion" Nullable="false" />
+    <Property Type="Int32" Name="car_Id" Nullable="false" />
+    <Property Type="String" Name="car_Nombre" Nullable="false" MaxLength="90" />
+    <Property Type="DateTime" Name="emp_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbfabrica_Select_Result">
+    <Property Type="Int32" Name="fab_id" Nullable="false" />
+    <Property Type="String" Name="fab_Nombre" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="fab_Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="fab_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="fab_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="fab_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="fab_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="fab_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_CargarMunicipios_Result">
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="tbArticulos">
+    <Key>
+      <PropertyRef Name="art_Id" />
+    </Key>
+    <Property Name="art_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="art_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="art_Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="cat_Id" Type="Int32" Nullable="false" />
+    <Property Name="art_Stock" Type="Int32" Nullable="false" />
+    <Property Name="fab_id" Type="Int32" />
+    <Property Name="art_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="art_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="art_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="art_UsuarioModificacion" Type="Int32" />
+    <Property Name="art_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" FromRole="tbArticulos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" FromRole="tbArticulos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbCategoria" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id" FromRole="tbArticulos" ToRole="tbCategoria" />
+    <NavigationProperty Name="tbFabricas" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id" FromRole="tbArticulos" ToRole="tbFabricas" />
+    <NavigationProperty Name="tbPedidosDetalles" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbArticulos_art_id" FromRole="tbArticulos" ToRole="tbPedidosDetalles" />
+  </EntityType>
+  <EntityType Name="tbCargos">
+    <Key>
+      <PropertyRef Name="car_Id" />
+    </Key>
+    <Property Name="car_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="car_Nombre" Type="String" Nullable="false" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="car_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="car_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="car_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="car_UsuarioModificacion" Type="Int32" />
+    <Property Name="car_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id" FromRole="tbCargos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id" FromRole="tbCargos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbEmpleados" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbCargos_car_Id" FromRole="tbCargos" ToRole="tbEmpleados" />
+  </EntityType>
+  <EntityType Name="tbCategoria">
+    <Key>
+      <PropertyRef Name="cat_Id" />
+    </Key>
+    <Property Name="cat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="cat_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cat_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="cat_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="cat_UsuarioModificacion" Type="Int32" />
+    <Property Name="cat_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbArticulos" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id" FromRole="tbCategoria" ToRole="tbArticulos" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id" FromRole="tbCategoria" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id" FromRole="tbCategoria" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbClientes">
+    <Key>
+      <PropertyRef Name="cli_Id" />
+    </Key>
+    <Property Name="cli_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cli_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cli_CorreoElectronico" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_saldo" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_LimiteCredito" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_Descuento" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cli_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="cli_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="cli_UsuarioModificacion" Type="Int32" />
+    <Property Name="cli_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id" FromRole="tbClientes" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id" FromRole="tbClientes" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbClientes_cli_id" FromRole="tbClientes" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbDirecciones" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbClientes_cli_Id" FromRole="tbClientes" ToRole="tbDirecciones" />
+  </EntityType>
+  <EntityType Name="tbDepartamentos">
+    <Key>
+      <PropertyRef Name="dep_Id" />
+    </Key>
+    <Property Name="dep_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="dep_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dep_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dep_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="dep_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="dep_UsuarioModificacion" Type="Int32" />
+    <Property Name="dep_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.FK_tbMunicipios_tbDepartamentos_dep_Id" FromRole="tbDepartamentos" ToRole="tbMunicipios" />
+  </EntityType>
+  <EntityType Name="tbDirecciones">
+    <Key>
+      <PropertyRef Name="dire_ID" />
+    </Key>
+    <Property Name="dire_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mun_Id" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="dire_Calle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dire_Comuna" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Id" Type="Int32" />
+    <Property Name="dire_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dire_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="dire_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="dire_UsuarioModificacion" Type="Int32" />
+    <Property Name="dire_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbClientes" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbClientes_cli_Id" FromRole="tbDirecciones" ToRole="tbClientes" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbDirecciones_dire_id" FromRole="tbDirecciones" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbMunicipio_mun_id" FromRole="tbDirecciones" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion" FromRole="tbDirecciones" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion" FromRole="tbDirecciones" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbEmpleados">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+    </Key>
+    <Property Name="emp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="mun_Id" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="emp_DireccionExacta" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="estciv_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="emp_CorreoElectronico" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_FechaContratacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="car_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="emp_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="emp_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="emp_UsuarioModificacion" Type="Int32" />
+    <Property Name="emp_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbCargos" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbCargos_car_Id" FromRole="tbEmpleados" ToRole="tbCargos" />
+    <NavigationProperty Name="tbEstadosCiviles" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id" FromRole="tbEmpleados" ToRole="tbEstadosCiviles" />
+    <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id" FromRole="tbEmpleados" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id" FromRole="tbEmpleados" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id" FromRole="tbEmpleados" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id" FromRole="tbEmpleados" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbUsuarios2" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id" FromRole="tbEmpleados" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbEstadosCiviles">
+    <Key>
+      <PropertyRef Name="estciv_Id" />
+    </Key>
+    <Property Name="estciv_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="estciv_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="estciv_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estciv_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="estciv_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="estciv_UsuarioModificacion" Type="Int32" />
+    <Property Name="estciv_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbEmpleados" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id" FromRole="tbEstadosCiviles" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id" FromRole="tbEstadosCiviles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id" FromRole="tbEstadosCiviles" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbFabricas">
+    <Key>
+      <PropertyRef Name="fab_id" />
+    </Key>
+    <Property Name="fab_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fab_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="mun_Id" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="fab_DireccionExacta" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fab_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="fab_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fab_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="fab_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="fab_UsuarioModificacion" Type="Int32" />
+    <Property Name="fab_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbArticulos" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbFabricas_fab_Id" FromRole="tbFabricas" ToRole="tbArticulos" />
+    <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.FK_dbo_tbFabricas_tbMunicipio_mun_id" FromRole="tbFabricas" ToRole="tbMunicipios" />
+  </EntityType>
+  <EntityType Name="tbMetodoPago">
+    <Key>
+      <PropertyRef Name="metpago_Id" />
+    </Key>
+    <Property Name="metpago_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="metpago_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="metpago_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="metpago_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="metpago_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="metpago_UsuarioModificacion" Type="Int32" />
+    <Property Name="metpago_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id" FromRole="tbMetodoPago" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id" FromRole="tbMetodoPago" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbMetodoPago_metpago_id" FromRole="tbMetodoPago" ToRole="tbPedidos" />
+  </EntityType>
+  <EntityType Name="tbMunicipios">
+    <Key>
+      <PropertyRef Name="mun_Id" />
+    </Key>
+    <Property Name="mun_Id" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="dep_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="mun_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="mun_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="mun_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="mun_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="mun_UsuarioModificacion" Type="Int32" />
+    <Property Name="mun_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbDepartamentos" Relationship="dbPedidosEncargosModel.FK_tbMunicipios_tbDepartamentos_dep_Id" FromRole="tbMunicipios" ToRole="tbDepartamentos" />
+    <NavigationProperty Name="tbDirecciones" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbMunicipio_mun_id" FromRole="tbMunicipios" ToRole="tbDirecciones" />
+    <NavigationProperty Name="tbEmpleados" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id" FromRole="tbMunicipios" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbFabricas" Relationship="dbPedidosEncargosModel.FK_dbo_tbFabricas_tbMunicipio_mun_id" FromRole="tbMunicipios" ToRole="tbFabricas" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id" FromRole="tbMunicipios" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id" FromRole="tbMunicipios" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbPantallas">
+    <Key>
+      <PropertyRef Name="pan_id" />
+    </Key>
+    <Property Name="pan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pan_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="pan_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="pan_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pan_UsuarioModificacion" Type="Int32" />
+    <Property Name="pan_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="pan_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioCreacion" FromRole="tbPantallas" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioModificacion" FromRole="tbPantallas" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbRolesXPantalla" Relationship="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbPantallas_pan_id" FromRole="tbPantallas" ToRole="tbRolesXPantalla" />
+  </EntityType>
+  <EntityType Name="tbPedidos">
+    <Key>
+      <PropertyRef Name="ped_Id" />
+    </Key>
+    <Property Name="ped_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cli_Id" Type="Int32" Nullable="false" />
+    <Property Name="ped_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dire_id" Type="Int32" />
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="metpago_Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ped_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ped_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="ped_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="ped_UsuarioModificacion" Type="Int32" />
+    <Property Name="ped_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbClientes" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbClientes_cli_id" FromRole="tbPedidos" ToRole="tbClientes" />
+    <NavigationProperty Name="tbDirecciones" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbDirecciones_dire_id" FromRole="tbPedidos" ToRole="tbDirecciones" />
+    <NavigationProperty Name="tbEmpleados" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id" FromRole="tbPedidos" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbMetodoPago" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_tbMetodoPago_metpago_id" FromRole="tbPedidos" ToRole="tbMetodoPago" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id" FromRole="tbPedidos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id" FromRole="tbPedidos" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbPedidosDetalles" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbPedidos_ped_id" FromRole="tbPedidos" ToRole="tbPedidosDetalles" />
+  </EntityType>
+  <EntityType Name="tbPedidosDetalles">
+    <Key>
+      <PropertyRef Name="pede_Id" />
+    </Key>
+    <Property Name="pede_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ped_Id" Type="Int32" Nullable="false" />
+    <Property Name="art_Id" Type="Int32" Nullable="false" />
+    <Property Name="pede_Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="pede_Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="pede_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pede_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="pede_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="pede_UsuarioModificacion" Type="Int32" />
+    <Property Name="pede_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbArticulos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbArticulos_art_id" FromRole="tbPedidosDetalles" ToRole="tbArticulos" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_tbPedidos_ped_id" FromRole="tbPedidosDetalles" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id" FromRole="tbPedidosDetalles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id" FromRole="tbPedidosDetalles" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbRoles">
+    <Key>
+      <PropertyRef Name="rol_id" />
+    </Key>
+    <Property Name="rol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rol_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="rol_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="rol_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="rol_UsuarioModificacion" Type="Int32" />
+    <Property Name="rol_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="rol_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_rol_UsuarioCreacion" FromRole="tbRoles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_UsuarioModificacion" FromRole="tbRoles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios2" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id" FromRole="tbRoles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbRolesXPantalla" Relationship="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbRoles_rol_id" FromRole="tbRoles" ToRole="tbRolesXPantalla" />
+  </EntityType>
+  <EntityType Name="tbRolesXPantalla">
+    <Key>
+      <PropertyRef Name="ropa_id" />
+    </Key>
+    <Property Name="ropa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rol_id" Type="Int32" />
+    <Property Name="pan_id" Type="Int32" />
+    <Property Name="ropa_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="ropa_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ropa_UsuarioModificacion" Type="Int32" />
+    <Property Name="ropa_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="ropa_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbPantallas" Relationship="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbPantallas_pan_id" FromRole="tbRolesXPantalla" ToRole="tbPantallas" />
+    <NavigationProperty Name="tbRoles" Relationship="dbPedidosEncargosModel.PK_dbo_tbRolesXPantalla_tbRoles_rol_id" FromRole="tbRolesXPantalla" ToRole="tbRoles" />
+    <NavigationProperty Name="tbUsuarios" Relationship="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion" FromRole="tbRolesXPantalla" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion" FromRole="tbRolesXPantalla" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="tbUsuarios">
+    <Key>
+      <PropertyRef Name="usu_Id" />
+    </Key>
+    <Property Name="usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usu_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="usu_Contrasenia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Id" Type="Int32" Nullable="false" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="usu_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="usu_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usu_UsuarioModificacion" Type="Int32" />
+    <Property Name="usu_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="usu_Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbArticulos" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbArticulos" />
+    <NavigationProperty Name="tbArticulos1" Relationship="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbArticulos" />
+    <NavigationProperty Name="tbCargos" Relationship="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbCargos" />
+    <NavigationProperty Name="tbCargos1" Relationship="dbPedidosEncargosModel.FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbCargos" />
+    <NavigationProperty Name="tbCategoria" Relationship="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbCategoria" />
+    <NavigationProperty Name="tbCategoria1" Relationship="dbPedidosEncargosModel.FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbCategoria" />
+    <NavigationProperty Name="tbClientes" Relationship="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbClientes" />
+    <NavigationProperty Name="tbClientes1" Relationship="dbPedidosEncargosModel.FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbClientes" />
+    <NavigationProperty Name="tbDepartamentos" Relationship="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
+    <NavigationProperty Name="tbDepartamentos1" Relationship="dbPedidosEncargosModel.FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
+    <NavigationProperty Name="tbDirecciones" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion" FromRole="tbUsuarios" ToRole="tbDirecciones" />
+    <NavigationProperty Name="tbDirecciones1" Relationship="dbPedidosEncargosModel.PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion" FromRole="tbUsuarios" ToRole="tbDirecciones" />
+    <NavigationProperty Name="tbEmpleados" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbEmpleados1" Relationship="dbPedidosEncargosModel.FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbEmpleados2" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id" FromRole="tbUsuarios" ToRole="tbEmpleados" />
+    <NavigationProperty Name="tbEstadosCiviles" Relationship="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbEstadosCiviles" />
+    <NavigationProperty Name="tbEstadosCiviles1" Relationship="dbPedidosEncargosModel.FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbEstadosCiviles" />
+    <NavigationProperty Name="tbMetodoPago" Relationship="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbMetodoPago" />
+    <NavigationProperty Name="tbMetodoPago1" Relationship="dbPedidosEncargosModel.FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbMetodoPago" />
+    <NavigationProperty Name="tbMunicipios" Relationship="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbMunicipios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbPantallas" Relationship="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioCreacion" FromRole="tbUsuarios" ToRole="tbPantallas" />
+    <NavigationProperty Name="tbPantallas1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPantallas__pan_UsuarioModificacion" FromRole="tbUsuarios" ToRole="tbPantallas" />
+    <NavigationProperty Name="tbPedidos" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbPedidos1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbPedidos" />
+    <NavigationProperty Name="tbPedidosDetalles" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbPedidosDetalles" />
+    <NavigationProperty Name="tbPedidosDetalles1" Relationship="dbPedidosEncargosModel.FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbPedidosDetalles" />
+    <NavigationProperty Name="tbRoles" Relationship="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_rol_UsuarioCreacion" FromRole="tbUsuarios" ToRole="tbRoles" />
+    <NavigationProperty Name="tbRoles1" Relationship="dbPedidosEncargosModel.FK_dbo_tbRoles_rol_UsuarioModificacion" FromRole="tbUsuarios" ToRole="tbRoles" />
+    <NavigationProperty Name="tbRoles2" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id" FromRole="tbUsuarios" ToRole="tbRoles" />
+    <NavigationProperty Name="tbRolesXPantalla" Relationship="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion" FromRole="tbUsuarios" ToRole="tbRolesXPantalla" />
+    <NavigationProperty Name="tbRolesXPantalla1" Relationship="dbPedidosEncargosModel.FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion" FromRole="tbUsuarios" ToRole="tbRolesXPantalla" />
+    <NavigationProperty Name="tbUsuarios1" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id" FromRole="tbUsuarios" ToRole="tbUsuarios1" />
+    <NavigationProperty Name="tbUsuarios2" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id" FromRole="tbUsuarios1" ToRole="tbUsuarios" />
+    <NavigationProperty Name="tbUsuarios11" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id" FromRole="tbUsuarios" ToRole="tbUsuarios1" />
+    <NavigationProperty Name="tbUsuarios3" Relationship="dbPedidosEncargosModel.FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id" FromRole="tbUsuarios1" ToRole="tbUsuarios" />
+  </EntityType>
+  <EntityType Name="VW_ClientesIndex">
+    <Key>
+      <PropertyRef Name="cli_Id" />
+      <PropertyRef Name="cli_Nombre" />
+      <PropertyRef Name="cli_Apellido" />
+      <PropertyRef Name="cli_Telefono" />
+      <PropertyRef Name="cli_CorreoElectronico" />
+      <PropertyRef Name="cli_saldo" />
+      <PropertyRef Name="cli_LimiteCredito" />
+      <PropertyRef Name="cli_Descuento" />
+      <PropertyRef Name="cli_FechaCreacion" />
+      <PropertyRef Name="cli_UsuarioCreacion" />
+      <PropertyRef Name="cli_Estado" />
+    </Key>
+    <Property Name="cli_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cli_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cli_CorreoElectronico" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_saldo" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_LimiteCredito" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_Descuento" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cli_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="cli_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="cli_UsuarioModificacion" Type="Int32" />
+    <Property Name="cli_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_DireccionesIndex">
+    <Key>
+      <PropertyRef Name="cli_Id" />
+      <PropertyRef Name="cli_Nombre" />
+      <PropertyRef Name="cli_Apellido" />
+      <PropertyRef Name="cli_Telefono" />
+      <PropertyRef Name="cli_CorreoElectronico" />
+      <PropertyRef Name="cli_saldo" />
+      <PropertyRef Name="cli_LimiteCredito" />
+      <PropertyRef Name="cli_Descuento" />
+      <PropertyRef Name="cli_FechaCreacion" />
+      <PropertyRef Name="cli_UsuarioCreacion" />
+      <PropertyRef Name="cli_Estado" />
+      <PropertyRef Name="dire_ID" />
+      <PropertyRef Name="mun_Id" />
+      <PropertyRef Name="mun_Nombre" />
+      <PropertyRef Name="dep_Id" />
+      <PropertyRef Name="dep_Nombre" />
+      <PropertyRef Name="dire_Calle" />
+      <PropertyRef Name="dire_Comuna" />
+      <PropertyRef Name="dire_FechaCreacion" />
+      <PropertyRef Name="dire_UsuarioCreacion" />
+      <PropertyRef Name="dire_Estado" />
+    </Key>
+    <Property Name="cli_Id" Type="Int32" Nullable="false" />
+    <Property Name="cli_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cli_CorreoElectronico" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cli_saldo" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_LimiteCredito" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_Descuento" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+    <Property Name="cli_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cli_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="cli_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="cli_UsuarioModificacion" Type="Int32" />
+    <Property Name="cli_Estado" Type="Boolean" Nullable="false" />
+    <Property Name="dire_ID" Type="Int32" Nullable="false" />
+    <Property Name="mun_Id" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="mun_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dep_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="dep_Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dire_Calle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dire_Comuna" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dire_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dire_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="dire_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="dire_UsuarioModificacion" Type="Int32" />
+    <Property Name="dire_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_UsuariosIndex">
+    <Key>
+      <PropertyRef Name="usu_Id" />
+      <PropertyRef Name="usu_Usuario" />
+      <PropertyRef Name="usu_Contrasenia" />
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="emp_Nombre" />
+      <PropertyRef Name="emp_Apellido" />
+      <PropertyRef Name="rol_id" />
+      <PropertyRef Name="rol_Nombre" />
+      <PropertyRef Name="usu_UsuarioCreacion" />
+      <PropertyRef Name="usu_FechaCreacion" />
+      <PropertyRef Name="usu_Estado" />
+    </Key>
+    <Property Name="usu_Id" Type="Int32" Nullable="false" />
+    <Property Name="usu_Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="usu_Contrasenia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="rol_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="usu_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="usu_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usu_UsuarioModificacion" Type="Int32" />
+    <Property Name="usu_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="usu_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="art_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="art_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbArticulos_tbCategoria_cat_Id">
+    <End Type="dbPedidosEncargosModel.tbCategoria" Role="tbCategoria" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCategoria">
+        <PropertyRef Name="cat_Id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="cat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbArticulos_tbFabricas_fab_Id">
+    <End Type="dbPedidosEncargosModel.tbFabricas" Role="tbFabricas" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbFabricas">
+        <PropertyRef Name="fab_id" />
+      </Principal>
+      <Dependent Role="tbArticulos">
+        <PropertyRef Name="fab_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidosDetalles_tbArticulos_art_id">
+    <End Type="dbPedidosEncargosModel.tbArticulos" Role="tbArticulos" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidosDetalles" Role="tbPedidosDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbArticulos">
+        <PropertyRef Name="art_Id" />
+      </Principal>
+      <Dependent Role="tbPedidosDetalles">
+        <PropertyRef Name="art_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbCargos" Role="tbCargos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCargos">
+        <PropertyRef Name="car_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbCargos_dbo_tbUsuarios_car_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbCargos" Role="tbCargos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCargos">
+        <PropertyRef Name="car_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEmpleados_dbo_tbCargos_car_Id">
+    <End Type="dbPedidosEncargosModel.tbCargos" Role="tbCargos" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCargos">
+        <PropertyRef Name="car_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbCategoria" Role="tbCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCategoria">
+        <PropertyRef Name="cat_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbCategoria_dbo_tbUsuarios_cat_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbCategoria" Role="tbCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCategoria">
+        <PropertyRef Name="cat_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbClientes" Role="tbClientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbClientes">
+        <PropertyRef Name="cli_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbClientes_dbo_tbUsuarios_cli_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbClientes" Role="tbClientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbClientes">
+        <PropertyRef Name="cli_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_tbClientes_cli_id">
+    <End Type="dbPedidosEncargosModel.tbClientes" Role="tbClientes" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbClientes">
+        <PropertyRef Name="cli_Id" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="cli_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbDirecciones_tbClientes_cli_Id">
+    <End Type="dbPedidosEncargosModel.tbClientes" Role="tbClientes" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbDirecciones" Role="tbDirecciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbClientes">
+        <PropertyRef Name="cli_Id" />
+      </Principal>
+      <Dependent Role="tbDirecciones">
+        <PropertyRef Name="cli_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbDepartamentos" Role="tbDepartamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDepartamentos">
+        <PropertyRef Name="dep_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbDepartamentos_dbo_tbUsuarios_dep_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbDepartamentos" Role="tbDepartamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDepartamentos">
+        <PropertyRef Name="dep_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbMunicipios_tbDepartamentos_dep_Id">
+    <End Type="dbPedidosEncargosModel.tbDepartamentos" Role="tbDepartamentos" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDepartamentos">
+        <PropertyRef Name="dep_Id" />
+      </Principal>
+      <Dependent Role="tbMunicipios">
+        <PropertyRef Name="dep_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_tbDirecciones_dire_id">
+    <End Type="dbPedidosEncargosModel.tbDirecciones" Role="tbDirecciones" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDirecciones">
+        <PropertyRef Name="dire_ID" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="dire_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbDirecciones_tbMunicipio_mun_id">
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbDirecciones" Role="tbDirecciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipios">
+        <PropertyRef Name="mun_Id" />
+      </Principal>
+      <Dependent Role="tbDirecciones">
+        <PropertyRef Name="mun_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbDirecciones_tbUsuario_dire_dire_UsuarioCreacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbDirecciones" Role="tbDirecciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDirecciones">
+        <PropertyRef Name="dire_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbDirecciones_tbUsuario_dire_UsuarioModificacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbDirecciones" Role="tbDirecciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDirecciones">
+        <PropertyRef Name="dire_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEmpleados_dbo_tbEstadosCiviles_estciv_Id">
+    <End Type="dbPedidosEncargosModel.tbEstadosCiviles" Role="tbEstadosCiviles" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstadosCiviles">
+        <PropertyRef Name="estciv_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="estciv_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEmpleados_dbo_tbMunicipios_mun_Id">
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipios">
+        <PropertyRef Name="mun_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="mun_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="emp_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEmpleados_dbo_tbUsuarios_emp_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="emp_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_dbo_tbEmpleados_emp_Id">
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmpleados">
+        <PropertyRef Name="emp_Id" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbUsuarios_dbo_tbEmpleados_emp_Id">
+    <End Type="dbPedidosEncargosModel.tbEmpleados" Role="tbEmpleados" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmpleados">
+        <PropertyRef Name="emp_Id" />
+      </Principal>
+      <Dependent Role="tbUsuarios">
+        <PropertyRef Name="emp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbEstadosCiviles" Role="tbEstadosCiviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadosCiviles">
+        <PropertyRef Name="estciv_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbEstadosCiviles_dbo_tbUsuarios_estciv_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbEstadosCiviles" Role="tbEstadosCiviles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadosCiviles">
+        <PropertyRef Name="estciv_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbFabricas_tbMunicipio_mun_id">
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbFabricas" Role="tbFabricas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipios">
+        <PropertyRef Name="mun_Id" />
+      </Principal>
+      <Dependent Role="tbFabricas">
+        <PropertyRef Name="mun_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbMetodoPago" Role="tbMetodoPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMetodoPago">
+        <PropertyRef Name="metpago_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbMetodoPago_dbo_tbUsuarios_metpago_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbMetodoPago" Role="tbMetodoPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMetodoPago">
+        <PropertyRef Name="metpago_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_tbMetodoPago_metpago_id">
+    <End Type="dbPedidosEncargosModel.tbMetodoPago" Role="tbMetodoPago" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMetodoPago">
+        <PropertyRef Name="metpago_Id" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="metpago_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMunicipios">
+        <PropertyRef Name="mun_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbMunicipios_dbo_tbUsuarios_mun_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbMunicipios" Role="tbMunicipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMunicipios">
+        <PropertyRef Name="mun_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPantallas__pan_UsuarioCreacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPantallas" Role="tbPantallas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPantallas">
+        <PropertyRef Name="pan_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPantallas__pan_UsuarioModificacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbPantallas" Role="tbPantallas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPantallas">
+        <PropertyRef Name="pan_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbRolesXPantalla_tbPantallas_pan_id">
+    <End Type="dbPedidosEncargosModel.tbPantallas" Role="tbPantallas" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbRolesXPantalla" Role="tbRolesXPantalla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPantallas">
+        <PropertyRef Name="pan_id" />
+      </Principal>
+      <Dependent Role="tbRolesXPantalla">
+        <PropertyRef Name="pan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="ped_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidos_dbo_tbUsuarios_ped_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidos">
+        <PropertyRef Name="ped_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidosDetalles_tbPedidos_ped_id">
+    <End Type="dbPedidosEncargosModel.tbPedidos" Role="tbPedidos" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidosDetalles" Role="tbPedidosDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPedidos">
+        <PropertyRef Name="ped_Id" />
+      </Principal>
+      <Dependent Role="tbPedidosDetalles">
+        <PropertyRef Name="ped_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbPedidosDetalles" Role="tbPedidosDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidosDetalles">
+        <PropertyRef Name="pede_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbPedidosDetalles_dbo_tbUsuarios_pede_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbPedidosDetalles" Role="tbPedidosDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidosDetalles">
+        <PropertyRef Name="pede_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbRoles_rol_rol_UsuarioCreacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbRoles" Role="tbRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbRoles">
+        <PropertyRef Name="rol_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbRoles_rol_UsuarioModificacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbRoles" Role="tbRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbRoles">
+        <PropertyRef Name="rol_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbUsuarios_dbo_tbRoles_rol_Id">
+    <End Type="dbPedidosEncargosModel.tbRoles" Role="tbRoles" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRoles">
+        <PropertyRef Name="rol_id" />
+      </Principal>
+      <Dependent Role="tbUsuarios">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_dbo_tbRolesXPantalla_tbRoles_rol_id">
+    <End Type="dbPedidosEncargosModel.tbRoles" Role="tbRoles" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbRolesXPantalla" Role="tbRolesXPantalla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRoles">
+        <PropertyRef Name="rol_id" />
+      </Principal>
+      <Dependent Role="tbRolesXPantalla">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbRolesXPantalla_ropa_UsuarioCreacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbRolesXPantalla" Role="tbRolesXPantalla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbRolesXPantalla">
+        <PropertyRef Name="ropa_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbRolesXPantalla_ropa_UsuarioModificacion">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbRolesXPantalla" Role="tbRolesXPantalla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbRolesXPantalla">
+        <PropertyRef Name="ropa_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioCreacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbUsuarios1">
+        <PropertyRef Name="usu_UsuarioCreacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbUsuarios_dbo_tbUsuarios_usu_UsuarioModificacion_usu_Id">
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+    <End Type="dbPedidosEncargosModel.tbUsuarios" Role="tbUsuarios1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuarios">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbUsuarios1">
+        <PropertyRef Name="usu_UsuarioModificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

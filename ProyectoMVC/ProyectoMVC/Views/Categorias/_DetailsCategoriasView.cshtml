@@ -1,0 +1,92 @@
+﻿
+@model ProyectoMVC.Models.tbCategoria
+
+<div class="modal fade" id="exampleModalDitails-@Model.cat_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="container">
+                    <dl class="dl-horizontal">
+
+                        <div class="row">
+                        <dt style="color:black;">
+                            @Html.DisplayNameFor(model => model.cat_Descripcion)
+                        </dt>
+
+                        <dd style="color:black;>
+                            @Html.DisplayFor(model => model.cat_Descripcion)
+                        </dd>
+               
+
+                </dl>
+
+            </div>
+            </div>
+           
+        </div>
+ </div>
+
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    auditoria
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Accion</th>
+                                                <th>Usuario</th>
+                                                <th>Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Creado</td>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.cat_FechaCreacion)
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Modificado</td>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                                                </td>
+                                                <td> @Html.DisplayFor(model => model.cat_FechaModificacion)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+               
+                </div>
+        </div>
+    </div>
+</div>
+

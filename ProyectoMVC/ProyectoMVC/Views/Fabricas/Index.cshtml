@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbFabricas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+                
+    <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                     <h4>tbFabricas</h4>
+                    </div>
+                    <div class="col d-flex flex-row-reverse">
+                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                    </div>
+                </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe table-dark" id="example">
+                <thead>
+                    <tr>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_Nombre)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_DireccionExacta)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_Telefono)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_FechaCreacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_UsuarioCreacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_FechaModificacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_UsuarioModificacion)
+                        </th>
+                                                        <th>
+                            @Html.DisplayNameFor(model => model.fab_Estado)
+                        </th>
+                                                                        <th>
+                            @Html.DisplayNameFor(model => model.tbMunicipios.dep_Id)
+                        </th>
+                                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_Nombre)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_DireccionExacta)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_Telefono)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_FechaCreacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_UsuarioCreacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_FechaModificacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_UsuarioModificacion)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.fab_Estado)
+                        </td>
+                                                                        <td>
+                            @Html.DisplayFor(modelItem => item.tbMunicipios.dep_Id)
+                        </td>
+                                        <td>
+                        @Html.ActionLink(" ", "Details", new { id=item.fab_id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+       
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Edit", new { id=item.fab_id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+        
+                        </td>
+                        <td>
+                        @Html.ActionLink(" ", "Delete", new { id=item.fab_id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
+                        </td>
+                                        </tr>
+                }
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

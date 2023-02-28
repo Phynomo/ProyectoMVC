@@ -1,0 +1,36 @@
+﻿
+
+
+
+
+
+@model ProyectoMVC.Models.tbEmpleados
+
+<div class="modal fade" id="exampleModalDelete-@Model.emp_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("DeleteConfirm","Empleados")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.emp_Id)
+
+                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

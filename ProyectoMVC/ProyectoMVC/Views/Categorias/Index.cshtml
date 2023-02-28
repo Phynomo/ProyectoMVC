@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbCategoria>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h4>tbCategoria</h4>
+            </div>
+            <div class="col d-flex flex-row-reverse">
+                <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="dataTable display compact stripe table-dark" id="example">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cat_Descripcion)
+                            </th>
+
+                            <th>Detalles</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cat_Descripcion)
+                                </td>
+                                <td>
+                                    <button type="button" id="btnDetalle" class="btn btn-block btn-info bi bi-file-earmark-text-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDitails-" + item.cat_Id)"> </button>
+                                    @Html.Partial("_DetailsCategoriasView", item)
+                                </td>
+                                <td>
+
+                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.cat_Id)"> </button>
+                                    @Html.Partial("_EditCategoriasView", item)
+
+
+                                </td>
+                                <td>
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.cat_Id)"> </button>
+                                    @Html.Partial("_DeleteCategoriasView", item)
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+
+
+
+
+
+
+<script>
+
+    $("#btnDetails").click(function () {
+
+        $("exampleModalDitails").modal('show');
+
+    });
+
+    $("#btnEditar").click(function () {
+
+        $("exampleModalEdit").modal('show');
+
+    });
+
+    $("#btnInsertar").click(function () {
+        $("exampleModal").modal('show');
+    });
+
+    $("#btnDelete").click(function () {
+        $("exampleModalDelete").modal('show');
+    });
+
+</script>
+

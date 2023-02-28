@@ -1,0 +1,105 @@
+﻿@model ProyectoMVC.Models.tbFabricas
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
+
+            <h4>Crear tbFabricas</h4>
+
+        </div>
+    </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_Nombre, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.mun_Id, "mun_Id", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("mun_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.mun_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_DireccionExacta, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_DireccionExacta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_DireccionExacta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_Telefono, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_FechaCreacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_FechaCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_UsuarioCreacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_UsuarioCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_UsuarioCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_FechaModificacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_FechaModificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_FechaModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_UsuarioModificacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.fab_UsuarioModificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fab_UsuarioModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.fab_Estado, htmlAttributes: new { @class = "control-label col" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.fab_Estado)
+                    @Html.ValidationMessageFor(model => model.fab_Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </div>
+        </div>
+        </div>
+}
+

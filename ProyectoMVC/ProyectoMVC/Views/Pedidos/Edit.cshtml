@@ -1,0 +1,97 @@
+﻿@model ProyectoMVC.Models.tbPedidos
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container px-4 text-center">
+        <div class="row">
+            <div class="col">
+
+                <h4>Editar tbPedidos</h4>
+
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ped_Id)
+
+        <div class="row form-group pt-2">
+            <div class="col">
+                @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Clienete</label>
+
+                @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Fecha Del Pedido</label>
+
+                @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+                @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Direccion</label>
+
+                @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Empleado</label>
+
+                @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+
+                @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
+                <label class="control-label col">Metodo De Pafo</label>
+
+                @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+
+
+        <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </div>
+        </div>
+
+
+
+
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+     });
+
+</script>

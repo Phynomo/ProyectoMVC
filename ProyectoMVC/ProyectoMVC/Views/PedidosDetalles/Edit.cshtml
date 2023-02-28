@@ -1,0 +1,114 @@
+﻿@model ProyectoMVC.Models.tbPedidosDetalles
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
+
+            <h4>Editar tbPedidosDetalles</h4>
+
+        </div>
+    </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.pede_Id)
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.ped_Id, "ped_Id", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("ped_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.ped_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.art_Id, "art_Id", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.art_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_Cantidad, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.pede_Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pede_Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_Precio, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.pede_Precio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pede_Precio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_FechaCreacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.pede_FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pede_FechaCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_UsuarioCreacion, "pede_UsuarioCreacion", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("pede_UsuarioCreacion", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.pede_UsuarioCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_FechaModificacion, htmlAttributes: new { @class = "control-label col" })
+                @Html.EditorFor(model => model.pede_FechaModificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pede_FechaModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_UsuarioModificacion, "pede_UsuarioModificacion", htmlAttributes: new { @class = "control-label col" })
+                @Html.DropDownList("pede_UsuarioModificacion", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.pede_UsuarioModificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form-group pt-2">
+            <div class="col">
+            @Html.LabelFor(model => model.pede_Estado, htmlAttributes: new { @class = "control-label col" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.pede_Estado)
+                    @Html.ValidationMessageFor(model => model.pede_Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+
+<div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-end">
+                <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            </div>
+        </div>
+}
+

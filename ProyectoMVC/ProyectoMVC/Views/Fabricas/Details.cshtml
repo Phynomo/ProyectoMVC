@@ -1,0 +1,198 @@
+﻿@model ProyectoMVC.Models.tbFabricas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+
+    <div class="row">
+    <div class="col">
+     <h4>tbFabricas</h4>
+</div>
+<div class="col d-flex justify-content-end">
+
+<p>
+    @Html.ActionLink("Editar", "Edit", "", new { id = Model.fab_id }, new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+</p>
+
+
+</div>
+</div>
+
+
+   
+
+
+    
+
+
+
+    <hr />
+    
+    <div class="container">
+    <dl class="dl-horizontal">
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_Nombre)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_DireccionExacta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_DireccionExacta)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_Telefono)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_FechaCreacion)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_UsuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_UsuarioCreacion)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_FechaModificacion)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_UsuarioModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_UsuarioModificacion)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.fab_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fab_Estado)
+        </dd>
+</div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.tbMunicipios.dep_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbMunicipios.dep_Id)
+        </dd>
+</div>
+</div>
+
+    </dl>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+            auditoria
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                        <table class="table">
+                <thead>
+                    <tr>
+                    <th>Accion</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Creado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    
+                    <tr>
+                    <td>Modificado</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+

@@ -1,0 +1,101 @@
+﻿
+@model ProyectoMVC.Models.tbMetodoPago
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("Create","MetodoPago")" method="POST">
+                <div class="modal-body">
+
+
+                    <label for="floatingInput">ID</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtId" placeholder="Cargos" required>
+                    @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+
+                    <label for="floatingInput">Descripcion</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtDescripcion" placeholder="Cargos" required>
+                    @Html.ValidationMessageFor(model => model.metpago_Descripcion, "", new { @class = "text-danger" })
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalDelete-@Model.metpago_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("DeleteConfirm","MetodoPago")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.metpago_Id)
+
+                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalEdit-@Model.metpago_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Cargo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("Editt","MetodoPago")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.metpago_Id)
+
+                    @Html.LabelFor(model => model.metpago_Id, htmlAttributes: new { @class = "control-label col" } )
+                    @Html.EditorFor(model => model.metpago_Id, new { htmlAttributes = new { @class = "form-control" } } )
+                    @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+
+                    @Html.LabelFor(model => model.metpago_Descripcion, htmlAttributes: new { @class = "control-label col" } )
+                    @Html.EditorFor(model => model.metpago_Descripcion, new { htmlAttributes = new { @class = "form-control" } } )
+                    @Html.ValidationMessageFor(model => model.metpago_Descripcion, "", new { @class = "text-danger" })
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

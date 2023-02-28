@@ -1,0 +1,135 @@
+﻿@model ProyectoMVC.Models.tbEmpleados
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+<div class="container px-4 text-center">
+    <div class="row">
+        <div class="col">
+
+            <h4>Crear tbEmpleados</h4>
+
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.emp_Nombre, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_Nombre, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.emp_Apellido, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_Apellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label col"></label>
+            @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.mun_Id, "mun_Id", htmlAttributes: new { @class = "control-label col" })
+            <select id="mun_Id" name="mun_Id" class="form-select">
+            </select>
+            @Html.ValidationMessageFor(model => model.mun_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.emp_DireccionExacta, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_DireccionExacta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_DireccionExacta, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.emp_Sexo, htmlAttributes: new { @class = "control-label col" })
+            <br />
+            Masculino:  @Html.RadioButtonFor(model => model.emp_Sexo, "M")
+            Femenino:   @Html.RadioButtonFor(model => model.emp_Sexo, "F")
+            <br />
+            @Html.ValidationMessageFor(model => model.emp_Sexo, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.estciv_Id, "estciv_Id", htmlAttributes: new { @class = "control-label col" })
+            @Html.DropDownList("estciv_Id", null, htmlAttributes: new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.estciv_Id, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.emp_Telefono, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_Telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.emp_CorreoElectronico, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_CorreoElectronico, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_CorreoElectronico, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.emp_FechaNacimiento, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_FechaNacimiento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            @Html.LabelFor(model => model.emp_FechaContratacion, htmlAttributes: new { @class = "control-label col" })
+            @Html.EditorFor(model => model.emp_FechaContratacion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emp_FechaContratacion, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            @Html.LabelFor(model => model.car_Id, "car_Id", htmlAttributes: new { @class = "control-label col" })
+            @Html.DropDownList("car_Id", null, htmlAttributes: new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.car_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class=" row form-group d-flex justify-content-end py-3">
+        <div class="col d-flex justify-content-end">
+            <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+            @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    $("#dep_Id").change(function () {
+        var dep_Id = $("#dep_Id").val();
+        $.ajax({
+            url: "/Empleados/CargarMunicipios",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ dep_Id: dep_Id }),
+            success: function (data) {
+                console.log(data);
+                $("#mun_Id").empty();
+                $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
+                $.each(data, function (i, value) {
+                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre +"</option>")
+                })
+            }
+        })
+    });
+</script>

@@ -1,0 +1,114 @@
+﻿@model ProyectoMVC.Models.tbCargos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+
+    <div class="row">
+    <div class="col">
+     <h4>tbCargos</h4>
+</div>
+<div class="col d-flex justify-content-end">
+
+<p>
+    @Html.ActionLink("Editar", "Edit", "", new { id = Model.car_Id }, new { @class = "btn btn-warning mx-2" }) |
+    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+</p>
+
+
+</div>
+</div>
+
+
+   
+
+
+    
+
+
+
+    <hr />
+    
+    <div class="container">
+    <dl class="dl-horizontal">
+
+    <div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.car_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.car_Nombre)
+        </dd>
+</div>
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.car_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.car_Estado)
+        </dd>
+</div>
+</div>
+
+
+
+
+    </dl>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+            auditoria
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                        <table class="table">
+                <thead>
+                    <tr>
+                    <th>Accion</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Creado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.car_FechaCreacion)
+                    </td>
+                    </tr>
+                    
+                    <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.car_FechaModificacion)
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
