@@ -167,6 +167,10 @@
     <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosDelete" />
     <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosInsert" />
     <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosUpdate" />
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
+    <FunctionImportMapping FunctionImportName="UDP_CambiarPassword" FunctionName="dbPedidosEncargosModel.Store.UDP_CambiarPassword" />
     <EntitySetMapping Name="tbArticulos">
       <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbArticulos">
         <MappingFragment StoreEntitySet="tbArticulos">
@@ -495,5 +499,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Return" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Return" />
   </EntityContainerMapping>
 </Mapping>

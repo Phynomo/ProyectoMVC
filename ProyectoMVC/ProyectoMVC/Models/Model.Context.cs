@@ -914,5 +914,74 @@ namespace ProyectoMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMunicipiosUpdate", mun_IdParameter, dep_IdParameter, mun_NombreParameter, mun_UsuarioModificacionParameter);
         }
+    
+        public virtual int UDP_tbEstadoCivilesDelete(string estciv_Id)
+        {
+            var estciv_IdParameter = estciv_Id != null ?
+                new ObjectParameter("estciv_Id", estciv_Id) :
+                new ObjectParameter("estciv_Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesDelete", estciv_IdParameter);
+        }
+    
+        public virtual int UDP_tbEstadoCivilesInsert(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioCreacion)
+        {
+            var estciv_IdParameter = estciv_Id != null ?
+                new ObjectParameter("estciv_Id", estciv_Id) :
+                new ObjectParameter("estciv_Id", typeof(string));
+    
+            var estciv_NombreParameter = estciv_Nombre != null ?
+                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
+                new ObjectParameter("estciv_Nombre", typeof(string));
+    
+            var estciv_UsuarioCreacionParameter = estciv_UsuarioCreacion.HasValue ?
+                new ObjectParameter("estciv_UsuarioCreacion", estciv_UsuarioCreacion) :
+                new ObjectParameter("estciv_UsuarioCreacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesInsert", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioCreacionParameter);
+        }
+    
+        public virtual int UDP_tbEstadoCivilesUpdate(string oldestciv_Id, string newestciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioModificacion)
+        {
+            var oldestciv_IdParameter = oldestciv_Id != null ?
+                new ObjectParameter("Oldestciv_Id", oldestciv_Id) :
+                new ObjectParameter("Oldestciv_Id", typeof(string));
+    
+            var newestciv_IdParameter = newestciv_Id != null ?
+                new ObjectParameter("Newestciv_Id", newestciv_Id) :
+                new ObjectParameter("Newestciv_Id", typeof(string));
+    
+            var estciv_NombreParameter = estciv_Nombre != null ?
+                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
+                new ObjectParameter("estciv_Nombre", typeof(string));
+    
+            var estciv_UsuarioModificacionParameter = estciv_UsuarioModificacion.HasValue ?
+                new ObjectParameter("estciv_UsuarioModificacion", estciv_UsuarioModificacion) :
+                new ObjectParameter("estciv_UsuarioModificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesUpdate", oldestciv_IdParameter, newestciv_IdParameter, estciv_NombreParameter, estciv_UsuarioModificacionParameter);
+        }
+    
+        public virtual int UDP_CambiarPassword(string usu_Usuario, string usu_Contrasenia)
+        {
+            var usu_UsuarioParameter = usu_Usuario != null ?
+                new ObjectParameter("usu_Usuario", usu_Usuario) :
+                new ObjectParameter("usu_Usuario", typeof(string));
+    
+            var usu_ContraseniaParameter = usu_Contrasenia != null ?
+                new ObjectParameter("usu_Contrasenia", usu_Contrasenia) :
+                new ObjectParameter("usu_Contrasenia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_CambiarPassword", usu_UsuarioParameter, usu_ContraseniaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> UDP_tbArticulos_Return(Nullable<int> art_Id)
+        {
+            var art_IdParameter = art_Id.HasValue ?
+                new ObjectParameter("art_Id", art_Id) :
+                new ObjectParameter("art_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("UDP_tbArticulos_Return", art_IdParameter);
+        }
     }
 }

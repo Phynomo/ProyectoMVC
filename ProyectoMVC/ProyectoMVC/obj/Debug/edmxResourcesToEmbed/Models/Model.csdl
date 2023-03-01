@@ -247,6 +247,24 @@
       <Parameter Name="mun_Nombre" Mode="In" Type="String" />
       <Parameter Name="mun_UsuarioModificacion" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesDelete">
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesInsert">
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+      <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+      <Parameter Name="estciv_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesUpdate">
+      <Parameter Name="Oldestciv_Id" Mode="In" Type="String" />
+      <Parameter Name="Newestciv_Id" Mode="In" Type="String" />
+      <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+      <Parameter Name="estciv_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_CambiarPassword">
+      <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
     <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
     <EntitySet Name="tbCategoria" EntityType="dbPedidosEncargosModel.tbCategoria" />
@@ -471,6 +489,9 @@
       <End Role="tbUsuarios" EntitySet="tbUsuarios" />
       <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
     </AssociationSet>
+    <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
+      <Parameter Name="art_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Login_Result">
     <Property Type="Int32" Name="usu_Id" Nullable="false" />

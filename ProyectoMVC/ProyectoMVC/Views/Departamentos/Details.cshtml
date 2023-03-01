@@ -49,69 +49,6 @@
 </div>
 
 
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.dep_FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dep_FechaCreacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.dep_FechaModificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dep_FechaModificacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.dep_Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dep_Estado)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
-        </dd>
-</div>
-</div>
 
     </dl>
 </div>
@@ -138,14 +75,22 @@
                 <tbody>
                     <tr>
                     <td>Creado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dep_FechaCreacion)
+                    </td>
                     </tr>
                     
                     <tr>
                     <td>Modificado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dep_FechaModificacion)
+                    </td>
                     </tr>
                 </tbody>
             </table>

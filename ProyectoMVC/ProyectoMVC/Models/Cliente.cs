@@ -7,9 +7,9 @@ using System.Web;
 namespace ProyectoMVC.Models
 {
 
-    [MetadataType(typeof(tbCargosMetaData))]
+    [MetadataType(typeof(tbClientesMetaData))]
 
-    public partial class ClientbClienteste
+    public partial class tbClientes
     {
     }
 

@@ -6,84 +6,237 @@
 }
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<style>
+    .containerOculto {
+        display: none;
+    }
 
-    <div class="container px-4 text-center">
-        <div class="row">
-            <div class="col">
+    .validacionOculta {
+        display: none;
+        color: red;
+    }
+</style>
 
-                <h4>Crear tbPedidos</h4>
+    <div class="container">
+        <div class="card">
+            <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Venta</h4></div>
+            <div class="card-body">
 
-            </div>
-        </div>
+                <div class="row form-group pt-2">
+                    <div class="col">
+                        @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
+                        <label class="control-label col">Clienete</label>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row form-group pt-2">
-            <div class="col">
-                @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Clienete</label>
-
-                @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-                @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Fecha Del Pedido</label>
-
-                @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row form-group pt-2">
-            <div class="col">
-                @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class = "control-label col">Direccion</label>
-                @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-                @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Empleado</label>
-
-                @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row form-group pt-2">
-            <div class="col">
-                @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Metodo De Pafo</label>
-
-                @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-
-            </div>
-
-            <div class=" row form-group d-flex justify-content-end py-3">
-                <div class="col d-flex justify-content-end">
-                    <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
-                    @Html.ActionLink("Regresar", "Index", " ", new { @class = "btn btn-light mx-2" })
+                        @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
+                        <label class="control-label col">Direccion</label>
+                        @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
+                <div class="row form-group pt-2">
+
+                    <div class="col">
+                        @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
+                        <label class="control-label col">Empleado</label>
+
+                        @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
+                        <label class="control-label col">Metodo De Pafo</label>
+
+                        @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
             </div>
+            <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
         </div>
     </div>
 
-}
+    <div class="container containerOculto">
+        <div class="card">
+            <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
+            <div class="card-body">
 
-@Html.Partial("_pedidoDetalle");
+                <div class="row form-group pt-2">
+                    <div class="col">
+                        <label>Producto</label>
+                        @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
+
+                    </div>
+                    <div class="col">
+                        Precio del producto
+
+                        <input id="pede_precio" name="pede_precio" class="form-control" readonly />
+
+                    </div>
+                </div>
+
+                <div class="row form-group pt-2">
+                    <div class="col">
+                        <label>Cantidad </label>
+
+                        <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
+                        <label id="stockValid" hidden>Ingrese La Cantidad</label>
+
+                    </div>
+                    <div class="col">
+                        
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1"> <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnInsertarVentaDetalle" value="Agregar" /></div>
+                    <div class="col-2"> <a href="/ventas/Index" class="btn btn-success">Finalizar Pedidos</a></div>
+                    <div class="col-1"><label>Total:</label></div>
+                    <div class="col-2"><input type="text" id="txttotal" class="form-control" readonly /></div>
+                </div>
+
+            </div>
+        </div>
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script>
-    $(document).ready(function () {
-            $('.datepicker').datepicker();
-     });
+    </div>
+    <div class="container containerOculto">
+        <table id="tabla1" class="table table-striped" style="width:100%">
+            <thead style="background-color:black; color: white;">
+                <tr>
+                    <td>Producto</td>
+                    <td>Precio</td>
+                    <td>Cantidad</td>
+                </tr>
+            </thead>
 
-</script>
+
+            <tbody id="tbodyVentas">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //$(document).ready(function () {
+            $("#btnInsertarVenta").click(function () {
+                var clienteId = $("#cli_Id").val();
+                var Direccion = $("#dire_id").val();
+                var Empleado = $("#emp_id").val();
+                var metodopagoId = $("#metpago_Id").val();
+
+                $("#cli_Id").prop("disabled", true);
+                $("#ped_Fecha").prop("disabled", true);
+                $("#dire_id").prop("disabled", true);
+                $("#emp_id").prop("disabled", true);
+                $("#metpago_Id").prop("disabled", true);
+
+                $(".containerOculto").show();
+                $(".btnInsertarVenta").fadeOut();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Pedidos/Create",
+                    data: { cli_Id: clienteId, dire_id: Direccion, emp_id: Empleado, metpago_Id: metodopagoId },
+                    success: function (response) {
+
+                    },
+                    error: function (error) {
+
+                    }
+                });
+            });
+        //});
+    </script>
+
+    @*Trae los clientes*@
+    <script>
+
+        $("#pede_precio").val(0);
+
+        $("#art_Id").change(function () {
+            var art_Id = $("#art_Id").val();
+            $.ajax({
+                url: "/Pedidos/CargarArticulos",
+                method: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ art_Id: art_Id }),
+                success: function (data) {
+                    console.log(data); 
+                    $("#pede_precio").empty();
+                    $("#pede_precio").val(data);
+                }
+            })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#btnInsertarVentaDetalle').click(function () {
+                var articulo = $('#art_Id').val();
+                var Precio = $("#pede_precio").val();
+                var Stock = $("#pede_Stock").val();
+                
+
+                if (isEmptyObject(articulo) || isEmptyObject(Precio) || isEmptyObject(Stock)) {
+
+                    if (isEmptyObject(articulo)) {
+
+                    }
+
+                    if (isEmptyObject(articulo)) {
+
+                    }
+
+                    if (isEmptyObject(Stock)) {
+                        $("#stockValid").show();
+                    }
+
+                } else {
+
+
+
+                    //var cadena = "<tr><td>" + productoNombre + "</td> <td>" + cantidad + "<td></tr>"
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ventas/Agregar',
+                        data: { productoId: productoId, cantidad: cantidad },
+                        success: function (result) {
+                            var cadena = "";
+                            var total = 0;
+                            console.log(result);
+                            $.each(result, function (index, item) {
+                                var subtotal = parseFloat(item.ventaDetalle_Precio) * parseInt(item.ventaDetalle_catidad);
+                                total += subtotal;
+                                cadena += "<tr><td>" + item.productoNombre + "</td><td>" + item.ventaDetalle_Precio + "</td><td>" + item.ventaDetalle_catidad + "</td></tr>";
+                                console.log(cadena);
+                            });
+                            $("#tbodyVentas").html(cadena);
+                            $("#txttotal").val(total);
+                        },
+                        error: function (error) {
+
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#tabla1").DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
+                }
+            });
+        });
+    </script>

@@ -39,6 +39,15 @@ namespace ProyectoMVC.Controllers
 
                 if (login.Count() > 0)
                 {
+
+                    foreach (var item in login)
+                    {
+                        Session["Nombre"] = item.emp_Nombre.ToString();
+                        Session["UsuarioId"] = item.usu_Id.ToString();
+                        //Session["rol"] = item.rol_Id.ToString();
+                        //Session["rolNombre"] = item.rol_Nombre.ToString();
+                    }
+
                     return RedirectToAction("Index","Home");
                 }
                 else

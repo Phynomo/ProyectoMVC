@@ -16,65 +16,65 @@
     <div class="row">
         <div class="col">
 
-            <h4>Crear tbClientes</h4>
-            |||
+            <h4>Crear Clientes</h4>
+            ♛
         </div>
     </div>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_Nombre, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblNombre">Nombre</label>
             @Html.EditorFor(model => model.cli_Nombre, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_Nombre, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblNombreValidacion" style="color:red;" hidden>El siguiente campo es requerido: Nombre</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_Apellido, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblApellido">Apellido</label>
             @Html.EditorFor(model => model.cli_Apellido, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_Apellido, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblApellidoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Apellido</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_Telefono, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblTelefono">Telefono</label>
             @Html.EditorFor(model => model.cli_Telefono, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_Telefono, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblTelefonoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Telefono</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_CorreoElectronico, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblCorreoElectronico">Correo Electronico</label>
             @Html.EditorFor(model => model.cli_CorreoElectronico, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_CorreoElectronico, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblCorreoElectronicoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Correo Electronico</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_saldo, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblSaldo">Saldo</label>
             @Html.EditorFor(model => model.cli_saldo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_saldo, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblSaldoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Saldo</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_LimiteCredito, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblLimiteCrediticio">Limite Crediticio</label>
             @Html.EditorFor(model => model.cli_LimiteCredito, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_LimiteCredito, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblLimiteCrediticioValidacion" style="color:red;" hidden>El siguiente campo es requerido: Limite Crediticio</label>
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.cli_Descuento, htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label col" id="lblDescuento">Descuento</label>
             @Html.EditorFor(model => model.cli_Descuento, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cli_Descuento, "", new { @class = "text-danger" })
+            <label class="control-label col" id="lblDescuentoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Descuento</label>
         </div>
     </div>
 
@@ -150,16 +150,30 @@
 
 
     $("#btnCliente").click(function () {
+
+        $("#lblNombreValidacion").attr("hidden", true);
+        $("#lblApellidoValidacion").attr("hidden", true);
+        $("#lblTelefonoValidacion").attr("hidden", true);
+        $("#lblCorreoElectronicoValidacion").attr("hidden", true);
+        $("#lblSaldoValidacion").attr("hidden", true);
+        $("#lblLimiteCrediticioValidacion").attr("hidden", true);
+        $("#lblDescuentoValidacion").attr("hidden", true);
+
         if ($("#cli_Nombre").val() != "" && $("#cli_Apellido").val() != "" && $("#cli_Telefono").val() != "" && $("#cli_CorreoElectronico").val() != "" &&
             $("#cli_saldo").val() != "" && $("#cli_LimiteCredito").val() != "" && $("#cli_Descuento").val() != "") {
             $(".oculto").show();
             $("#btnCliente").prop("disabled", true);
             $("#cli_Nombre").prop("disabled", true);
             $("#cli_Apellido").prop("disabled", true);
+            $("#lblTelefono").fadeOut();
             $("#cli_Telefono").fadeOut();
+            $("#lblCorreoElectronico").fadeOut();
             $("#cli_CorreoElectronico").fadeOut();
+            $("#lblSaldo").fadeOut();
             $("#cli_saldo").fadeOut();
+            $("#lblLimiteCredito").fadeOut();
             $("#cli_LimiteCredito").fadeOut();
+            $("#lblDescuento").fadeOut();
             $("#cli_Descuento").fadeOut();
 
             var cli_Nombre = $("#cli_Nombre").val();
@@ -182,7 +196,30 @@
                 }
             });
 
-        }
+        }else {
+            if ($("#cli_Nombre").val() == "") {
+                $("#lblNombreValidacion").attr("hidden", false);
+            }
+            if ($("#cli_Apellido").val() == "") {
+                $("#lblApellidoValidacion").attr("hidden", false);
+            }
+            if ($("#cli_Telefono").val() == "") {
+                $("#lblTelefonoValidacion").attr("hidden", false);
+            }
+            if ($("#cli_CorreoElectronico").val() == "") {
+                $("#lblCorreoElectronicoValidacion").attr("hidden", false);
+            }
+            if ($("#cli_saldo").val() == "") {
+                $("#lblSaldoValidacion").attr("hidden", false);
+            }
+            if ($("#cli_LimiteCredito").val() == "") {
+                $("#lblLimiteCrediticioValidacion").attr("hidden", false);
+            }
+            if ($("#cli_Descuento").val() == "") {
+                $("#lblDescuentoValidacion").attr("hidden", false);
+            }
+
+    }
     });
 
 

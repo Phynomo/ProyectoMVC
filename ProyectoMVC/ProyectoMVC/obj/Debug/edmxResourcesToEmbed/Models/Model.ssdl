@@ -969,6 +969,10 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   <Function Name="UDP_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdEdicion" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_CambiarPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usu_Usuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
+  </Function>
   <Function Name="UDP_CargarMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dep_Id" Type="varchar" Mode="In" />
   </Function>
@@ -1027,6 +1031,9 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="art_Stock" Type="int" Mode="In" />
     <Parameter Name="art_Fabrica" Type="int" Mode="In" />
     <Parameter Name="art_UsuarioCreacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbArticulos_Return" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="art_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbArticulos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="UDP_tbCargo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1144,6 +1151,20 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="emp_FechaContratacion" Type="nvarchar" Mode="In" />
     <Parameter Name="car_Id" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_UsuarioModificacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbEstadoCivilesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estciv_Id" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbEstadoCivilesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estciv_Id" Type="char" Mode="In" />
+    <Parameter Name="estciv_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="estciv_UsuarioCreacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_tbEstadoCivilesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Oldestciv_Id" Type="char" Mode="In" />
+    <Parameter Name="Newestciv_Id" Type="char" Mode="In" />
+    <Parameter Name="estciv_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="estciv_UsuarioModificacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_tbfabrica_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fab_Id" Type="int" Mode="In" />

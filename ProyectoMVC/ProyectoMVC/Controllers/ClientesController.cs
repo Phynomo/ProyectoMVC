@@ -77,7 +77,7 @@ namespace ProyectoMVC.Controllers
             var tbClientes = db.tbClientes.ToList();
             int valMax = tbClientes.Max(x => x.cli_Id);
             db.UDP_tbDirecciones_Insert(dire_calle,dire_comuna,mun_Id,valMax,1);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Clientes");
         }
 
         // GET: Clientes/Edit/5

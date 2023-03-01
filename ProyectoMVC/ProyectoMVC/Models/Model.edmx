@@ -974,6 +974,10 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
         <Function Name="UDP_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEdicion" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_CambiarPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usu_Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="UDP_CargarMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dep_Id" Type="varchar" Mode="In" />
         </Function>
@@ -1032,6 +1036,9 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Parameter Name="art_Stock" Type="int" Mode="In" />
           <Parameter Name="art_Fabrica" Type="int" Mode="In" />
           <Parameter Name="art_UsuarioCreacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbArticulos_Return" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_tbArticulos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UDP_tbCargo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1149,6 +1156,20 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Parameter Name="emp_FechaContratacion" Type="nvarchar" Mode="In" />
           <Parameter Name="car_Id" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_UsuarioModificacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbEstadoCivilesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="estciv_Id" Type="char" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbEstadoCivilesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="estciv_Id" Type="char" Mode="In" />
+          <Parameter Name="estciv_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="estciv_UsuarioCreacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbEstadoCivilesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oldestciv_Id" Type="char" Mode="In" />
+          <Parameter Name="Newestciv_Id" Type="char" Mode="In" />
+          <Parameter Name="estciv_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="estciv_UsuarioModificacion" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_tbfabrica_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fab_Id" Type="int" Mode="In" />
@@ -1754,6 +1775,24 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
             <Parameter Name="mun_UsuarioModificacion" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesDelete">
+          <Parameter Name="estciv_Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesInsert">
+            <Parameter Name="estciv_Id" Mode="In" Type="String" />
+            <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+            <Parameter Name="estciv_UsuarioCreacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesUpdate">
+            <Parameter Name="Oldestciv_Id" Mode="In" Type="String" />
+            <Parameter Name="Newestciv_Id" Mode="In" Type="String" />
+            <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+            <Parameter Name="estciv_UsuarioModificacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_CambiarPassword">
+            <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+            <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
           <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
           <EntitySet Name="tbCategoria" EntityType="dbPedidosEncargosModel.tbCategoria" />
@@ -1978,6 +2017,9 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
           </AssociationSet>
+          <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
+            <Parameter Name="art_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="UDP_Login_Result">
           <Property Type="Int32" Name="usu_Id" Nullable="false" />
@@ -3308,6 +3350,10 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosDelete" />
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosInsert" />
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosUpdate" />
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
+          <FunctionImportMapping FunctionImportName="UDP_CambiarPassword" FunctionName="dbPedidosEncargosModel.Store.UDP_CambiarPassword" />
           <EntitySetMapping Name="tbArticulos">
             <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbArticulos">
               <MappingFragment StoreEntitySet="tbArticulos">
@@ -3636,6 +3682,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Return" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Return" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
