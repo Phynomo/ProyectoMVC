@@ -1997,4 +1997,64 @@ UPDATE [dbo].[tbMunicipios]
 
 
 end 
-GOs
+GO
+
+
+GO
+CREATE OR ALTER	PROCEDURE UDP_tbEstadoCivilesInsert
+@estciv_Id  CHAR(1),
+@estciv_Nombre Varchar(200),
+@estciv_UsuarioCreacion INT
+as
+begin
+INSERT INTO [dbo].[tbEstadosCiviles]
+           ([estciv_Id]
+           ,[estciv_Nombre]
+           ,[estciv_FechaCreacion]
+           ,[estciv_UsuarioCreacion]
+           ,[estciv_FechaModificacion]
+           ,[estciv_UsuarioModificacion]
+           ,[estciv_Estado])
+     VALUES
+           (@estciv_Id
+           ,@estciv_Nombre
+           ,GETDATE()
+           ,@estciv_UsuarioCreacion
+           ,NULL
+           ,NULL
+           ,1)
+
+END
+
+GO
+CREATE OR ALTER	PROCEDURE UDP_tbEstadoCivilesUpdate
+@Oldestciv_Id  CHAR(1),
+@Newestciv_Id  CHAR(1),
+@estciv_Nombre Varchar(200),
+@estciv_UsuarioModificacion INT
+
+as
+begin
+
+UPDATE [dbo].[tbEstadosCiviles]
+   SET [estciv_Id] = @Newestciv_Id
+      ,[estciv_Nombre] = @estciv_Nombre
+      ,[estciv_FechaModificacion] = GETDATE()
+      ,[estciv_UsuarioModificacion] = @estciv_UsuarioModificacion
+ WHERE estciv_Id = @Oldestciv_Id
+
+END
+
+GO
+CREATE OR ALTER	PROCEDURE UDP_tbEstadoCivilesDelete
+@estciv_Id  CHAR(1)
+
+as
+begin
+
+UPDATE [dbo].[tbEstadosCiviles]
+   SET estciv_Estado = 0
+ WHERE estciv_Id = @estciv_Id
+
+end
+GO
