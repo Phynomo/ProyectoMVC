@@ -418,6 +418,25 @@ UPDATE [dbo].[tbUsuarios]
 END
 GO
 
+--Cambiar Contraseña
+
+GO
+CREATE OR ALTER PROCEDURE UDP_CambiarPassword
+	@usu_Usuario Nvarchar(150),
+	@usu_Contrasenia Nvarchar(max)
+AS
+BEGIN
+
+Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@usu_Contrasenia))
+
+UPDATE [dbo].[tbUsuarios]
+   SET usu_Contrasenia = @Password
+    WHERE usu_Usuario = @usu_Usuario
+
+
+END
+GO
+
 
 --borrar Usuario
 CREATE OR ALTER PROCEDURE UDP_BorrarUsuario
