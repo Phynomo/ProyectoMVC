@@ -17,7 +17,7 @@ namespace ProyectoMVC.Controllers
         // GET: Departamentos
         public ActionResult Index()
         {
-            var tbDepartamentos = db.tbDepartamentos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
+            var tbDepartamentos = db.tbDepartamentos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1).Where(t => t.dep_Estado == true);
             return View(tbDepartamentos.ToList());
         }
 
@@ -37,30 +37,33 @@ namespace ProyectoMVC.Controllers
         }
 
         // GET: Departamentos/Create
-        public ActionResult Create()
-        {
-            ViewBag.dep_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
-            ViewBag.dep_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.dep_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
+        //    ViewBag.dep_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
+        //    return View();
+        //}
 
         // POST: Departamentos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
+        public ActionResult Create(string txtIdDepartamento, string txtDepartamento)
         {
-            if (ModelState.IsValid)
+
+
+            if (!String.IsNullOrEmpty(txtIdDepartamento) || !String.IsNullOrEmpty(txtDepartamento))
             {
-                db.tbDepartamentos.Add(tbDepartamentos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                db.UDP_tbDepartamentos_Insert(txtIdDepartamento, txtDepartamento, 1);
+                return RedirectToAction("Index", "Departamentos");
+            }
+            else
+            {
+                ModelState.AddModelError("CategoriaVacia", "El campo es vacio mi Rey ♛");
             }
 
-            ViewBag.dep_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDepartamentos.dep_UsuarioCreacion);
-            ViewBag.dep_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDepartamentos.dep_UsuarioModificacion);
-            return View(tbDepartamentos);
+
+            return View();
         }
 
         // GET: Departamentos/Edit/5
@@ -84,12 +87,12 @@ namespace ProyectoMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
+        
+        public ActionResult Editt([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbDepartamentos).State = EntityState.Modified;
+                db.UDP_tbDepartamentos_Update(tbDepartamentos.dep_Id, tbDepartamentos.dep_Nombre, 1);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,30 +101,17 @@ namespace ProyectoMVC.Controllers
             return View(tbDepartamentos);
         }
 
-        // GET: Departamentos/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbDepartamentos tbDepartamentos = db.tbDepartamentos.Find(id);
-            if (tbDepartamentos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbDepartamentos);
+            var tbDepartamentos = db.tbDepartamentos.Where(t => t.dep_Id == id).FirstOrDefault();
+            return PartialView("_ModalesDepartamentosView", tbDepartamentos);
         }
 
-        // POST: Departamentos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirm([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
         {
-            tbDepartamentos tbDepartamentos = db.tbDepartamentos.Find(id);
-            db.tbDepartamentos.Remove(tbDepartamentos);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            db.UDP_tbDepartamentos_Delete(tbDepartamentos.dep_Id)
+;            db.SaveChanges();
+            return RedirectToAction("Index", "Departamentos");
         }
 
         protected override void Dispose(bool disposing)

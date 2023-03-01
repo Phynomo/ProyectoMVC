@@ -1,0 +1,52 @@
+﻿@model ProyectoMVC.Models.tbMunicipios
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("Create", "Municipios")" method="POST">
+                <div class="modal-body">
+
+
+
+                    <div class="row form-group pt-2">
+                        <div class="col">
+                            @Html.LabelFor(model => model.mun_Id, htmlAttributes: new { @class = "control-label col" })
+                            @*@Html.EditorFor(model => model.mun_Id, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <input type="text" class="form-control" id="floatingInput" name="txtIdM" placeholder="id" required>
+                            @Html.ValidationMessageFor(model => model.mun_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group pt-2">
+                        <div class="col">
+                            @Html.LabelFor(model => model.dep_Id, "dep_Id", htmlAttributes: new { @class = "control-label col" })
+                            @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.dep_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group pt-2">
+                        <div class="col">
+                            @Html.LabelFor(model => model.mun_Nombre, htmlAttributes: new { @class = "control-label col" })
+                            @*@Html.EditorFor(model => model.mun_Nombre, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <input type="text" class="form-control" id="floatingInput" name="txtMunicipio" placeholder="Municipio" required>
+
+                            @Html.ValidationMessageFor(model => model.mun_Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

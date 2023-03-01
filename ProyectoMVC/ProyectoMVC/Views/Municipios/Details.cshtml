@@ -15,7 +15,6 @@
 <div class="col d-flex justify-content-end">
 
 <p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.mun_Id }, new { @class = "btn btn-warning mx-2" }) |
     @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
 </p>
 
@@ -52,45 +51,6 @@
     <div class="row">
     <div class="col">
         <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.mun_FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mun_FechaCreacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.mun_FechaModificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mun_FechaModificacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.mun_Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mun_Estado)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
             @Html.DisplayNameFor(model => model.tbDepartamentos.dep_Nombre)
         </dt>
 
@@ -101,30 +61,6 @@
 </div>
 
 
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
-        </dd>
-</div>
-</div>
 
     </dl>
 </div>
@@ -151,14 +87,20 @@
                 <tbody>
                     <tr>
                     <td>Creado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.mun_FechaCreacion)</td>
                     </tr>
                     
                     <tr>
                     <td>Modificado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.mun_FechaModificacion)
+                    </td>
                     </tr>
                 </tbody>
             </table>

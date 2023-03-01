@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoMVC.Models.tbCargos>
+﻿@model IEnumerable<ProyectoMVC.Models.tbMetodoPago>
 
     @{
     ViewBag.Title = "Index";
@@ -10,7 +10,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col">
-                    <h4>tbCargos</h4>
+                    <h4>tbMetodoPago</h4>
                 </div>
                 <div class="col d-flex flex-row-reverse">
                     <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
@@ -22,27 +22,27 @@
             <div class="row">
                 <div class="col">
                     <table class="dataTable display compact stripe table-dark" id="example">
-                        <thead>z
+                        <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.car_Nombre)
+                                    @Html.DisplayNameFor(model => model.metpago_Descripcion)
                                 </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model) {
-                            @Html.Partial("_ModalesCargosView", item);
+                            @Html.Partial("_ModalesMetodosPagosView", item);
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.car_Nombre)
+                                    @Html.DisplayFor(modelItem => item.metpago_Descripcion)
                                 </td>
                                 <td>
-                                    @Html.ActionLink(" ", "Details", new { id=item.car_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+                                    @Html.ActionLink(" ", "Details", new { id=item.metpago_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
 
-                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.car_Id)"> </button>
+                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.metpago_Id)"> </button>
 
-                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.car_Id)"> </button>
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.metpago_Id)"> </button>
                                 </td>
                             </tr>
                 }
@@ -53,6 +53,7 @@
         </div>
 
     </div>
+
 
     <script>
 

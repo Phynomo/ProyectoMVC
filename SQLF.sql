@@ -1,4 +1,4 @@
-CREATE DATABASE dbPedidosEncargos
+ï»¿CREATE DATABASE dbPedidosEncargos
 GO
 Use dbPedidosEncargos
 GO
@@ -1021,9 +1021,9 @@ CREATE OR ALTER PROCEDURE UDP_tbfabrica_Update
 AS
 BEGIN
     UPDATE tbFabricas
-    SET fab_Nombre = @fab_Nombre,
-        mun_Id = @mun_Id,
-        [fab_DireccionExacta] = @fab_DireccionExacta,
+    SET  fab_Nombre = @fab_Nombre,
+         mun_Id = @mun_Id,
+        fab_DireccionExacta = @fab_DireccionExacta,
         fab_Telefono = @fab_Telefono,
         fab_FechaModificacion = GETDATE(),
         fab_UsuarioModificacion = @usuario
@@ -1439,22 +1439,22 @@ VALUES
 
 
 INSERT INTO [dbo].[tbDepartamentos]
-VALUES ('01', 'Atlántida', GETDATE(), 1,null,null,1),
-	   ('02', 'Colón', GETDATE(), 1,null,null,1),
+VALUES ('01', 'Atlï¿½ntida', GETDATE(), 1,null,null,1),
+	   ('02', 'Colï¿½n', GETDATE(), 1,null,null,1),
 	   ('03', 'Comayagua', GETDATE(), 1,null,null,1),
-	   ('04', 'Copán', GETDATE(), 1,null,null,1),
-	   ('05', 'Cortés', GETDATE(), 1,null,null,1),
+	   ('04', 'Copï¿½n', GETDATE(), 1,null,null,1),
+	   ('05', 'Cortï¿½s', GETDATE(), 1,null,null,1),
 	   ('06', 'Choluteca', GETDATE(), 1,null,null,1),
-	   ('07', 'El Paraíso', GETDATE(), 1,null,null,1),
-	   ('08', 'fabncisco Morazán', GETDATE(), 1,null,null,1),
+	   ('07', 'El Paraï¿½so', GETDATE(), 1,null,null,1),
+	   ('08', 'fabncisco Morazï¿½n', GETDATE(), 1,null,null,1),
 	   ('09', 'Gracias a Dios', GETDATE(), 1,null,null,1),
-	   ('10', 'Intibucá', GETDATE(), 1,null,null,1),
-	   ('11', 'Islas de la Bahía', GETDATE(), 1,null,null,1),
+	   ('10', 'Intibucï¿½', GETDATE(), 1,null,null,1),
+	   ('11', 'Islas de la Bahï¿½a', GETDATE(), 1,null,null,1),
 	   ('12', 'La Paz', GETDATE(), 1,null,null,1),
 	   ('13', 'Lempira', GETDATE(), 1,null,null,1),
 	   ('14', 'Ocotepeque', GETDATE(), 1,null,null,1),
 	   ('15', 'Olancho', GETDATE(), 1,null,null,1),
-	   ('16', 'Santa Bárbara', GETDATE(), 1,null,null,1),
+	   ('16', 'Santa Bï¿½rbara', GETDATE(), 1,null,null,1),
 	   ('17', 'Valle', GETDATE(), 1,null,null,1),
 	   ('18', 'Yoro', GETDATE(), 1,null,null,1)
 
@@ -1467,18 +1467,18 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
 	  ('0201','Trujillo','02', 1, GETDATE(), 1),
 	  ('0202','Balfate','02', 1, GETDATE(), 1),
 	  ('0203','Iriona','02', 1, GETDATE(), 1),
-	  ('0204','Limón','02', 1, GETDATE(), 1),
-	  ('0205','Sabá','02', 1, GETDATE(), 1),
+	  ('0204','Limï¿½n','02', 1, GETDATE(), 1),
+	  ('0205','Sabï¿½','02', 1, GETDATE(), 1),
 	  ('0301','Comayagua','03', 1, GETDATE(), 1),
 	  ('0302','Ajuterique','03', 1, GETDATE(), 1),
       ('0303','El Rosario','03', 1, GETDATE(), 1),
-	  ('0304','Esquías','03', 1, GETDATE(), 1),
+	  ('0304','Esquï¿½as','03', 1, GETDATE(), 1),
       ('0305','Humuya','03',1, GETDATE(), 1),
-	  ('0401','Santa Rosa de Copán','04', 1, GETDATE(), 1),
-	  ('0402','Cabañas','04', 1, GETDATE(), 1),
-      ('0403','Concepción','04', 1, GETDATE(), 1),
-	  ('0404','Copán Ruinas','04', 1, GETDATE(), 1),
-      ('0405','Corquín','04', 1, GETDATE(), 1),
+	  ('0401','Santa Rosa de Copï¿½n','04', 1, GETDATE(), 1),
+	  ('0402','Cabaï¿½as','04', 1, GETDATE(), 1),
+      ('0403','Concepciï¿½n','04', 1, GETDATE(), 1),
+	  ('0404','Copï¿½n Ruinas','04', 1, GETDATE(), 1),
+      ('0405','Corquï¿½n','04', 1, GETDATE(), 1),
 	  ('0501','San Pedro Sula ','05', 1, GETDATE(), 1),
       ('0502','Choloma ','05', 1, GETDATE(), 1),
       ('0503','Omoa','05', 1, GETDATE(), 1),
@@ -1486,18 +1486,18 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
 	  ('0505','Potrerillos','05', 1, GETDATE(), 1),
 	  ('0601','Choluteca','06', 1, GETDATE(), 1),
       ('0602','Apacilagua','06', 1, GETDATE(), 1),
-      ('0603','Concepción de María','06', 1, GETDATE(), 1),
+      ('0603','Concepciï¿½n de Marï¿½a','06', 1, GETDATE(), 1),
       ('0604','Duyure','06', 1, GETDATE(), 1),
 	  ('0605','El Corpus','07', 1, GETDATE(), 1),
-	  ('0701','Yuscarán','07', 1, GETDATE(), 1),
+	  ('0701','Yuscarï¿½n','07', 1, GETDATE(), 1),
       ('0702','Alauca','07', 1, GETDATE(), 1),
-      ('0703','Danlí','07', 1, GETDATE(), 1),
-	  ('0704','El Paraíso','07', 1, GETDATE(), 1),
-      ('0705','Güinope','07', 1, GETDATE(), 1),
-	  ('0801','Distrito Central (Comayagüela y Tegucigalpa)','08', 1, GETDATE(), 1),
-      ('0802','Alubarén','08', 1, GETDATE(), 1),
+      ('0703','Danlï¿½','07', 1, GETDATE(), 1),
+	  ('0704','El Paraï¿½so','07', 1, GETDATE(), 1),
+      ('0705','Gï¿½inope','07', 1, GETDATE(), 1),
+	  ('0801','Distrito Central (Comayagï¿½ela y Tegucigalpa)','08', 1, GETDATE(), 1),
+      ('0802','Alubarï¿½n','08', 1, GETDATE(), 1),
       ('0803','Cedros','08', 1, GETDATE(), 1),
-      ('0804','Curarén','08', 1, GETDATE(), 1),
+      ('0804','Curarï¿½n','08', 1, GETDATE(), 1),
 	  ('0805','El Porvenir','08', 1, GETDATE(), 1),
 	  ('0901','Puerto Lempira','09', 1, GETDATE(), 1),
       ('0902','Brus Laguna','09', 1, GETDATE(), 1),
@@ -1507,33 +1507,33 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
 	  ('1001','La Esperanza','10', 1, GETDATE(), 1),
       ('1002','Camasca','10', 1, GETDATE(), 1),
       ('1003','Colomoncagua','10', 1, GETDATE(), 1),
-	  ('1004','Concepción','10', 1, GETDATE(), 1),
+	  ('1004','Concepciï¿½n','10', 1, GETDATE(), 1),
       ('1005','Dolores','10', 1, GETDATE(), 1),
-	  ('1101','Roatán','11', 1, GETDATE(), 1),
+	  ('1101','Roatï¿½n','11', 1, GETDATE(), 1),
       ('1102','Guanaja','11', 1, GETDATE(), 1),
-      ('1103','José Santos Guardiola','11', 1, GETDATE(), 1),
+      ('1103','Josï¿½ Santos Guardiola','11', 1, GETDATE(), 1),
 	  ('1104','Utila','11', 1, GETDATE(), 1),
 	  ('1201','La Paz','12', 1, GETDATE(), 1),
       ('1202','Aguanqueterique','12', 1, GETDATE(), 1),
-      ('1203','Cabañas','12', 1, GETDATE(), 1),
+      ('1203','Cabaï¿½as','12', 1, GETDATE(), 1),
 	  ('1204','Cane','12', 1, GETDATE(), 1),
       ('1205','Chinacla','12', 1, GETDATE(), 1),
 	  ('1301','Gracias','13', 1, GETDATE(), 1),
-      ('1302','Belén','13', 1, GETDATE(), 1),
+      ('1302','Belï¿½n','13', 1, GETDATE(), 1),
       ('1303','Candelaria','13', 1, GETDATE(), 1),
 	  ('1304','Cololaca','13', 1, GETDATE(), 1),
       ('1305','Erandique','13', 1, GETDATE(), 1),
 	  ('1401','Ocotepeque','14', 1, GETDATE(), 1),
-      ('1402','Belén Gualcho','14', 1, GETDATE(), 1),
-      ('1403','Concepción','14', 1, GETDATE(), 1),
-	  ('1404','Dolores Merendón','14', 1, GETDATE(), 1),
+      ('1402','Belï¿½n Gualcho','14', 1, GETDATE(), 1),
+      ('1403','Concepciï¿½n','14', 1, GETDATE(), 1),
+	  ('1404','Dolores Merendï¿½n','14', 1, GETDATE(), 1),
       ('1405','fabternidad','14', 1, GETDATE(), 1),
 	  ('1501','Juticalpa','15', 1, GETDATE(), 1),
       ('1502','Campamento','15', 1, GETDATE(), 1),
       ('1503','Catacamas','15', 1, GETDATE(), 1),
 	  ('1504','Concordia','15', 1, GETDATE(), 1),
-      ('1505','Dulce Nombre de Culmí','15', 1, GETDATE(), 1),
-	  ('1601','Santa Bárbara','12', 1, GETDATE(), 1),
+      ('1505','Dulce Nombre de Culmï¿½','15', 1, GETDATE(), 1),
+	  ('1601','Santa Bï¿½rbara','12', 1, GETDATE(), 1),
       ('1602','Arada','12', 1, GETDATE(), 1),
       ('1603','Atima','12', 1, GETDATE(), 1),
 	  ('1604','Azacualpa','12', 1, GETDATE(), 1),
@@ -1547,7 +1547,7 @@ VALUES('0101','La Ceiba ','01', 1, GETDATE(), 1),
       ('1802','Arenal','12', 1, GETDATE(), 1),
       ('1803','El Negrito','12', 1, GETDATE(), 1),
 	  ('1804','El artgreso','12', 1, GETDATE(), 1),
-      ('1805','Jocón','12', 1, GETDATE(), 1)
+      ('1805','Jocï¿½n','12', 1, GETDATE(), 1)
 
 
 
@@ -1788,29 +1788,29 @@ GO
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
 VALUES ('Silla de madera', 50.00, 1, 10, 1, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Computadora portátil', 1000.00, 5, 5, 1, GETDATE(), 1, 1);
+VALUES ('Computadora portï¿½til', 1000.00, 5, 5, 1, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
 VALUES ('Vestido de gala', 200.00, 3, 3, 3, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Toallas de baño', 10.00, 9, 20, 4, GETDATE(), 1, 1);
+VALUES ('Toallas de baï¿½o', 10.00, 9, 20, 4, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
 VALUES ('iPhone 13', 1200.00, 5, 7, 3, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Teclado mecánico', 80.00, 5, 30, 6, '2022-02-01 10:00:00', 1, 1);
+VALUES ('Teclado mecï¿½nico', 80.00, 5, 30, 6, '2022-02-01 10:00:00', 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_FechaModificacion, art_UsuarioModificacion, art_Estado)
 VALUES ('Camisa blanca', 20.00, 3, 50, 3, '2022-01-01 12:00:00', 1, '2022-01-02 14:00:00', 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Lápiz bicolor Staedtler', 1.99, 3, 500, 10, GETDATE(), 1, 1);
+VALUES ('Lï¿½piz bicolor Staedtler', 1.99, 3, 500, 10, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
 VALUES ('Monitor LG 27 pulgadas', 189.99, 5, 50, 6, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Teclado inalámbrico Logitech', 35.99, 5, 100, 5, GETDATE(), 1, 1);
+VALUES ('Teclado inalï¿½mbrico Logitech', 35.99, 5, 100, 5, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
 VALUES ('Papa frita', 1.50, 1, 500, 2, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Lámpara de mesa', 50.00, 2, 25, 6, GETDATE(), 1, 1);
+VALUES ('Lï¿½mpara de mesa', 50.00, 2, 25, 6, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Jabón de tocador', 2.50, 9, 200, 10, GETDATE(), 1, 1);
+VALUES ('Jabï¿½n de tocador', 2.50, 9, 200, 10, GETDATE(), 1, 1);
 
 
 
@@ -1997,4 +1997,4 @@ UPDATE [dbo].[tbMunicipios]
 
 
 end 
-GO
+GOs

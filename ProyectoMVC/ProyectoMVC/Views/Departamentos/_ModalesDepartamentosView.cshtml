@@ -10,14 +10,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="@Url.Action("Create","Cargos")" method="POST">
+            <form action="@Url.Action("Create","Departamentos")" method="POST">
                 <div class="modal-body">
 
 
+                    <label for="floatingInput">Id Departamento</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtIdDepartamento" placeholder=" ID de Departamentos" required>
 
-                    <label for="floatingInput">Cargos</label>
-                    <input type="text" class="form-control" id="floatingInput" name="txtCargos" placeholder="Cargos" required>
-                    @Html.ValidationMessageFor(model => model.car_Nombre, "", new { @class = "text-danger" })
+                    <label for="floatingInput">Departamentos</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtDepartamento" placeholder="Departamentos" required>
 
 
 
@@ -34,7 +35,7 @@
 
 
 
-<div class="modal fade" id="exampleModalDelete-@Model.car_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+<div class="modal fade" id="exampleModalDelete-@Model.dep_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,11 +43,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="@Url.Action("DeleteConfirm","Cargos")" method="POST">
+            <form action="@Url.Action("DeleteConfirm","Departamentos")" method="POST">
                 <div class="modal-body">
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.car_Id)
+                    @Html.HiddenFor(model => model.dep_Id)
 
                     <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
 
@@ -62,7 +63,7 @@
 </div>
 
 
-<div class="modal fade" id="exampleModalEdit-@Model.car_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+<div class="modal fade" id="exampleModalEdit-@Model.dep_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,19 +71,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="@Url.Action("Editt","Cargos")" method="POST">
+            <form action="@Url.Action("Editt","Departamentos")" method="POST">
                 <div class="modal-body">
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.car_Id)
+                    @Html.HiddenFor(model => model.dep_Id)
 
-                    @Html.LabelFor(model => model.car_Nombre, htmlAttributes: new { @class = "control-label col" } )
-                    @Html.EditorFor(model => model.car_Nombre, new { htmlAttributes = new { @class = "form-control" } } )
-                    @Html.ValidationMessageFor(model => model.car_Nombre, "", new { @class = "text-danger" })
+                    <div class="row form-group pt-2">
+                        
 
-
-
+                        <div class="col">
+                            @Html.LabelFor(model => model.dep_Nombre, htmlAttributes: new { @class = "control-label col" })
+                            @Html.EditorFor(model => model.dep_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dep_Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
+
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>

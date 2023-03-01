@@ -38,19 +38,15 @@ namespace ProyectoMVC.Controllers
 
         // GET: Cargos/Create
 
+
         [HttpPost]
         public ActionResult Create(string txtCargos)
         {
 
 
-            if (!String.IsNullOrEmpty(txtCargos))
+            if (txtCargos != "")
             {
                 db.UDP_tbCargos_Insert(txtCargos, 1);
-                return RedirectToAction("Index", "Cargos");
-            }
-            else
-            {
-                ModelState.AddModelError("cargoCreate", "El campo es vacio mi Rey ♛");
                 return RedirectToAction("Index", "Cargos");
             }
 
@@ -71,7 +67,7 @@ namespace ProyectoMVC.Controllers
         public ActionResult Editt([Bind(Include = "car_Id,car_Nombre,car_FechaCreacion,car_UsuarioCreacion,car_FechaModificacion,car_UsuarioModificacion,car_Estado")] tbCargos tbCargos)
         {
 
-            if (String.IsNullOrEmpty(tbCargos.car_Nombre))
+            if (tbCargos.car_Nombre != "")
             {
                 db.UDP_tbCargo_Update(tbCargos.car_Id, tbCargos.car_Nombre, 1);
                 db.SaveChanges();

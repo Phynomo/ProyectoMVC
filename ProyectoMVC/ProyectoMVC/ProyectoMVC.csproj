@@ -139,6 +139,7 @@
     <Compile Include="Controllers\FabricasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MetodoPagoesController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -419,12 +420,18 @@
     <Content Include="Views\Fabricas\Index.cshtml" />
     <Content Include="Views\Fabricas\_DeleteFabricaView.cshtml" />
     <Content Include="Views\Cargos\_ModalesCargosView.cshtml" />
-    <Content Include="Views\Municipios\Create.cshtml" />
     <Content Include="Views\Municipios\Delete.cshtml" />
     <Content Include="Views\Municipios\Details.cshtml" />
     <Content Include="Views\Municipios\Edit.cshtml" />
     <Content Include="Views\Municipios\Index.cshtml" />
     <Content Include="Views\Municipios\_ModalesMunicipiosView.cshtml" />
+    <Content Include="Views\Municipios\_CreateMunicipioView.cshtml" />
+    <Content Include="Views\MetodoPagoes\Create.cshtml" />
+    <Content Include="Views\MetodoPagoes\Delete.cshtml" />
+    <Content Include="Views\MetodoPagoes\Details.cshtml" />
+    <Content Include="Views\MetodoPagoes\Edit.cshtml" />
+    <Content Include="Views\MetodoPagoes\Index.cshtml" />
+    <Content Include="Views\MetodoPagoes\_ModalesMetodosPagosView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

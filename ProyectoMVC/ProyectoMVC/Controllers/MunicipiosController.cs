@@ -18,7 +18,7 @@ namespace ProyectoMVC.Controllers
         public ActionResult Index()
         {
             ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
-            var tbMunicipios = db.tbMunicipios.Include(t => t.tbDepartamentos).Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
+            var tbMunicipios = db.tbMunicipios.Include(t => t.tbDepartamentos).Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1).Where(t => t.mun_Estado == true );
             return View(tbMunicipios.ToList());
         }
 
@@ -38,24 +38,27 @@ namespace ProyectoMVC.Controllers
         }
 
         // GET: Municipios/Create
-        public ActionResult Create()
-        {
-            ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
-            ViewBag.mun_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
-            ViewBag.mun_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
+        //    ViewBag.mun_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
+        //    ViewBag.mun_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
+
+            
+
+        //    return View();
+        //}
 
         // POST: Municipios/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mun_Id,dep_Id,mun_Nombre,mun_FechaCreacion,mun_UsuarioCreacion,mun_FechaModificacion,mun_UsuarioModificacion,mun_Estado")] tbMunicipios tbMunicipios)
+       
+        public ActionResult Create(string txtIdM, string txtMunicipio, [Bind(Include = "mun_Id,dep_Id,mun_Nombre,mun_FechaCreacion,mun_UsuarioCreacion,mun_FechaModificacion,mun_UsuarioModificacion,mun_Estado")] tbMunicipios tbMunicipios)
         {
             if (ModelState.IsValid)
             {
-                db.tbMunicipios.Add(tbMunicipios);
+                db.UDP_tbMunicipiosInsert(tbMunicipios.dep_Id, txtIdM, txtMunicipio, 1);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -88,12 +91,11 @@ namespace ProyectoMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "mun_Id,dep_Id,mun_Nombre,mun_FechaCreacion,mun_UsuarioCreacion,mun_FechaModificacion,mun_UsuarioModificacion,mun_Estado")] tbMunicipios tbMunicipios)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbMunicipios).State = EntityState.Modified;
+                db.UDP_tbMunicipiosUpdate(tbMunicipios.mun_Id, tbMunicipios.dep_Id, tbMunicipios.mun_Nombre, 1);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -103,36 +105,17 @@ namespace ProyectoMVC.Controllers
             return View(tbMunicipios);
         }
 
-        // GET: Municipios/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbMunicipios tbMunicipios = db.tbMunicipios.Find(id);
-            if (tbMunicipios == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbMunicipios);
+            var tbMunicipios = db.tbMunicipios.Where(t => t.mun_Id == id).FirstOrDefault();
+            return PartialView("_ModalesMunicipiosView", tbMunicipios);
         }
 
-        // POST: Municipios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirm([Bind(Include = "mun_Id,dep_Id,mun_Nombre,mun_FechaCreacion,mun_UsuarioCreacion,mun_FechaModificacion,mun_UsuarioModificacion,mun_Estado")] tbMunicipios tbMunicipios)
         {
-            tbMunicipios tbMunicipios = db.tbMunicipios.Find(id);
-            db.tbMunicipios.Remove(tbMunicipios);
+            db.UDP_tbMunicipiosDelete(tbMunicipios.mun_Id);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public JsonResult CargarMunicipios(string dep_Id)
-        {
-            var ddlMuni = db.UDP_CargarMunicipios(dep_Id).ToList();
-            return Json(ddlMuni, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index", "Categorias");
         }
 
         protected override void Dispose(bool disposing)

@@ -18,6 +18,8 @@
         </div>
     </div>
 
+
+
     <div class="card-body">
         <div class="row">
             <div class="col">
@@ -41,8 +43,8 @@
                         @foreach (var item in Model)
                         {
 
-                            
-                            @Html.Partial("_ModalesMunicipiosView", item);
+                            @Html.Partial("_CreateMunicipioView", item);
+
 
                             <tr>
                                 <td>
@@ -58,11 +60,12 @@
 
                                 </td>
                                 <td>
-                                    @Html.ActionLink(" ", "Edit", new { id = item.mun_Id }, new { @class = "btn btn-block btn-warning bi bi-pencil-fill" })
-
+                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.mun_Id)"> </button>
+                                    @Html.Partial("_ModalesMunicipiosView", item)
                                 </td>
                                 <td>
-                                    @Html.ActionLink(" ", "Delete", new { id = item.mun_Id }, new { @class = "btn btn-block btn-danger bi bi-trash-fill" })
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.mun_Id)"> </button>
+                                    @Html.Partial("_ModalesMunicipiosView", item)
                                 </td>
                             </tr>
                         }
@@ -73,6 +76,10 @@
     </div>
 
 </div>
+
+
+
+
 
 
 <script>
