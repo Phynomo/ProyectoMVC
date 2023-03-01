@@ -492,6 +492,12 @@
     <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
       <Parameter Name="art_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_CargarTablaDirecciones" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result)">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_DireccionBorrada" ReturnType="Collection(Int32)">
+      <Parameter Name="dire_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Login_Result">
     <Property Type="Int32" Name="usu_Id" Nullable="false" />
@@ -1650,4 +1656,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_CargarTablaDirecciones_Result">
+    <Property Type="Int32" Name="cli_Id" Nullable="false" />
+    <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
+    <Property Type="Int32" Name="dire_ID" Nullable="false" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+    <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+  </ComplexType>
 </Schema>

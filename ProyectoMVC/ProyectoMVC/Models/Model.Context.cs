@@ -983,5 +983,23 @@ namespace ProyectoMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("UDP_tbArticulos_Return", art_IdParameter);
         }
+    
+        public virtual ObjectResult<UDP_CargarTablaDirecciones_Result> UDP_CargarTablaDirecciones(Nullable<int> cli_Id)
+        {
+            var cli_IdParameter = cli_Id.HasValue ?
+                new ObjectParameter("cli_Id", cli_Id) :
+                new ObjectParameter("cli_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaDirecciones_Result>("UDP_CargarTablaDirecciones", cli_IdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_DireccionBorrada(Nullable<int> dire_ID)
+        {
+            var dire_IDParameter = dire_ID.HasValue ?
+                new ObjectParameter("dire_ID", dire_ID) :
+                new ObjectParameter("dire_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_DireccionBorrada", dire_IDParameter);
+        }
     }
 }

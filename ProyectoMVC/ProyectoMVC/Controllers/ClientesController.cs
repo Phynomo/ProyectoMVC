@@ -149,9 +149,10 @@ namespace ProyectoMVC.Controllers
 
         public JsonResult CargarDirecciones(int cli_Id)
         {
-            var tbDirrecciones = db.VW_DireccionesIndex.Where(x => x.cli_Id == cli_Id).ToList();
+            var tbDirrecciones = db.UDP_CargarTablaDirecciones(cli_Id).ToList();
             return Json(tbDirrecciones, JsonRequestBehavior.AllowGet);
         }
+
 
 
         protected override void Dispose(bool disposing)

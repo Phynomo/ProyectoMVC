@@ -976,6 +976,12 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   <Function Name="UDP_CargarMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dep_Id" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="UDP_CargarTablaDirecciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cli_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_DireccionBorrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dire_ID" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_EdicionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="int" Mode="In" />
