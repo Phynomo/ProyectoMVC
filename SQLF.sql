@@ -1385,8 +1385,10 @@ SELECT [usu_Id]
       ,[usu_FechaModificacion]
       ,[usu_Estado]
 	  ,T1.rol_id
+	  ,t3.rol_Nombre
   FROM [tbUsuarios] T1 INNER JOIN [dbo].[tbEmpleados] T2
-  ON T1.emp_Id = T2.emp_Id
+  ON T1.emp_Id = T2.emp_Id INNER JOIN dbo.tbRoles t3
+  ON t3.rol_id	= t1.rol_id
   WHERE t1.usu_Contrasenia = @Password 
   AND t1.usu_Usuario = @usu_Usuario
 
