@@ -2072,3 +2072,15 @@ UPDATE [dbo].[tbEstadosCiviles]
  WHERE estciv_Id = @estciv_Id
 
 end
+
+GO
+
+CREATE OR ALTER PROCEDURE UDP_CargarTablaDirecciones
+@cli_Id INT
+as
+Begin
+
+select * from VW_DireccionesIndex WHERE cli_Id = @cli_Id and dire_Estado = 1
+
+ENd
+GO
