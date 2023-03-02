@@ -2084,3 +2084,16 @@ select * from VW_DireccionesIndex WHERE cli_Id = @cli_Id and dire_Estado = 1
 
 ENd
 GO
+
+GO
+	CREATE or alter PROCEDURE UDP_tbArticulos_Return
+	@art_id  VARCHAR(4)
+	AS
+	BEGIN
+
+	SELECT art_Precio 
+	FROM tbArticulos 
+	WHERE art_Id =  @art_id
+
+	END
+	GO
