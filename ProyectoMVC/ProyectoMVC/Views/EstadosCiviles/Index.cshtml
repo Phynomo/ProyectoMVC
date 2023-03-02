@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectoMVC.Models.tbEstadosCiviles>
+
+    @{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>tbEstadosCiviles</h4>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                    @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <table class="dataTable display compact stripe table-dark" id="example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estciv_Nombre)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model) {
+
+                            @Html.Partial("_ModalsEstadosView", item);
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estciv_Nombre)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "Details", new { id=item.estciv_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+
+                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.estciv_Id)"> </button>
+
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.estciv_Id)"> </button>
+                                </td>
+                            </tr>
+                }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        $("#btnEditar").click(function () {
+
+            $("exampleModalEdit").modal('show');
+
+        });
+
+        $("#btnInsertar").click(function () {
+            $("exampleModal").modal('show');
+        });
+
+        $("#btnDelete").click(function () {
+            $("exampleModalDelete").modal('show');
+        });
+
+    </script>

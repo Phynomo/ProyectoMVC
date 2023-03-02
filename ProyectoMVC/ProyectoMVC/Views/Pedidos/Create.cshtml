@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="card">
-            <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Venta</h4></div>
+            <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Pedido</h4></div>
             <div class="card-body">
 
                 <div class="row form-group pt-2">
@@ -90,16 +90,25 @@
 
                     </div>
                     <div class="col">
-                        
+
 
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-1"> <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnInsertarVentaDetalle" value="Agregar" /></div>
-                    <div class="col-2"> <a href="/ventas/Index" class="btn btn-success">Finalizar Pedidos</a></div>
-                    <div class="col-1"><label>Total:</label></div>
-                    <div class="col-2"><input type="text" id="txttotal" class="form-control" readonly /></div>
+                <div class="row form-group pt-2">
+
+                    <div class="col">
+                        <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnInsertarVentaDetalle" value="Agregar" />
+                    </div>
+                    <div class="col">
+                        <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
+                    </div>
+                    <div class="col">
+                        <label>Total:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="txttotal" class="form-control" readonly />
+                    </div>
                 </div>
 
             </div>
@@ -120,12 +129,14 @@
 
 
             <tbody id="tbodyVentas">
+
             </tbody>
         </table>
     </div>
     <script>
         //$(document).ready(function () {
-            $("#btnInsertarVenta").click(function () {
+        $("#btnInsertarVenta").click(function () {
+
                 var clienteId = $("#cli_Id").val();
                 var Direccion = $("#dire_id").val();
                 var Empleado = $("#emp_id").val();
@@ -184,43 +195,68 @@
                 var articulo = $('#art_Id').val();
                 var Precio = $("#pede_precio").val();
                 var Stock = $("#pede_Stock").val();
-                
+                console.log(articulo, Precio, Stock);
 
-                if (isEmptyObject(articulo) || isEmptyObject(Precio) || isEmptyObject(Stock)) {
-
-                    if (isEmptyObject(articulo)) {
-
-                    }
+                if (articulo == "" || Precio == "" || Stock == "" ){
 
                     if (isEmptyObject(articulo)) {
 
                     }
 
-                    if (isEmptyObject(Stock)) {
+                    if (isEmptyObject(articulo)) {
+
+                    }
+
+                    if ( Stock == "") {
                         $("#stockValid").show();
                     }
 
                 } else {
 
+                   
+
+                    var cadena = "<tr>";
+                    cadena += "<td> " + articulo + "</td>";
+                    cadena += "<td> " + Precio + "</td>";
+                    cadena += "<td> " + Stock + "</td>";
+                    cadena += "</tr>";
+                    //console.log(cadena);
+                   
+
+                    var SubTotal;
+                    SubTotal = parseFloat(Stock) * parseFloat(Precio);
+                    var precio2 = 0;
+                    precio2 = parseFloat(precio2) + SubTotal;
+                    var total = precio2;
+
+                    console.log("total = " + total);
 
 
-                    //var cadena = "<tr><td>" + productoNombre + "</td> <td>" + cantidad + "<td></tr>"
+                    $("#txttotal").val(total);
+
+
+                    $("#tabla1").append(cadena);
+
+
+
                     $.ajax({
                         type: 'POST',
-                        url: '/ventas/Agregar',
-                        data: { productoId: productoId, cantidad: cantidad },
+                        url: '/Pedidos/CreateDetalles',
+                        data: { art_Id: articulo, pede_Precio: Stock },
                         success: function (result) {
-                            var cadena = "";
+                           
                             var total = 0;
                             console.log(result);
                             $.each(result, function (index, item) {
-                                var subtotal = parseFloat(item.ventaDetalle_Precio) * parseInt(item.ventaDetalle_catidad);
+
+                                var subtotal = parseFloat(item.pede_Cantidad) * parseInt(item.pede_Cantidad);
                                 total += subtotal;
-                                cadena += "<tr><td>" + item.productoNombre + "</td><td>" + item.ventaDetalle_Precio + "</td><td>" + item.ventaDetalle_catidad + "</td></tr>";
+                                //cadena += "<tr><td>" + item.art_Id + "</td><td>" + item.pede_Precio + "</td><td>" + item.pede_Cantidad + "</td></tr>";
                                 console.log(cadena);
+
                             });
                             $("#tbodyVentas").html(cadena);
-                            $("#txttotal").val(total);
+                            
                         },
                         error: function (error) {
 

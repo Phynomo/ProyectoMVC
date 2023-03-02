@@ -330,6 +330,26 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_DireccionesIndex' n
           <Property Name="dire_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_PedidoDetalles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_PedidoDetalles">
+          <Key>
+            <PropertyRef Name="ped_Id" />
+            <PropertyRef Name="pede_Cantidad" />
+            <PropertyRef Name="pede_Precio" />
+            <PropertyRef Name="pede_FechaCreacion" />
+            <PropertyRef Name="pede_UsuarioCreacion" />
+            <PropertyRef Name="pede_Estado" />
+          </Key>
+          <Property Name="ped_Id" Type="int" Nullable="false" />
+          <Property Name="pede_Cantidad" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="pede_Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="pede_FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="pede_UsuarioCreacion" Type="int" Nullable="false" />
+          <Property Name="pede_FechaModificacion" Type="datetime" />
+          <Property Name="pede_UsuarioModificacion" Type="int" />
+          <Property Name="pede_Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_UsuariosIndex">
           <Key>
@@ -974,18 +994,14 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
         <Function Name="UDP_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEdicion" Type="int" Mode="In" />
         </Function>
-        <Function Name="UDP_CambiarPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="usu_Usuario" Type="nvarchar" Mode="In" />
-          <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
-        </Function>
         <Function Name="UDP_CargarMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dep_Id" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_CargarTablaDirecciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cli_Id" Type="int" Mode="In" />
         </Function>
-        <Function Name="UDP_DireccionBorrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="dire_ID" Type="int" Mode="In" />
+        <Function Name="UDP_CargarTablaPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ped_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_EdicionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -1022,6 +1038,10 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Parameter Name="pede_Precio" Type="decimal" Mode="In" />
           <Parameter Name="pede_UsuarioModificacion" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_RecuperarContrasenia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usu_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="UDP_tbArticulo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="art_Id" Type="int" Mode="In" />
           <Parameter Name="art_Nombre" Type="nvarchar" Mode="In" />
@@ -1044,7 +1064,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Parameter Name="art_UsuarioCreacion" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_tbArticulos_Return" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="art_Id" Type="int" Mode="In" />
+          <Parameter Name="art_id" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_tbArticulos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UDP_tbCargo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1172,8 +1192,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Parameter Name="estciv_UsuarioCreacion" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_tbEstadoCivilesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Oldestciv_Id" Type="char" Mode="In" />
-          <Parameter Name="Newestciv_Id" Type="char" Mode="In" />
+          <Parameter Name="estciv_Id" Type="char" Mode="In" />
           <Parameter Name="estciv_Nombre" Type="varchar" Mode="In" />
           <Parameter Name="estciv_UsuarioModificacion" Type="int" Mode="In" />
         </Function>
@@ -1307,6 +1326,18 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     [VW_DireccionesIndex].[dire_UsuarioModificacion] AS [dire_UsuarioModificacion], 
     [VW_DireccionesIndex].[dire_Estado] AS [dire_Estado]
     FROM [dbo].[VW_DireccionesIndex] AS [VW_DireccionesIndex]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PedidoDetalles" EntityType="Self.VW_PedidoDetalles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PedidoDetalles].[ped_Id] AS [ped_Id], 
+    [VW_PedidoDetalles].[pede_Cantidad] AS [pede_Cantidad], 
+    [VW_PedidoDetalles].[pede_Precio] AS [pede_Precio], 
+    [VW_PedidoDetalles].[pede_FechaCreacion] AS [pede_FechaCreacion], 
+    [VW_PedidoDetalles].[pede_UsuarioCreacion] AS [pede_UsuarioCreacion], 
+    [VW_PedidoDetalles].[pede_FechaModificacion] AS [pede_FechaModificacion], 
+    [VW_PedidoDetalles].[pede_UsuarioModificacion] AS [pede_UsuarioModificacion], 
+    [VW_PedidoDetalles].[pede_Estado] AS [pede_Estado]
+    FROM [dbo].[VW_PedidoDetalles] AS [VW_PedidoDetalles]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_UsuariosIndex" EntityType="Self.VW_UsuariosIndex" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1799,6 +1830,38 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
             <Parameter Name="usu_Usuario" Mode="In" Type="String" />
             <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
+          <Parameter Name="art_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_CargarTablaDirecciones" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result)">
+          <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_DireccionBorrada" ReturnType="Collection(Int32)">
+            <Parameter Name="dire_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_CargarTablaDirecciones1" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones1_Result)">
+          <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesDelete1">
+          <Parameter Name="estciv_Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesInsert1">
+            <Parameter Name="estciv_Id" Mode="In" Type="String" />
+            <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+            <Parameter Name="estciv_UsuarioCreacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbEstadoCivilesUpdate1">
+            <Parameter Name="estciv_Id" Mode="In" Type="String" />
+            <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+            <Parameter Name="estciv_UsuarioModificacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_RecuperarContrasenia">
+            <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+            <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_CargarTablaPedidos" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaPedidos_Result)">
+          <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
           <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
           <EntitySet Name="tbCategoria" EntityType="dbPedidosEncargosModel.tbCategoria" />
@@ -1818,6 +1881,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <EntitySet Name="tbUsuarios" EntityType="dbPedidosEncargosModel.tbUsuarios" />
           <EntitySet Name="VW_ClientesIndex" EntityType="dbPedidosEncargosModel.VW_ClientesIndex" />
           <EntitySet Name="VW_DireccionesIndex" EntityType="dbPedidosEncargosModel.VW_DireccionesIndex" />
+          <EntitySet Name="VW_PedidoDetalles" EntityType="dbPedidosEncargosModel.VW_PedidoDetalles" />
           <EntitySet Name="VW_UsuariosIndex" EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" />
           <AssociationSet Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
@@ -2023,15 +2087,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
           </AssociationSet>
-          <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
-          <Parameter Name="art_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_CargarTablaDirecciones" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result)">
-          <Parameter Name="cli_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_DireccionBorrada" ReturnType="Collection(Int32)">
-            <Parameter Name="dire_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="UDP_Login_Result">
           <Property Type="Int32" Name="usu_Id" Nullable="false" />
@@ -2127,6 +2182,70 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
         <ComplexType Name="UDP_CargarMunicipios_Result">
           <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
           <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="UDP_CargarTablaDirecciones_Result">
+          <Property Type="Int32" Name="cli_Id" Nullable="false" />
+          <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
+          <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
+          <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
+          <Property Type="Int32" Name="dire_ID" Nullable="false" />
+          <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+          <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+          <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+          <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_CargarTablaDirecciones1_Result">
+          <Property Type="Int32" Name="cli_Id" Nullable="false" />
+          <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
+          <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
+          <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
+          <Property Type="Int32" Name="dire_ID" Nullable="false" />
+          <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+          <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+          <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+          <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_CargarTablaPedidos_Result">
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="String" Name="pede_Cantidad" Nullable="false" MaxLength="200" />
+          <Property Type="Decimal" Name="pede_Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="pede_FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pede_UsuarioCreacion" Nullable="false" />
+          <Property Type="DateTime" Name="pede_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="pede_UsuarioModificacion" Nullable="true" />
+          <Property Type="Boolean" Name="pede_Estado" Nullable="false" />
         </ComplexType>
         <EntityType Name="tbArticulos">
           <Key>
@@ -2549,6 +2668,24 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <Property Name="dire_FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="dire_UsuarioModificacion" Type="Int32" />
           <Property Name="dire_Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_PedidoDetalles">
+          <Key>
+            <PropertyRef Name="ped_Id" />
+            <PropertyRef Name="pede_Cantidad" />
+            <PropertyRef Name="pede_Precio" />
+            <PropertyRef Name="pede_FechaCreacion" />
+            <PropertyRef Name="pede_UsuarioCreacion" />
+            <PropertyRef Name="pede_Estado" />
+          </Key>
+          <Property Name="ped_Id" Type="Int32" Nullable="false" />
+          <Property Name="pede_Cantidad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pede_Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="pede_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pede_UsuarioCreacion" Type="Int32" Nullable="false" />
+          <Property Name="pede_FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="pede_UsuarioModificacion" Type="Int32" />
+          <Property Name="pede_Estado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="VW_UsuariosIndex">
           <Key>
@@ -3190,33 +3327,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="UDP_CargarTablaDirecciones_Result">
-          <Property Type="Int32" Name="cli_Id" Nullable="false" />
-          <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
-          <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
-          <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
-          <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
-          <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
-          <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
-          <Property Type="Int32" Name="dire_ID" Nullable="false" />
-          <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
-          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
-          <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
-          <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
-          <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3389,10 +3499,56 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosDelete" />
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosInsert" />
           <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosUpdate" />
-          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
-          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
-          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
-          <FunctionImportMapping FunctionImportName="UDP_CambiarPassword" FunctionName="dbPedidosEncargosModel.Store.UDP_CambiarPassword" />
+          <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Return" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Return" />
+          <FunctionImportMapping FunctionImportName="UDP_CargarTablaDirecciones1" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaDirecciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaDirecciones1_Result">
+                <ScalarProperty Name="cli_Id" ColumnName="cli_Id" />
+                <ScalarProperty Name="cli_Nombre" ColumnName="cli_Nombre" />
+                <ScalarProperty Name="cli_Apellido" ColumnName="cli_Apellido" />
+                <ScalarProperty Name="cli_Telefono" ColumnName="cli_Telefono" />
+                <ScalarProperty Name="cli_CorreoElectronico" ColumnName="cli_CorreoElectronico" />
+                <ScalarProperty Name="cli_saldo" ColumnName="cli_saldo" />
+                <ScalarProperty Name="cli_LimiteCredito" ColumnName="cli_LimiteCredito" />
+                <ScalarProperty Name="cli_Descuento" ColumnName="cli_Descuento" />
+                <ScalarProperty Name="cli_FechaCreacion" ColumnName="cli_FechaCreacion" />
+                <ScalarProperty Name="cli_UsuarioCreacion" ColumnName="cli_UsuarioCreacion" />
+                <ScalarProperty Name="cli_FechaModificacion" ColumnName="cli_FechaModificacion" />
+                <ScalarProperty Name="cli_UsuarioModificacion" ColumnName="cli_UsuarioModificacion" />
+                <ScalarProperty Name="cli_Estado" ColumnName="cli_Estado" />
+                <ScalarProperty Name="dire_ID" ColumnName="dire_ID" />
+                <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
+                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+                <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
+                <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+                <ScalarProperty Name="dire_Calle" ColumnName="dire_Calle" />
+                <ScalarProperty Name="dire_Comuna" ColumnName="dire_Comuna" />
+                <ScalarProperty Name="dire_FechaCreacion" ColumnName="dire_FechaCreacion" />
+                <ScalarProperty Name="dire_UsuarioCreacion" ColumnName="dire_UsuarioCreacion" />
+                <ScalarProperty Name="dire_FechaModificacion" ColumnName="dire_FechaModificacion" />
+                <ScalarProperty Name="dire_UsuarioModificacion" ColumnName="dire_UsuarioModificacion" />
+                <ScalarProperty Name="dire_Estado" ColumnName="dire_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
+          <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
+          <FunctionImportMapping FunctionImportName="UDP_RecuperarContrasenia" FunctionName="dbPedidosEncargosModel.Store.UDP_RecuperarContrasenia" />
+          <FunctionImportMapping FunctionImportName="UDP_CargarTablaPedidos" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaPedidos_Result">
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+                <ScalarProperty Name="pede_Cantidad" ColumnName="pede_Cantidad" />
+                <ScalarProperty Name="pede_Precio" ColumnName="pede_Precio" />
+                <ScalarProperty Name="pede_FechaCreacion" ColumnName="pede_FechaCreacion" />
+                <ScalarProperty Name="pede_UsuarioCreacion" ColumnName="pede_UsuarioCreacion" />
+                <ScalarProperty Name="pede_FechaModificacion" ColumnName="pede_FechaModificacion" />
+                <ScalarProperty Name="pede_UsuarioModificacion" ColumnName="pede_UsuarioModificacion" />
+                <ScalarProperty Name="pede_Estado" ColumnName="pede_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="tbArticulos">
             <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbArticulos">
               <MappingFragment StoreEntitySet="tbArticulos">
@@ -3702,6 +3858,20 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VW_PedidoDetalles">
+            <EntityTypeMapping TypeName="dbPedidosEncargosModel.VW_PedidoDetalles">
+              <MappingFragment StoreEntitySet="VW_PedidoDetalles">
+                <ScalarProperty Name="pede_Estado" ColumnName="pede_Estado" />
+                <ScalarProperty Name="pede_UsuarioModificacion" ColumnName="pede_UsuarioModificacion" />
+                <ScalarProperty Name="pede_FechaModificacion" ColumnName="pede_FechaModificacion" />
+                <ScalarProperty Name="pede_UsuarioCreacion" ColumnName="pede_UsuarioCreacion" />
+                <ScalarProperty Name="pede_FechaCreacion" ColumnName="pede_FechaCreacion" />
+                <ScalarProperty Name="pede_Precio" ColumnName="pede_Precio" />
+                <ScalarProperty Name="pede_Cantidad" ColumnName="pede_Cantidad" />
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="VW_UsuariosIndex">
             <EntityTypeMapping TypeName="dbPedidosEncargosModel.VW_UsuariosIndex">
               <MappingFragment StoreEntitySet="VW_UsuariosIndex">
@@ -3721,39 +3891,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Return" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Return" />
-          <FunctionImportMapping FunctionImportName="UDP_CargarTablaDirecciones" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaDirecciones">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result">
-                <ScalarProperty Name="cli_Id" ColumnName="cli_Id" />
-                <ScalarProperty Name="cli_Nombre" ColumnName="cli_Nombre" />
-                <ScalarProperty Name="cli_Apellido" ColumnName="cli_Apellido" />
-                <ScalarProperty Name="cli_Telefono" ColumnName="cli_Telefono" />
-                <ScalarProperty Name="cli_CorreoElectronico" ColumnName="cli_CorreoElectronico" />
-                <ScalarProperty Name="cli_saldo" ColumnName="cli_saldo" />
-                <ScalarProperty Name="cli_LimiteCredito" ColumnName="cli_LimiteCredito" />
-                <ScalarProperty Name="cli_Descuento" ColumnName="cli_Descuento" />
-                <ScalarProperty Name="cli_FechaCreacion" ColumnName="cli_FechaCreacion" />
-                <ScalarProperty Name="cli_UsuarioCreacion" ColumnName="cli_UsuarioCreacion" />
-                <ScalarProperty Name="cli_FechaModificacion" ColumnName="cli_FechaModificacion" />
-                <ScalarProperty Name="cli_UsuarioModificacion" ColumnName="cli_UsuarioModificacion" />
-                <ScalarProperty Name="cli_Estado" ColumnName="cli_Estado" />
-                <ScalarProperty Name="dire_ID" ColumnName="dire_ID" />
-                <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
-                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-                <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
-                <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
-                <ScalarProperty Name="dire_Calle" ColumnName="dire_Calle" />
-                <ScalarProperty Name="dire_Comuna" ColumnName="dire_Comuna" />
-                <ScalarProperty Name="dire_FechaCreacion" ColumnName="dire_FechaCreacion" />
-                <ScalarProperty Name="dire_UsuarioCreacion" ColumnName="dire_UsuarioCreacion" />
-                <ScalarProperty Name="dire_FechaModificacion" ColumnName="dire_FechaModificacion" />
-                <ScalarProperty Name="dire_UsuarioModificacion" ColumnName="dire_UsuarioModificacion" />
-                <ScalarProperty Name="dire_Estado" ColumnName="dire_Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_DireccionBorrada" FunctionName="dbPedidosEncargosModel.Store.UDP_DireccionBorrada" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

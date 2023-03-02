@@ -6,85 +6,184 @@
 }
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="container px-4 text-center">
-        <div class="row">
-            <div class="col">
+<style>
+    .containerOculto {
+        display: none;
+    }
 
-                <h4>Editar tbPedidos</h4>
+    .validacionOculta {
+        display: none;
+        color: red;
+    }
+</style>
 
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Pedido</h4></div>
+        <div class="card-body">
+
+            <div class="row form-group pt-2">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ped_Id)
+
+                    @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Clienete</label>
+
+                    @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Direccion</label>
+                    @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Fecha Del Pedido</label>
+
+                    @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
+                </div>
             </div>
+
+            <div class="row form-group pt-2">
+
+                <div class="col">
+                    @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Empleado</label>
+
+                    @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Metodo De Pafo</label>
+
+                    @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
         </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ped_Id)
-
-        <div class="row form-group pt-2">
-            <div class="col">
-                @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Clienete</label>
-
-                @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-                @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Fecha Del Pedido</label>
-
-                @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row form-group pt-2">
-            <div class="col">
-                @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Direccion</label>
-
-                @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-                @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Empleado</label>
-
-                @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row form-group pt-2">
-            <div class="col">
-
-                @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
-                <label class="control-label col">Metodo De Pafo</label>
-
-                @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-
-            </div>
-        </div>
-
-
-
-        <div class=" row form-group d-flex justify-content-end py-3">
-            <div class="col d-flex justify-content-end">
-                <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
-                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
-            </div>
-        </div>
-
-
-
-
+        <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
     </div>
-}
+</div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<table id="example" class="dataTable display compact stripe table-dark">
+    <thead>
+        <tr>
+
+            <td>Numero de Pedido</td>
+            <td>Nombre de Articulo</td>
+            <td>Precio del Articulo</td>
+            <td>Metodo de Pago</td>
+
+        </tr>
+    </thead>
+    <tbody id="tbodyDirecciones"></tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var ped_Id = $("#ped_Id").val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Pedidos/CargarPedidoDetalles',
+            data: { ped_Id: ped_Id },
+            success: function (result) {
+                console.log(result);
+                var cadena = "";
+                $.each(result, function (index, item) {
+                    cadena += "<tr><td>" + item.ped_Id + "</td><td>" + item.art_Nombre + "</td><td>" + item.art_Stock + "</td><td>" + item.metpago_Id + "</td><td>" + "<a href = '/Direcciones/Edit/" + item.dire_ID + "' class='btn btn-block btn-warning bi bi-pencil-fill' ></a> " + "</td><td>" + " <button onclick='hola(" + item.ped_Id + ")' id='btn-delete' class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='" + item.ped_Id + "'>" + item.ped_Id + "</button> " + "</td></tr>";
+                    console.log(cadena);
+                });
+                $("#tbodyDirecciones").append(cadena);
+
+            },
+            error: function (error) {
+            }
+        });
+    });
+
+
+</script>
+
+<script>
+    //$(document).ready(function () {
+    $("#btnInsertarVenta").click(function () {
+
+        var PedidoId = $("#ped_Id").val();
+        var cliente = $("#cli_Id").val();
+        var FechaPedido = $("#ped_Fecha").val();
+        var Direccion = $("#dire_id").val();
+        var Empleado = $("#emp_id").val();
+        var metodopagoId = $("#metpago_Id").val();
+
+        $("#ped_Id").prop("disabled", true);
+        $("#cli_Id").prop("disabled", true);
+        $("#ped_Fecha").prop("disabled", true);
+        $("#dire_id").prop("disabled", true);
+        $("#emp_id").prop("disabled", true);
+        $("#metpago_Id").prop("disabled", true);
+
+        $(".containerOculto").show();
+        $(".btnInsertarVenta").fadeOut();
+
+        $.ajax({
+            type: "POST",
+            url: "/Pedidos/Edit",
+            data: {  ped_Id: PedidoId,  cli_Id: cliente, ped_Fecha: FechaPedido, dire_id: Direccion, emp_id: Empleado, metpago_Id: metodopagoId },
+            success: function (response) {
+
+                
+
+            },
+            error: function (error) {
+
+            }
+        });
+    });
+    //});
+</script>
+
+@*Trae los clientes*@
+<script>
+
+    $("#pede_precio").val(0);
+
+    $("#art_Id").change(function () {
+        var art_Id = $("#art_Id").val();
+        $.ajax({
+            url: "/Pedidos/CargarArticulos",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ art_Id: art_Id }),
+            success: function (data) {
+                console.log(data);
+                $("#pede_precio").empty();
+                $("#pede_precio").val(data);
+            }
+        })
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#tabla1").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
+            }
+        });
+    });
+</script>
+
+@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     $(document).ready(function () {
         $('.datepicker').datepicker({
@@ -92,6 +191,6 @@
             autoclose: true,
             todayHighlight: true
         });
-     });
+    });
 
-</script>
+</script>*@

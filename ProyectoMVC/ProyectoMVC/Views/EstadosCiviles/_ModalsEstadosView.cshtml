@@ -1,0 +1,95 @@
+﻿
+@model ProyectoMVC.Models.tbEstadosCiviles
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("Create","EstadosCiviles")" method="POST">
+                <div class="modal-body">
+
+
+
+                    <label for="floatingInput">Estado civil ID (un caracter)</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtId" placeholder="ID" maxlength="1" required>
+
+                    <label for="floatingInput">Descripcion de estado civil</label>
+                    <input type="text" class="form-control" id="floatingInput" name="txtDescripcion" placeholder="Descripcion" required>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCreate" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalDelete-@Model.estciv_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("DeleteConfirm","EstadosCiviles")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.estciv_Id)
+
+                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalEdit-@Model.estciv_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar Cargo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="@Url.Action("Editt","EstadosCiviles")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.estciv_Id)
+
+                   
+                            @Html.LabelFor(model => model.estciv_Nombre, htmlAttributes: new { @class = "control-label col" })
+                            @Html.EditorFor(model => model.estciv_Nombre, new { htmlAttributes = new { @class = "form-control" ,required="required" } })
+                            @Html.ValidationMessageFor(model => model.estciv_Nombre, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

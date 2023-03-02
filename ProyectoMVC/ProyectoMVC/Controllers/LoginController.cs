@@ -9,7 +9,7 @@ namespace ProyectoMVC.Controllers
 {
     public class LoginController : Controller
     {
-    dbPedidosEncargosEntities db = new dbPedidosEncargosEntities();
+        dbPedidosEncargosEntities db = new dbPedidosEncargosEntities();
         // GET: Login
         public ActionResult Index()
         {
@@ -21,12 +21,12 @@ namespace ProyectoMVC.Controllers
         {
             if (txtUsuario == "" || txtClave == "")
             {
-                if(txtUsuario == "")
+                if (txtUsuario == "")
                 {
                     ModelState.AddModelError("validarUsuario", "El campo usuario es necesario");
                 }
 
-                if(txtClave == "")
+                if (txtClave == "")
                 {
                     ModelState.AddModelError("validarClave", "El campo contraseña es necesario");
                 }
@@ -35,7 +35,7 @@ namespace ProyectoMVC.Controllers
             else
             {
                 var login = db.UDP_Login(txtUsuario.ToString(), txtClave.ToString()).ToList();
-                
+
 
                 if (login.Count() > 0)
                 {
@@ -48,7 +48,7 @@ namespace ProyectoMVC.Controllers
                         //Session["rolNombre"] = item.rol_Nombre.ToString();
                     }
 
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -61,15 +61,41 @@ namespace ProyectoMVC.Controllers
         }
 
 
-        public string pagina()
+        [HttpPost]///////////////////
+        public ActionResult Recuperar(string txtRUsuario, string txtRClave)
         {
+            if (txtRUsuario == "" || txtRClave == "")
+            {
+                if (txtRUsuario == "")
+                {
+                    ModelState.AddModelError("RvalidarUsuario", "El campo usuario es necesario");
+                }
 
-            return "Aqui va una paguina principal mi rey";
+                if (txtRClave == "")
+                {
+                    ModelState.AddModelError("RvalidarClave", "El campo contraseña es necesario");
+                }
 
+            }
+            else
+            {
+
+                //db.UDP_RecuperarContrasenia(txtRUsuario.ToString(), txtRClave.ToString());
+
+                return RedirectToAction("Index", "Login");
+            }
+            //    else
+            //{
+            //    ModelState.AddModelError("RValidacion", "Usuario o contraseña incorrectos");
+            //}
+
+            return View();
         }
 
 
-
-
     }
+
+
+
+
 }

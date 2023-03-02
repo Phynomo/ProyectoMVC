@@ -137,6 +137,7 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\DireccionesController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\EstadosCivilesController.cs" />
     <Compile Include="Controllers\FabricasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -146,7 +147,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Fabrica.cs" />
-    <Compile Include="Models\PedidosDetallesController.cs" />
+    <Compile Include="Controllers\PedidosDetallesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -441,6 +442,12 @@
     <Content Include="Views\Direcciones\Edit.cshtml" />
     <Content Include="Views\Direcciones\Index.cshtml" />
     <Content Include="Views\Clientes\_ModalesDireccionesView.cshtml" />
+    <Content Include="Views\EstadosCiviles\Create.cshtml" />
+    <Content Include="Views\EstadosCiviles\Delete.cshtml" />
+    <Content Include="Views\EstadosCiviles\Details.cshtml" />
+    <Content Include="Views\EstadosCiviles\Edit.cshtml" />
+    <Content Include="Views\EstadosCiviles\Index.cshtml" />
+    <Content Include="Views\EstadosCiviles\_ModalsEstadosView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

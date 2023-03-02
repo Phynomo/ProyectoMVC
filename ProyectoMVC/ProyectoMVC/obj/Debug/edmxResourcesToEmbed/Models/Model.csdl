@@ -265,6 +265,38 @@
       <Parameter Name="usu_Usuario" Mode="In" Type="String" />
       <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
+      <Parameter Name="art_id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_CargarTablaDirecciones" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result)">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_DireccionBorrada" ReturnType="Collection(Int32)">
+      <Parameter Name="dire_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_CargarTablaDirecciones1" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones1_Result)">
+      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesDelete1">
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesInsert1">
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+      <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+      <Parameter Name="estciv_UsuarioCreacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbEstadoCivilesUpdate1">
+      <Parameter Name="estciv_Id" Mode="In" Type="String" />
+      <Parameter Name="estciv_Nombre" Mode="In" Type="String" />
+      <Parameter Name="estciv_UsuarioModificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_RecuperarContrasenia">
+      <Parameter Name="usu_Usuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_CargarTablaPedidos" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaPedidos_Result)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <EntitySet Name="tbArticulos" EntityType="dbPedidosEncargosModel.tbArticulos" />
     <EntitySet Name="tbCargos" EntityType="dbPedidosEncargosModel.tbCargos" />
     <EntitySet Name="tbCategoria" EntityType="dbPedidosEncargosModel.tbCategoria" />
@@ -284,6 +316,7 @@
     <EntitySet Name="tbUsuarios" EntityType="dbPedidosEncargosModel.tbUsuarios" />
     <EntitySet Name="VW_ClientesIndex" EntityType="dbPedidosEncargosModel.VW_ClientesIndex" />
     <EntitySet Name="VW_DireccionesIndex" EntityType="dbPedidosEncargosModel.VW_DireccionesIndex" />
+    <EntitySet Name="VW_PedidoDetalles" EntityType="dbPedidosEncargosModel.VW_PedidoDetalles" />
     <EntitySet Name="VW_UsuariosIndex" EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" />
     <AssociationSet Name="FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id">
       <End Role="tbUsuarios" EntitySet="tbUsuarios" />
@@ -489,15 +522,6 @@
       <End Role="tbUsuarios" EntitySet="tbUsuarios" />
       <End Role="tbUsuarios1" EntitySet="tbUsuarios" />
     </AssociationSet>
-    <FunctionImport Name="UDP_tbArticulos_Return" ReturnType="Collection(Decimal)">
-      <Parameter Name="art_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_CargarTablaDirecciones" ReturnType="Collection(dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result)">
-      <Parameter Name="cli_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_DireccionBorrada" ReturnType="Collection(Int32)">
-      <Parameter Name="dire_ID" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Login_Result">
     <Property Type="Int32" Name="usu_Id" Nullable="false" />
@@ -593,6 +617,70 @@
   <ComplexType Name="UDP_CargarMunicipios_Result">
     <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
     <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="UDP_CargarTablaDirecciones_Result">
+    <Property Type="Int32" Name="cli_Id" Nullable="false" />
+    <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
+    <Property Type="Int32" Name="dire_ID" Nullable="false" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+    <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_CargarTablaDirecciones1_Result">
+    <Property Type="Int32" Name="cli_Id" Nullable="false" />
+    <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
+    <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
+    <Property Type="Int32" Name="dire_ID" Nullable="false" />
+    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
+    <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_CargarTablaPedidos_Result">
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="String" Name="pede_Cantidad" Nullable="false" MaxLength="200" />
+    <Property Type="Decimal" Name="pede_Precio" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="pede_FechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pede_UsuarioCreacion" Nullable="false" />
+    <Property Type="DateTime" Name="pede_FechaModificacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="pede_UsuarioModificacion" Nullable="true" />
+    <Property Type="Boolean" Name="pede_Estado" Nullable="false" />
   </ComplexType>
   <EntityType Name="tbArticulos">
     <Key>
@@ -1015,6 +1103,24 @@
     <Property Name="dire_FechaModificacion" Type="DateTime" Precision="3" />
     <Property Name="dire_UsuarioModificacion" Type="Int32" />
     <Property Name="dire_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_PedidoDetalles">
+    <Key>
+      <PropertyRef Name="ped_Id" />
+      <PropertyRef Name="pede_Cantidad" />
+      <PropertyRef Name="pede_Precio" />
+      <PropertyRef Name="pede_FechaCreacion" />
+      <PropertyRef Name="pede_UsuarioCreacion" />
+      <PropertyRef Name="pede_Estado" />
+    </Key>
+    <Property Name="ped_Id" Type="Int32" Nullable="false" />
+    <Property Name="pede_Cantidad" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="pede_Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="pede_FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pede_UsuarioCreacion" Type="Int32" Nullable="false" />
+    <Property Name="pede_FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="pede_UsuarioModificacion" Type="Int32" />
+    <Property Name="pede_Estado" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="VW_UsuariosIndex">
     <Key>
@@ -1656,31 +1762,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_CargarTablaDirecciones_Result">
-    <Property Type="Int32" Name="cli_Id" Nullable="false" />
-    <Property Type="String" Name="cli_Nombre" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="cli_Apellido" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="cli_Telefono" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="cli_CorreoElectronico" Nullable="false" MaxLength="100" />
-    <Property Type="Decimal" Name="cli_saldo" Nullable="false" Precision="16" Scale="2" />
-    <Property Type="Decimal" Name="cli_LimiteCredito" Nullable="false" Precision="16" Scale="2" />
-    <Property Type="Decimal" Name="cli_Descuento" Nullable="false" Precision="16" Scale="2" />
-    <Property Type="DateTime" Name="cli_FechaCreacion" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="cli_UsuarioCreacion" Nullable="false" />
-    <Property Type="DateTime" Name="cli_FechaModificacion" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="cli_UsuarioModificacion" Nullable="true" />
-    <Property Type="Boolean" Name="cli_Estado" Nullable="false" />
-    <Property Type="Int32" Name="dire_ID" Nullable="false" />
-    <Property Type="String" Name="mun_Id" Nullable="false" MaxLength="4" />
-    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="dep_Id" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="dire_Calle" Nullable="false" MaxLength="500" />
-    <Property Type="String" Name="dire_Comuna" Nullable="false" MaxLength="500" />
-    <Property Type="DateTime" Name="dire_FechaCreacion" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="dire_UsuarioCreacion" Nullable="false" />
-    <Property Type="DateTime" Name="dire_FechaModificacion" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="dire_UsuarioModificacion" Nullable="true" />
-    <Property Type="Boolean" Name="dire_Estado" Nullable="false" />
-  </ComplexType>
 </Schema>

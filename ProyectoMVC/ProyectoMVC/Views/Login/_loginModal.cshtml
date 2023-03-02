@@ -2,21 +2,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Recuperar contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="Create" method="POST">
-                    <h7 style="color:red">@Html.ValidationMessage("Validacion") </h7>
+                <form action="@Url.Action("Recuperar","Login")" method="POST">
+                    <h7 style="color:red">@Html.ValidationMessage("RValidacion") </h7>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" name="txtUsuario" placeholder="Usuario">
+                        <input type="text" class="form-control" id="floatingInput" name="txtRUsuario" placeholder="Usuario" required>
                         <label for="floatingInput">Usuario</label>
-                        <h7 style="color:red">@Html.ValidationMessage("validarUsuario") </h7>
+                        <h7 style="color:red">@Html.ValidationMessage("RvalidarUsuario") </h7>
                     </div>
                     <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="floatingPassword" name="txtClave" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="floatingPassword" name="txtRClave" placeholder="Contraseña" required>
                         <label for="floatingPassword">Nueva Contraseña</label>
-                        <h7 style="color:red">@Html.ValidationMessage("validarClave") </h7>
+                        <h7 style="color:red">@Html.ValidationMessage("RvalidarClave") </h7>
                     </div>
 
                 </form>

@@ -82,6 +82,8 @@ namespace ProyectoMVC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.art_Id = new SelectList(db.tbArticulos, "art_Id", "art_Nombre");
             ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre", tbPedidos.cli_Id);
             ViewBag.dire_id = new SelectList(db.tbDirecciones, "dire_ID", "dire_Calle", tbPedidos.dire_id);
             ViewBag.emp_id = new SelectList(db.tbEmpleados, "emp_Id", "emp_Nombre", tbPedidos.emp_id);
@@ -95,21 +97,20 @@ namespace ProyectoMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ped_Id,cli_Id,ped_Fecha,dire_id,emp_id,metpago_Id,ped_FechaCreacion,ped_UsuarioCreacion,ped_FechaModificacion,ped_UsuarioModificacion,ped_Estado")] tbPedidos tbPedidos)
+        public ActionResult Edit(string ped_id, string cli_Id, string dire_id, string emp_id, string metpago_Id)
         {
-            if (ModelState.IsValid)
+            if (!String.IsNullOrEmpty(ped_id) || !String.IsNullOrEmpty(cli_Id) || !String.IsNullOrEmpty(dire_id) || !String.IsNullOrEmpty(emp_id) || !String.IsNullOrEmpty(metpago_Id))
             {
-                db.UDP_tbpedidos_Update(tbPedidos.ped_Id, tbPedidos.cli_Id, tbPedidos.dire_id, tbPedidos.emp_id, tbPedidos.metpago_Id, 1);
-                return RedirectToAction("Index");
+
+                db.UDP_tbpedidos_Update(Convert.ToInt32(ped_id), Convert.ToInt32(cli_Id), Convert.ToInt32(dire_id), Convert.ToInt32(emp_id), Convert.ToInt32(metpago_Id), 1);
+                return View();
             }
-            ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre", tbPedidos.cli_Id);
-            ViewBag.dire_id = new SelectList(db.tbDirecciones, "dire_ID", "dire_Calle", tbPedidos.dire_id);
-            ViewBag.emp_id = new SelectList(db.tbEmpleados, "emp_Id", "emp_Nombre", tbPedidos.emp_id);
-            ViewBag.metpago_Id = new SelectList(db.tbMetodoPago, "metpago_Id", "metpago_Descripcion", tbPedidos.metpago_Id);
-            ViewBag.ped_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbPedidos.ped_UsuarioCreacion);
-            ViewBag.ped_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbPedidos.ped_UsuarioModificacion);
-            return View(tbPedidos);
+            else
+            {
+
+            }
+            return View();
+
         }
 
 
@@ -161,12 +162,36 @@ namespace ProyectoMVC.Controllers
             return View();
         }
 
+        public ActionResult CreateDetalles(string art_Id, string pede_Precio)
+        {
+            var tbpedidos = db.tbPedidos.ToList();
+            int valMax = tbpedidos.Max(x => x.ped_Id);
+
+            db.UDP_PedidoDetalle_Insert(valMax, int.Parse( art_Id), int.Parse(pede_Precio), 1);
+            return View();
+        }
+
+        public ActionResult EditDetalles(string art_Id, string pede_Precio)
+        {
+            
+            //db.UDP_PedidoDetalle_Update();
+            //db.UDP_PedidoDetalle_Insert(valMax, int.Parse(art_Id), int.Parse(pede_Precio), 1);
+            return View();
+        }
+
         //Cargos Los Articulos
         public JsonResult CargarArticulos(int art_Id)
         {
             var articulo = db.UDP_tbArticulos_Return(art_Id).ToList();
             return Json(articulo, JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult CargarPedidoDetalles(int ped_Id)
+        //{
+        //    var tbPedidosDetalles = db.vw
+        //    return Json(tbPedidosDetalles, JsonRequestBehavior.AllowGet);
+
+        //}
 
         protected override void Dispose(bool disposing)
         {
