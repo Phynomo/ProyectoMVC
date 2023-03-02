@@ -2119,6 +2119,24 @@ GO
 
 
 GO
+<<<<<<< HEAD
+=======
+
+GO
+	CREATE or alter PROCEDURE UDP_tbArticulos_Return
+	@art_id  VARCHAR(4)
+	AS
+	BEGIN
+
+	SELECT art_Precio 
+	FROM tbArticulos 
+	WHERE art_Id =  @art_id
+
+	END
+	GO
+
+GO
+>>>>>>> 82430f02af82a073bf0e7989cb4d6151f2c147da
 CREATE OR ALTER    PROCEDURE UDP_RecuperarContrasenia
 @usu_Usuario VARCHAR(100),
 @usu_Contrasenia NVARCHAR(MAX)
@@ -2135,4 +2153,8 @@ UPDATE [dbo].[tbUsuarios]
 
 end
 
+<<<<<<< HEAD
 GO
+=======
+GO
+>>>>>>> 82430f02af82a073bf0e7989cb4d6151f2c147da
