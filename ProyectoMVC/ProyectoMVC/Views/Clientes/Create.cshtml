@@ -28,9 +28,6 @@
             @Html.EditorFor(model => model.cli_Nombre, new { htmlAttributes = new { @class = "form-control" } })
             <label class="control-label col" id="lblNombreValidacion" style="color:red;" hidden>El siguiente campo es requerido: Nombre</label>
         </div>
-    </div>
-
-    <div class="row form-group pt-2">
         <div class="col">
             <label class="control-label col" id="lblApellido">Apellido</label>
             @Html.EditorFor(model => model.cli_Apellido, new { htmlAttributes = new { @class = "form-control" } })
@@ -44,9 +41,6 @@
             @Html.EditorFor(model => model.cli_Telefono, new { htmlAttributes = new { @class = "form-control" } })
             <label class="control-label col" id="lblTelefonoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Telefono</label>
         </div>
-    </div>
-
-    <div class="row form-group pt-2">
         <div class="col">
             <label class="control-label col" id="lblCorreoElectronico">Correo Electronico</label>
             @Html.EditorFor(model => model.cli_CorreoElectronico, new { htmlAttributes = new { @class = "form-control" } })
@@ -60,9 +54,6 @@
             @Html.EditorFor(model => model.cli_saldo, new { htmlAttributes = new { @class = "form-control" } })
             <label class="control-label col" id="lblSaldoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Saldo</label>
         </div>
-    </div>
-
-    <div class="row form-group pt-2">
         <div class="col">
             <label class="control-label col" id="lblLimiteCrediticio">Limite Crediticio</label>
             @Html.EditorFor(model => model.cli_LimiteCredito, new { htmlAttributes = new { @class = "form-control" } })
@@ -75,6 +66,8 @@
             <label class="control-label col" id="lblDescuento">Descuento</label>
             @Html.EditorFor(model => model.cli_Descuento, new { htmlAttributes = new { @class = "form-control" } })
             <label class="control-label col" id="lblDescuentoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Descuento</label>
+        </div>
+        <div class="col">
         </div>
     </div>
 
@@ -106,9 +99,6 @@
                 <label class="control-label col">Calle</label>
                 <input type="text" id="dire_calle"  class="form-control"/>
             </div>
-        </div>
-
-        <div class="row form-group pt-2">
             <div class="col">
                 <label class="control-label col">Comuna</label>
                 <input type="text" id="dire_comuna"  class="form-control"/>
@@ -171,7 +161,7 @@
             $("#cli_CorreoElectronico").fadeOut();
             $("#lblSaldo").fadeOut();
             $("#cli_saldo").fadeOut();
-            $("#lblLimiteCredito").fadeOut();
+            $("#lblLimiteCrediticio").fadeOut();
             $("#cli_LimiteCredito").fadeOut();
             $("#lblDescuento").fadeOut();
             $("#cli_Descuento").fadeOut();
@@ -235,7 +225,7 @@
                 url: "/Clientes/Crea2Dire",
                 data: { dire_calle: dire_calle, dire_comuna: dire_comuna, mun_Id: mun_Id},
                 success: function (response) {
-
+                    window.location = "/Clientes/Index";
                 },
                 error: function (error) {
 

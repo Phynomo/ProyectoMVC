@@ -34,7 +34,7 @@ namespace ProyectoMVC.Controllers
             }
             else
             {
-                var login = db.UDP_Login(txtUsuario.ToString(), txtClave.ToString()).ToList();
+                var login = db.UDP_LoginDefinitivo100RealPAPA(txtUsuario.ToString(), txtClave.ToString()).ToList();
 
 
                 if (login.Count() > 0)
@@ -44,8 +44,8 @@ namespace ProyectoMVC.Controllers
                     {
                         Session["Nombre"] = item.emp_Nombre.ToString();
                         Session["UsuarioId"] = item.usu_Id.ToString();
-                        //Session["rol"] = item.rol_Id.ToString();
-                        //Session["rolNombre"] = item.rol_Nombre.ToString();
+                        Session["rol"] = item.rol_Id.ToString();
+                        Session["rolNombre"] = item.rol_Nombre.ToString();
                     }
 
                     return RedirectToAction("Index", "Home");

@@ -22,7 +22,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_PedidoDetalle_Delete" FunctionName="dbPedidosEncargosModel.Store.UDP_PedidoDetalle_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_PedidoDetalle_Insert" FunctionName="dbPedidosEncargosModel.Store.UDP_PedidoDetalle_Insert" />
-    <FunctionImportMapping FunctionImportName="UDP_PedidoDetalle_Update" FunctionName="dbPedidosEncargosModel.Store.UDP_PedidoDetalle_Update" />
     <FunctionImportMapping FunctionImportName="UDP_tbArticulo_Update" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulo_Update" />
     <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Delete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Insert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Insert" />
@@ -168,55 +167,7 @@
     <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosInsert" />
     <FunctionImportMapping FunctionImportName="UDP_tbMunicipiosUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbMunicipiosUpdate" />
     <FunctionImportMapping FunctionImportName="UDP_tbArticulos_Return" FunctionName="dbPedidosEncargosModel.Store.UDP_tbArticulos_Return" />
-    <FunctionImportMapping FunctionImportName="UDP_CargarTablaDirecciones1" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaDirecciones">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaDirecciones1_Result">
-          <ScalarProperty Name="cli_Id" ColumnName="cli_Id" />
-          <ScalarProperty Name="cli_Nombre" ColumnName="cli_Nombre" />
-          <ScalarProperty Name="cli_Apellido" ColumnName="cli_Apellido" />
-          <ScalarProperty Name="cli_Telefono" ColumnName="cli_Telefono" />
-          <ScalarProperty Name="cli_CorreoElectronico" ColumnName="cli_CorreoElectronico" />
-          <ScalarProperty Name="cli_saldo" ColumnName="cli_saldo" />
-          <ScalarProperty Name="cli_LimiteCredito" ColumnName="cli_LimiteCredito" />
-          <ScalarProperty Name="cli_Descuento" ColumnName="cli_Descuento" />
-          <ScalarProperty Name="cli_FechaCreacion" ColumnName="cli_FechaCreacion" />
-          <ScalarProperty Name="cli_UsuarioCreacion" ColumnName="cli_UsuarioCreacion" />
-          <ScalarProperty Name="cli_FechaModificacion" ColumnName="cli_FechaModificacion" />
-          <ScalarProperty Name="cli_UsuarioModificacion" ColumnName="cli_UsuarioModificacion" />
-          <ScalarProperty Name="cli_Estado" ColumnName="cli_Estado" />
-          <ScalarProperty Name="dire_ID" ColumnName="dire_ID" />
-          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
-          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-          <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
-          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
-          <ScalarProperty Name="dire_Calle" ColumnName="dire_Calle" />
-          <ScalarProperty Name="dire_Comuna" ColumnName="dire_Comuna" />
-          <ScalarProperty Name="dire_FechaCreacion" ColumnName="dire_FechaCreacion" />
-          <ScalarProperty Name="dire_UsuarioCreacion" ColumnName="dire_UsuarioCreacion" />
-          <ScalarProperty Name="dire_FechaModificacion" ColumnName="dire_FechaModificacion" />
-          <ScalarProperty Name="dire_UsuarioModificacion" ColumnName="dire_UsuarioModificacion" />
-          <ScalarProperty Name="dire_Estado" ColumnName="dire_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
-    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
-    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate1" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
     <FunctionImportMapping FunctionImportName="UDP_RecuperarContrasenia" FunctionName="dbPedidosEncargosModel.Store.UDP_RecuperarContrasenia" />
-    <FunctionImportMapping FunctionImportName="UDP_CargarTablaPedidos" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaPedidos">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaPedidos_Result">
-          <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
-          <ScalarProperty Name="pede_Cantidad" ColumnName="pede_Cantidad" />
-          <ScalarProperty Name="pede_Precio" ColumnName="pede_Precio" />
-          <ScalarProperty Name="pede_FechaCreacion" ColumnName="pede_FechaCreacion" />
-          <ScalarProperty Name="pede_UsuarioCreacion" ColumnName="pede_UsuarioCreacion" />
-          <ScalarProperty Name="pede_FechaModificacion" ColumnName="pede_FechaModificacion" />
-          <ScalarProperty Name="pede_UsuarioModificacion" ColumnName="pede_UsuarioModificacion" />
-          <ScalarProperty Name="pede_Estado" ColumnName="pede_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <EntitySetMapping Name="tbArticulos">
       <EntityTypeMapping TypeName="dbPedidosEncargosModel.tbArticulos">
         <MappingFragment StoreEntitySet="tbArticulos">
@@ -559,5 +510,90 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_CargarTablaDirecciones" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaDirecciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaDirecciones_Result1">
+          <ScalarProperty Name="cli_Id" ColumnName="cli_Id" />
+          <ScalarProperty Name="cli_Nombre" ColumnName="cli_Nombre" />
+          <ScalarProperty Name="cli_Apellido" ColumnName="cli_Apellido" />
+          <ScalarProperty Name="cli_Telefono" ColumnName="cli_Telefono" />
+          <ScalarProperty Name="cli_CorreoElectronico" ColumnName="cli_CorreoElectronico" />
+          <ScalarProperty Name="cli_saldo" ColumnName="cli_saldo" />
+          <ScalarProperty Name="cli_LimiteCredito" ColumnName="cli_LimiteCredito" />
+          <ScalarProperty Name="cli_Descuento" ColumnName="cli_Descuento" />
+          <ScalarProperty Name="cli_FechaCreacion" ColumnName="cli_FechaCreacion" />
+          <ScalarProperty Name="cli_UsuarioCreacion" ColumnName="cli_UsuarioCreacion" />
+          <ScalarProperty Name="cli_FechaModificacion" ColumnName="cli_FechaModificacion" />
+          <ScalarProperty Name="cli_UsuarioModificacion" ColumnName="cli_UsuarioModificacion" />
+          <ScalarProperty Name="cli_Estado" ColumnName="cli_Estado" />
+          <ScalarProperty Name="dire_ID" ColumnName="dire_ID" />
+          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+          <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
+          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+          <ScalarProperty Name="dire_Calle" ColumnName="dire_Calle" />
+          <ScalarProperty Name="dire_Comuna" ColumnName="dire_Comuna" />
+          <ScalarProperty Name="dire_FechaCreacion" ColumnName="dire_FechaCreacion" />
+          <ScalarProperty Name="dire_UsuarioCreacion" ColumnName="dire_UsuarioCreacion" />
+          <ScalarProperty Name="dire_FechaModificacion" ColumnName="dire_FechaModificacion" />
+          <ScalarProperty Name="dire_UsuarioModificacion" ColumnName="dire_UsuarioModificacion" />
+          <ScalarProperty Name="dire_Estado" ColumnName="dire_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_LoginDefinitivo100RealPAPA" FunctionName="dbPedidosEncargosModel.Store.UDP_LoginDefinitivo100RealPAPA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_LoginDefinitivo100RealPAPA_Result">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_Usuario" ColumnName="usu_Usuario" />
+          <ScalarProperty Name="usu_Contrasenia" ColumnName="usu_Contrasenia" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombre" ColumnName="emp_Nombre" />
+          <ScalarProperty Name="usu_UsuarioCreacion" ColumnName="usu_UsuarioCreacion" />
+          <ScalarProperty Name="usu_FechaCreacion" ColumnName="usu_FechaCreacion" />
+          <ScalarProperty Name="usu_UsuarioModificacion" ColumnName="usu_UsuarioModificacion" />
+          <ScalarProperty Name="usu_FechaModificacion" ColumnName="usu_FechaModificacion" />
+          <ScalarProperty Name="usu_Estado" ColumnName="usu_Estado" />
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rol_Nombre" ColumnName="rol_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_PedidoDetalle_Update" FunctionName="dbPedidosEncargosModel.Store.UDP_PedidoDetalle_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_CargarTablaPedidos" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTablaPedidos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTablaPedidos_Result2">
+          <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+          <ScalarProperty Name="art_Nombre" ColumnName="art_Nombre" />
+          <ScalarProperty Name="pede_Cantidad" ColumnName="pede_Cantidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="pede_Id" ColumnName="pede_Id" />
+          <ScalarProperty Name="pede_Precio" ColumnName="pede_Precio" />
+          <ScalarProperty Name="pede_FechaCreacion" ColumnName="pede_FechaCreacion" />
+          <ScalarProperty Name="pede_UsuarioCreacion" ColumnName="pede_UsuarioCreacion" />
+          <ScalarProperty Name="pede_FechaModificacion" ColumnName="pede_FechaModificacion" />
+          <ScalarProperty Name="pede_UsuarioModificacion" ColumnName="pede_UsuarioModificacion" />
+          <ScalarProperty Name="pede_Estado" ColumnName="pede_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesInsert" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesInsert" />
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesUpdate" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesUpdate" />
+    <FunctionImportMapping FunctionImportName="UDP_tbEstadoCivilesDelete" FunctionName="dbPedidosEncargosModel.Store.UDP_tbEstadoCivilesDelete" />
+    <FunctionImportMapping FunctionImportName="UDP_CargarTodoMunicipio" FunctionName="dbPedidosEncargosModel.Store.UDP_CargarTodoMunicipio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbPedidosEncargosModel.UDP_CargarTodoMunicipio_Result1">
+          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+          <ScalarProperty Name="dep_Id" ColumnName="dep_Id" />
+          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+          <ScalarProperty Name="mun_FechaCreacion" ColumnName="mun_FechaCreacion" />
+          <ScalarProperty Name="mun_UsuarioCreacion" ColumnName="mun_UsuarioCreacion" />
+          <ScalarProperty Name="mun_FechaModificacion" ColumnName="mun_FechaModificacion" />
+          <ScalarProperty Name="mun_UsuarioModificacion" ColumnName="mun_UsuarioModificacion" />
+          <ScalarProperty Name="mun_Estado" ColumnName="mun_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

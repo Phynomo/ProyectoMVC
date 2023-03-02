@@ -120,31 +120,6 @@ namespace ProyectoMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Pedidos/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    tbPedidos tbPedidos = db.tbPedidos.Find(id);
-        //    if (tbPedidos == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tbPedidos);
-        //}
-
-        //// POST: Pedidos/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    tbPedidos tbPedidos = db.tbPedidos.Find(id);
-        //    db.tbPedidos.Remove(tbPedidos);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         public ActionResult CreateDetalle(string cli_Id, string dire_id, string emp_id, string metpago_Id)
         {
@@ -171,6 +146,13 @@ namespace ProyectoMVC.Controllers
             return View();
         }
 
+        public ActionResult CreateDetalles2(string ped_Id, string art_Id, string pede_Precio)
+        {
+
+            db.UDP_PedidoDetalle_Insert(int.Parse(ped_Id), int.Parse(art_Id), int.Parse(pede_Precio), 1);
+            return View();
+        }
+
         public ActionResult EditDetalles(string art_Id, string pede_Precio)
         {
             
@@ -186,13 +168,15 @@ namespace ProyectoMVC.Controllers
             return Json(articulo, JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult CargarPedidoDetalles(int ped_Id)
-        //{
-        //    var tbPedidosDetalles = db.vw
-        //    return Json(tbPedidosDetalles, JsonRequestBehavior.AllowGet);
 
-        //}
+        public JsonResult CargarPedidoDetalles(int ped_Id)
+        {
+            var tbPedidosDetalles = db.UDP_CargarTablaPedidos(ped_Id).ToList();
+            return Json(tbPedidosDetalles, JsonRequestBehavior.AllowGet);
 
+        }
+
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

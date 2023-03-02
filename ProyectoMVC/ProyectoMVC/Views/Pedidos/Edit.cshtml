@@ -69,8 +69,65 @@
 
         </div>
         <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
+        <button id="MostrarInsert" class="btn-secondary">Ingresar Nuevo Articulo</button>
+        <button id="ocultar" class="btn-secondary">Cerrar</button>
     </div>
 </div>
+
+
+<div class="container" id="InsertarNuevo">
+    <div class="card">
+        <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
+        <div class="card-body">
+
+            <div class="row form-group pt-2">
+                <div class="col">
+                    <label>Producto</label>
+                    @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
+
+                </div>
+                <div class="col">
+                    Precio del producto
+
+                    <input id="pede_precio" name="pede_precio" class="form-control" readonly />
+
+                </div>
+            </div>
+
+            <div class="row form-group pt-2">
+                <div class="col">
+                    <label>Cantidad </label>
+
+                    <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
+                    <label id="stockValid" hidden>Ingrese La Cantidad</label>
+
+                </div>
+                <div class="col">
+
+
+                </div>
+            </div>
+
+            <div class="row form-group pt-2">
+
+                <div class="col">
+                    <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnEditar" value="Agregar" />
+                </div>
+                <div class="col">
+                    <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
+                </div>
+                <div class="col">
+                    <label>Total:</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="txttotal" class="form-control" readonly />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <table id="example" class="dataTable display compact stripe table-dark">
     <thead>
@@ -78,119 +135,51 @@
 
             <td>Numero de Pedido</td>
             <td>Nombre de Articulo</td>
+            <td>Cantidad del Articulo</td>
             <td>Precio del Articulo</td>
-            <td>Metodo de Pago</td>
 
         </tr>
     </thead>
     <tbody id="tbodyDirecciones"></tbody>
 </table>
 
-<script>
-    $(document).ready(function () {
-        var ped_Id = $("#ped_Id").val();
 
-        $.ajax({
-            type: 'POST',
-            url: '/Pedidos/CargarPedidoDetalles',
-            data: { ped_Id: ped_Id },
-            success: function (result) {
-                console.log(result);
-                var cadena = "";
-                $.each(result, function (index, item) {
-                    cadena += "<tr><td>" + item.ped_Id + "</td><td>" + item.art_Nombre + "</td><td>" + item.art_Stock + "</td><td>" + item.metpago_Id + "</td><td>" + "<a href = '/Direcciones/Edit/" + item.dire_ID + "' class='btn btn-block btn-warning bi bi-pencil-fill' ></a> " + "</td><td>" + " <button onclick='hola(" + item.ped_Id + ")' id='btn-delete' class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='" + item.ped_Id + "'>" + item.ped_Id + "</button> " + "</td></tr>";
-                    console.log(cadena);
-                });
-                $("#tbodyDirecciones").append(cadena);
-
-            },
-            error: function (error) {
-            }
-        });
-    });
-
-
-</script>
+<div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
+                <button type="button" onclick="cerrar()" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de que desea eliminar este elemento?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="cerrar()">Cancelar</button>
+                <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    //$(document).ready(function () {
-    $("#btnInsertarVenta").click(function () {
-
-        var PedidoId = $("#ped_Id").val();
-        var cliente = $("#cli_Id").val();
-        var FechaPedido = $("#ped_Fecha").val();
-        var Direccion = $("#dire_id").val();
-        var Empleado = $("#emp_id").val();
-        var metodopagoId = $("#metpago_Id").val();
-
-        $("#ped_Id").prop("disabled", true);
-        $("#cli_Id").prop("disabled", true);
-        $("#ped_Fecha").prop("disabled", true);
-        $("#dire_id").prop("disabled", true);
-        $("#emp_id").prop("disabled", true);
-        $("#metpago_Id").prop("disabled", true);
-
-        $(".containerOculto").show();
-        $(".btnInsertarVenta").fadeOut();
-
-        $.ajax({
-            type: "POST",
-            url: "/Pedidos/Edit",
-            data: {  ped_Id: PedidoId,  cli_Id: cliente, ped_Fecha: FechaPedido, dire_id: Direccion, emp_id: Empleado, metpago_Id: metodopagoId },
-            success: function (response) {
-
-                
-
-            },
-            error: function (error) {
-
-            }
-        });
-    });
-    //});
-</script>
-
-@*Trae los clientes*@
-<script>
-
-    $("#pede_precio").val(0);
-
-    $("#art_Id").change(function () {
-        var art_Id = $("#art_Id").val();
-        $.ajax({
-            url: "/Pedidos/CargarArticulos",
-            method: "POST",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ art_Id: art_Id }),
-            success: function (data) {
-                console.log(data);
-                $("#pede_precio").empty();
-                $("#pede_precio").val(data);
-            }
-        })
-    });
+    //Funciones del modal
+    function DeleteModal() {
+        $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
+    }
+    function cerrar() {
+        $("#confirm-delete-modal").modal("hide");
+    }
+    function hola(id) {
+        $('#confirm-delete-modal').modal('show')
+        $('#btn-confirm-delete').attr('href', '/PedidosDetalles/Delete/' + id + '00011001001110102100101010011010101' + $("#ped_Id").val());
+    }
+    //Funciones del modal
 </script>
 
 
-<script>
-    $(document).ready(function () {
-        $("#tabla1").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
-            }
-        });
-    });
-</script>
 
-@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy',
-            autoclose: true,
-            todayHighlight: true
-        });
-    });
 
-</script>*@
+    <script src="~/Scripts/PedidosEditar.js"></script>

@@ -17,7 +17,7 @@ namespace ProyectoMVC.Controllers
         // GET: EstadosCiviles
         public ActionResult Index()
         {
-            var tbEstadosCiviles = db.tbEstadosCiviles.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
+            var tbEstadosCiviles = db.tbEstadosCiviles.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1).Where(x => x.estciv_Estado);
             return View(tbEstadosCiviles.ToList());
         }
 
@@ -64,7 +64,7 @@ namespace ProyectoMVC.Controllers
 
             if (tbEstadosCiviles.estciv_Nombre != "")
             {
-                //db.UDP_tbEstadoCivilesUpdate(tbEstadosCiviles.estciv_Id, tbEstadosCiviles.estciv_Nombre, 1);
+                db.UDP_tbEstadoCivilesUpdate(tbEstadosCiviles.estciv_Id, tbEstadosCiviles.estciv_Nombre, 1);
                 db.SaveChanges();
                 return RedirectToAction("Index", "EstadosCiviles");
             }

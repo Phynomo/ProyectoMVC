@@ -134,7 +134,6 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ dep_Id: dep_Id }),
             success: function (data) {
-                console.log(data);
                 $("#mun_Id").empty();
                 $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
                 $.each(data, function (i, value) {
@@ -143,4 +142,30 @@
             }
         })
     });
+
+
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "/Empleados/CargarTodoMunicipio",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ }),
+            success: function (data) {
+                $("#mun_Id").empty();
+                $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
+                $.each(data, function (i, value) {
+                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre + "</option>")
+                })
+            }
+        })
+    });
+
+
 </script>

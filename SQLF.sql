@@ -1311,9 +1311,8 @@ GO
 
 --Procedimiento Almacenado Update PedidosDetalle
 GO
-CREATE PROCEDURE UDP_PedidoDetalle_Update
+CREATE or alter PROCEDURE UDP_PedidoDetalle_Update
     @pede_Id INT,
-    @ped_Id INT,
     @art_Id INT,
     @pede_Cantidad INT,
     @pede_Precio DECIMAL(18, 2),
@@ -1323,8 +1322,7 @@ BEGIN
     SET NOCOUNT ON;
     
     UPDATE tbPedidosDetalles
-    SET ped_Id = @ped_Id,
-        art_Id = @art_Id,
+    SET art_Id = @art_Id,
         pede_Cantidad = @pede_Cantidad,
         pede_Precio = @pede_Precio,
         pede_FechaModificacion = GETDATE(),
@@ -1334,7 +1332,7 @@ END
 
 --Procedimiento Almacenado Delete PedidosDetalle
 GO
-CREATE PROCEDURE UDP_PedidoDetalle_Delete (
+CREATE OR ALTER PROCEDURE UDP_PedidoDetalle_Delete (
     @pede_Id INT, @pede_UsuarioModificacion INT
 )
 AS
@@ -1381,6 +1379,37 @@ SELECT [usu_Id]
 END
 GO
 
+
+--Login
+GO
+CREATE OR ALTER PROCEDURE UDP_LoginDefinitivo100RealPAPA
+	@usu_Usuario Nvarchar(100),
+	@usu_Contrasenia Nvarchar(Max)
+AS
+BEGIN
+
+Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@usu_Contrasenia))
+
+SELECT [usu_Id]
+      ,[usu_Usuario]
+      ,[usu_Contrasenia]
+      ,T1.[emp_Id]
+	  ,t2.emp_Nombre + ' ' + t2.emp_Apellido as emp_Nombre 
+      ,[usu_UsuarioCreacion]
+      ,[usu_FechaCreacion]
+      ,[usu_UsuarioModificacion]
+      ,[usu_FechaModificacion]
+      ,[usu_Estado]
+	  ,t1.[rol_id] as rol_Id
+	  ,t3.[rol_Nombre] as rol_Nombre
+  FROM [tbUsuarios] T1 INNER JOIN [dbo].[tbEmpleados] T2
+  ON T1.emp_Id = T2.emp_Id INNER JOIN [dbo].[tbRoles] T3
+  ON T3.rol_Id = t1.rol_Id
+  WHERE t1.usu_Contrasenia = @Password 
+  AND t1.usu_Usuario = @usu_Usuario
+
+END
+GO
 
 
 -------------------------------------------------------------------------------------
@@ -1920,7 +1949,7 @@ SELECT T2.cli_Id
   ON t1.cli_Id = T2.cli_Id INNER JOIN [dbo].[tbMunicipios] T3
   ON t3.mun_Id = t1.mun_Id INNER JOIN [dbo].[tbDepartamentos] T4
   ON t4.dep_Id = t3.dep_Id
-  WHERE T2.cli_Id = 1
+  WHERE T2.cli_Estado = 1
   GO
 
 CREATE PROCEDURE UDP_CargarMunicipios
@@ -2019,33 +2048,10 @@ CREATE OR ALTER PROCEDURE UDP_CargarTablaDirecciones
 as
 Begin
 
-select * from VW_DireccionesIndex WHERE cli_Id = @cli_Id and dire_Estado = 1
+select * from VW_DireccionesIndex WHERE cli_Id = @cli_Id AND dire_Estado = 1
 
 ENd
 GO
-
-
-select * from tbPedidosDetalles
-
-go
-create or alter View VW_PedidoDetalles
-as 
-select [ped_Id], 
-t2.art_Nombre
-[pede_Cantidad], 
-[pede_Precio],
-[pede_FechaCreacion], 
-[pede_UsuarioCreacion],
-[pede_FechaModificacion], 
-[pede_UsuarioModificacion], 
-[pede_Estado]
-from tbPedidosDetalles t1 inner join  tbArticulos t2
-ON t1.art_Id = t2.art_Id
-
-
-
-
-
 
 GO
 CREATE OR ALTER PROCEDURE UDP_CargarTablaPedidos
@@ -2053,11 +2059,25 @@ CREATE OR ALTER PROCEDURE UDP_CargarTablaPedidos
 as
 Begin
 
-select * from VW_PedidoDetalles WHERE ped_Id = @ped_Id and  pede_Estado = 1
+select [ped_Id], 
+t2.art_Nombre,
+t2.art_Nombre [pede_Cantidad], 
+t1.pede_Cantidad AS cantidad,
+t1.pede_Id,
+[pede_Precio],
+[pede_FechaCreacion], 
+[pede_UsuarioCreacion],
+[pede_FechaModificacion], 
+t1.pede_Cantidad [pede_UsuarioModificacion], 
+[pede_Estado]
+from tbPedidosDetalles t1 inner join  tbArticulos t2
+ON t1.art_Id = t2.art_Id
+WHERE ped_Id = @ped_Id and  pede_Estado = 1
 
 END
 
 
+EXEC UDP_CargarTablaPedidos '5'
 GO
 
 
@@ -2150,4 +2170,16 @@ UPDATE [dbo].[tbUsuarios]
  WHERE usu_Usuario = @usu_Usuario
 
 
-end
+END
+GO
+
+CREATE OR ALTER    PROCEDURE UDP_CargarTodoMunicipio
+
+as
+begin
+
+SELECT mun_Id, mun_Nombre, t1.dep_Id, T2.dep_Nombre, mun_FechaCreacion, mun_UsuarioCreacion, mun_FechaModificacion, mun_UsuarioModificacion, mun_Estado FROM tbMunicipios T1 INNER JOIN tbDepartamentos T2 ON t1.dep_Id = t2.dep_Id AND t1.mun_Estado = 1
+
+END
+
+GO

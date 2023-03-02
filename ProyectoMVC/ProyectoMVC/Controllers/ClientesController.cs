@@ -17,7 +17,7 @@ namespace ProyectoMVC.Controllers
         // GET: Clientes
         public ActionResult Index()
         {
-            var tbClientes = db.tbClientes.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
+            var tbClientes = db.tbClientes.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1).Where(x => x.cli_Estado);
             return View(tbClientes.ToList());
         }
 
@@ -77,8 +77,17 @@ namespace ProyectoMVC.Controllers
             var tbClientes = db.tbClientes.ToList();
             int valMax = tbClientes.Max(x => x.cli_Id);
             db.UDP_tbDirecciones_Insert(dire_calle,dire_comuna,mun_Id,valMax,1);
-            return RedirectToAction("Index", "Clientes");
+            Response.Redirect("/Clientes/Index");
+             return RedirectToAction("Index", "Cargos");
         }
+
+        public ActionResult AgregarDire(string cli_Id, string dire_calle, string dire_comuna, string mun_Id)
+        {
+            db.UDP_tbDirecciones_Insert(dire_calle, dire_comuna, mun_Id, Convert.ToInt32(cli_Id), 1);
+            Response.Redirect("/Clientes/Index");
+            return RedirectToAction("Index", "Cargos");
+        }
+
 
         // GET: Clientes/Edit/5
         public ActionResult Edit(int? id)
@@ -93,6 +102,7 @@ namespace ProyectoMVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.cli_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbClientes.cli_UsuarioCreacion);
+            ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
             ViewBag.cli_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbClientes.cli_UsuarioModificacion);
             return View(tbClientes);
         }
@@ -106,7 +116,7 @@ namespace ProyectoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbClientes).State = EntityState.Modified;
+                db.UDP_tbClientes_Update(tbClientes.cli_Id, tbClientes.cli_Nombre, tbClientes.cli_Apellido,tbClientes.cli_Telefono,tbClientes.cli_CorreoElectronico,tbClientes.cli_saldo,tbClientes.cli_LimiteCredito,tbClientes.cli_Descuento,1);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -116,30 +126,22 @@ namespace ProyectoMVC.Controllers
         }
 
         // GET: Clientes/Delete/5
+
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbClientes tbClientes = db.tbClientes.Find(id);
-            if (tbClientes == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbClientes);
+            var tbClientes = db.tbClientes.Where(t => t.cli_Id == id).FirstOrDefault();
+            return PartialView("_ModalesDireccionesView", tbClientes);
         }
 
-        // POST: Clientes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirm([Bind(Include = "cli_Id,cli_Nombre,cli_Apellido,cli_Telefono,cli_CorreoElectronico,cli_saldo,cli_LimiteCredito,cli_Descuento,cli_FechaCreacion,cli_UsuarioCreacion,cli_FechaModificacion,cli_UsuarioModificacion,cli_Estado")] tbClientes tbClientes)
         {
-            tbClientes tbClientes = db.tbClientes.Find(id);
-            db.tbClientes.Remove(tbClientes);
+            db.UDP_tbClientes_Delete(tbClientes.cli_Id,1);
             db.SaveChanges();
-            return RedirectToAction("Index","Clientes");
+            return RedirectToAction("Index", "Clientes");
         }
+
+
+        ///
 
         public JsonResult CargarMunicipios(string dep_Id)
         {

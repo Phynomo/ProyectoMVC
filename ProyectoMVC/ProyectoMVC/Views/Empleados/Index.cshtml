@@ -66,8 +66,6 @@
 
                                     @Html.ActionLink(" ", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-block btn-warning bi bi-pencil-fill" })
 
-                                    <button class="btn-delete btn btn-block btn-danger bi bi-trash-fill" data-id="@item.emp_Id"></button>
-
                                     <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.emp_Id)"> </button>
                                     @Html.Partial("_DeleteEmpleadosView", item)
 
@@ -84,50 +82,6 @@
     </div>
 
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-
-
-    <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro de que desea eliminar este elemento?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script type="text/javascript">
-        function DeleteModal() {
-            $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
-        }
-    </script>
-
-    <script>
-        $(function () {
-            $('.btn-delete').click(function () {
-                var id = $(this).data('id');
-                $('#btn-confirm-delete').attr('href', '/Empleados/Delete/' + id);
-                $('#confirm-delete-modal').modal('show');
-            });
-        });
-    </script>
 
 
     

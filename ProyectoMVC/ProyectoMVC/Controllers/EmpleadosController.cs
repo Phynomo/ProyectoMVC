@@ -137,6 +137,12 @@ namespace ProyectoMVC.Controllers
             return Json(ddlMuni, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult CargarTodoMunicipio()
+        {
+            var tbMunicipios = db.UDP_CargarTodoMunicipio().ToList();
+            return Json(tbMunicipios, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

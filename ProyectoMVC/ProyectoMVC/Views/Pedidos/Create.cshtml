@@ -195,7 +195,7 @@
                 var articulo = $('#art_Id').val();
                 var Precio = $("#pede_precio").val();
                 var Stock = $("#pede_Stock").val();
-                console.log(articulo, Precio, Stock);
+                var text = $('#art_Id').find('option[value=' + articulo + ']').text();
 
                 if (articulo == "" || Precio == "" || Stock == "" ){
 
@@ -216,7 +216,7 @@
                    
 
                     var cadena = "<tr>";
-                    cadena += "<td> " + articulo + "</td>";
+                    cadena += "<td> " + text + "</td>";
                     cadena += "<td> " + Precio + "</td>";
                     cadena += "<td> " + Stock + "</td>";
                     cadena += "</tr>";
@@ -251,8 +251,6 @@
 
                                 var subtotal = parseFloat(item.pede_Cantidad) * parseInt(item.pede_Cantidad);
                                 total += subtotal;
-                                //cadena += "<tr><td>" + item.art_Id + "</td><td>" + item.pede_Precio + "</td><td>" + item.pede_Cantidad + "</td></tr>";
-                                console.log(cadena);
 
                             });
                             $("#tbodyVentas").html(cadena);

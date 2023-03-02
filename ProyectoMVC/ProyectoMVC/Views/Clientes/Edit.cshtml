@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .oculto {
+        display: none;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
@@ -14,7 +19,7 @@
         <div class="row">
             <div class="col">
 
-                <h4>Editar tbClientes</h4>
+                <h4>Editar Clientes</h4>
 
             </div>
         </div>
@@ -27,9 +32,6 @@
                 @Html.EditorFor(model => model.cli_Nombre, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cli_Nombre, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="row form-group pt-2">
             <div class="col">
                 @Html.LabelFor(model => model.cli_Apellido, htmlAttributes: new { @class = "control-label col" })
                 @Html.EditorFor(model => model.cli_Apellido, new { htmlAttributes = new { @class = "form-control" } })
@@ -43,9 +45,6 @@
                 @Html.EditorFor(model => model.cli_Telefono, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cli_Telefono, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="row form-group pt-2">
             <div class="col">
                 @Html.LabelFor(model => model.cli_CorreoElectronico, htmlAttributes: new { @class = "control-label col" })
                 @Html.EditorFor(model => model.cli_CorreoElectronico, new { htmlAttributes = new { @class = "form-control" } })
@@ -59,9 +58,6 @@
                 @Html.EditorFor(model => model.cli_saldo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cli_saldo, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="row form-group pt-2">
             <div class="col">
                 @Html.LabelFor(model => model.cli_LimiteCredito, htmlAttributes: new { @class = "control-label col" })
                 @Html.EditorFor(model => model.cli_LimiteCredito, new { htmlAttributes = new { @class = "form-control" } })
@@ -75,21 +71,16 @@
                 @Html.EditorFor(model => model.cli_Descuento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cli_Descuento, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="row form-group pt-2">
             <div class="col">
-                @Html.LabelFor(model => model.cli_Estado, htmlAttributes: new { @class = "control-label col" })
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.cli_Estado)
-                    @Html.ValidationMessageFor(model => model.cli_Estado, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 
 
-
         <div class=" row form-group d-flex justify-content-end py-3">
+            <div class="col d-flex justify-content-start">
+                <input type="button" value="Agregar direccion" id="btnAbrir" class="btn btn-primary mx-2" onclick="agregardire()"  />
+                <input type="button" value="Agregar direccion" id="btnCerrar" class="btn btn-danger mx-2" onclick="cerrardire()" hidden/>
+            </div>
             <div class="col d-flex justify-content-end">
                 <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
                 @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
@@ -99,6 +90,49 @@
 
 }
 
+
+
+<div class="oculto container px-4 text-center">
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label col">Departamento</label>
+            @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+        </div>
+        <div class="col">
+            <label class="control-label col">Municipio</label>
+            <select id="mun_Id" name="mun_Id" class="form-select">
+            </select>
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label col">Calle</label>
+            <input type="text" id="dire_calle" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label col">Comuna</label>
+            <input type="text" id="dire_comuna" class="form-control" />
+        </div>
+    </div>
+
+
+    <div class=" row form-group d-flex justify-content-end py-3">
+        <div class="col d-flex justify-content-end">
+            <input type="submit" value="Agregar direccion" id="btnDireccion" class="btn btn-success mx-2" />
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
 <table id="example" class="dataTable display compact stripe table-dark">
     <thead>
         <tr>
@@ -107,11 +141,9 @@
             <td>Departamento</td>
             <td>Municipios</td>
             <td>Acciones</td>
-            <td>delete</td>
         </tr>
     </thead>
     <tbody id="tbodyDirecciones">
-        
     </tbody>
 </table>
 
@@ -119,8 +151,6 @@
     <div class="col-md-offset-2 col-md-10">
     </div>
 </div>
-
-<button class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='1'></button>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -136,7 +166,7 @@
             success: function (result) {
                 var cadena = "";
                 $.each(result, function (index, item) {
-                    cadena += "<tr><td>" + item.dire_Calle + "</td><td>" + item.dire_Comuna + "</td><td>" + item.dep_Nombre + "</td><td>" + item.mun_Nombre + "</td><td>" + "<a href = '/Direcciones/Edit/" + item.dire_ID + "' class='btn btn-block btn-warning bi bi-pencil-fill' ></a> " + "</td><td>" + " <button onclick='hola(" + item.dire_ID + ")' id='btn-delete' class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='" + item.dire_ID + "'>" + item.dire_ID + "</button> " + "</td></tr>";
+                    cadena += "<tr><td>" + item.dire_Calle + "</td><td>" + item.dire_Comuna + "</td><td>" + item.dep_Nombre + "</td><td>" + item.mun_Nombre + "</td><td>" + "<a href = '/Direcciones/Edit/" + item.dire_ID + "' class='btn btn-block btn-warning bi bi-pencil-fill' ></a> " + "" + " <button onclick='hola(" + item.dire_ID + ")' id='btn-delete' class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='" + item.dire_ID + "'>" + "" + "</button> " + "</td></tr>";
                     console.log(cadena);
                 });
                 $("#tbodyDirecciones").html(cadena);
@@ -153,11 +183,11 @@
 
 
 <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                <button type="button" onclick="cerrar()" class="close" data-dismiss="modal" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -165,7 +195,7 @@
                 ¿Está seguro de que desea eliminar este elemento?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" onclick="cerrar()">Cancelar</button>
                 <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
             </div>
         </div>
@@ -178,6 +208,9 @@
     function DeleteModal() {
         $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
     }
+    function cerrar() {
+        $("#confirm-delete-modal").modal("hide");
+    }
     function hola(id) {
         $('#confirm-delete-modal').modal('show')
         $('#btn-confirm-delete').attr('href', '/Direcciones/Delete/' + id + '00011001001110102100101010011010101' + $("#cli_Id").val());
@@ -185,12 +218,62 @@
 </script>
 
 <script>
-    //$(function () {
-    //    $('#btn-delete').click(function () {
-    //        var id = $(this).data('id');
-    //        $('#btn-confirm-delete').attr('href', '/Direcciones/Delete/' + id);
-    //        $('#confirm-delete-modal').modal('show');
-    //    });
-    //});
+    $("#dep_Id").change(function () {
+        var dep_Id = $("#dep_Id").val();
+        $.ajax({
+            url: "/Clientes/CargarMunicipios",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ dep_Id: dep_Id }),
+            success: function (data) {
+                console.log(data);
+                $("#mun_Id").empty();
+                $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
+                $.each(data, function (i, value) {
+                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre + "</option>")
+                })
+            }
+        })
+    });
+
+
+    function agregardire() {
+        $(".oculto").show('fast');
+        $("#btnCerrar").attr("hidden", false);
+        $("#btnCerrar").show();
+        $("#btnAbrir").hide();
+    }
+
+    function cerrardire() {
+        $(".oculto").hide('slow');
+        $("#btnCerrar").hide();
+        $("#btnAbrir").attr("hidden", false);
+        $("#btnAbrir").show();
+    }
+
+    $("#btnDireccion").click(function () {
+        if ($("#mun_Id").val() != "" && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "") {
+
+            $(".oculto").show();
+            var mun_Id = $("#mun_Id").val();
+            var dire_comuna = $("#dire_comuna").val();
+            var dire_calle = $("#dire_calle").val();
+            var cli_Id = $("#cli_Id").val();
+            $.ajax({
+                type: "POST",
+                url: "/Clientes/AgregarDire",
+                data: { cli_Id: cli_Id, dire_calle: dire_calle, dire_comuna: dire_comuna, mun_Id: mun_Id },
+                success: function (response) {
+                    window.location = "/Clientes/Edit/" + cli_Id;
+                },
+                error: function (error) {
+
+                }
+            });
+
+        }
+    });
+
 </script>
 

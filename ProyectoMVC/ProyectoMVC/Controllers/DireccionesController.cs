@@ -40,7 +40,7 @@ namespace ProyectoMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre");
-            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "dep_Id");
+            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre");
             ViewBag.dire_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
             ViewBag.dire_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario");
             return View();
@@ -61,7 +61,7 @@ namespace ProyectoMVC.Controllers
             }
 
             ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre", tbDirecciones.cli_Id);
-            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "dep_Id", tbDirecciones.mun_Id);
+            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbDirecciones.mun_Id);
             ViewBag.dire_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioCreacion);
             ViewBag.dire_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioModificacion);
             return View(tbDirecciones);
@@ -80,7 +80,7 @@ namespace ProyectoMVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre", tbDirecciones.cli_Id);
-            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "dep_Id", tbDirecciones.mun_Id);
+            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbDirecciones.mun_Id);
             ViewBag.dire_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioCreacion);
             ViewBag.dire_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioModificacion);
             return View(tbDirecciones);
@@ -100,7 +100,7 @@ namespace ProyectoMVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.cli_Id = new SelectList(db.tbClientes, "cli_Id", "cli_Nombre", tbDirecciones.cli_Id);
-            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "dep_Id", tbDirecciones.mun_Id);
+            ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbDirecciones.mun_Id);
             ViewBag.dire_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioCreacion);
             ViewBag.dire_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDirecciones.dire_UsuarioModificacion);
             return View(tbDirecciones);

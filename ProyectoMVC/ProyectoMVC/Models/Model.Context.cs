@@ -151,35 +151,6 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_PedidoDetalle_Insert", ped_IdParameter, art_IdParameter, pede_cantidadParameter, pede_UsuarioCreacionParameter);
         }
     
-        public virtual int UDP_PedidoDetalle_Update(Nullable<int> pede_Id, Nullable<int> ped_Id, Nullable<int> art_Id, Nullable<int> pede_Cantidad, Nullable<decimal> pede_Precio, Nullable<int> pede_UsuarioModificacion)
-        {
-            var pede_IdParameter = pede_Id.HasValue ?
-                new ObjectParameter("pede_Id", pede_Id) :
-                new ObjectParameter("pede_Id", typeof(int));
-    
-            var ped_IdParameter = ped_Id.HasValue ?
-                new ObjectParameter("ped_Id", ped_Id) :
-                new ObjectParameter("ped_Id", typeof(int));
-    
-            var art_IdParameter = art_Id.HasValue ?
-                new ObjectParameter("art_Id", art_Id) :
-                new ObjectParameter("art_Id", typeof(int));
-    
-            var pede_CantidadParameter = pede_Cantidad.HasValue ?
-                new ObjectParameter("pede_Cantidad", pede_Cantidad) :
-                new ObjectParameter("pede_Cantidad", typeof(int));
-    
-            var pede_PrecioParameter = pede_Precio.HasValue ?
-                new ObjectParameter("pede_Precio", pede_Precio) :
-                new ObjectParameter("pede_Precio", typeof(decimal));
-    
-            var pede_UsuarioModificacionParameter = pede_UsuarioModificacion.HasValue ?
-                new ObjectParameter("pede_UsuarioModificacion", pede_UsuarioModificacion) :
-                new ObjectParameter("pede_UsuarioModificacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_PedidoDetalle_Update", pede_IdParameter, ped_IdParameter, art_IdParameter, pede_CantidadParameter, pede_PrecioParameter, pede_UsuarioModificacionParameter);
-        }
-    
         public virtual int UDP_tbArticulo_Update(Nullable<int> art_Id, string art_Nombre, Nullable<decimal> art_Precio, Nullable<int> cat_Id, Nullable<int> art_Stock, Nullable<int> art_Fabrica, Nullable<int> art_UsuarioCreacion)
         {
             var art_IdParameter = art_Id.HasValue ?
@@ -916,53 +887,6 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbMunicipiosUpdate", mun_IdParameter, dep_IdParameter, mun_NombreParameter, mun_UsuarioModificacionParameter);
         }
     
-        public virtual int UDP_tbEstadoCivilesDelete(string estciv_Id)
-        {
-            var estciv_IdParameter = estciv_Id != null ?
-                new ObjectParameter("estciv_Id", estciv_Id) :
-                new ObjectParameter("estciv_Id", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesDelete", estciv_IdParameter);
-        }
-    
-        public virtual int UDP_tbEstadoCivilesInsert(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioCreacion)
-        {
-            var estciv_IdParameter = estciv_Id != null ?
-                new ObjectParameter("estciv_Id", estciv_Id) :
-                new ObjectParameter("estciv_Id", typeof(string));
-    
-            var estciv_NombreParameter = estciv_Nombre != null ?
-                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
-                new ObjectParameter("estciv_Nombre", typeof(string));
-    
-            var estciv_UsuarioCreacionParameter = estciv_UsuarioCreacion.HasValue ?
-                new ObjectParameter("estciv_UsuarioCreacion", estciv_UsuarioCreacion) :
-                new ObjectParameter("estciv_UsuarioCreacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesInsert", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioCreacionParameter);
-        }
-    
-        public virtual int UDP_tbEstadoCivilesUpdate(string oldestciv_Id, string newestciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioModificacion)
-        {
-            var oldestciv_IdParameter = oldestciv_Id != null ?
-                new ObjectParameter("Oldestciv_Id", oldestciv_Id) :
-                new ObjectParameter("Oldestciv_Id", typeof(string));
-    
-            var newestciv_IdParameter = newestciv_Id != null ?
-                new ObjectParameter("Newestciv_Id", newestciv_Id) :
-                new ObjectParameter("Newestciv_Id", typeof(string));
-    
-            var estciv_NombreParameter = estciv_Nombre != null ?
-                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
-                new ObjectParameter("estciv_Nombre", typeof(string));
-    
-            var estciv_UsuarioModificacionParameter = estciv_UsuarioModificacion.HasValue ?
-                new ObjectParameter("estciv_UsuarioModificacion", estciv_UsuarioModificacion) :
-                new ObjectParameter("estciv_UsuarioModificacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesUpdate", oldestciv_IdParameter, newestciv_IdParameter, estciv_NombreParameter, estciv_UsuarioModificacionParameter);
-        }
-    
         public virtual int UDP_CambiarPassword(string usu_Usuario, string usu_Contrasenia)
         {
             var usu_UsuarioParameter = usu_Usuario != null ?
@@ -985,15 +909,6 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("UDP_tbArticulos_Return", art_idParameter);
         }
     
-        public virtual ObjectResult<UDP_CargarTablaDirecciones_Result> UDP_CargarTablaDirecciones(Nullable<int> cli_Id)
-        {
-            var cli_IdParameter = cli_Id.HasValue ?
-                new ObjectParameter("cli_Id", cli_Id) :
-                new ObjectParameter("cli_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaDirecciones_Result>("UDP_CargarTablaDirecciones", cli_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UDP_DireccionBorrada(Nullable<int> dire_ID)
         {
             var dire_IDParameter = dire_ID.HasValue ?
@@ -1001,58 +916,6 @@ namespace ProyectoMVC.Models
                 new ObjectParameter("dire_ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_DireccionBorrada", dire_IDParameter);
-        }
-    
-        public virtual ObjectResult<UDP_CargarTablaDirecciones1_Result> UDP_CargarTablaDirecciones1(Nullable<int> cli_Id)
-        {
-            var cli_IdParameter = cli_Id.HasValue ?
-                new ObjectParameter("cli_Id", cli_Id) :
-                new ObjectParameter("cli_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaDirecciones1_Result>("UDP_CargarTablaDirecciones1", cli_IdParameter);
-        }
-    
-        public virtual int UDP_tbEstadoCivilesDelete1(string estciv_Id)
-        {
-            var estciv_IdParameter = estciv_Id != null ?
-                new ObjectParameter("estciv_Id", estciv_Id) :
-                new ObjectParameter("estciv_Id", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesDelete1", estciv_IdParameter);
-        }
-    
-        public virtual int UDP_tbEstadoCivilesInsert1(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioCreacion)
-        {
-            var estciv_IdParameter = estciv_Id != null ?
-                new ObjectParameter("estciv_Id", estciv_Id) :
-                new ObjectParameter("estciv_Id", typeof(string));
-    
-            var estciv_NombreParameter = estciv_Nombre != null ?
-                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
-                new ObjectParameter("estciv_Nombre", typeof(string));
-    
-            var estciv_UsuarioCreacionParameter = estciv_UsuarioCreacion.HasValue ?
-                new ObjectParameter("estciv_UsuarioCreacion", estciv_UsuarioCreacion) :
-                new ObjectParameter("estciv_UsuarioCreacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesInsert1", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioCreacionParameter);
-        }
-    
-        public virtual int UDP_tbEstadoCivilesUpdate1(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioModificacion)
-        {
-            var estciv_IdParameter = estciv_Id != null ?
-                new ObjectParameter("estciv_Id", estciv_Id) :
-                new ObjectParameter("estciv_Id", typeof(string));
-    
-            var estciv_NombreParameter = estciv_Nombre != null ?
-                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
-                new ObjectParameter("estciv_Nombre", typeof(string));
-    
-            var estciv_UsuarioModificacionParameter = estciv_UsuarioModificacion.HasValue ?
-                new ObjectParameter("estciv_UsuarioModificacion", estciv_UsuarioModificacion) :
-                new ObjectParameter("estciv_UsuarioModificacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesUpdate1", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioModificacionParameter);
         }
     
         public virtual int UDP_RecuperarContrasenia(string usu_Usuario, string usu_Contrasenia)
@@ -1068,13 +931,108 @@ namespace ProyectoMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_RecuperarContrasenia", usu_UsuarioParameter, usu_ContraseniaParameter);
         }
     
-        public virtual ObjectResult<UDP_CargarTablaPedidos_Result> UDP_CargarTablaPedidos(Nullable<int> ped_Id)
+        public virtual ObjectResult<UDP_CargarTablaDirecciones_Result1> UDP_CargarTablaDirecciones(Nullable<int> cli_Id)
+        {
+            var cli_IdParameter = cli_Id.HasValue ?
+                new ObjectParameter("cli_Id", cli_Id) :
+                new ObjectParameter("cli_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaDirecciones_Result1>("UDP_CargarTablaDirecciones", cli_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_LoginDefinitivo100RealPAPA_Result> UDP_LoginDefinitivo100RealPAPA(string usu_Usuario, string usu_Contrasenia)
+        {
+            var usu_UsuarioParameter = usu_Usuario != null ?
+                new ObjectParameter("usu_Usuario", usu_Usuario) :
+                new ObjectParameter("usu_Usuario", typeof(string));
+    
+            var usu_ContraseniaParameter = usu_Contrasenia != null ?
+                new ObjectParameter("usu_Contrasenia", usu_Contrasenia) :
+                new ObjectParameter("usu_Contrasenia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_LoginDefinitivo100RealPAPA_Result>("UDP_LoginDefinitivo100RealPAPA", usu_UsuarioParameter, usu_ContraseniaParameter);
+        }
+    
+        public virtual int UDP_PedidoDetalle_Update(Nullable<int> pede_Id, Nullable<int> art_Id, Nullable<int> pede_Cantidad, Nullable<decimal> pede_Precio, Nullable<int> pede_UsuarioModificacion)
+        {
+            var pede_IdParameter = pede_Id.HasValue ?
+                new ObjectParameter("pede_Id", pede_Id) :
+                new ObjectParameter("pede_Id", typeof(int));
+    
+            var art_IdParameter = art_Id.HasValue ?
+                new ObjectParameter("art_Id", art_Id) :
+                new ObjectParameter("art_Id", typeof(int));
+    
+            var pede_CantidadParameter = pede_Cantidad.HasValue ?
+                new ObjectParameter("pede_Cantidad", pede_Cantidad) :
+                new ObjectParameter("pede_Cantidad", typeof(int));
+    
+            var pede_PrecioParameter = pede_Precio.HasValue ?
+                new ObjectParameter("pede_Precio", pede_Precio) :
+                new ObjectParameter("pede_Precio", typeof(decimal));
+    
+            var pede_UsuarioModificacionParameter = pede_UsuarioModificacion.HasValue ?
+                new ObjectParameter("pede_UsuarioModificacion", pede_UsuarioModificacion) :
+                new ObjectParameter("pede_UsuarioModificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_PedidoDetalle_Update", pede_IdParameter, art_IdParameter, pede_CantidadParameter, pede_PrecioParameter, pede_UsuarioModificacionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_CargarTablaPedidos_Result2> UDP_CargarTablaPedidos(Nullable<int> ped_Id)
         {
             var ped_IdParameter = ped_Id.HasValue ?
                 new ObjectParameter("ped_Id", ped_Id) :
                 new ObjectParameter("ped_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaPedidos_Result>("UDP_CargarTablaPedidos", ped_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTablaPedidos_Result2>("UDP_CargarTablaPedidos", ped_IdParameter);
+        }
+    
+        public virtual int UDP_tbEstadoCivilesInsert(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioCreacion)
+        {
+            var estciv_IdParameter = estciv_Id != null ?
+                new ObjectParameter("estciv_Id", estciv_Id) :
+                new ObjectParameter("estciv_Id", typeof(string));
+    
+            var estciv_NombreParameter = estciv_Nombre != null ?
+                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
+                new ObjectParameter("estciv_Nombre", typeof(string));
+    
+            var estciv_UsuarioCreacionParameter = estciv_UsuarioCreacion.HasValue ?
+                new ObjectParameter("estciv_UsuarioCreacion", estciv_UsuarioCreacion) :
+                new ObjectParameter("estciv_UsuarioCreacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesInsert", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioCreacionParameter);
+        }
+    
+        public virtual int UDP_tbEstadoCivilesUpdate(string estciv_Id, string estciv_Nombre, Nullable<int> estciv_UsuarioModificacion)
+        {
+            var estciv_IdParameter = estciv_Id != null ?
+                new ObjectParameter("estciv_Id", estciv_Id) :
+                new ObjectParameter("estciv_Id", typeof(string));
+    
+            var estciv_NombreParameter = estciv_Nombre != null ?
+                new ObjectParameter("estciv_Nombre", estciv_Nombre) :
+                new ObjectParameter("estciv_Nombre", typeof(string));
+    
+            var estciv_UsuarioModificacionParameter = estciv_UsuarioModificacion.HasValue ?
+                new ObjectParameter("estciv_UsuarioModificacion", estciv_UsuarioModificacion) :
+                new ObjectParameter("estciv_UsuarioModificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesUpdate", estciv_IdParameter, estciv_NombreParameter, estciv_UsuarioModificacionParameter);
+        }
+    
+        public virtual int UDP_tbEstadoCivilesDelete(string estciv_Id)
+        {
+            var estciv_IdParameter = estciv_Id != null ?
+                new ObjectParameter("estciv_Id", estciv_Id) :
+                new ObjectParameter("estciv_Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tbEstadoCivilesDelete", estciv_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_CargarTodoMunicipio_Result1> UDP_CargarTodoMunicipio()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTodoMunicipio_Result1>("UDP_CargarTodoMunicipio");
         }
     }
 }

@@ -90,14 +90,13 @@ namespace ProyectoMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "pede_Id,ped_Id,art_Id,pede_Cantidad,pede_Precio,pede_FechaCreacion,pede_UsuarioCreacion,pede_FechaModificacion,pede_UsuarioModificacion,pede_Estado")] tbPedidosDetalles tbPedidosDetalles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbPedidosDetalles).State = EntityState.Modified;
+                db.UDP_PedidoDetalle_Update(tbPedidosDetalles.pede_Id, tbPedidosDetalles.art_Id, tbPedidosDetalles.pede_Cantidad, tbPedidosDetalles.pede_Precio,1);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Pedidos");
             }
             ViewBag.art_Id = new SelectList(db.tbArticulos, "art_Id", "art_Nombre", tbPedidosDetalles.art_Id);
             ViewBag.ped_Id = new SelectList(db.tbPedidos, "ped_Id", "metpago_Id", tbPedidosDetalles.ped_Id);
@@ -107,30 +106,16 @@ namespace ProyectoMVC.Controllers
         }
 
         // GET: PedidosDetalles/Delete/5
-        public ActionResult Delete(int? id)
+
+        public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbPedidosDetalles tbPedidosDetalles = db.tbPedidosDetalles.Find(id);
-            if (tbPedidosDetalles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbPedidosDetalles);
+
+            var arreglo = id.Replace("00011001001110102100101010011010101", ".").Split('.').ToArray();
+            db.UDP_PedidoDetalle_Delete(Convert.ToInt32(arreglo[0]), 1);
+            return RedirectToAction("Edit/" + arreglo[1], "Pedidos");
         }
 
-        // POST: PedidosDetalles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbPedidosDetalles tbPedidosDetalles = db.tbPedidosDetalles.Find(id);
-            db.tbPedidosDetalles.Remove(tbPedidosDetalles);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {

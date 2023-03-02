@@ -10,7 +10,7 @@
     <div class="card-header">
                 <div class="row">
                     <div class="col">
-                     <h4>tbDepartamentos</h4>
+                     <h4>Departamentos</h4>
                     </div>
                     <div class="col d-flex flex-row-reverse">
                         <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
@@ -36,7 +36,7 @@
                 <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        @Html.Partial("_ModalesDepartamentosView", item);
+                        @Html.Partial("_ModalesDepartamentosView", item)
                         <td>
                             @Html.DisplayFor(modelItem => item.dep_Nombre)
                         </td>

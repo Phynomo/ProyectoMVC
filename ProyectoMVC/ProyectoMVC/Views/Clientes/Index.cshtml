@@ -6,61 +6,72 @@
 }
 
 <div class="card">
-                
+
     <div class="card-header">
-                <div class="row">
-                    <div class="col">
-                     <h4>tbClientes</h4>
-                    </div>
-                    <div class="col d-flex flex-row-reverse">
-                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col">
+                <h4>Clientes</h4>
+            </div>
+            <div class="col d-flex flex-row-reverse">
+                @Html.ActionLink("Crear nuevo", "Create", " ", new { @class = "btn btn-block btn-success" })
+            </div>
+        </div>
     </div>
 
     <div class="card-body">
         <div class="row">
             <div class="col">
                 <table class="dataTable display compact stripe table-dark" id="example">
-                <thead>
-                    <tr>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.cli_Nombre)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.cli_Apellido)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.cli_Telefono)
-                        </th>
-                                                                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var item in Model) {
-                    <tr>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.cli_Nombre)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.cli_Apellido)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.cli_Telefono)
-                        </td>
-                                                                        <td>
-                        @Html.ActionLink(" ", "Details", new { id=item.cli_Id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
-       
-                        @Html.ActionLink(" ", "Edit", new { id=item.cli_Id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
-        
-                        @Html.ActionLink(" ", "Delete", new { id=item.cli_Id } , new { @class="btn btn-block btn-danger bi bi-trash-fill"})
-                        </td>
-                                        </tr>
-                }
-                </tbody>
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cli_Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cli_Apellido)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cli_Telefono)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            @Html.Partial("_ModalesDireccionesView", item);
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cli_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cli_Apellido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cli_Telefono)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "Details", new { id = item.cli_Id }, new { @class = "btn btn-block btn-info bi bi-file-earmark-text-fill" })
+
+                                    @Html.ActionLink(" ", "Edit", new { id = item.cli_Id }, new { @class = "btn btn-block btn-warning bi bi-pencil-fill" })
+
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.cli_Id)"> </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 
 </div>
+
+<script>
+
+        $("#btnDelete").click(function () {
+            $("exampleModalDelete").modal('show');
+        });
+
+</script>

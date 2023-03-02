@@ -4,52 +4,49 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.cli_Id)
 
 <div>
 
     <div class="row">
-    <div class="col">
-     <h4>tbClientes</h4>
-</div>
-<div class="col d-flex justify-content-end">
+        <div class="col">
+            <h4>Clientes</h4>
+        </div>
+        <div class="col d-flex justify-content-end">
 
-<p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.cli_Id }, new { @class = "btn btn-warning mx-2" }) |
-    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
-</p>
-
-
-</div>
-</div>
+            <p>
+                @Html.ActionLink("Editar", "Edit", "Clientes", new { id = Model.cli_Id }, new { @class = "btn btn-warning mx-2" }) |
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </p>
 
 
-   
+        </div>
+    </div>
 
 
-    
+
+
+
+
 
 
 
     <hr />
-    
+
     <div class="container">
-    <dl class="dl-horizontal">
+        <dl class="dl-horizontal">
 
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.cli_Nombre)
-        </dt>
+            <div class="row">
+                <div class="col">
+            <dt style="color:White;">
+                @Html.DisplayNameFor(model => model.cli_Nombre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cli_Nombre)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
+            <dd>
+                @Html.DisplayFor(model => model.cli_Nombre)
+            </dd>
+    </div>
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_Apellido)
@@ -58,11 +55,11 @@
         <dd>
             @Html.DisplayFor(model => model.cli_Apellido)
         </dd>
-</div>
+    </div>
 </div>
 
 
-    <div class="row">
+<div class="row">
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_Telefono)
@@ -71,11 +68,7 @@
         <dd>
             @Html.DisplayFor(model => model.cli_Telefono)
         </dd>
-</div>
-</div>
-
-
-    <div class="row">
+    </div>
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_CorreoElectronico)
@@ -84,11 +77,11 @@
         <dd>
             @Html.DisplayFor(model => model.cli_CorreoElectronico)
         </dd>
-</div>
+    </div>
 </div>
 
 
-    <div class="row">
+<div class="row">
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_saldo)
@@ -97,11 +90,7 @@
         <dd>
             @Html.DisplayFor(model => model.cli_saldo)
         </dd>
-</div>
-</div>
-
-
-    <div class="row">
+    </div>
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_LimiteCredito)
@@ -110,11 +99,11 @@
         <dd>
             @Html.DisplayFor(model => model.cli_LimiteCredito)
         </dd>
-</div>
+    </div>
 </div>
 
 
-    <div class="row">
+<div class="row">
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_Descuento)
@@ -123,37 +112,7 @@
         <dd>
             @Html.DisplayFor(model => model.cli_Descuento)
         </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.cli_FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cli_FechaCreacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.cli_FechaModificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cli_FechaModificacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
+    </div>
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.cli_Estado)
@@ -162,76 +121,119 @@
         <dd>
             @Html.DisplayFor(model => model.cli_Estado)
         </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
-        </dd>
-</div>
+    </div>
 </div>
 
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
-        </dd>
-</div>
-</div>
 
     </dl>
 </div>
 
-<div class="card">
+<div class="card mt-3">
     <div class="card-header">
         <div class="row">
             <div class="col">
-            auditoria
+                Dirreciones
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col">
-                        <table class="table">
-                <thead>
-                    <tr>
-                    <th>Accion</th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>Creado</td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Modificado</td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                </tbody>
-            </table>
+                <table id="example" class="dataTable display compact stripe table-dark">
+                    <thead>
+                        <tr>
+                            <td>Calle</td>
+                            <td>Comuna</td>
+                            <td>Departamento</td>
+                            <td>Municipios</td>
+                            <td>Detalles</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyDirecciones">
+                    </tbody>
+                </table>
 
             </div>
         </div>
     </div>
 </div>
 
+
+
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                auditoria
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Accion</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.cli_FechaCreacion)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.cli_FechaModificacion)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var cli_Id = $("#cli_Id").val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Clientes/CargarDirecciones',
+            data: { cli_Id: cli_Id },
+            success: function (result) {
+                var cadena = "";
+                $.each(result, function (index, item) {
+                    cadena += "<tr><td>" + item.dire_Calle + "</td><td>" + item.dire_Comuna + "</td><td>" + item.dep_Nombre + "</td><td>" + item.mun_Nombre + "</td><td>" + "<a href = '/Direcciones/Details/" + item.dire_ID + "' class='btn btn-block btn-info bi bi-file-earmark-text-fill' ></a> " + "" + "  " + "</td></tr>";
+                    
+                });
+                $("#tbodyDirecciones").html(cadena);
+
+            },
+            error: function (error) {
+            }
+        });
+    });
+
+
+</script>
+
+
+
 

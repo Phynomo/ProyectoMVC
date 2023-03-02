@@ -998,6 +998,7 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   <Function Name="UDP_CargarTablaPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ped_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_CargarTodoMunicipio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="UDP_EdicionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="int" Mode="In" />
@@ -1015,6 +1016,10 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     <Parameter Name="usu_Usuario" Type="nvarchar" Mode="In" />
     <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="UDP_LoginDefinitivo100RealPAPA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usu_Usuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usu_Contrasenia" Type="nvarchar(max)" Mode="In" />
+  </Function>
   <Function Name="UDP_PedidoDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pede_Id" Type="int" Mode="In" />
     <Parameter Name="pede_UsuarioModificacion" Type="int" Mode="In" />
@@ -1027,7 +1032,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   </Function>
   <Function Name="UDP_PedidoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pede_Id" Type="int" Mode="In" />
-    <Parameter Name="ped_Id" Type="int" Mode="In" />
     <Parameter Name="art_Id" Type="int" Mode="In" />
     <Parameter Name="pede_Cantidad" Type="int" Mode="In" />
     <Parameter Name="pede_Precio" Type="decimal" Mode="In" />
