@@ -1370,8 +1370,11 @@ SELECT [usu_Id]
       ,[usu_UsuarioModificacion]
       ,[usu_FechaModificacion]
       ,[usu_Estado]
+	  ,t1.[rol_id] as rol_Id
+	  ,t3.[rol_Nombre] as rol_Nombre
   FROM [tbUsuarios] T1 INNER JOIN [dbo].[tbEmpleados] T2
-  ON T1.emp_Id = T2.emp_Id
+  ON T1.emp_Id = T2.emp_Id INNER JOIN [dbo].[tbRoles] T3
+  ON T3.rol_Id = t1.rol_Id
   WHERE t1.usu_Contrasenia = @Password 
   AND t1.usu_Usuario = @usu_Usuario
 
@@ -2056,7 +2059,6 @@ END
 
 
 GO
-select * from tbPedidosDetalles
 
 
 GO
@@ -2119,8 +2121,6 @@ GO
 
 
 GO
-<<<<<<< HEAD
-=======
 
 GO
 	CREATE or alter PROCEDURE UDP_tbArticulos_Return
@@ -2136,7 +2136,6 @@ GO
 	GO
 
 GO
->>>>>>> 82430f02af82a073bf0e7989cb4d6151f2c147da
 CREATE OR ALTER    PROCEDURE UDP_RecuperarContrasenia
 @usu_Usuario VARCHAR(100),
 @usu_Contrasenia NVARCHAR(MAX)
@@ -2152,9 +2151,3 @@ UPDATE [dbo].[tbUsuarios]
 
 
 end
-
-<<<<<<< HEAD
-GO
-=======
-GO
->>>>>>> 82430f02af82a073bf0e7989cb4d6151f2c147da
