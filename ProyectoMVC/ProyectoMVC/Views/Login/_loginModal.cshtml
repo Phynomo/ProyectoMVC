@@ -5,8 +5,9 @@
                 <h5 class="modal-title" id="exampleModalLabel">Recuperar contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="@Url.Action("Recuperar","Login")" method="POST">
+            <form action="@Url.Action("Recuperar","Login")" method="POST">
+                <div class="modal-body">
+
                     <h7 style="color:red">@Html.ValidationMessage("RValidacion") </h7>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" name="txtRUsuario" placeholder="Usuario" required>
@@ -19,12 +20,14 @@
                         <h7 style="color:red">@Html.ValidationMessage("RvalidarClave") </h7>
                     </div>
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
+
     </div>
 </div>

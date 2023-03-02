@@ -182,7 +182,7 @@ namespace ProyectoMVC.Controllers
         //Cargos Los Articulos
         public JsonResult CargarArticulos(int art_Id)
         {
-            var articulo = db.UDP_tbArticulos_Return(art_Id).ToList();
+            var articulo = db.UDP_tbArticulos_Return(art_Id.ToString()).ToList();
             return Json(articulo, JsonRequestBehavior.AllowGet);
         }
 

@@ -61,7 +61,7 @@ namespace ProyectoMVC.Controllers
         }
 
 
-        [HttpPost]///////////////////
+        ///////////////////
         public ActionResult Recuperar(string txtRUsuario, string txtRClave)
         {
             if (txtRUsuario == "" || txtRClave == "")
@@ -80,7 +80,7 @@ namespace ProyectoMVC.Controllers
             else
             {
 
-                //db.UDP_RecuperarContrasenia(txtRUsuario.ToString(), txtRClave.ToString());
+                db.UDP_RecuperarContrasenia(txtRUsuario.ToString(), txtRClave.ToString());
 
                 return RedirectToAction("Index", "Login");
             }
@@ -89,7 +89,7 @@ namespace ProyectoMVC.Controllers
             //    ModelState.AddModelError("RValidacion", "Usuario o contraseña incorrectos");
             //}
 
-            return View();
+            return PartialView("_loginModal");
         }
 
 
