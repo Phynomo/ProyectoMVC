@@ -2097,3 +2097,22 @@ GO
 
 	END
 	GO
+
+GO
+CREATE OR ALTER    PROCEDURE UDP_RecuperarContrasenia
+@usu_Usuario VARCHAR(100),
+@usu_Contrasenia NVARCHAR(MAX)
+
+as
+begin
+
+Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@usu_Contrasenia))
+
+UPDATE [dbo].[tbUsuarios]
+   SET [usu_Contrasenia] = @Password
+ WHERE usu_Usuario = @usu_Usuario
+
+
+end
+
+GO
