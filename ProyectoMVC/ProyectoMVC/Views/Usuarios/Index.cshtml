@@ -3,6 +3,25 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "5")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
 }
 
 <div class="card">
@@ -10,7 +29,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h4>tbUsuarios</h4>
+                <h4>Usuarios</h4>
             </div>
             <div class="col d-flex flex-row-reverse">
                 @Html.ActionLink("Crear nuevo", "Create", " ", new { @class = "btn btn-block btn-success" })
@@ -36,14 +55,13 @@
                             <th>
                                 Rol
                             </th>
-                            <th>Detalles</th>
-                            <th>Editar</th>
-                            <th>Borrar</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
+
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.usu_Usuario)
@@ -61,12 +79,8 @@
                                 <td>
                                     @Html.ActionLink(" ", "Details", new { id = item.usu_Id }, new { @class = "btn btn-block btn-info bi bi-file-earmark-text-fill" })
 
-                                </td>
-                                <td>
                                     @Html.ActionLink(" ", "Edit", new { id = item.usu_Id }, new { @class = "btn btn-block btn-warning bi bi-pencil-fill" })
 
-                                </td>
-                                <td>
                                     <button class="btn-delete btn btn-block btn-danger bi bi-trash-fill" data-id="@item.usu_Id"></button>
                                 </td>
                             </tr>
@@ -90,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                <button type="button" class="close" onclick="cerrar()" data-dismiss="modal" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -98,7 +112,7 @@
                 ¿Está seguro de que desea eliminar este elemento?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" onclick="cerrar()" data-dismiss="modal">Cancelar</button>
                 <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
             </div>
         </div>
@@ -121,5 +135,10 @@
             $('#confirm-delete-modal').modal('show');
         });
     });
+
+    function cerrar() {
+        $("#confirm-delete-modal").modal("hide");
+    }
+
 </script>
 

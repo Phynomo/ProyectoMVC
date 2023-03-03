@@ -3,6 +3,24 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
 }
 
 
@@ -10,12 +28,11 @@
 
     <div class="row">
     <div class="col">
-     <h4>tbEstadosCiviles</h4>
+     <h4>Estadis Civiles</h4>
 </div>
 <div class="col d-flex justify-content-end">
 
 <p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.estciv_Id }, new { @class = "btn btn-warning mx-2" }) |
     @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
 </p>
 
@@ -46,36 +63,6 @@
             @Html.DisplayFor(model => model.estciv_Nombre)
         </dd>
 </div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.estciv_FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estciv_FechaCreacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.estciv_FechaModificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estciv_FechaModificacion)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
     <div class="col">
         <dt style="color:White;">
             @Html.DisplayNameFor(model => model.estciv_Estado)
@@ -87,31 +74,6 @@
 </div>
 </div>
 
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
-        </dd>
-</div>
-</div>
-
-
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.tbUsuarios1.usu_Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
-        </dd>
-</div>
-</div>
 
     </dl>
 </div>
@@ -138,14 +100,22 @@
                 <tbody>
                     <tr>
                     <td>Creado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.estciv_FechaCreacion)
+                    </td>
                     </tr>
                     
                     <tr>
                     <td>Modificado</td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.estciv_FechaModificacion)
+                    </td>
                     </tr>
                 </tbody>
             </table>

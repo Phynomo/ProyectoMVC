@@ -1,7 +1,13 @@
 ﻿@{
-this.Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
-            this.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            this.Response.Cache.SetNoStore();
+    this.Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+    this.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    this.Response.Cache.SetNoStore();
+
+    if (Session["Nombre"] == null || Session["Nombre"].ToString() == "")
+    {
+        Response.Redirect("/Login/Index");
+    }
+
 }
 
 

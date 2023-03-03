@@ -1,8 +1,30 @@
 ﻿@model IEnumerable<ProyectoMVC.Models.tbCargos>
 
     @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+        try
+        {
+            if (Session["rol"] != null)
+            {
+                if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2")
+                {
+                    Response.Redirect("/Home/Index");
+                }
+            }
+
+        }
+        catch
+        {
+            Response.Redirect("/Home/Index");
+        }
+
+
+
+
+
     }
 
     <div class="card">
@@ -10,7 +32,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col">
-                    <h4>tbCargos</h4>
+                    <h4>Cargos</h4>
                 </div>
                 <div class="col d-flex flex-row-reverse">
                     <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
@@ -22,7 +44,7 @@
             <div class="row">
                 <div class="col">
                     <table class="dataTable display compact stripe table-dark" id="example">
-                        <thead>z
+                        <thead>
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.car_Nombre)

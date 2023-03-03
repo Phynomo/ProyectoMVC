@@ -1818,31 +1818,31 @@ GO
 
 ---Articulos
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Silla de madera', 50.00, 1, 10, 1, GETDATE(), 1, 1);
+VALUES ('Silla de madera', 50.00, 1, 100000, 1, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Computadora port�til', 1000.00, 5, 5, 1, GETDATE(), 1, 1);
+VALUES ('Computadora port�til', 1000.00, 5, 100000, 1, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Vestido de gala', 200.00, 3, 3, 3, GETDATE(), 1, 1);
+VALUES ('Vestido de gala', 200.00, 3, 100000, 3, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Toallas de ba�o', 10.00, 9, 20, 4, GETDATE(), 1, 1);
+VALUES ('Toallas de ba�o', 10.00, 9, 100000, 4, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('iPhone 13', 1200.00, 5, 7, 3, GETDATE(), 1, 1);
+VALUES ('iPhone 13', 1200.00, 5, 100000, 3, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Teclado mec�nico', 80.00, 5, 30, 6, '2022-02-01 10:00:00', 1, 1);
+VALUES ('Teclado mec�nico', 80.00, 5, 100000, 6, '2022-02-01 10:00:00', 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_FechaModificacion, art_UsuarioModificacion, art_Estado)
-VALUES ('Camisa blanca', 20.00, 3, 50, 3, '2022-01-01 12:00:00', 1, '2022-01-02 14:00:00', 1, 1);
+VALUES ('Camisa blanca', 20.00, 3, 100000, 3, '2022-01-01 12:00:00', 1, '2022-01-02 14:00:00', 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('L�piz bicolor Staedtler', 1.99, 3, 500, 10, GETDATE(), 1, 1);
+VALUES ('L�piz bicolor Staedtler', 1.99, 3, 100000, 10, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Monitor LG 27 pulgadas', 189.99, 5, 50, 6, GETDATE(), 1, 1);
+VALUES ('Monitor LG 27 pulgadas', 189.99, 5, 100000, 6, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_Id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Teclado inal�mbrico Logitech', 35.99, 5, 100, 5, GETDATE(), 1, 1);
+VALUES ('Teclado inal�mbrico Logitech', 35.99, 5, 100000, 5, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Papa frita', 1.50, 1, 500, 2, GETDATE(), 1, 1);
+VALUES ('Papa frita', 1.50, 1, 100000, 2, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('L�mpara de mesa', 50.00, 2, 25, 6, GETDATE(), 1, 1);
+VALUES ('L�mpara de mesa', 50.00, 2, 100000, 6, GETDATE(), 1, 1);
 INSERT INTO tbArticulos (art_Nombre, art_Precio, cat_Id, art_Stock, fab_id, art_FechaCreacion, art_UsuarioCreacion, art_Estado)
-VALUES ('Jab�n de tocador', 2.50, 9, 200, 10, GETDATE(), 1, 1);
+VALUES ('Jab�n de tocador', 2.50, 9, 100000, 10, GETDATE(), 1, 1);
 
 
 
@@ -2183,3 +2183,94 @@ SELECT mun_Id, mun_Nombre, t1.dep_Id, T2.dep_Nombre, mun_FechaCreacion, mun_Usua
 END
 
 GO
+CREATE OR ALTER PROCEDURE UDP_cargarMunicipioDeEmpleados
+@emp_Id        INT
+AS 
+BeGIN
+
+Select emp_Id, 
+emp_Nombre, 
+emp_Apellido, 
+emp_Sexo, 
+emp_DireccionExacta, 
+estciv_Id, 
+emp_Telefono,
+emp_CorreoElectronico,
+emp_FechaNacimiento,
+emp_FechaContratacion,
+car_Id, emp_FechaCreacion,
+emp_UsuarioCreacion,
+emp_FechaModificacion,
+emp_UsuarioModificacion,
+emp_Estado,
+t1.mun_Id, 
+t2.mun_Nombre,
+T3.dep_Id,
+t3.dep_Nombre
+from tbEmpleados T1 INNER JOIN tbMunicipios T2
+ON t1.mun_Id = T2.mun_Id INNER JOIN tbDepartamentos T3
+ON T3.dep_Id = t2.dep_Id
+WHERE emp_Id = @emp_Id AND emp_Estado = 1
+
+END
+
+Go 
+
+
+GO
+CREATE OR ALTER PROCEDURE UDP_cargarMunicipioDeDirecciones
+@dire_Id        INT
+AS 
+BeGIN
+
+Select dire_ID, 
+dire_Calle, 
+dire_Comuna, 
+cli_Id, 
+dire_FechaCreacion, 
+dire_UsuarioCreacion,
+dire_FechaModificacion,
+dire_UsuarioModificacion, 
+dire_Estado,
+t1.mun_Id, 
+t2.mun_Nombre,
+T3.dep_Id,
+t3.dep_Nombre
+from tbDirecciones T1 INNER JOIN tbMunicipios T2
+ON t1.mun_Id = T2.mun_Id INNER JOIN tbDepartamentos T3
+ON T3.dep_Id = t2.dep_Id
+WHERE dire_Id = @dire_Id AND dire_Estado = 1
+
+END
+
+Go 
+CREATE OR ALTER PROCEDURE UDP_cargarMunicipioDeEmpleados
+@emp_Id        INT
+AS 
+BeGIN
+
+Select emp_Id, 
+emp_Nombre, 
+emp_Apellido, 
+emp_Sexo, 
+emp_DireccionExacta, 
+estciv_Id, 
+emp_Telefono,
+emp_CorreoElectronico,
+emp_FechaNacimiento,
+emp_FechaContratacion,
+car_Id, emp_FechaCreacion,
+emp_UsuarioCreacion,
+emp_FechaModificacion,
+emp_UsuarioModificacion,
+emp_Estado,
+t1.mun_Id, 
+t2.mun_Nombre,
+T3.dep_Id,
+t3.dep_Nombre
+from tbEmpleados T1 INNER JOIN tbMunicipios T2
+ON t1.mun_Id = T2.mun_Id INNER JOIN tbDepartamentos T3
+ON T3.dep_Id = t2.dep_Id
+WHERE emp_Id = @emp_Id AND emp_Estado = 1
+
+END

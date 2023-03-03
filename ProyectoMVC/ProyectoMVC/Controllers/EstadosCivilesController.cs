@@ -40,15 +40,23 @@ namespace ProyectoMVC.Controllers
         [HttpPost]
         public ActionResult Create(string txtId, string txtDescripcion)
         {
-
-
-            if (txtId != "" && txtDescripcion != "")
+            try
             {
-                db.UDP_tbEstadoCivilesInsert(txtId, txtDescripcion,1);
-                return RedirectToAction("Index", "EstadosCiviles");
+                if (txtId != "" && txtDescripcion != "")
+                {
+                    db.UDP_tbEstadoCivilesInsert(txtId, txtDescripcion, 1);
+                    return RedirectToAction("Index", "EstadosCiviles");
+                }
+
+                return PartialView("_ModalsEstadosView");
+            }
+            catch
+            {
+
+                return PartialView("_ModalsEstadosView");
             }
 
-            return PartialView("_ModalsEstadosView");
+            
         }
 
         // GET: EstadosCiviles/Edit/5
@@ -61,15 +69,23 @@ namespace ProyectoMVC.Controllers
         [HttpPost]
         public ActionResult Editt([Bind(Include = "estciv_Id,estciv_Nombre,estciv_FechaCreacion,estciv_UsuarioCreacion,estciv_FechaModificacion,estciv_UsuarioModificacion,estciv_Estado")] tbEstadosCiviles tbEstadosCiviles)
         {
-
-            if (tbEstadosCiviles.estciv_Nombre != "")
+            try
             {
-                db.UDP_tbEstadoCivilesUpdate(tbEstadosCiviles.estciv_Id, tbEstadosCiviles.estciv_Nombre, 1);
-                db.SaveChanges();
+                if (tbEstadosCiviles.estciv_Nombre != "")
+                {
+                    db.UDP_tbEstadoCivilesUpdate(tbEstadosCiviles.estciv_Id, tbEstadosCiviles.estciv_Nombre, 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "EstadosCiviles");
+                }
+
                 return RedirectToAction("Index", "EstadosCiviles");
             }
+            catch
+            {
 
-            return RedirectToAction("Index", "EstadosCiviles");
+                return RedirectToAction("Index", "EstadosCiviles");
+            }
+            
         }
 
 

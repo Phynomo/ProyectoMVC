@@ -1,88 +1,112 @@
 ﻿@model IEnumerable<ProyectoMVC.Models.tbFabricas>
 
-@{
+    @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<div class="card">
-                
-    <div class="card-header">
-                <div class="row">
-                    <div class="col">
-                     <h4>tbFabricas</h4>
-                    </div>
-                    <div class="col d-flex flex-row-reverse">
-                        @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
-                    </div>
+
+
+
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
+
+    }
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>Fabricas</h4>
                 </div>
-    </div>
-
-    <div class="card-body">
-        <div class="row">
-            <div class="col">
-                <table class="dataTable display compact stripe table-dark" id="example">
-                <thead>
-                    <tr>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_Nombre)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_DireccionExacta)
-                        </th>
-                                                        <th>
-                            @Html.DisplayNameFor(model => model.fab_Telefono)
-                        </th>
-                                                        
-                        
-                                        <th>Detalles</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var item in Model) {
-                    <tr>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_Nombre)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_DireccionExacta)
-                        </td>
-                                                        <td>
-                            @Html.DisplayFor(modelItem => item.fab_Telefono)
-                        </td>
-                                                        
-                              
-                                        <td>
-                        @Html.ActionLink(" ", "Details", new { id=item.fab_id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
-       
-                        </td>
-                        <td>
-                        @Html.ActionLink(" ", "Edit", new { id=item.fab_id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
-        
-                        </td>
-                        <td>
-                            <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.fab_id)"> </button>
-                            @Html.Partial("_DeleteFabricaView", item)
-
-                        </td>
-                                        </tr>
-                }
-                </tbody>
-                </table>
+                <div class="col d-flex flex-row-reverse">
+                    @Html.ActionLink("Crear nuevo", "Create", " ", new { @class="btn btn-block btn-success" })
+                </div>
             </div>
         </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <table class="dataTable display compact stripe table-dark" id="example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fab_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fab_DireccionExacta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fab_Telefono)
+                                </th>
+
+
+                                <th>Detalles</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fab_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fab_DireccionExacta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fab_Telefono)
+                                </td>
+
+
+                                <td>
+                                    @Html.ActionLink(" ", "Details", new { id=item.fab_id }, new { @class="btn btn-block btn-info bi bi-file-earmark-text-fill" })
+
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "Edit", new { id=item.fab_id }, new { @class="btn btn-block btn-warning bi bi-pencil-fill"})
+
+                                </td>
+                                <td>
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.fab_id)"> </button>
+                                    @Html.Partial("_DeleteFabricaView", item)
+
+                                </td>
+                            </tr>
+                }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-</div>
 
 
+    <script>
+        $("#btnDelete").click(function () {
 
-<script>
-    $("#btnDelete").click(function () {
+            $('#exampleModalDelete').modal({ backdrop: 'static', keyboard: false })
 
-        $('#exampleModalDelete').modal({ backdrop: 'static', keyboard: false })
-
-    });
-</script>
+        });
+    </script>

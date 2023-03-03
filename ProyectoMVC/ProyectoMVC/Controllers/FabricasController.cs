@@ -51,11 +51,20 @@ namespace ProyectoMVC.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "fab_id,fab_Nombre,mun_Id,fab_DireccionExacta,fab_Telefono,fab_FechaCreacion,fab_UsuarioCreacion,fab_FechaModificacion,fab_UsuarioModificacion,fab_Estado")] tbFabricas tbFabricas)
         {
-            if (ModelState.IsValid)
+            if (!String.IsNullOrEmpty(tbFabricas.fab_Nombre) && !String.IsNullOrEmpty(tbFabricas.mun_Id) && !String.IsNullOrEmpty(tbFabricas.fab_DireccionExacta) && !String.IsNullOrEmpty(tbFabricas.fab_Telefono))
             {
-                db.UDP_tbFabrica_Insert(tbFabricas.fab_Nombre, tbFabricas.mun_Id, tbFabricas.fab_DireccionExacta, tbFabricas.fab_Telefono, 1);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.UDP_tbFabrica_Insert(tbFabricas.fab_Nombre, tbFabricas.mun_Id, tbFabricas.fab_DireccionExacta, tbFabricas.fab_Telefono, 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+
+                    return RedirectToAction("Index", "Fabricas");
+                }
+
             }
 
             //ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "dep_Id", tbFabricas.mun_Id);
@@ -89,14 +98,24 @@ namespace ProyectoMVC.Controllers
         [HttpPost]
         public ActionResult Edit([Bind(Include = "fab_id,fab_Nombre,mun_Id,fab_DireccionExacta,fab_Telefono,fab_FechaCreacion,fab_UsuarioCreacion,fab_FechaModificacion,fab_UsuarioModificacion,fab_Estado")] tbFabricas tbFabricas)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.UDP_tbfabrica_Update(tbFabricas.fab_id, tbFabricas.fab_Nombre, tbFabricas.mun_Id, tbFabricas.fab_DireccionExacta, tbFabricas.fab_Telefono, 1);
-                return RedirectToAction("Index",tbFabricas);
+                if (!String.IsNullOrEmpty(Convert.ToString(tbFabricas.fab_id)) && !String.IsNullOrEmpty(tbFabricas.fab_Nombre) && !String.IsNullOrEmpty(tbFabricas.mun_Id) && !String.IsNullOrEmpty(tbFabricas.fab_DireccionExacta) && !String.IsNullOrEmpty(tbFabricas.fab_Telefono))
+                {
+                    db.UDP_tbfabrica_Update(tbFabricas.fab_id, tbFabricas.fab_Nombre, tbFabricas.mun_Id, tbFabricas.fab_DireccionExacta, tbFabricas.fab_Telefono, 1);
+                    return RedirectToAction("Index", "Fabricas");
+                }
             }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Fabricas");
+            }
+
+
             //ViewBag.dep_Id = new SelectList(db.tbDepartamentos, "dep_Id", "dep_Nombre");
 
-            return View(tbFabricas);
+            return RedirectToAction("Index", "Fabricas");
         }
 
         // GET: Fabricas/Delete/5

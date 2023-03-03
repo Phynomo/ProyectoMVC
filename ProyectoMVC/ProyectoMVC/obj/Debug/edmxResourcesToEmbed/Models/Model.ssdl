@@ -325,26 +325,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_DireccionesIndex' n
     <Property Name="dire_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_PedidoDetalles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="VW_PedidoDetalles">
-    <Key>
-      <PropertyRef Name="ped_Id" />
-      <PropertyRef Name="pede_Cantidad" />
-      <PropertyRef Name="pede_Precio" />
-      <PropertyRef Name="pede_FechaCreacion" />
-      <PropertyRef Name="pede_UsuarioCreacion" />
-      <PropertyRef Name="pede_Estado" />
-    </Key>
-    <Property Name="ped_Id" Type="int" Nullable="false" />
-    <Property Name="pede_Cantidad" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="pede_Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="pede_FechaCreacion" Type="datetime" Nullable="false" />
-    <Property Name="pede_UsuarioCreacion" Type="int" Nullable="false" />
-    <Property Name="pede_FechaModificacion" Type="datetime" />
-    <Property Name="pede_UsuarioModificacion" Type="int" />
-    <Property Name="pede_Estado" Type="bit" Nullable="false" />
-  </EntityType>
-  <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="VW_UsuariosIndex">
     <Key>
@@ -989,6 +969,12 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
   <Function Name="UDP_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdEdicion" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_cargarMunicipioDeDirecciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dire_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_cargarMunicipioDeEmpleados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="emp_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_CargarMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dep_Id" Type="varchar" Mode="In" />
   </Function>
@@ -1325,18 +1311,6 @@ advertencia 6002: La tabla o vista 'dbPedidosEncargos.dbo.VW_UsuariosIndex' no t
     [VW_DireccionesIndex].[dire_UsuarioModificacion] AS [dire_UsuarioModificacion], 
     [VW_DireccionesIndex].[dire_Estado] AS [dire_Estado]
     FROM [dbo].[VW_DireccionesIndex] AS [VW_DireccionesIndex]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="VW_PedidoDetalles" EntityType="Self.VW_PedidoDetalles" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [VW_PedidoDetalles].[ped_Id] AS [ped_Id], 
-    [VW_PedidoDetalles].[pede_Cantidad] AS [pede_Cantidad], 
-    [VW_PedidoDetalles].[pede_Precio] AS [pede_Precio], 
-    [VW_PedidoDetalles].[pede_FechaCreacion] AS [pede_FechaCreacion], 
-    [VW_PedidoDetalles].[pede_UsuarioCreacion] AS [pede_UsuarioCreacion], 
-    [VW_PedidoDetalles].[pede_FechaModificacion] AS [pede_FechaModificacion], 
-    [VW_PedidoDetalles].[pede_UsuarioModificacion] AS [pede_UsuarioModificacion], 
-    [VW_PedidoDetalles].[pede_Estado] AS [pede_Estado]
-    FROM [dbo].[VW_PedidoDetalles] AS [VW_PedidoDetalles]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="VW_UsuariosIndex" EntityType="Self.VW_UsuariosIndex" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

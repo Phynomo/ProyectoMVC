@@ -3,6 +3,24 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "3" && Session["rol"].ToString() != "4")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
 }
 
 
@@ -17,260 +35,261 @@
     }
 </style>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Pedido</h4></div>
-            <div class="card-body">
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background-color:black; color:white;"><h4>Nueva Pedido</h4></div>
+        <div class="card-body">
 
-                <div class="row form-group pt-2">
-                    <div class="col">
-                        @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
-                        <label class="control-label col">Clienete</label>
+            <div class="row form-group pt-2">
+                <div class="col">
+                    @*@Html.LabelFor(model => model.cli_Id, "cli_Id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Clienete</label>
 
-                        @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
-                        @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col">
-                        @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
-                        <label class="control-label col">Direccion</label>
-                        @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
-                        @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.DropDownList("cli_Id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.cli_Id, "", new { @class = "text-danger" })
                 </div>
-
-                <div class="row form-group pt-2">
-
-                    <div class="col">
-                        @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
-                        <label class="control-label col">Empleado</label>
-
-                        @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
-                        @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col">
-                        @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
-                        <label class="control-label col">Metodo De Pafo</label>
-
-                        @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
-                        @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col">
+                    @*@Html.LabelFor(model => model.dire_id, "dire_id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Direccion</label>
+                    @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
                 </div>
-
-                
             </div>
-            <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
+
+            <div class="row form-group pt-2">
+
+                <div class="col">
+                    @*@Html.LabelFor(model => model.emp_id, "emp_id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Empleado</label>
+
+                    @Html.DropDownList("emp_id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    @*@Html.LabelFor(model => model.metpago_Id, "metpago_Id", htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Metodo De Pafo</label>
+
+                    @Html.DropDownList("metpago_Id", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.metpago_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
         </div>
+        <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
     </div>
+</div>
 
-    <div class="container containerOculto">
-        <div class="card">
-            <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
-            <div class="card-body">
+<div class="container containerOculto">
+    <div class="card">
+        <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
+        <div class="card-body">
 
-                <div class="row form-group pt-2">
-                    <div class="col">
-                        <label>Producto</label>
-                        @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
+            <div class="row form-group pt-2">
+                <div class="col">
+                    <label>Producto</label>
+                    @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
 
-                    </div>
-                    <div class="col">
-                        Precio del producto
-
-                        <input id="pede_precio" name="pede_precio" class="form-control" readonly />
-
-                    </div>
                 </div>
+                <div class="col">
+                    Precio del producto
 
-                <div class="row form-group pt-2">
-                    <div class="col">
-                        <label>Cantidad </label>
+                    <input id="pede_precio" name="pede_precio" class="form-control" readonly />
 
-                        <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
-                        <label id="stockValid" hidden>Ingrese La Cantidad</label>
-
-                    </div>
-                    <div class="col">
-
-
-                    </div>
                 </div>
+            </div>
 
-                <div class="row form-group pt-2">
+            <div class="row form-group pt-2">
+                <div class="col">
+                    <label>Cantidad </label>
 
-                    <div class="col">
-                        <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnInsertarVentaDetalle" value="Agregar" />
-                    </div>
-                    <div class="col">
-                        <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
-                    </div>
-                    <div class="col">
-                        <label>Total:</label>
-                    </div>
-                    <div class="col">
-                        <input type="text" id="txttotal" class="form-control" readonly />
-                    </div>
+                    <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
+                    <label id="stockValid" hidden>Ingrese La Cantidad</label>
+
+                </div>
+                <div class="col">
+
+
+                </div>
+            </div>
+
+            <div class="row form-group pt-2">
+
+                <div class="col">
+                    <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnInsertarVentaDetalle" value="Agregar" />
+                </div>
+                <div class="col">
+                    <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
                 </div>
 
             </div>
+
         </div>
-
-
-
     </div>
-    <div class="container containerOculto">
-        <table id="tabla1" class="table table-striped" style="width:100%">
-            <thead style="background-color:black; color: white;">
-                <tr>
-                    <td>Producto</td>
-                    <td>Precio</td>
-                    <td>Cantidad</td>
-                </tr>
-            </thead>
 
 
-            <tbody id="tbodyVentas">
 
-            </tbody>
-        </table>
-    </div>
-    <script>
-        //$(document).ready(function () {
-        $("#btnInsertarVenta").click(function () {
+</div>
+<div class="container containerOculto">
+    <table id="tabla1" class="table table-striped" style="width:100%">
+        <thead style="background-color:black; color: white;">
+            <tr>
+                <td>Producto</td>
+                <td>Precio</td>
+                <td>Cantidad</td>
+            </tr>
+        </thead>
 
-                var clienteId = $("#cli_Id").val();
-                var Direccion = $("#dire_id").val();
-                var Empleado = $("#emp_id").val();
-                var metodopagoId = $("#metpago_Id").val();
 
-                $("#cli_Id").prop("disabled", true);
-                $("#ped_Fecha").prop("disabled", true);
-                $("#dire_id").prop("disabled", true);
-                $("#emp_id").prop("disabled", true);
-                $("#metpago_Id").prop("disabled", true);
+        <tbody id="tbodyVentas">
+        </tbody>
+    </table>
+</div>
+<script>
+    //$(document).ready(function () {
+    $("#btnInsertarVenta").click(function () {
 
-                $(".containerOculto").show();
-                $(".btnInsertarVenta").fadeOut();
+        var clienteId = $("#cli_Id").val();
+        var Direccion = $("#dire_id").val();
+        var Empleado = $("#emp_id").val();
+        var metodopagoId = $("#metpago_Id").val();
+
+        $("#cli_Id").prop("disabled", true);
+        $("#ped_Fecha").prop("disabled", true);
+        $("#dire_id").prop("disabled", true);
+        $("#emp_id").prop("disabled", true);
+        $("#metpago_Id").prop("disabled", true);
+
+        $(".containerOculto").show();
+        $(".btnInsertarVenta").fadeOut();
+
+        $.ajax({
+            type: "POST",
+            url: "/Pedidos/Create",
+            data: { cli_Id: clienteId, dire_id: Direccion, emp_id: Empleado, metpago_Id: metodopagoId },
+            success: function (response) {
+
+            },
+            error: function (error) {
+
+            }
+        });
+    });
+    //});
+</script>
+
+@*Trae los clientes*@
+<script>
+
+
+    //Precio = $("#pede_precio").val("Seleccione un Producto");
+    $("#art_Id").change(function () {
+        var art_Id = $("#art_Id").val();
+        $.ajax({
+            url: "/Pedidos/CargarArticulos",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ art_Id: art_Id }),
+            success: function (data) {
+                console.log(data);
+                $("#pede_precio").empty();
+                $("#pede_precio").val(data);
+            }
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#btnInsertarVentaDetalle').click(function () {
+            var articulo = $('#art_Id').val();
+            var Precio = $("#pede_precio").val();
+            var Stock = $("#pede_Stock").val();
+            var text = $('#art_Id').find('option[value=' + articulo + ']').text();
+
+
+            if (articulo == "" || Precio == "" || Precio == null || Precio == 0 || Precio == "Seleccione un Producto" || Stock == "") {
+
+
+                if (Precio == "" || Precio == null || Precio == 0 || Precio == "Seleccione un Producto") {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Seleccione Un Articulo',
+                    });
+                    validar = false;
+                    $('#art_Id').focus();
+                }
+
+                if (Stock == "") {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'El campo cantidad en necesario',
+                    });
+                    $("#stockValid").show();
+                }
+
+            } else {
+
+
+
+                var cadena = "<tr>";
+                cadena += "<td> " + text + "</td>";
+                cadena += "<td> " + Precio + "</td>";
+                cadena += "<td> " + Stock + "</td>";
+                cadena += "</tr>";
+                //console.log(cadena);
+
+
+                var SubTotal;
+                SubTotal = parseFloat(Stock) * parseFloat(Precio);
+                var precio2 = 0;
+                precio2 = parseFloat(precio2) + SubTotal;
+                var total = precio2;
+
+                console.log("total = " + total);
+
+
+
+
+
+                $("#tabla1").append(cadena);
+
+
 
                 $.ajax({
-                    type: "POST",
-                    url: "/Pedidos/Create",
-                    data: { cli_Id: clienteId, dire_id: Direccion, emp_id: Empleado, metpago_Id: metodopagoId },
-                    success: function (response) {
+                    type: 'POST',
+                    url: '/Pedidos/CreateDetalles',
+                    data: { art_Id: articulo, pede_Precio: Stock },
+                    success: function (result) {
+
+                        var total = 0;
+                        console.log(result);
+                        $.each(result, function (index, item) {
+
+                            var subtotal = parseFloat(item.pede_Cantidad) * parseInt(item.pede_Cantidad);
+                            total += subtotal;
+
+                        });
+                        $("#tbodyVentas").html(cadena);
 
                     },
                     error: function (error) {
 
                     }
                 });
-            });
-        //});
-    </script>
-
-    @*Trae los clientes*@
-    <script>
-
-        $("#pede_precio").val(0);
-
-        $("#art_Id").change(function () {
-            var art_Id = $("#art_Id").val();
-            $.ajax({
-                url: "/Pedidos/CargarArticulos",
-                method: "POST",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ art_Id: art_Id }),
-                success: function (data) {
-                    console.log(data); 
-                    $("#pede_precio").empty();
-                    $("#pede_precio").val(data);
-                }
-            })
+            }
         });
-    </script>
+    });
+</script>
 
-    <script>
-        $(document).ready(function () {
-
-            $('#btnInsertarVentaDetalle').click(function () {
-                var articulo = $('#art_Id').val();
-                var Precio = $("#pede_precio").val();
-                var Stock = $("#pede_Stock").val();
-                var text = $('#art_Id').find('option[value=' + articulo + ']').text();
-
-                if (articulo == "" || Precio == "" || Stock == "" ){
-
-                    if (isEmptyObject(articulo)) {
-
-                    }
-
-                    if (isEmptyObject(articulo)) {
-
-                    }
-
-                    if ( Stock == "") {
-                        $("#stockValid").show();
-                    }
-
-                } else {
-
-                   
-
-                    var cadena = "<tr>";
-                    cadena += "<td> " + text + "</td>";
-                    cadena += "<td> " + Precio + "</td>";
-                    cadena += "<td> " + Stock + "</td>";
-                    cadena += "</tr>";
-                    //console.log(cadena);
-                   
-
-                    var SubTotal;
-                    SubTotal = parseFloat(Stock) * parseFloat(Precio);
-                    var precio2 = 0;
-                    precio2 = parseFloat(precio2) + SubTotal;
-                    var total = precio2;
-
-                    console.log("total = " + total);
-
-
-                    $("#txttotal").val(total);
-
-
-                    $("#tabla1").append(cadena);
-
-
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Pedidos/CreateDetalles',
-                        data: { art_Id: articulo, pede_Precio: Stock },
-                        success: function (result) {
-                           
-                            var total = 0;
-                            console.log(result);
-                            $.each(result, function (index, item) {
-
-                                var subtotal = parseFloat(item.pede_Cantidad) * parseInt(item.pede_Cantidad);
-                                total += subtotal;
-
-                            });
-                            $("#tbodyVentas").html(cadena);
-                            
-                        },
-                        error: function (error) {
-
-                        }
-                    });
-                }
-            });
+<script>
+    $(document).ready(function () {
+        $("#tabla1").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
+            }
         });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $("#tabla1").DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
-                }
-            });
-        });
-    </script>
+    });
+</script>

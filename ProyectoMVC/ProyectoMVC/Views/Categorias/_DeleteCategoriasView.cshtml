@@ -3,9 +3,9 @@
 
 <div class="modal fade" id="exampleModalDelete-@Model.cat_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content  ">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Categoria</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -15,7 +15,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.cat_Id)
 
-                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+                    <h2 style="color:whitesmoke;">Estas seguro de querer eliminar esta Categoria?</h2>
 
 
                 </div>

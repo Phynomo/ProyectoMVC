@@ -3,13 +3,31 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
+
 }
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+@Html.AntiForgeryToken()
+
 <div class="container px-4 text-center">
     <div class="row">
         <div class="col">
@@ -29,16 +47,54 @@
         <div class="col">
             <label class="control-label">Departamentos</label>
             <label class="control-label col"></label>
+            @try
+            {
+
             @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+
+            }
+            catch (Exception)
+            {
+            <select id="dep_Id" class="form-select">
+                <option value="01" selected> Atl�ntida�n</option>
+                <option value="02"> Col�n </option>
+                <option value="03"> Comayagua </option>
+                <option value="04"> Cop�n </option>
+                <option value="05"> Cort�s </option>
+                <option value="06"> Choluteca </option>
+                <option value="07"> El Para�so </option>
+                <option value="08"> fabncisco Moraz�n </option>
+                <option value="09"> Gracias a Dios </option>
+                <option value="10"> Intibuc� </option>
+                <option value="11"> Islas de la Bah�a </option>
+                <option value="12"> La Paz </option>
+                <option value="13"> Lempira </option>
+                <option value="14"> Ocotepeque </option>
+                <option value="15"> Olancho </option>
+                <option value="16"> Santa B�rbara </option>
+                <option value="17"> Valle </option>
+                <option value="18"> Yoro </option>
+            </select>
+            <label style="color:red">Seleccione Un departamento</label>
+            }
         </div>
     </div>
 
     <div class="row form-group pt-2">
         <div class="col">
+
+            @try
+            {
             @Html.LabelFor(model => model.mun_Id, "mun_Id", htmlAttributes: new { @class = "control-label col" })
-            <select id="mun_Id" name="mun_Id" class="form-select">
-            </select>
+            <select id="mun_Id" name="mun_Id" class="form-select"></select>
             @Html.ValidationMessageFor(model => model.mun_Id, "", new { @class = "text-danger" })
+            }
+            catch (Exception)
+            {
+
+            <label>Seleccione Un Municipio</label>
+            }
+
         </div>
         <div class="col">
             @Html.LabelFor(model => model.fab_DireccionExacta, htmlAttributes: new { @class = "control-label col" })
@@ -59,7 +115,7 @@
 
         <div class=" row form-group d-flex justify-content-end py-3">
             <div class="col d-flex justify-content-end">
-                <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+                <input type="submit" id="createdd" value="Crear registro" class="btn btn-success mx-2" />
                 @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
             </div>
         </div>
@@ -69,6 +125,18 @@
 
 
 <script>
+
+    var muni = $("#mun_Id").val();
+
+    $("#createdd").click(function () {
+        if (muni == "" || muni == null || muni == 0 || muni == "0") {
+            iziToast.warning({
+                title: 'Precaucion',
+                message: 'Introduce un departamento para seleccionar un Municipio',
+            });
+        }
+    })
+
     $("#dep_Id").change(function () {
         var dep_Id = $("#dep_Id").val();
         $.ajax({
@@ -82,7 +150,7 @@
                 $("#mun_Id").empty();
                 $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
                 $.each(data, function (i, value) {
-                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre +"</option>")
+                    $("#mun_Id").append("<option value='" + value.mun_Id + "'>" + value.mun_Nombre + "</option>")
                 })
             }
         })

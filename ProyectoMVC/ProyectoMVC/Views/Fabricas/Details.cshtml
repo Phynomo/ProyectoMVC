@@ -3,18 +3,36 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
 }
+
 
 
 
 <div class="row">
     <div class="col">
-        <h4>tbFabricas</h4>
+        <h4>Detalles de La Fabricas  @Html.DisplayFor(model => model.fab_Nombre)</h4>
     </div>
     <div class="col d-flex justify-content-end">
 
         <p>
-            @Html.ActionLink("Editar", "Edit", "", new { id = Model.fab_id }, new { @class = "btn btn-warning mx-2" }) |
             @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
         </p>
 
@@ -41,22 +59,16 @@
             @Html.DisplayFor(model => model.fab_Nombre)
         </dd>
 </div>
+<div class="col">
+    <dt style="color:White;">
+        @Html.DisplayNameFor(model => model.fab_DireccionExacta)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.fab_DireccionExacta)
+    </dd>
 </div>
-
-
-
-
-<div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.fab_DireccionExacta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fab_DireccionExacta)
-        </dd>
-    </div>
-</div>
+        </div>
 
 
 <div class="row">
@@ -68,14 +80,16 @@
         <dd>
             @Html.DisplayFor(model => model.fab_Telefono)
         </dd>
-        </dl>
+
+        <div class="col">
+        </div>
     </div>
 </div>
-    </div>
 
 
 
     </dl>
+</div>
 
 <div class="card">
     <div class="card-header">
@@ -123,14 +137,3 @@
 </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-

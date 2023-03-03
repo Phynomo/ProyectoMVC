@@ -53,10 +53,27 @@ namespace ProyectoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "art_Id,art_Nombre,art_Precio,cat_Id,art_Stock,fab_id,art_FechaCreacion,art_UsuarioCreacion,art_FechaModificacion,art_UsuarioModificacion,art_Estado")] tbArticulos tbArticulos)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.UDP_tbArticulos_Insert(tbArticulos.art_Nombre, tbArticulos.art_Precio, tbArticulos.cat_Id, tbArticulos.art_Stock, tbArticulos.fab_id, 1);
-                return RedirectToAction("Index");
+
+
+
+                if (!String.IsNullOrEmpty(tbArticulos.art_Nombre) && tbArticulos.art_Precio != 0 && tbArticulos.cat_Id != 0 && tbArticulos.art_Stock != 0)
+                {
+                    db.UDP_tbArticulos_Insert(tbArticulos.art_Nombre, tbArticulos.art_Precio, tbArticulos.cat_Id, tbArticulos.art_Stock, tbArticulos.fab_id, 1);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Response.Write("<script>");
+                    Response.Write(" iziToast.error({ title: 'Error', message: 'Servidor en mantenimiento Intente mas tarde', });");
+                    Response.Write("</script>");
+                }
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Articulos");
             }
 
             ViewBag.art_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbArticulos.art_UsuarioCreacion);
@@ -92,12 +109,29 @@ namespace ProyectoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "art_Id,art_Nombre,art_Precio,cat_Id,art_Stock,fab_id,art_FechaCreacion,art_UsuarioCreacion,art_FechaModificacion,art_UsuarioModificacion,art_Estado")] tbArticulos tbArticulos)
         {
-            if (ModelState.IsValid)
+            try
             {
 
-                db.UDP_tbArticulo_Update(tbArticulos.art_Id, tbArticulos.art_Nombre, tbArticulos.art_Precio, tbArticulos.cat_Id, tbArticulos.art_Stock, tbArticulos.fab_id, 1);
 
-                return RedirectToAction("Index");
+                if (!String.IsNullOrEmpty(Convert.ToString(tbArticulos.art_Id)) && !String.IsNullOrEmpty(tbArticulos.art_Nombre) && tbArticulos.art_Precio != 0 && tbArticulos.cat_Id != 0 && tbArticulos.art_Stock != 0)
+                {
+
+                    db.UDP_tbArticulo_Update(tbArticulos.art_Id, tbArticulos.art_Nombre, tbArticulos.art_Precio, tbArticulos.cat_Id, tbArticulos.art_Stock, tbArticulos.fab_id, 1);
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Response.Write("<script>");
+                    Response.Write(" iziToast.error({ title: 'Error', message: 'Servidor en mantenimiento Intente mas tarde', });");
+                    Response.Write("</script>");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Articulos");
             }
             ViewBag.art_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbArticulos.art_UsuarioCreacion);
             ViewBag.art_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbArticulos.art_UsuarioModificacion);
@@ -108,7 +142,7 @@ namespace ProyectoMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            db.UDP_tbArticulos_Delete(id,1);
+            db.UDP_tbArticulos_Delete(id, 1);
             return RedirectToAction("Index");
         }
 
@@ -137,7 +171,7 @@ namespace ProyectoMVC.Controllers
         //    db.tbArticulos.Remove(tbArticulos);
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
-    //}
+        //}
 
         protected override void Dispose(bool disposing)
         {

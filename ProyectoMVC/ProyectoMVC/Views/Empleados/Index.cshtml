@@ -1,8 +1,29 @@
 ﻿@model IEnumerable<ProyectoMVC.Models.tbEmpleados>
 
     @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+
+        try
+        {
+            if (Session["rol"] != null)
+            {
+                if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "5")
+                {
+                    Response.Redirect("/Home/Index");
+                }
+            }
+
+        }
+        catch
+        {
+            Response.Redirect("/Home/Index");
+        }
+
+
     }
 
     <div class="card">
@@ -10,7 +31,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col">
-                    <h4>tbEmpleados</h4>
+                    <h4>Empleados</h4>
                 </div>
                 <div class="col d-flex flex-row-reverse">
                     @Html.ActionLink("Crear nuevo", "Create", " ", new { @class = "btn btn-block btn-success" })

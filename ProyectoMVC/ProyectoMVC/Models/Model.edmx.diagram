@@ -5,27 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d3fcf4e0a39d42beac8bee1cd1427894" Name="Diagram1" ZoomLevel="11">
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbArticulos" Width="1.5" PointX="7.5" PointY="18.75" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCargos" Width="1.5" PointX="5.25" PointY="31.625" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCategoria" Width="1.5" PointX="5.25" PointY="10.625" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbClientes" Width="1.5" PointX="5.25" PointY="22.875" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDepartamentos" Width="1.5" PointX="5.25" PointY="27.875" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDirecciones" Width="1.5" PointX="10.5" PointY="20.25" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEmpleados" Width="1.5" PointX="9.75" PointY="25" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEstadosCiviles" Width="1.5" PointX="5.25" PointY="19.125" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbFabricas" Width="1.5" PointX="9.75" PointY="32.375" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMetodoPago" Width="1.5" PointX="5.25" PointY="35.25" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMunicipios" Width="1.5" PointX="7.5" PointY="24.125" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPantallas" Width="1.5" PointX="5.25" PointY="6.875" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidos" Width="1.5" PointX="12.75" PointY="24.5" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidosDetalles" Width="1.5" PointX="9.75" PointY="15.25" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbArticulos" Width="1.5" PointX="7.5" PointY="21.125" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCargos" Width="1.5" PointX="5.25" PointY="22.875" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbCategoria" Width="1.5" PointX="5.25" PointY="19.125" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbClientes" Width="1.5" PointX="5.25" PointY="26.5" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDepartamentos" Width="1.5" PointX="5.25" PointY="35.25" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbDirecciones" Width="1.5" PointX="10.5" PointY="17.125" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEmpleados" Width="1.5" PointX="10.5" PointY="22" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbEstadosCiviles" Width="1.5" PointX="5.25" PointY="31.625" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbFabricas" Width="1.5" PointX="9.75" PointY="29" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMetodoPago" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbMunicipios" Width="1.5" PointX="7.5" PointY="26.875" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPantallas" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidos" Width="1.5" PointX="12.75" PointY="13.625" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbPedidosDetalles" Width="1.5" PointX="12.75" PointY="19.375" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.tbRoles" Width="1.5" PointX="0.75" PointY="18.625" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbRolesXPantalla" Width="1.5" PointX="7.5" PointY="14.375" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.tbRolesXPantalla" Width="1.5" PointX="7.5" PointY="16.125" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.tbUsuarios" Width="1.5" PointX="3" PointY="15.25" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_ClientesIndex" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_DireccionesIndex" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_PedidoDetalles" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbPedidosEncargosModel.VW_UsuariosIndex" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioCreacion_usu_Id" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_dbo_tbUsuarios_art_UsuarioModificacion_usu_Id" />
         <AssociationConnector Association="dbPedidosEncargosModel.FK_dbo_tbArticulos_tbCategoria_cat_Id" />

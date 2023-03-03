@@ -43,14 +43,22 @@ namespace ProyectoMVC.Controllers
         public ActionResult Create(string txtMetodopago)
         {
 
-
-            if (txtMetodopago != "")
+            try
             {
-                db.UDP_tbMetodoPago_Insert(txtMetodopago, 1);
-                return RedirectToAction("Index", "MetodoPagoes");
+                if (txtMetodopago != "")
+                {
+                    db.UDP_tbMetodoPago_Insert(txtMetodopago, 1);
+                    return RedirectToAction("Index", "MetodoPagoes");
+                }
+
+                return PartialView("_ModalesMetodosPagosView");
+            }
+            catch
+            {
+                return PartialView("_ModalesMetodosPagosView");
             }
 
-            return PartialView("_ModalesMetodosPagosView");
+            
         }
 
         // GET: MetodoPagoes/Edit/5
@@ -67,14 +75,24 @@ namespace ProyectoMVC.Controllers
         public ActionResult Editt([Bind(Include = "metpago_Id,metpago_Descripcion,metpago_FechaCreacion,metpago_UsuarioCreacion,metpago_FechaModificacion,metpago_UsuarioModificacion,metpago_Estado")] tbMetodoPago tbMetodoPago)
     {
 
-        if (tbMetodoPago.metpago_Descripcion != "")
+            try
             {
-                db.UDP_tbMetodoPago_Update(tbMetodoPago.metpago_Id, tbMetodoPago.metpago_Descripcion, 1);
-                db.SaveChanges();
+
+                if (tbMetodoPago.metpago_Descripcion != "")
+                {
+                    db.UDP_tbMetodoPago_Update(tbMetodoPago.metpago_Id, tbMetodoPago.metpago_Descripcion, 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "MetodoPagoes");
+                }
+
+                return RedirectToAction("Index", "MetodoPagoes");
+            }
+            catch
+            {
+
                 return RedirectToAction("Index", "MetodoPagoes");
             }
 
-            return RedirectToAction("Index", "MetodoPagoes");
         }
 
 

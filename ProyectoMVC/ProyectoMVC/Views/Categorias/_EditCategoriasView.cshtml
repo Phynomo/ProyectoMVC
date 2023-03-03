@@ -2,39 +2,34 @@
 @model ProyectoMVC.Models.tbCategoria
 
 
-    <div class="modal fade" id="exampleModalEdit-@Model.cat_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <form action="@Url.Action("Edit", "Categorias")" method="POST">
-                    <div class="modal-body">
-
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.cat_Id)
-
-                        @Html.LabelFor(model => model.cat_Descripcion, htmlAttributes: new { @class = "control-label col" })
-                        @Html.EditorFor(model => model.cat_Descripcion, new { htmlAttributes = new { @class = "form-control", @name = "cat_Descripcion" } })
-                        <h3><h7 style="color:red;"> @Html.ValidationMessage("Valifacion") </h7></h3>
-
-                     
-
-                        @*@Html.ValidationMessageFor(model => model.cat_Descripcion, "", new { @class = "text-danger" })*@
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
+<div class="modal fade" id="exampleModalEdit-@Model.cat_Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <form action="@Url.Action("Edit", "Categorias")" method="POST">
+                <div class="modal-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.cat_Id)
+
+                    <label class="control-label">Categoria</label>
+                    @Html.EditorFor(model => model.cat_Descripcion, new { htmlAttributes = new { @class = "form-control", @name = "cat_Descripcion" , required = "required"} })
+                    <h3><h7 style="color:red;"> @Html.ValidationMessage("Valifacion") </h7></h3>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
 
 

@@ -102,7 +102,7 @@ namespace ProyectoMVC.Controllers
             ViewBag.ped_Id = new SelectList(db.tbPedidos, "ped_Id", "metpago_Id", tbPedidosDetalles.ped_Id);
             ViewBag.pede_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbPedidosDetalles.pede_UsuarioCreacion);
             ViewBag.pede_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbPedidosDetalles.pede_UsuarioModificacion);
-            return View(tbPedidosDetalles);
+            return RedirectToAction("Index","Pedidos");
         }
 
         // GET: PedidosDetalles/Delete/5

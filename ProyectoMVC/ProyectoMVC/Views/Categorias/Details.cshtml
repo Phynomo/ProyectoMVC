@@ -9,84 +9,84 @@
 <div>
 
     <div class="row">
-    <div class="col">
-     <h4>tbCategoria</h4>
-</div>
-<div class="col d-flex justify-content-end">
+        <div class="col">
+            <h4>Categoria</h4>
+        </div>
+        <div class="col d-flex justify-content-end">
 
-<p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.cat_Id }, new { @class = "btn btn-warning mx-2" }) |
-    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
-</p>
-
-
-</div>
-</div>
+            <p>
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </p>
 
 
-   
+        </div>
+    </div>
 
 
-    
+
+
+
+
 
 
 
     <hr />
-    
+
     <div class="container">
-    <dl class="dl-horizontal">
+        <dl class="dl-horizontal">
 
-    <div class="row">
-    <div class="col">
-        <dt style="color:White;">
-            @Html.DisplayNameFor(model => model.cat_Descripcion)
-        </dt>
+            <div class="row">
+                <div class="col">
+            <dt style="color:White;">
+                <label>Categoria</label>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cat_Descripcion)
-        </dd>
-</div>
+            <dd>
+                @Html.DisplayFor(model => model.cat_Descripcion)
+            </dd>
+    </div>
 </div>
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col">
-            auditoria
+                auditoria
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col">
-                        <table class="table">
-                <thead>
-                    <tr>
-                    <th>Accion</th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>Creado</td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.cat_FechaCreacion)
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Modificado</td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
-                    </td>
-                    <td> @Html.DisplayFor(model => model.cat_FechaModificacion)</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Accion</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuarios.usu_Usuario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.cat_FechaCreacion)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuarios1.usu_Usuario)
+
+                            </td>
+                            <td> @Html.DisplayFor(model => model.cat_FechaModificacion)</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
         </div>

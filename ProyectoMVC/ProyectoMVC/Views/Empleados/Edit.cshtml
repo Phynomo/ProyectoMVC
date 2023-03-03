@@ -3,6 +3,24 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "5")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
 }
 
 
@@ -14,12 +32,14 @@
     <div class="row">
         <div class="col">
 
-            <h4>Editar tbEmpleados</h4>
+            <h4>Editar empleado</h4>
 
         </div>
     </div>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.emp_Id)
+
+
 
     <div class="row form-group pt-2">
         <div class="col">
@@ -36,17 +56,46 @@
 
     <div class="row form-group pt-2">
         <div class="col">
+            <label class="control-label">Departamentos</label>
             <label class="control-label col"></label>
-            @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" }) 
-            @*aqui esta el error*@
+            @try
+            {
+
+                @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+
+            }
+            catch (Exception)
+            {
+                <select id="dep_Id" class="form-select">
+                    <option value="01" selected> Atl�ntida�n</option>
+                    <option value="02"> Col�n </option>
+                    <option value="03"> Comayagua </option>
+                    <option value="04"> Cop�n </option>
+                    <option value="05"> Cort�s </option>
+                    <option value="06"> Choluteca </option>
+                    <option value="07"> El Para�so </option>
+                    <option value="08"> fabncisco Moraz�n </option>
+                    <option value="09"> Gracias a Dios </option>
+                    <option value="10"> Intibuc� </option>
+                    <option value="11"> Islas de la Bah�a </option>
+                    <option value="12"> La Paz </option>
+                    <option value="13"> Lempira </option>
+                    <option value="14"> Ocotepeque </option>
+                    <option value="15"> Olancho </option>
+                    <option value="16"> Santa B�rbara </option>
+                    <option value="17"> Valle </option>
+                    <option value="18"> Yoro </option>
+                </select>
+                <label style="color:red">Seleccione Un departamento</label>
+            }
         </div>
         <div class="col">
-            @Html.LabelFor(model => model.mun_Id, "mun_Id", htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label">Municipios</label>
             <select id="mun_Id" name="mun_Id" class="form-select">
             </select>
             @Html.ValidationMessageFor(model => model.mun_Id, "", new { @class = "text-danger" })
         </div>
-    </div>
+</div>
 
 
     <div class="row form-group pt-2">
@@ -67,7 +116,7 @@
 
     <div class="row form-group pt-2">
         <div class="col">
-            @Html.LabelFor(model => model.estciv_Id, "estciv_Id", htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label">Estados Civiles</label>
             @Html.DropDownList("estciv_Id", null, htmlAttributes: new { @class = "form-select" })
             @Html.ValidationMessageFor(model => model.estciv_Id, "", new { @class = "text-danger" })
         </div>
@@ -98,7 +147,7 @@
             @Html.ValidationMessageFor(model => model.emp_FechaContratacion, "", new { @class = "text-danger" })
         </div>
         <div class="col">
-            @Html.LabelFor(model => model.car_Id, "car_Id", htmlAttributes: new { @class = "control-label col" })
+            <label class="control-label">Cargo</label>
             @Html.DropDownList("car_Id", null, htmlAttributes: new { @class = "form-select" })
             @Html.ValidationMessageFor(model => model.car_Id, "", new { @class = "text-danger" })
         </div>
@@ -122,6 +171,59 @@
 </div>
 }
 
+
+
+
+<script>
+
+    $(document).ready(function () {
+        var emp_Id = $("#emp_Id").val();
+        $.ajax({
+            url: "/Empleados/CargarDepartamentosEdit",
+            method: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ emp_Id: emp_Id }),
+            success: function (data) {
+                $.each(data, function (i, value) {
+                    $("#dep_Id").val(value.dep_Id);
+
+                    $.ajax({
+                        url: "/Empleados/CargarMunicipios",
+                        method: "POST",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ dep_Id: value.dep_Id }),
+                        success: function (data) {
+                            $("#mun_Id").empty();
+                            $("#mun_Id").append("<option value='0'>--Seleccione un municipio--</option>");
+                            $.each(data, function (i, value) {
+                                $("#mun_Id").append("<option value='" + value.mun_id + "'>" + value.mun_Nombre + "</option>");
+                            });
+                        }
+                    });
+
+                    $.ajax({
+                        url: "/Empleados/SelectedMunicipio",
+                        method: "POST",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ emp_Id: emp_Id }),
+                        success: function (data) {
+                            $.each(data, function (i, value) {
+                                $("#mun_Id").val(value.mun_Id).change();
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+    
+
+
+</script>
 
 
 <script>
@@ -148,7 +250,7 @@
 </script>
 
 
-<script>
+@*<script>
     $(document).ready(function () {
 
         $.ajax({
@@ -168,4 +270,4 @@
     });
 
 
-</script>
+</script>*@

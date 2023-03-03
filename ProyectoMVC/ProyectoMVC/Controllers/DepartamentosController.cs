@@ -50,17 +50,26 @@ namespace ProyectoMVC.Controllers
         [HttpPost]
         public ActionResult Create(string txtIdDepartamento, string txtDepartamento)
         {
-
-
-            if (!String.IsNullOrEmpty(txtIdDepartamento) || !String.IsNullOrEmpty(txtDepartamento))
+            try
             {
-                db.UDP_tbDepartamentos_Insert(txtIdDepartamento, txtDepartamento, 1);
+                if (!String.IsNullOrEmpty(txtIdDepartamento) && !String.IsNullOrEmpty(txtDepartamento))
+                {
+                    db.UDP_tbDepartamentos_Insert(txtIdDepartamento, txtDepartamento, 1);
+                    return RedirectToAction("Index", "Departamentos");
+                }
+                else
+                {
+                    ModelState.AddModelError("CategoriaVacia", "El campo es vacio mi Rey ♛");
+                }
+
+            }
+            catch (Exception)
+            {
+
                 return RedirectToAction("Index", "Departamentos");
             }
-            else
-            {
-                ModelState.AddModelError("CategoriaVacia", "El campo es vacio mi Rey ♛");
-            }
+
+
 
 
             return View();
@@ -87,15 +96,25 @@ namespace ProyectoMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        
+
         public ActionResult Editt([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.UDP_tbDepartamentos_Update(tbDepartamentos.dep_Id, tbDepartamentos.dep_Nombre, 1);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (!String.IsNullOrEmpty(tbDepartamentos.dep_Id) && !String.IsNullOrEmpty(tbDepartamentos.dep_Nombre))
+                {
+                    db.UDP_tbDepartamentos_Update(tbDepartamentos.dep_Id, tbDepartamentos.dep_Nombre, 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Departamentos");
+                }
             }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Departamentos");
+            }
+
+
             ViewBag.dep_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDepartamentos.dep_UsuarioCreacion);
             ViewBag.dep_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbDepartamentos.dep_UsuarioModificacion);
             return View(tbDepartamentos);
@@ -109,8 +128,8 @@ namespace ProyectoMVC.Controllers
 
         public ActionResult DeleteConfirm([Bind(Include = "dep_Id,dep_Nombre,dep_FechaCreacion,dep_UsuarioCreacion,dep_FechaModificacion,dep_UsuarioModificacion,dep_Estado")] tbDepartamentos tbDepartamentos)
         {
-            db.UDP_tbDepartamentos_Delete(tbDepartamentos.dep_Id)
-;            db.SaveChanges();
+            db.UDP_tbDepartamentos_Delete(tbDepartamentos.dep_Id); 
+            db.SaveChanges();
             return RedirectToAction("Index", "Departamentos");
         }
 

@@ -3,6 +3,25 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "3")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
+
 }
 
 
@@ -16,7 +35,7 @@
     <div class="row">
         <div class="col">
 
-            <h4>Crear Clientes</h4>
+            <h4>Crear cliente</h4>
             ♛
         </div>
     </div>
@@ -52,12 +71,12 @@
         <div class="col">
             <label class="control-label col" id="lblSaldo">Saldo</label>
             @Html.EditorFor(model => model.cli_saldo, new { htmlAttributes = new { @class = "form-control" } })
-            <label class="control-label col" id="lblSaldoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Saldo</label>
+            <label class="control-label col" id="lblSaldoValidacion" style="color:red;" hidden>El siguiente campo es erroneo: Saldo</label>
         </div>
         <div class="col">
             <label class="control-label col" id="lblLimiteCrediticio">Limite Crediticio</label>
             @Html.EditorFor(model => model.cli_LimiteCredito, new { htmlAttributes = new { @class = "form-control" } })
-            <label class="control-label col" id="lblLimiteCrediticioValidacion" style="color:red;" hidden>El siguiente campo es requerido: Limite Crediticio</label>
+        <label class="control-label col" id="lblLimiteCrediticioValidacion" style="color:red;" hidden>El siguiente campo es erroneo: Limite Crediticio</label>
         </div>
     </div>
 
@@ -65,7 +84,7 @@
         <div class="col">
             <label class="control-label col" id="lblDescuento">Descuento</label>
             @Html.EditorFor(model => model.cli_Descuento, new { htmlAttributes = new { @class = "form-control" } })
-            <label class="control-label col" id="lblDescuentoValidacion" style="color:red;" hidden>El siguiente campo es requerido: Descuento</label>
+        <label class="control-label col" id="lblDescuentoValidacion" style="color:red;" hidden>El siguiente campo es erroneo: Descuento</label>
         </div>
         <div class="col">
         </div>
@@ -91,17 +110,20 @@
                 <label class="control-label col">Municipio</label>
                 <select id="mun_Id" name="mun_Id" class="form-select">
                 </select>
+                <label class="control-label col" id="lblMunicipioValidacion" style="color:red;" hidden>El siguiente campo es requerido: Municipio</label>
             </div>
         </div>
 
         <div class="row form-group pt-2">
             <div class="col">
                 <label class="control-label col">Calle</label>
-                <input type="text" id="dire_calle"  class="form-control"/>
+                <input type="text" id="dire_calle" class="form-control" />
+                <label class="control-label col" id="lblCalleValidacion" style="color:red;" hidden>El siguiente campo es requerido: Calle</label>
             </div>
             <div class="col">
                 <label class="control-label col">Comuna</label>
-                <input type="text" id="dire_comuna"  class="form-control"/>
+                <input type="text" id="dire_comuna" class="form-control" />
+                <label class="control-label col" id="lblComunaValidacion" style="color:red;" hidden>El siguiente campo es requerido: Comuna</label>
             </div>
         </div>
 
@@ -150,7 +172,8 @@
         $("#lblDescuentoValidacion").attr("hidden", true);
 
         if ($("#cli_Nombre").val() != "" && $("#cli_Apellido").val() != "" && $("#cli_Telefono").val() != "" && $("#cli_CorreoElectronico").val() != "" &&
-            $("#cli_saldo").val() != "" && $("#cli_LimiteCredito").val() != "" && $("#cli_Descuento").val() != "") {
+            $("#cli_saldo").val() != "" && $("#cli_LimiteCredito").val() != "" && $("#cli_Descuento").val() != "" &&
+            $.isNumeric($("#cli_saldo").val()) && $.isNumeric($("#cli_LimiteCredito").val()) && $.isNumeric($("#cli_Descuento").val())) {
             $(".oculto").show();
             $("#btnCliente").prop("disabled", true);
             $("#cli_Nombre").prop("disabled", true);
@@ -182,7 +205,7 @@
 
                 },
                 error: function (error) {
-
+                    console.log(error);
                 }
             });
 
@@ -199,13 +222,13 @@
             if ($("#cli_CorreoElectronico").val() == "") {
                 $("#lblCorreoElectronicoValidacion").attr("hidden", false);
             }
-            if ($("#cli_saldo").val() == "") {
+            if ($("#cli_saldo").val() == "" || !$.isNumeric($("#cli_saldo").val())) {
                 $("#lblSaldoValidacion").attr("hidden", false);
             }
-            if ($("#cli_LimiteCredito").val() == "") {
+            if ($("#cli_LimiteCredito").val() == "" || !$.isNumeric($("#cli_LimiteCredito").val())) {
                 $("#lblLimiteCrediticioValidacion").attr("hidden", false);
             }
-            if ($("#cli_Descuento").val() == "") {
+            if ($("#cli_Descuento").val() == "" || !$.isNumeric($("#cli_Descuento").val())) {
                 $("#lblDescuentoValidacion").attr("hidden", false);
             }
 
@@ -214,7 +237,10 @@
 
 
     $("#btnDireccion").click(function () {
-        if ($("#mun_Id").val() != "" && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "" ) {
+        $("#lblMunicipioValidacion").attr("hidden", true);
+        $("#lblCalleValidacion").attr("hidden", true);
+        $("#lblComunaValidacion").attr("hidden", true);
+        if ($("#mun_Id").val() != "0" && $.isNumeric($("#cli_Descuento").val()) && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "" ) {
             
             var mun_Id = $("#mun_Id").val();
             var dire_comuna = $("#dire_comuna").val();
@@ -232,6 +258,16 @@
                 }
             });
 
+        } else {
+            if ($("#mun_Id").val() == "0" || !$.isNumeric($("#mun_Id").val())) {
+                $("#lblMunicipioValidacion").attr("hidden", false);
+            }
+            if ($("#dire_comuna").val() == "") {
+                $("#lblComunaValidacion").attr("hidden", false);
+            }
+            if ($("#dire_calle").val() == "") {
+                $("#lblCalleValidacion").attr("hidden", false);
+            }
         }
     });
 

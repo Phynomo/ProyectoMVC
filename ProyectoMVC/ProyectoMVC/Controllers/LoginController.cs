@@ -13,6 +13,10 @@ namespace ProyectoMVC.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            Session["Nombre"] = null;
+            Session["UsuarioId"] = null;
+            Session["rol"] = null;
+            Session["rolNombre"] = null;
             return View();
         }
 
@@ -84,12 +88,9 @@ namespace ProyectoMVC.Controllers
 
                 return RedirectToAction("Index", "Login");
             }
-            //    else
-            //{
-            //    ModelState.AddModelError("RValidacion", "Usuario o contraseña incorrectos");
-            //}
 
-            return PartialView("_loginModal");
+            ModelState.AddModelError("RCambio", "Error al cambiar la contraseña");
+            return View("Index");
         }
 
 

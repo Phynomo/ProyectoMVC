@@ -3,6 +3,25 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
+
 }
 
 
@@ -10,12 +29,11 @@
 
     <div class="row">
     <div class="col">
-     <h4>tbCargos</h4>
+     <h4>Cargo</h4>
 </div>
 <div class="col d-flex justify-content-end">
 
 <p>
-    @Html.ActionLink("Editar", "Edit", "", new { id = Model.car_Id }, new { @class = "btn btn-warning mx-2" }) |
     @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
 </p>
 

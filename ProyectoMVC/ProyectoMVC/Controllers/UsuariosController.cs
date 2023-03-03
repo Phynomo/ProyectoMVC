@@ -54,19 +54,27 @@ namespace ProyectoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "usu_Id,usu_Usuario,usu_Contrasenia,emp_Id,usu_UsuarioCreacion,usu_FechaCreacion,usu_UsuarioModificacion,usu_FechaModificacion,usu_Estado,rol_id")] tbUsuarios tbUsuarios)
         {
-            if (ModelState.IsValid)
+            try
             {
-                //db.tbUsuarios.Add(tbUsuarios);
-                db.UDP_InsertarUsuario(tbUsuarios.usu_Usuario, tbUsuarios.usu_Contrasenia, tbUsuarios.emp_Id, tbUsuarios.rol_id, 1);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    //db.tbUsuarios.Add(tbUsuarios);
+                    db.UDP_InsertarUsuario(tbUsuarios.usu_Usuario, tbUsuarios.usu_Contrasenia, tbUsuarios.emp_Id, tbUsuarios.rol_id, 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.emp_Id = new SelectList(db.tbEmpleados, "emp_Id", "emp_Nombre", tbUsuarios.emp_Id);
-            ViewBag.usu_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbUsuarios.usu_UsuarioCreacion);
-            ViewBag.usu_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbUsuarios.usu_UsuarioModificacion);
-            ViewBag.rol_id = new SelectList(db.tbRoles, "rol_id", "rol_Nombre", tbUsuarios.rol_id);
-            return View(tbUsuarios);
+                ViewBag.emp_Id = new SelectList(db.tbEmpleados, "emp_Id", "emp_Nombre", tbUsuarios.emp_Id);
+                ViewBag.usu_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbUsuarios.usu_UsuarioCreacion);
+                ViewBag.usu_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbUsuarios.usu_UsuarioModificacion);
+                ViewBag.rol_id = new SelectList(db.tbRoles, "rol_id", "rol_Nombre", tbUsuarios.rol_id);
+                return View(tbUsuarios);
+            }
+            catch 
+            {
+                return View(tbUsuarios);
+            }
+            
         }
 
         // GET: Usuarios/Edit/5

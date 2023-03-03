@@ -2,7 +2,7 @@
 @model ProyectoMVC.Models.tbFabricas
 
 <div class="modal fade" id="exampleModalDelete-@Model.fab_id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="animation-fill-mode: unset !important;">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
@@ -15,7 +15,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.fab_id)
 
-                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+                    <h2 style="color:white;">Estas seguro de querer eliminar esta Fabrica?</h2>
 
 
                 </div>

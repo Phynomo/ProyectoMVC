@@ -54,21 +54,30 @@ namespace ProyectoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "emp_Id,emp_Nombre,emp_Apellido,emp_Sexo,mun_Id,emp_DireccionExacta,estciv_Id,emp_Telefono,emp_CorreoElectronico,emp_FechaNacimiento,emp_FechaContratacion,car_Id,emp_FechaCreacion,emp_UsuarioCreacion,emp_FechaModificacion,emp_UsuarioModificacion,emp_Estado")] tbEmpleados tbEmpleados)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.UDP_tbEmpleados_Insert(tbEmpleados.emp_Nombre, tbEmpleados.emp_Apellido, tbEmpleados.emp_Sexo,
-                    tbEmpleados.mun_Id, tbEmpleados.emp_DireccionExacta, tbEmpleados.estciv_Id, tbEmpleados.emp_Telefono,
-                    tbEmpleados.emp_CorreoElectronico, tbEmpleados.emp_FechaNacimiento.ToString(), tbEmpleados.emp_FechaContratacion.ToString(), tbEmpleados.car_Id.ToString(), 1);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.UDP_tbEmpleados_Insert(tbEmpleados.emp_Nombre, tbEmpleados.emp_Apellido, tbEmpleados.emp_Sexo,
+                        tbEmpleados.mun_Id, tbEmpleados.emp_DireccionExacta, tbEmpleados.estciv_Id, tbEmpleados.emp_Telefono,
+                        tbEmpleados.emp_CorreoElectronico, tbEmpleados.emp_FechaNacimiento.ToString(), tbEmpleados.emp_FechaContratacion.ToString(), tbEmpleados.car_Id.ToString(), 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.car_Id = new SelectList(db.tbCargos, "car_Id", "car_Nombre", tbEmpleados.car_Id);
-            ViewBag.estciv_Id = new SelectList(db.tbEstadosCiviles, "estciv_Id", "estciv_Nombre", tbEmpleados.estciv_Id);
-            //ViewBag.dep_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbEmpleados.mun_Id);
-            ViewBag.emp_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioCreacion);
-            ViewBag.emp_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioModificacion);
-            return View(tbEmpleados);
+                ViewBag.car_Id = new SelectList(db.tbCargos, "car_Id", "car_Nombre", tbEmpleados.car_Id);
+                ViewBag.estciv_Id = new SelectList(db.tbEstadosCiviles, "estciv_Id", "estciv_Nombre", tbEmpleados.estciv_Id);
+                //ViewBag.dep_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbEmpleados.mun_Id);
+                ViewBag.emp_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioCreacion);
+                ViewBag.emp_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioModificacion);
+                return View(tbEmpleados);
+            }
+            catch 
+            {
+                return View(tbEmpleados);
+
+            }
+            
         }
 
         // GET: Empleados/Edit/5
@@ -100,20 +109,29 @@ namespace ProyectoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "emp_Id,emp_Nombre,emp_Apellido,emp_Sexo,mun_Id,emp_DireccionExacta,estciv_Id,emp_Telefono,emp_CorreoElectronico,emp_FechaNacimiento,emp_FechaContratacion,car_Id,emp_FechaCreacion,emp_UsuarioCreacion,emp_FechaModificacion,emp_UsuarioModificacion,emp_Estado")] tbEmpleados tbEmpleados)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.UDP_tbEmpleados_Update(tbEmpleados.emp_Id, tbEmpleados.emp_Nombre, tbEmpleados.emp_Apellido, tbEmpleados.emp_Sexo, tbEmpleados.mun_Id, tbEmpleados.emp_DireccionExacta
-                    , tbEmpleados.estciv_Id, tbEmpleados.emp_Telefono, tbEmpleados.emp_CorreoElectronico, tbEmpleados.emp_FechaNacimiento.ToString(), tbEmpleados.emp_FechaContratacion.ToString(),
-                    tbEmpleados.car_Id.ToString(), 1);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.UDP_tbEmpleados_Update(tbEmpleados.emp_Id, tbEmpleados.emp_Nombre, tbEmpleados.emp_Apellido, tbEmpleados.emp_Sexo, tbEmpleados.mun_Id, tbEmpleados.emp_DireccionExacta
+                        , tbEmpleados.estciv_Id, tbEmpleados.emp_Telefono, tbEmpleados.emp_CorreoElectronico, tbEmpleados.emp_FechaNacimiento.ToString(), tbEmpleados.emp_FechaContratacion.ToString(),
+                        tbEmpleados.car_Id.ToString(), 1);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.car_Id = new SelectList(db.tbCargos, "car_Id", "car_Nombre", tbEmpleados.car_Id);
+                ViewBag.estciv_Id = new SelectList(db.tbEstadosCiviles, "estciv_Id", "estciv_Nombre", tbEmpleados.estciv_Id);
+                //ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbEmpleados.mun_Id);
+                ViewBag.emp_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioCreacion);
+                ViewBag.emp_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioModificacion);
+                return View(tbEmpleados);
             }
-            ViewBag.car_Id = new SelectList(db.tbCargos, "car_Id", "car_Nombre", tbEmpleados.car_Id);
-            ViewBag.estciv_Id = new SelectList(db.tbEstadosCiviles, "estciv_Id", "estciv_Nombre", tbEmpleados.estciv_Id);
-            //ViewBag.mun_Id = new SelectList(db.tbMunicipios, "mun_Id", "mun_Nombre", tbEmpleados.mun_Id);
-            ViewBag.emp_UsuarioCreacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioCreacion);
-            ViewBag.emp_UsuarioModificacion = new SelectList(db.tbUsuarios, "usu_Id", "usu_Usuario", tbEmpleados.emp_UsuarioModificacion);
-            return View(tbEmpleados);
+            catch 
+            {
+                return View(tbEmpleados);
+            }
+
+           
         }
 
         // GET: Empleados/Delete/5
@@ -143,6 +161,17 @@ namespace ProyectoMVC.Controllers
             return Json(tbMunicipios, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult CargarDepartamentosEdit(int emp_Id)
+        {
+            var tbMunicipios = db.UDP_cargarMunicipioDeEmpleados(emp_Id).ToList();
+            return Json(tbMunicipios, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SelectedMunicipio(int emp_Id)
+        {
+            var tbMunicipios = db.UDP_cargarMunicipioDeEmpleados(emp_Id).ToList();
+            return Json(tbMunicipios, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

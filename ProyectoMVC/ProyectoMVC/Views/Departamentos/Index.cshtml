@@ -1,87 +1,108 @@
 ﻿@model IEnumerable<ProyectoMVC.Models.tbDepartamentos>
 
-@{
+    @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-<div class="card">
-                
-    <div class="card-header">
-                <div class="row">
-                    <div class="col">
-                     <h4>Departamentos</h4>
-                    </div>
-                    <div class="col d-flex flex-row-reverse">
-                        <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
-                    </div>
+
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+
+    }
+
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>Departamentos</h4>
                 </div>
-    </div>
-
-    <div class="card-body">
-        <div class="row">
-            <div class="col">
-                <table class="dataTable display compact stripe table-dark" id="example">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.dep_Nombre)
-                        </th>
-
-                        <th>Detalles</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var item in Model) {
-                    <tr>
-                        @Html.Partial("_ModalesDepartamentosView", item)
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dep_Nombre)
-                        </td>
-
-                        <td>
-                            @Html.ActionLink(" ", "Details", new { id = item.dep_Id }, new { @class = "btn btn-block btn-info bi bi-file-earmark-text-fill" })
-
-                        </td>
-                        <td>
-                            <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.dep_Id)"> </button>
-                            @Html.Partial("_ModalesDepartamentosView", item)
-                        </td>
-                        <td>
-                            <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.dep_Id)"> </button>
-                            @Html.Partial("_ModalesDepartamentosView", item)
-                        </td>
-                    </tr>
-                }
-                </tbody>
-                </table>
+                <div class="col d-flex flex-row-reverse">
+                    <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
+                </div>
             </div>
         </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <table class="dataTable display compact stripe table-dark" id="example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="control-label"> Departamentos</label>
+                                </th>
+
+                                <th>Detalles</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model) {
+                            <tr>
+                                @Html.Partial("_ModalesDepartamentosView", item)
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dep_Nombre)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink(" ", "Details", new { id = item.dep_Id }, new { @class = "btn btn-block btn-info bi bi-file-earmark-text-fill" })
+
+                                </td>
+                                <td>
+                                    <button type="button" id="btnEditar" class="btn btn-block btn-warning bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalEdit-" + item.dep_Id)"> </button>
+                                    @Html.Partial("_ModalesDepartamentosView", item)
+                                </td>
+                                <td>
+                                    <button type="button" id="btnDelete" class="btn btn-block btn-danger bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="@("#exampleModalDelete-" + item.dep_Id)"> </button>
+                                    @Html.Partial("_ModalesDepartamentosView", item)
+                                </td>
+                            </tr>
+                }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <script>
 
-</div>
-<script>
+        $("#btnDetails").click(function () {
 
-    $("#btnDetails").click(function () {
+            $("exampleModalDitails").modal('show');
 
-        $("exampleModalDitails").modal('show');
+        });
 
-    });
+        $("#btnEditar").click(function () {
 
-    $("#btnEditar").click(function () {
+            $("exampleModalEdit").modal('show');
 
-        $("exampleModalEdit").modal('show');
+        });
 
-    });
+        $("#btnInsertar").click(function () {
+            $("exampleModal").modal('show');
+        });
 
-    $("#btnInsertar").click(function () {
-        $("exampleModal").modal('show');
-    });
+        $("#btnDelete").click(function () {
+            $("exampleModalDelete").modal('show');
+        });
 
-    $("#btnDelete").click(function () {
-        $("exampleModalDelete").modal('show');
-    });
-
-</script>
+    </script>

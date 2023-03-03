@@ -146,6 +146,7 @@
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\EstadoCivil.cs" />
     <Compile Include="Models\Fabrica.cs" />
     <Compile Include="Controllers\PedidosDetallesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Categorias.cs" />
+    <Compile Include="Models\MetodoPago.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +224,12 @@
     <Compile Include="Models\tbUsuarios.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_cargarMunicipioDeDirecciones_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_cargarMunicipioDeEmpleados_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_CargarMunicipios_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -284,9 +292,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VW_DireccionesIndex.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VW_PedidoDetalles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VW_UsuariosIndex.cs">

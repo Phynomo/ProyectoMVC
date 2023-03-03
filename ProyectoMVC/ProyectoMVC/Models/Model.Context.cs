@@ -46,7 +46,6 @@ namespace ProyectoMVC.Models
         public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
         public virtual DbSet<VW_ClientesIndex> VW_ClientesIndex { get; set; }
         public virtual DbSet<VW_DireccionesIndex> VW_DireccionesIndex { get; set; }
-        public virtual DbSet<VW_PedidoDetalles> VW_PedidoDetalles { get; set; }
         public virtual DbSet<VW_UsuariosIndex> VW_UsuariosIndex { get; set; }
     
         public virtual int UDP_BorrarUsuario(Nullable<int> idEdicion)
@@ -1033,6 +1032,24 @@ namespace ProyectoMVC.Models
         public virtual ObjectResult<UDP_CargarTodoMunicipio_Result1> UDP_CargarTodoMunicipio()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_CargarTodoMunicipio_Result1>("UDP_CargarTodoMunicipio");
+        }
+    
+        public virtual ObjectResult<UDP_cargarMunicipioDeEmpleados_Result> UDP_cargarMunicipioDeEmpleados(Nullable<int> emp_Id)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_cargarMunicipioDeEmpleados_Result>("UDP_cargarMunicipioDeEmpleados", emp_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_cargarMunicipioDeDirecciones_Result> UDP_cargarMunicipioDeDirecciones(Nullable<int> dire_Id)
+        {
+            var dire_IdParameter = dire_Id.HasValue ?
+                new ObjectParameter("dire_Id", dire_Id) :
+                new ObjectParameter("dire_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_cargarMunicipioDeDirecciones_Result>("UDP_cargarMunicipioDeDirecciones", dire_IdParameter);
         }
     }
 }

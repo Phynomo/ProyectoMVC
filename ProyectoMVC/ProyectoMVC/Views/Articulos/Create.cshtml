@@ -6,63 +6,63 @@
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="container px-4 text-center">
+@Html.AntiForgeryToken()
+
+<div class="container px-4 text-center">
     <div class="row">
         <div class="col">
 
-            <h4>Crear tbArticulos</h4>
+            <h4>Crear Articulos</h4>
 
         </div>
     </div>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row form-group pt-2">
-            <div class="col">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row form-group pt-2">
+        <div class="col">
             @Html.LabelFor(model => model.art_Nombre, htmlAttributes: new { @class = "control-label col" })
-                @Html.EditorFor(model => model.art_Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.art_Nombre, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
+            @Html.EditorFor(model => model.art_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.art_Nombre, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
             @Html.LabelFor(model => model.art_Precio, htmlAttributes: new { @class = "control-label col" })
-                @Html.EditorFor(model => model.art_Precio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.art_Precio, "", new { @class = "text-danger" })
-            </div>
+            @Html.EditorFor(model => model.art_Precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.art_Precio, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="row form-group pt-2">
-            <div class="col">
-            @Html.LabelFor(model => model.cat_Id, "cat_Id", htmlAttributes: new { @class = "control-label col" })
-                @Html.DropDownList("cat_Id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.cat_Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label">Categoria</label>
+            @Html.DropDownList("cat_Id", null, htmlAttributes: new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.cat_Id, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
             @Html.LabelFor(model => model.art_Stock, htmlAttributes: new { @class = "control-label col" })
-                @Html.EditorFor(model => model.art_Stock, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.art_Stock, "", new { @class = "text-danger" })
-            </div>
+            @Html.EditorFor(model => model.art_Stock, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.art_Stock, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="row form-group pt-2">
-            <div class="col">
-                @Html.LabelFor(model => model.fab_id, "fab_id", htmlAttributes: new { @class = "control-label col" })
-                @Html.DropDownList("fab_id", null, htmlAttributes: new { @class = "form-select" })
-                @Html.ValidationMessageFor(model => model.fab_id, "", new { @class = "text-danger" })
-            </div>
-            <div class="col">
-            </div>
+    <div class="row form-group pt-2">
+        <div class="col">
+            <label class="control-label">Fabrica</label>
+            @Html.DropDownList("fab_id", null, htmlAttributes: new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.fab_id, "", new { @class = "text-danger" })
         </div>
+        <div class="col">
+        </div>
+    </div>
 
-        
-        <div class=" row form-group d-flex justify-content-end py-3">
-            <div class="col d-flex justify-content-end">
-                <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
-                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
-            </div>
+
+    <div class=" row form-group d-flex justify-content-end py-3">
+        <div class="col d-flex justify-content-end">
+            <input type="submit" value="Crear registro" class="btn btn-success mx-2" />
+            @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
         </div>
-        </div>
+    </div>
+</div>
 }
 

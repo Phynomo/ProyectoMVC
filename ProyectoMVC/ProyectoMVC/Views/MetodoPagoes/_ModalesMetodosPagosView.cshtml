@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar metodo de pago</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -15,7 +15,7 @@
 
 
 
-                    <label for="floatingInput">Metodo de pago</label>
+                    <label for="floatingInput" style="color:white;">Metodo de pago</label>
                     <input type="text" class="form-control" id="floatingInput" name="txtMetodopago" placeholder="Metodo de pago" required>
 
 
@@ -23,7 +23,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="btnCreate" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-light" id="btnCreate" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
@@ -37,7 +37,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Altualizar Categorias</h5>
+                <h4 class="modal-title" id="exampleModalLabel">Eliminar</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -47,13 +47,13 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.metpago_Id)
 
-                    <h2 style="color:black;">Estas seguro de querer eliminar este registro?</h2>
+                    <h5 style="color:white;">Estas seguro de querer eliminar este registro?</h5>
 
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
                 </div>
             </form>
         </div>
@@ -65,7 +65,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Altualizar Cargo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Altualizar metodo de pago</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -75,15 +75,16 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.metpago_Id)
 
-                    @Html.LabelFor(model => model.metpago_Descripcion, htmlAttributes: new { @class = "control-label col" } )
-                    @Html.EditorFor(model => model.metpago_Descripcion, new { htmlAttributes = new { @class = "form-control" ,required="required"} } )
+
+                    <label for="floatingInput" style="color:white;">Metodo de pago</label>
+                    @Html.EditorFor(model => model.metpago_Descripcion, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.metpago_Descripcion, "", new { @class = "text-danger" })
 
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>

@@ -3,6 +3,23 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "3")
+            {
+                Response.Redirect("/Home/Index");
+            }
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
 }
 
 <style>
@@ -19,7 +36,7 @@
         <div class="row">
             <div class="col">
 
-                <h4>Editar Clientes</h4>
+                <h4>Editar cliente</h4>
 
             </div>
         </div>
@@ -78,8 +95,8 @@
 
         <div class=" row form-group d-flex justify-content-end py-3">
             <div class="col d-flex justify-content-start">
-                <input type="button" value="Agregar direccion" id="btnAbrir" class="btn btn-primary mx-2" onclick="agregardire()"  />
-                <input type="button" value="Agregar direccion" id="btnCerrar" class="btn btn-danger mx-2" onclick="cerrardire()" hidden/>
+                <input type="button" value="Agregar direccion" id="btnAbrir" class="btn btn-info mx-2" onclick="agregardire()"  />
+                <input type="button" value="X" id="btnCerrar" class="btn btn-danger mx-2" onclick="cerrardire()" hidden/>
             </div>
             <div class="col d-flex justify-content-end">
                 <input type="submit" value="Guardar cambios" class="btn btn-success mx-2" />
@@ -96,27 +113,57 @@
 
     <div class="row form-group pt-2">
         <div class="col">
-            <label class="control-label col">Departamento</label>
-            @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+            <label class="control-label">Departamentos</label>
+            <label class="control-label col"></label>
+            @try
+            {
+
+                @Html.DropDownList("dep_Id", null, htmlAttributes: new { @class = "form-select" })
+
+            }
+            catch 
+            {
+                <select id="dep_Id" class="form-select">
+                    <option value="01" selected> Atlantida</option>
+                    <option value="02"> Colon </option>
+                    <option value="03"> Comayagua </option>
+                    <option value="04"> Copan </option>
+                    <option value="05"> Cortes </option>
+                    <option value="06"> Choluteca </option>
+                    <option value="07"> El Paraiso </option>
+                    <option value="08"> fabncisco Morazan </option>
+                    <option value="09"> Gracias a Dios </option>
+                    <option value="10"> Intibuca </option>
+                    <option value="11"> Islas de la Bah�a </option>
+                    <option value="12"> La Paz </option>
+                    <option value="13"> Lempira </option>
+                    <option value="14"> Ocotepeque </option>
+                    <option value="15"> Olancho </option>
+                    <option value="16"> Santa Barbara </option>
+                    <option value="17"> Valle </option>
+                    <option value="18"> Yoro </option>
+                </select>
+            }
         </div>
-        <div class="col">
-            <label class="control-label col">Municipio</label>
-            <select id="mun_Id" name="mun_Id" class="form-select">
-            </select>
-        </div>
+
+    <div class="col">
+        <label class="control-label col">Municipio</label>
+        <select id="mun_Id" name="mun_Id" class="form-select">
+        </select>
+        <label class="control-label col" id="lblMunicipioValidacion" style="color:red;" hidden>El siguiente campo es requerido: Municipio</label>
     </div>
+</div>
 
     <div class="row form-group pt-2">
         <div class="col">
             <label class="control-label col">Calle</label>
             <input type="text" id="dire_calle" class="form-control" />
+            <label class="control-label col" id="lblCalleValidacion" style="color:red;" hidden>El siguiente campo es requerido: Calle</label>
         </div>
-    </div>
-
-    <div class="row form-group pt-2">
         <div class="col">
             <label class="control-label col">Comuna</label>
             <input type="text" id="dire_comuna" class="form-control" />
+            <label class="control-label col" id="lblComunaValidacion" style="color:red;" hidden>El siguiente campo es requerido: Comuna</label>
         </div>
     </div>
 
@@ -167,7 +214,7 @@
                 var cadena = "";
                 $.each(result, function (index, item) {
                     cadena += "<tr><td>" + item.dire_Calle + "</td><td>" + item.dire_Comuna + "</td><td>" + item.dep_Nombre + "</td><td>" + item.mun_Nombre + "</td><td>" + "<a href = '/Direcciones/Edit/" + item.dire_ID + "' class='btn btn-block btn-warning bi bi-pencil-fill' ></a> " + "" + " <button onclick='hola(" + item.dire_ID + ")' id='btn-delete' class='btn-delete btn btn-block btn-danger bi bi-trash-fill' data-id='" + item.dire_ID + "'>" + "" + "</button> " + "</td></tr>";
-                    console.log(cadena);
+                    
                 });
                 $("#tbodyDirecciones").html(cadena);
 
@@ -253,7 +300,10 @@
     }
 
     $("#btnDireccion").click(function () {
-        if ($("#mun_Id").val() != "" && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "") {
+        $("#lblMunicipioValidacion").attr("hidden", true);
+        $("#lblCalleValidacion").attr("hidden", true);
+        $("#lblComunaValidacion").attr("hidden", true);
+        if ($("#mun_Id").val() != "" && $.isNumeric($("#cli_Descuento").val()) && $("#dire_comuna").val() != "" && $("#dire_calle").val() != "") {
 
             $(".oculto").show();
             var mun_Id = $("#mun_Id").val();
@@ -272,6 +322,16 @@
                 }
             });
 
+        } else {
+            if ($("#mun_Id").val() == "0" || !$.isNumeric($("#mun_Id").val())) {
+                $("#lblMunicipioValidacion").attr("hidden", false);
+            }
+            if ($("#dire_comuna").val() == "") {
+                $("#lblComunaValidacion").attr("hidden", false);
+            }
+            if ($("#dire_calle").val() == "") {
+                $("#lblCalleValidacion").attr("hidden", false);
+            }
         }
     });
 

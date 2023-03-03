@@ -1,46 +1,68 @@
 ﻿@model IEnumerable<ProyectoMVC.Models.tbMunicipios>
 
-@{
+    @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<div class="card">
 
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <h4>tbMunicipios</h4>
-            </div>
-            <div class="col d-flex flex-row-reverse">
-                <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
+
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "2")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
+    }
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>Municipios</h4>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                    <button type="button" id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Crear </button>
+                </div>
             </div>
         </div>
-    </div>
 
 
 
-    <div class="card-body">
-        <div class="row">
-            <div class="col">
-                <table class="dataTable display compact stripe table-dark" id="example">
-                    <thead>
-                        <tr>
-                            <th>
-                                Municipios
-                            </th>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <table class="dataTable display compact stripe table-dark" id="example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Municipios
+                                </th>
 
-                            <th>
-                                Departamentos
-                            </th>
+                                <th>
+                                    Departamentos
+                                </th>
 
-                            <th>Detalles</th>
-                            <th>Editar</th>
-                            <th>Borrar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
+                                <th>Detalles</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
                         {
 
                             @Html.Partial("_CreateMunicipioView", item);
@@ -69,39 +91,39 @@
                                 </td>
                             </tr>
                         }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
 
 
 
 
 
+    <script>
 
-<script>
+        $("#btnDetails").click(function () {
 
-    $("#btnDetails").click(function () {
+            $("exampleModalDitails").modal('show');
 
-        $("exampleModalDitails").modal('show');
+        });
 
-    });
+        $("#btnEditar").click(function () {
 
-    $("#btnEditar").click(function () {
+            $("exampleModalEdit").modal('show');
 
-        $("exampleModalEdit").modal('show');
+        });
 
-    });
+        $("#btnInsertar").click(function () {
+            $("exampleModal").modal('show');
+        });
 
-    $("#btnInsertar").click(function () {
-        $("exampleModal").modal('show');
-    });
+        $("#btnDelete").click(function () {
+            $("exampleModalDelete").modal('show');
+        });
 
-    $("#btnDelete").click(function () {
-        $("exampleModalDelete").modal('show');
-    });
-
-</script>
+    </script>

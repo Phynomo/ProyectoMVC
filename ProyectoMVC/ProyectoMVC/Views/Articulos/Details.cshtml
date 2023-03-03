@@ -6,25 +6,22 @@
 }
 
 
-    <div>
+<div>
 
-        <div class="row">
-            <div class="col">
-                <h4>tbArticulos</h4>
-            </div>
-            <div class="col d-flex justify-content-end">
-
-                <p>
-                    @Html.ActionLink("Editar", "Edit", "", new { id = Model.art_Id }, new
-                    {
-                        @class = "btn btn-warning mx-2"
-                    }) |
-                    @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
-                </p>
-
-
-            </div>
+    <div class="row">
+        <div class="col">
+            <h4>Detalles de Articulos</h4>
         </div>
+        <div class="col d-flex justify-content-end">
+
+            <p>
+
+                @Html.ActionLink("Regresar al index", "Index", " ", new { @class = "btn btn-light mx-2" })
+            </p>
+
+
+        </div>
+    </div>
 
 
 
@@ -34,84 +31,84 @@
 
 
 
-        <hr />
+    <hr />
 
-        <div class="container">
-            <dl class="dl-horizontal">
+    <div class="container">
+        <dl class="dl-horizontal">
 
-                <div class="row">
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.art_Nombre)
-                        </dt>
-
-
-                        <dd>
-                            @Html.DisplayFor(model => model.art_Nombre)
-                        </dd>
-                    </div>
+            <div class="row">
+                <div class="col">
+            <dt style="color:White;">
+                @Html.DisplayNameFor(model => model.art_Nombre)
+            </dt>
 
 
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.art_Precio)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.art_Precio)
-                        </dd>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.art_Stock)
-                        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.art_Nombre)
+            </dd>
+    </div>
 
 
-                        <dd>
-                            @Html.DisplayFor(model => model.art_Stock)
-                        </dd>
-                    </div>
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.art_Precio)
+        </dt>
 
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.art_Estado)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.art_Precio)
+        </dd>
+    </div>
+</div>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.art_Estado)
-                        </dd>
-                    </div>
+<div class="row">
+
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.art_Stock)
+        </dt>
 
 
-                </div>
+        <dd>
+            @Html.DisplayFor(model => model.art_Stock)
+        </dd>
+    </div>
 
-                <div class="row">
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.tbCategoria.cat_Descripcion)
-                        </dt>
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.art_Estado)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbCategoria.cat_Descripcion)
-                        </dd>
-                    </div>
+        <dd>
+            @Html.DisplayFor(model => model.art_Estado)
+        </dd>
+    </div>
 
-                    <div class="col">
-                        <dt style="color:White;">
-                            @Html.DisplayNameFor(model => model.tbFabricas.fab_Nombre)
-                        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbFabricas.fab_Nombre)
-                        </dd>
-                    </div>
-                </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <dt style="color:White;">
+            @Html.DisplayNameFor(model => model.tbCategoria.cat_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCategoria.cat_Descripcion)
+        </dd>
+    </div>
+
+    <div class="col">
+        <dt style="color:White;">
+            <label class="control-label">Fabrica</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbFabricas.fab_Nombre)
+        </dd>
+    </div>
+</div>
             </dl>
-        </div>      
+        </div>
     </div>
 
 
@@ -155,7 +152,7 @@
 
                             </td>
                             <td>@Html.DisplayFor(model => model.art_FechaModificacion)
-</tr>
+                        </tr>
                     </tbody>
                 </table>
 

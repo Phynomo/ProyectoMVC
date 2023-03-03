@@ -3,6 +3,24 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "5")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
+
 }
 
 
@@ -14,7 +32,7 @@
     <div class="row">
         <div class="col">
 
-            <h4>Crear tbUsuarios</h4>
+            <h4>Crear usuario</h4>
 
         </div>
     </div>

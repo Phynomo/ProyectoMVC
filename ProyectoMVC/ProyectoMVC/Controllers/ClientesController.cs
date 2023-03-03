@@ -66,26 +66,67 @@ namespace ProyectoMVC.Controllers
         }
 
 
-        public ActionResult Crea2(string cli_Nombre, string cli_Apellido, string cli_Telefono, string cli_CorreoElectronico, string cli_saldo, string cli_LimiteCredito, string cli_Descuento)
+        public JsonResult Crea2(string cli_Nombre, string cli_Apellido, string cli_Telefono, string cli_CorreoElectronico, string cli_saldo, string cli_LimiteCredito, string cli_Descuento)
         {
-             db.UDP_tbClientes_Insert(cli_Nombre, cli_Apellido, cli_Telefono, cli_CorreoElectronico, Convert.ToDecimal(cli_saldo), Convert.ToDecimal(cli_LimiteCredito), Convert.ToDecimal(cli_Descuento),  1);
-            return View();
+            try
+            {
+                if (cli_Nombre != "" && cli_Apellido != "" && cli_Telefono != "" && cli_CorreoElectronico != "" && cli_saldo != "" && cli_LimiteCredito != "" && cli_Descuento != "")
+                {
+                    db.UDP_tbClientes_Insert(cli_Nombre, cli_Apellido, cli_Telefono, cli_CorreoElectronico, Convert.ToDecimal(cli_saldo), Convert.ToDecimal(cli_LimiteCredito), Convert.ToDecimal(cli_Descuento), 1);
+                    return Json("");
+                }
+            }
+            catch
+            {
+                return Json(new { redirectToUrl = Url.Action("Index", "Clientes") });;
+            }
+
+            return Json("");
+
         }
 
         public ActionResult Crea2Dire(string dire_calle, string dire_comuna, string mun_Id)
         {
-            var tbClientes = db.tbClientes.ToList();
-            int valMax = tbClientes.Max(x => x.cli_Id);
-            db.UDP_tbDirecciones_Insert(dire_calle,dire_comuna,mun_Id,valMax,1);
-            Response.Redirect("/Clientes/Index");
-             return RedirectToAction("Index", "Cargos");
+            try
+            {
+                if (!String.IsNullOrEmpty(dire_calle) && !String.IsNullOrEmpty(dire_comuna) && !String.IsNullOrEmpty(mun_Id))
+                {
+                    var tbClientes = db.tbClientes.ToList();
+                    int valMax = tbClientes.Max(x => x.cli_Id);
+                    db.UDP_tbDirecciones_Insert(dire_calle, dire_comuna, mun_Id, valMax, 1);
+                    Response.Redirect("/Clientes/Index");
+                    return RedirectToAction("Index", "Clientes");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch 
+            {
+                return View();
+            }
         }
 
         public ActionResult AgregarDire(string cli_Id, string dire_calle, string dire_comuna, string mun_Id)
         {
-            db.UDP_tbDirecciones_Insert(dire_calle, dire_comuna, mun_Id, Convert.ToInt32(cli_Id), 1);
-            Response.Redirect("/Clientes/Index");
-            return RedirectToAction("Index", "Cargos");
+            try
+            {
+                if (!String.IsNullOrEmpty(cli_Id) && !String.IsNullOrEmpty(dire_calle) && !String.IsNullOrEmpty(dire_comuna) && !String.IsNullOrEmpty(mun_Id))
+                {
+                    db.UDP_tbDirecciones_Insert(dire_calle, dire_comuna, mun_Id, Convert.ToInt32(cli_Id), 1);
+                    Response.Redirect("/Clientes/Index");
+                    return RedirectToAction("Index", "Clientes");
+                }
+                else {
+                    return View();
+                }
+                
+            }
+            catch
+            {
+                return View();
+            }
         }
 
 
@@ -129,15 +170,34 @@ namespace ProyectoMVC.Controllers
 
         public ActionResult Delete(int? id)
         {
-            var tbClientes = db.tbClientes.Where(t => t.cli_Id == id).FirstOrDefault();
-            return PartialView("_ModalesDireccionesView", tbClientes);
+            try
+            {
+
+                var tbClientes = db.tbClientes.Where(t => t.cli_Id == id).FirstOrDefault();
+                return PartialView("_ModalesDireccionesView", tbClientes);
+            }
+            catch
+            {
+                Response.Redirect("/Clientes/Index");
+                return RedirectToAction("Index", "Clientes");
+            }
         }
 
         public ActionResult DeleteConfirm([Bind(Include = "cli_Id,cli_Nombre,cli_Apellido,cli_Telefono,cli_CorreoElectronico,cli_saldo,cli_LimiteCredito,cli_Descuento,cli_FechaCreacion,cli_UsuarioCreacion,cli_FechaModificacion,cli_UsuarioModificacion,cli_Estado")] tbClientes tbClientes)
         {
-            db.UDP_tbClientes_Delete(tbClientes.cli_Id,1);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Clientes");
+            try
+            {
+
+                db.UDP_tbClientes_Delete(tbClientes.cli_Id, 1);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Clientes");
+            }
+            catch
+            {
+
+                return RedirectToAction("Index", "Clientes");
+            }
+
         }
 
 

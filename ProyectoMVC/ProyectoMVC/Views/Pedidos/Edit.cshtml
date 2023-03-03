@@ -3,6 +3,23 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    try
+    {
+        if (Session["rol"] != null)
+        {
+            if (Session["rol"].ToString() != "1" && Session["rol"].ToString() != "2" && Session["rol"].ToString() != "3" && Session["rol"].ToString() != "4")
+            {
+                Response.Redirect("/Home/Index");
+            }
+
+        }
+
+    }
+    catch
+    {
+        Response.Redirect("/Home/Index");
+    }
 }
 
 
@@ -39,13 +56,7 @@
                     @Html.DropDownList("dire_id", null, htmlAttributes: new { @class = "form-select" })
                     @Html.ValidationMessageFor(model => model.dire_id, "", new { @class = "text-danger" })
                 </div>
-                <div class="col">
-                    @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
-                    <label class="control-label col">Fecha Del Pedido</label>
 
-                    @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                    @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
-                </div>
             </div>
 
             <div class="row form-group pt-2">
@@ -66,118 +77,131 @@
                 </div>
             </div>
 
-
-        </div>
-        <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
-        <button id="MostrarInsert" class="btn-secondary">Ingresar Nuevo Articulo</button>
-        <button id="ocultar" class="btn-secondary">Cerrar</button>
-    </div>
-</div>
-
-
-<div class="container" id="InsertarNuevo">
-    <div class="card">
-        <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
-        <div class="card-body">
-
-            <div class="row form-group pt-2">
-                <div class="col">
-                    <label>Producto</label>
-                    @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
-
-                </div>
-                <div class="col">
-                    Precio del producto
-
-                    <input id="pede_precio" name="pede_precio" class="form-control" readonly />
-
-                </div>
-            </div>
-
-            <div class="row form-group pt-2">
-                <div class="col">
-                    <label>Cantidad </label>
-
-                    <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
-                    <label id="stockValid" hidden>Ingrese La Cantidad</label>
-
-                </div>
-                <div class="col">
-
-
-                </div>
-            </div>
-
             <div class="row form-group pt-2">
 
                 <div class="col">
-                    <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnEditar" value="Agregar" />
+                    @*@Html.LabelFor(model => model.ped_Fecha, htmlAttributes: new { @class = "control-label col" })*@
+                    <label class="control-label col">Fecha Del Pedido</label>
+
+                    @Html.EditorFor(model => model.ped_Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.ped_Fecha, "", new { @class = "text-danger" })
                 </div>
                 <div class="col">
-                    <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
-                </div>
-                <div class="col">
-                    <label>Total:</label>
-                </div>
-                <div class="col">
-                    <input type="text" id="txttotal" class="form-control" readonly />
+
+
+
                 </div>
             </div>
-
+            <input class="btn btn-primary btnInsertarVenta" type="button" id="btnInsertarVenta" value="Registrar Pedido" />
+            <button id="MostrarInsert" class="btn-secondary">Ingresar Nuevo Articulo</button>
+            <button id="ocultar" class="btn-secondary">Cerrar</button>
         </div>
     </div>
-</div>
 
 
-<table id="example" class="dataTable display compact stripe table-dark">
-    <thead>
-        <tr>
+    <div class="container" id="InsertarNuevo">
+        <div class="card">
+            <div class="card-header" style="background-color:black; color:white;"><h4>Añadir Productos</h4></div>
+            <div class="card-body">
 
-            <td>Numero de Pedido</td>
-            <td>Nombre de Articulo</td>
-            <td>Cantidad del Articulo</td>
-            <td>Precio del Articulo</td>
+                <div class="row form-group pt-2">
+                    <div class="col">
+                        <label>Producto</label>
+                        @Html.DropDownList("art_Id", null, htmlAttributes: new { @class = "form-select" })
 
-        </tr>
-    </thead>
-    <tbody id="tbodyDirecciones"></tbody>
-</table>
+                    </div>
+                    <div class="col">
+                        Precio del producto
+
+                        <input id="pede_precio" name="pede_precio" class="form-control" readonly />
+
+                    </div>
+                </div>
+
+                <div class="row form-group pt-2">
+                    <div class="col">
+                        <label>Cantidad </label>
+
+                        <input type="number" id="pede_Stock" name="pede_Stock" class="form-control" />
+                        <label id="stockValid" hidden>Ingrese La Cantidad</label>
+
+                    </div>
+                    <div class="col">
 
 
-<div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
-                <button type="button" onclick="cerrar()" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de que desea eliminar este elemento?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="cerrar()">Cancelar</button>
-                <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
+                    </div>
+                </div>
+
+                <div class="row form-group pt-2">
+
+                    <div class="col">
+                        <input class="btn btn-primary btnInsertarVentaDetalle" type="button" id="btnEditar" value="Agregar" />
+                    </div>
+                    <div class="col">
+                        <a href="/Pedidos/Index" class="btn btn-success">Finalizar</a>
+                    </div>
+                    <div class="col">
+                        <label>Total:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="txttotal" class="form-control" readonly />
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    //Funciones del modal
-    function DeleteModal() {
-        $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
-    }
-    function cerrar() {
-        $("#confirm-delete-modal").modal("hide");
-    }
-    function hola(id) {
-        $('#confirm-delete-modal').modal('show')
-        $('#btn-confirm-delete').attr('href', '/PedidosDetalles/Delete/' + id + '00011001001110102100101010011010101' + $("#ped_Id").val());
-    }
-    //Funciones del modal
-</script>
+
+    <table id="example" class="dataTable display compact stripe table-dark">
+        <thead>
+            <tr>
+
+                <td>Numero de Pedido</td>
+                <td>Nombre de Articulo</td>
+                <td>Cantidad del Articulo</td>
+                <td>Precio del Articulo</td>
+
+            </tr>
+        </thead>
+        <tbody id="tbodyDirecciones"></tbody>
+    </table>
+
+
+    <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirm-delete-modal-label">Confirmar eliminación</h5>
+                    <button type="button" onclick="cerrar()" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea eliminar este elemento?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrar()">Cancelar</button>
+                    <a href="#" id="btn-confirm-delete" class="btn btn-danger" onclick="DeleteModal()">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Funciones del modal
+        function DeleteModal() {
+            $('#confirm-delete-modal').modal({ backdrop: 'static', keyboard: false })
+        }
+        function cerrar() {
+            $("#confirm-delete-modal").modal("hide");
+        }
+        function hola(id) {
+            $('#confirm-delete-modal').modal('show')
+            $('#btn-confirm-delete').attr('href', '/PedidosDetalles/Delete/' + id + '00011001001110102100101010011010101' + $("#ped_Id").val());
+        }
+        //Funciones del modal
+    </script>
 
 
 
